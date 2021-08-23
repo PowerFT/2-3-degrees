@@ -63,10 +63,10 @@ const createJobPostPages = async ({ jobPosts, gatsbyUtilities }) => {
   return Promise.all(
     jobPosts.map(({ jobPost }) =>
       gatsbyUtilities.actions.createPage({
-        path: `/connect-platform/jobs/${jobPost.id}`,
+        path: `/connect-platform/jobs/${jobPost?.id}`,
         component: path.resolve(`./src/templates/job-post.js`),
         context: {
-          id: jobPost.id,
+          id: jobPost?.id,
         },
       })
     )
@@ -88,7 +88,7 @@ const createPagePages = async ({ pages, gatsbyUtilities }) => {
         path: getPagePath(page),
         component: path.resolve("./src/templates/page/index.js"),
         context: {
-          id: page.id,
+          id: page?.id,
           page
         },
       })
