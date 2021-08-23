@@ -1,0 +1,15 @@
+#gatsby-focus-wrapper {
+  min-height: 100%;
+  flex: 1;
+  overflow: auto;
+  display: flex;
+}
+/* #gatsby-focus-wrapper > * {
+  flex: 1;
+  display: inherit;
+  justify-content: center;
+  width: 100%;
+} */
+.gatsby-image-wrapper {
+  height: inherit;
+}

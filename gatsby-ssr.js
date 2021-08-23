@@ -1,3 +1,3 @@
-import "./src/styles/global.css";
+import {wrapPageElement as wrap} from './root-wrapper'
 
-export { wrapRootElement } from "./gatsby-browser";
+export const wrapRootElement = wrap
