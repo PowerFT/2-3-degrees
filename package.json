@@ -29,6 +29,7 @@
     "dotenv": "^8.6.0",
     "framer-motion": "^4.1.17",
     "gatsby": "^3.6.2",
+    "gatsby-plugin-gatsby-cloud": "^3.0.0",
     "gatsby-plugin-image": "^1.11.0",
     "gatsby-plugin-sharp": "^3.11.0",
     "gatsby-source-filesystem": "^3.11.0",
