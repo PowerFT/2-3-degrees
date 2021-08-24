@@ -1,127 +1,89 @@
 import React from "react"
-import { graphql } from "gatsby"
-// import Image from "gatsby-image"
-// import parse from "html-react-parser"
-// import { Box } from "@chakra-ui/layout"
-// import { ControlBox } from "@chakra-ui/control-box"
+import { Link, graphql } from "gatsby"
+import parse from "html-react-parser"
 
-// We're using Gutenberg so we need the block styles
-// these are copied into this project due to a conflict in the postCSS
-// version used by the Gatsby and @wordpress packages that causes build
-// failures.
-// @todo update this once @wordpress upgrades their postcss version
-// import "../css/@wordpress/block-library/build-style/style.css"
-// import "../css/@wordpress/block-library/build-style/theme.css"
-
-// import Bio from "../components/"
+// import Bio from "../components/bio"
+// import Layout from "../components/layout"
 // import Seo from "../components/seo"
 
-// const PageContainer = ({ children }) => (
-// 	<Box
-// 		id="pageContainer"
-// 		display="flex"
-// 		justifyContent="center"
-// 		w="100%"
-// 		h='100%'
-// 		bgColor="grey"
-// 		maxW="1024px"
-// 		position="relative"
-// 	>
-// 		{ children }
-// 	</Box>
-// )
+const BlogIndex = ({
+  data,
+  pageContext: { nextPagePath, previousPagePath },
+}) => {
+  const posts = data.allWpPost.nodes
 
-// const ContentBox = ({ children }) => (
-// 	<Box
-// 		id="contentBox"
-// 		display="flex"
-// 		maxW="800px"
-// 		bgColor="lightgray"
-// 		borderRadius="0.75rem"
-// 		p={"1.2rem"}
-// 		m={"1.2rem"}
-// 		w="100%"
-// 	>
-// 		{ children }
-// 	</Box>
-// )
-
-// const ColThird = ({ children }) => (
-// 	<Box
-// 		id="colThird"
-// 		flexShrink="1"
-// 		flexGrow="0"
-// 		flexBasis="33.333%"
-// 	>
-// 		{ children }
-// 	</Box>
-// )
-
-// const ColMain = ({ children }) => (
-// 	<Box
-// 		id="colMain"
-// 		flexShrink="1"
-// 		flexGrow="1"
-// 	>
-// 		{ children }
-// 	</Box>
-// )
-
-
-const JobPostTemplate = ({ data: { post } }) => {
-	console.log(post)
-	// const title = jobPost.title
-	// const companyName = jobPost.companyName.nodes[0].name
-	// const sector = jobPost?.sector?.nodes[0].name
-	// const jobType = jobPost.jobType.nodes[0].name
-	// const jobLocation = jobPost.jobLocation.nodes[0].name
-	// const salary = jobPost.salary.salary
-	// const description = jobPost.content
-	// console.log(jobPost)
-	// console.log(sector)
+  if (!posts.length) {
+    return (
+      <>
+        {/* <Seo title="All posts" />
+        <Bio /> */}
+        <p>
+          No blog posts found. Add posts to your WordPress site and they'll
+          appear here!
+        </p>
+      </>
+    )
+  }
 
   return (
-    // <PageContainer>
-		// 	<ContentBox>
-		// 		<ColThird>
-		// 			<Box
-		// 				id="jobPostSide"
-		// 				display="flex"
-		// 				bgColor="lightblue"
-		// 				borderRadius="0.75rem"
-		// 				w="100%"
-		// 				h="100%"
-		// 			>
-		// 			</Box>
-		// 		</ColThird>
-		// 		<ColMain>
-		// 			<Box
-		// 					id="jobPostSide"
-		// 					display="flex"
-		// 					bgColor="pink"
-		// 					borderRadius="0.75rem"
-		// 					w="100%"
-		// 					h="100%"
-		// 				>
-		// 				</Box>
-		// 		</ColMain>
-		// 	</ContentBox>
-		// </PageContainer>
-    <p>post archive</p>
+    <>
+      {/* <Seo title="All posts" />
+
+      <Bio /> */}
+
+      <ol style={{ listStyle: `none` }}>
+        {posts.map(post => {
+          const title = post.title
+
+          return (
+            <li key={post.uri}>
+              <article
+                className="post-list-item"
+                itemScope
+                itemType="http://schema.org/Article"
+              >
+                <header>
+                  <h2>
+                    <Link to={post.uri} itemProp="url">
+                      <span itemProp="headline">{parse(title)}</span>
+                    </Link>
+                  </h2>
+                  <small>{post.date}</small>
+                </header>
+                <section itemProp="description">{parse(post.excerpt)}</section>
+              </article>
+            </li>
+          )
+        })}
+      </ol>
+
+      {previousPagePath && (
+        <>
+          <Link to={previousPagePath}>Previous page</Link>
+          <br />
+        </>
+      )}
+      {nextPagePath && <Link to={nextPagePath}>Next page</Link>}
+    </>
   )
 }
 
-export default JobPostTemplate
+export default BlogIndex
 
-export const postQuery = graphql`
-	query PostArchiveQuery($id: String!) {
-		wpPost(id: {eq: $id}) {
-			content
-			id
-			status
-			title
-			uri
-			date(fromNow: true)
-		}
-	}
+export const pageQuery = graphql`
+  query WordPressPostArchive($offset: Int!, $postsPerPage: Int!) {
+    allWpPost(
+      sort: { fields: [date], order: DESC }
+      limit: $postsPerPage
+      skip: $offset
+    ) {
+      nodes {
+        excerpt
+        uri
+        date(formatString: "MMMM DD, YYYY")
+        title
+        excerpt
+      }
+    }
+  }
 `

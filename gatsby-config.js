@@ -11,6 +11,10 @@ module.exports = {
       resolve: "gatsby-source-wordpress",
       options: {
         url: process.env.GATSBY_WORDPRESS_API_URL,
+        schema: {
+          perPage: 50,
+          timeOut: 50000
+        },
       },
     },
     `gatsby-plugin-image`,
