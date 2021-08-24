@@ -10,33 +10,32 @@ const chunk = require(`lodash/chunk`)
  *
  * See https://www.gatsbyjs.com/docs/node-apis/#createPages for more info.
  */
-exports.createPages = async gatsbyUtilities => {
+// exports.createPages = async gatsbyUtilities => {
 
-  // const layoutsData = getAllLayoutsData()
+//   // const layoutsData = getAllLayoutsData()
 
-  // const posts = await getPosts(gatsbyUtilities)
-  const jobPosts = await getJobPosts(gatsbyUtilities)
-  const pages = await getPages(gatsbyUtilities)
+//   // const posts = await getPosts(gatsbyUtilities)
+//   // const jobPosts = await getJobPosts(gatsbyUtilities)
+//   // const pages = await getPages(gatsbyUtilities)
 
-  // if(!posts.length && !jobPosts.length && !pages.length) {
-  //   return
-  // }
+//   // if(!posts.length && !jobPosts.length && !pages.length) {
+//   //   return
+//   // }
 
-  // if (posts.length) {
-  // await createPostPages({ posts, gatsbyUtilities })
-  //   await createPostArchive({ posts, gatsbyUtilities })
-  // }
+//   // if (posts.length) {
+//   //   await createPostPages({ posts, gatsbyUtilities })
+//   //   await createPostArchive({ posts, gatsbyUtilities })
+//   // }
 
-  if (jobPosts.length) {
-    await createJobPostPages({ jobPosts, gatsbyUtilities })
-    // await createJobPostArchive({ jobPosts, gatsbyUtilities })
-  }
+//   // if (jobPosts.length) {
+//   //   await createJobPostPages({ jobPosts, gatsbyUtilities })
+//   // }
 
-  if (pages.length) {
-    await createPagePages({ pages, gatsbyUtilities })
-  }
+//   // if (pages.length) {
+//   //   await createPagePages({ pages, gatsbyUtilities })
+//   // }
 
-}
+// }
 
 // const createPostPages = async ({ posts, gatsbyUtilities }) => {
 //  return Promise.all(
@@ -59,193 +58,193 @@ exports.createPages = async gatsbyUtilities => {
 //  )
 // }
 
-const createJobPostPages = async ({ jobPosts, gatsbyUtilities }) => {
-  return Promise.all(
-    jobPosts.map(({ jobPost }) =>
-      gatsbyUtilities.actions.createPage({
-        path: `/connect-platform/jobs/${jobPost?.id}`,
-        component: path.resolve(`./src/templates/job-post.js`),
-        context: {
-          id: jobPost?.id,
-        },
-      })
-    )
-  )
-}
+// const createJobPostPages = async ({ jobPosts, gatsbyUtilities }) => {
+//   return Promise.all(
+//     jobPosts.map(({ jobPost }) =>
+//       gatsbyUtilities.actions.createPage({
+//         path: `/connect-platform/jobs/${jobPost.id}`,
+//         component: path.resolve(`./src/templates/job-post.js`),
+//         context: {
+//           id: jobPost.id,
+//         },
+//       })
+//     )
+//   )
+// }
 
-const createPagePages = async ({ pages, gatsbyUtilities }) => {
+// const createPagePages = async ({ pages, gatsbyUtilities }) => {
 
-  const getPagePath = page => {
-    // if (page.isFrontPage) {
-    //   return '/'
-    // }
-    return page.uri
-  }
+//   const getPagePath = page => {
+//     // if (page.isFrontPage) {
+//     //   return '/'
+//     // }
+//     return page.uri
+//   }
 
-  return Promise.all(
-    pages.map(({ page }) =>
-      gatsbyUtilities.actions.createPage({
-        path: getPagePath(page),
-        component: path.resolve("./src/templates/page/index.js"),
-        context: {
-          id: page?.id,
-          page
-        },
-      })
-    )
-  )
-}
+//   return Promise.all(
+//     pages.map(({ page }) =>
+//       gatsbyUtilities.actions.createPage({
+//         path: getPagePath(page),
+//         component: path.resolve("./src/templates/page/index.js"),
+//         context: {
+//           id: page.id,
+//           page
+//         },
+//       })
+//     )
+//   )
+// }
 
-const getPages = async ({ graphql, reporter }) => {
+// const getPages = async ({ graphql, reporter }) => {
 
-  const pagesData = await graphql(`
-    query WpPages {
-      allWpPage(sort: {order: ASC, fields: date}) {
-        edges {
-          page: node {
-            uri
-            databaseId
-            id
-            isFrontPage
-            title
-            slug
-            pageBuilder {
-              layouts {
-                ... on WpPage_Pagebuilder_Layouts_LogoGrid {
-                  fieldGroupName
-                }
-                ... on WpPage_Pagebuilder_Layouts_Quote {
-                  fieldGroupName
-                  quoteAuthor
-                  quoteText
-                }
-                ... on WpPage_Pagebuilder_Layouts_Tabs {
-                  fieldGroupName
-                  tabs {
-                    fieldGroupName
-                    image {
-                      localFile {
-                        childImageSharp {
-                          gatsbyImageData(quality: 90)
-                          fluid {
-                            src
-                          }
-                        }
-                      }
-                    }
-                    text
-                    title
-                    link {
-                      url
-                    }
-                    list {
-                      text
-                      fieldGroupName
-                    }
-                  }
-                }
-                ... on WpPage_Pagebuilder_Layouts_Blog {
-                  fieldGroupName
-                  blogPosts {
-                    ... on WpPost {
-                      id
-                      author {
-                        node {
-                          name
-                        }
-                      }
-                      categories {
-                        nodes {
-                          name
-                        }
-                      }
-                      date(fromNow: true)
-                      dateGmt
-                      excerpt
-                      featuredImage {
-                        node {
-                          localFile {
-                            childImageSharp {
-                              gatsbyImageData(quality: 90)
-                              fluid {
-                                src
-                              }
-                            }
-                          }
-                        }
-                      }
-                      uri
-                      title
-                    }
-                  }
-                }
-                ... on WpPage_Pagebuilder_Layouts_Pillars {
-                  fieldGroupName
-                  pillars {
-                    title
-                    text
-                  }
-                }
-                ... on WpPage_Pagebuilder_Layouts_Newsletter {
-                  fieldGroupName
-                  text
-                }
-                ... on WpPage_Pagebuilder_Layouts_FullHero {
-                  fieldGroupName
-                  title
-                  text
-                  button {
-                    title
-                    url
-                  }
-                  image {
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData(quality: 90)
-                        fluid {
-                          src
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on WpPage_Pagebuilder_Layouts_HalfHero {
-                  fieldGroupName
-                  title
-                  text
-                  button {
-                    title
-                    url
-                  }
-                  image {
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData(quality: 90)
-                        fluid {
-                          src
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }    
-  `)
+//   const pagesData = await graphql(`
+//     query WpPages {
+//       allWpPage(sort: {order: ASC, fields: date}) {
+//         edges {
+//           page: node {
+//             uri
+//             databaseId
+//             id
+//             isFrontPage
+//             title
+//             slug
+//             pageBuilder {
+//               layouts {
+//                 ... on WpPage_Pagebuilder_Layouts_LogoGrid {
+//                   fieldGroupName
+//                 }
+//                 ... on WpPage_Pagebuilder_Layouts_Quote {
+//                   fieldGroupName
+//                   quoteAuthor
+//                   quoteText
+//                 }
+//                 ... on WpPage_Pagebuilder_Layouts_Tabs {
+//                   fieldGroupName
+//                   tabs {
+//                     fieldGroupName
+//                     image {
+//                       localFile {
+//                         childImageSharp {
+//                           gatsbyImageData(quality: 90)
+//                           fluid {
+//                             src
+//                           }
+//                         }
+//                       }
+//                     }
+//                     text
+//                     title
+//                     link {
+//                       url
+//                     }
+//                     list {
+//                       text
+//                       fieldGroupName
+//                     }
+//                   }
+//                 }
+//                 ... on WpPage_Pagebuilder_Layouts_Blog {
+//                   fieldGroupName
+//                   blogPosts {
+//                     ... on WpPost {
+//                       id
+//                       author {
+//                         node {
+//                           name
+//                         }
+//                       }
+//                       categories {
+//                         nodes {
+//                           name
+//                         }
+//                       }
+//                       date(fromNow: true)
+//                       dateGmt
+//                       excerpt
+//                       featuredImage {
+//                         node {
+//                           localFile {
+//                             childImageSharp {
+//                               gatsbyImageData(quality: 90)
+//                               fluid {
+//                                 src
+//                               }
+//                             }
+//                           }
+//                         }
+//                       }
+//                       uri
+//                       title
+//                     }
+//                   }
+//                 }
+//                 ... on WpPage_Pagebuilder_Layouts_Pillars {
+//                   fieldGroupName
+//                   pillars {
+//                     title
+//                     text
+//                   }
+//                 }
+//                 ... on WpPage_Pagebuilder_Layouts_Newsletter {
+//                   fieldGroupName
+//                   text
+//                 }
+//                 ... on WpPage_Pagebuilder_Layouts_FullHero {
+//                   fieldGroupName
+//                   title
+//                   text
+//                   button {
+//                     title
+//                     url
+//                   }
+//                   image {
+//                     localFile {
+//                       childImageSharp {
+//                         gatsbyImageData(quality: 90)
+//                         fluid {
+//                           src
+//                         }
+//                       }
+//                     }
+//                   }
+//                 }
+//                 ... on WpPage_Pagebuilder_Layouts_HalfHero {
+//                   fieldGroupName
+//                   title
+//                   text
+//                   button {
+//                     title
+//                     url
+//                   }
+//                   image {
+//                     localFile {
+//                       childImageSharp {
+//                         gatsbyImageData(quality: 90)
+//                         fluid {
+//                           src
+//                         }
+//                       }
+//                     }
+//                   }
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }    
+//   `)
 
-  if (pagesData.errors) {
-    reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
-      pagesData.errors
-    )
-    return
-  }
+//   if (pagesData.errors) {
+//     reporter.panicOnBuild(
+//       `There was an error loading your blog posts`,
+//       pagesData.errors
+//     )
+//     return
+//   }
 
-  return pagesData.data.allWpPage.edges
-}
+//   return pagesData.data.allWpPage.edges
+// }
 
 
 // const createPostArchive = async ({ posts, gatsbyUtilities }) => {
@@ -414,30 +413,30 @@ const getPages = async ({ graphql, reporter }) => {
 //   )
 // }
 
-const getJobPosts = async ({ graphql, reporter }) => {
-  const graphqlResult = await graphql(`
-    query WpJobPosts {
-      allWpJobPost(sort: {order: ASC, fields: date}) {
-        edges {
-          jobPost: node {
-            uri
-            id
-          }
-        }
-      }
-    }
-  `)
+// const getJobPosts = async ({ graphql, reporter }) => {
+//   const graphqlResult = await graphql(`
+//     query WpJobPosts {
+//       allWpJobPost(sort: {order: ASC, fields: date}) {
+//         edges {
+//           jobPost: node {
+//             uri
+//             id
+//           }
+//         }
+//       }
+//     }
+//   `)
 
-  if (graphqlResult.errors) {
-    reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
-      graphqlResult.errors
-    )
-    return
-  }
+//   if (graphqlResult.errors) {
+//     reporter.panicOnBuild(
+//       `There was an error loading your blog posts`,
+//       graphqlResult.errors
+//     )
+//     return
+//   }
 
-  return graphqlResult.data.allWpJobPost.edges
-}
+//   return graphqlResult.data.allWpJobPost.edges
+// }
 
 // const getPosts = async ({ graphql, reporter }) => {
 //   const graphqlResult = await graphql(`

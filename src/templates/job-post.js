@@ -114,7 +114,7 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
 export default JobPostTemplate
 
 export const pageQuery = graphql`
-	query MyQuery($id: String!) {
+	query JobPostQuery($id: String!) {
 		wpJobPost(id: {eq: $id}) {
 			closeDate
 			companyBio

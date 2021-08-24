@@ -20,7 +20,7 @@ export const useLocalStorage = (
 	{ serialize = JSON.stringify, deserialize = JSON.parse } = {}
 ) => {
 	const [state, setState] = useState(() => {
-		const valueInLocalStorage = null
+		let valueInLocalStorage = null
 		if (isBrowser) {
 			valueInLocalStorage = window.localStorage.getItem(key);
 		}
