@@ -10,67 +10,67 @@ const chunk = require(`lodash/chunk`)
  *
  * See https://www.gatsbyjs.com/docs/node-apis/#createPages for more info.
  */
-// exports.createPages = async gatsbyUtilities => {
+exports.createPages = async gatsbyUtilities => {
 
-//   // const layoutsData = getAllLayoutsData()
+  // const layoutsData = getAllLayoutsData()
 
-//   // const posts = await getPosts(gatsbyUtilities)
-//   // const jobPosts = await getJobPosts(gatsbyUtilities)
-//   // const pages = await getPages(gatsbyUtilities)
+  const posts = await getPosts(gatsbyUtilities)
+  const jobPosts = await getJobPosts(gatsbyUtilities)
+  // const pages = await getPages(gatsbyUtilities)
 
-//   // if(!posts.length && !jobPosts.length && !pages.length) {
-//   //   return
-//   // }
+  // if(!posts.length && !jobPosts.length && !pages.length) {
+  //   return
+  // }
 
-//   // if (posts.length) {
-//   //   await createPostPages({ posts, gatsbyUtilities })
-//   //   await createPostArchive({ posts, gatsbyUtilities })
-//   // }
+  if (posts.length) {
+    await createPostPages({ posts, gatsbyUtilities })
+    await createPostArchive({ posts, gatsbyUtilities })
+  }
 
-//   // if (jobPosts.length) {
-//   //   await createJobPostPages({ jobPosts, gatsbyUtilities })
-//   // }
+  if (jobPosts.length) {
+    await createJobPostPages({ jobPosts, gatsbyUtilities })
+  }
 
-//   // if (pages.length) {
-//   //   await createPagePages({ pages, gatsbyUtilities })
-//   // }
+  // if (pages.length) {
+  //   await createPagePages({ pages, gatsbyUtilities })
+  // }
 
-// }
+}
 
-// const createPostPages = async ({ posts, gatsbyUtilities }) => {
-//  return Promise.all(
-//    posts.map(({ previous, post, next }) =>
-//      gatsbyUtilities.actions.createPage({
-//        path: `/blog${post.uri}`,
-//        component: path.resolve(`./src/templates/post.js`),
-//        context: {
-//          // we need to add the post id here
-//          // so our blog post template knows which blog post
-//          // the current page is (when you open it in a browser)
-//          id: post.id,
+const createPostPages = async ({ posts, gatsbyUtilities }) => {
+ return Promise.all(
+   posts.map(({ previous, post, next }) =>
+     gatsbyUtilities.actions.createPage({
+       path: `/blog${post.uri}`,
+       component: path.resolve(`./src/templates/post.js`),
+       context: {
+         // we need to add the post id here
+         // so our blog post template knows which blog post
+         // the current page is (when you open it in a browser)
+         id: post.id,
 
-//          // We also use the next and previous id's to query them and add links!
-//          previousPostId: previous ? previous.id : null,
-//          nextPostId: next ? next.id : null,
-//        },
-//      })
-//    )
-//  )
-// }
+         // We also use the next and previous id's to query them and add links!
+         previousPostId: previous ? previous.id : null,
+         nextPostId: next ? next.id : null,
+       },
+     })
+   )
+ )
+}
 
-// const createJobPostPages = async ({ jobPosts, gatsbyUtilities }) => {
-//   return Promise.all(
-//     jobPosts.map(({ jobPost }) =>
-//       gatsbyUtilities.actions.createPage({
-//         path: `/connect-platform/jobs/${jobPost.id}`,
-//         component: path.resolve(`./src/templates/job-post.js`),
-//         context: {
-//           id: jobPost.id,
-//         },
-//       })
-//     )
-//   )
-// }
+const createJobPostPages = async ({ jobPosts, gatsbyUtilities }) => {
+  return Promise.all(
+    jobPosts.map(({ jobPost }) =>
+      gatsbyUtilities.actions.createPage({
+        path: `/connect-platform/jobs/${jobPost.id}`,
+        component: path.resolve(`./src/templates/job-post.js`),
+        context: {
+          id: jobPost.id,
+        },
+      })
+    )
+  )
+}
 
 // const createPagePages = async ({ pages, gatsbyUtilities }) => {
 
@@ -247,232 +247,125 @@ const chunk = require(`lodash/chunk`)
 // }
 
 
-// const createPostArchive = async ({ posts, gatsbyUtilities }) => {
-//   const graphqlResult = await gatsbyUtilities.graphql(/* GraphQL */ `
-//     {
-//       wp {
-//         readingSettings {
-//           postsPerPage
-//         }
-//       }
-//     }
-//   `)
+const createPostArchive = async ({ posts, gatsbyUtilities }) => {
+  const graphqlResult = await gatsbyUtilities.graphql(/* GraphQL */ `
+    {
+      wp {
+        readingSettings {
+          postsPerPage
+        }
+      }
+    }
+  `)
 
-//   const { postsPerPage } = graphqlResult.data.wp.readingSettings
+  const { postsPerPage } = graphqlResult.data.wp.readingSettings
 
-//   const postsChunkedIntoArchivePages = chunk(posts, postsPerPage)
-//   const totalPages = postsChunkedIntoArchivePages.length
+  const postsChunkedIntoArchivePages = chunk(posts, postsPerPage)
+  const totalPages = postsChunkedIntoArchivePages.length
 
-//   return Promise.all(
-//     postsChunkedIntoArchivePages.map(async (_posts, index) => {
-//       const pageNumber = index + 1
+  return Promise.all(
+    postsChunkedIntoArchivePages.map(async (_posts, index) => {
+      const pageNumber = index + 1
 
-//       const getPagePath = page => {
-//         if (page > 0 && page <= totalPages) {
-//           // Since our homepage is our blog page
-//           // we want the first page to be "/" and any additional pages
-//           // to be numbered.
-//           // "/blog/2" for example
-//           return page === 1 ? `/blog` : `/blog/${page}`
-//         }
+      const getPagePath = page => {
+        if (page > 0 && page <= totalPages) {
+          // Since our homepage is our blog page
+          // we want the first page to be "/" and any additional pages
+          // to be numbered.
+          // "/blog/2" for example
+          return page === 1 ? `/blog` : `/blog/${page}`
+        }
 
-//         return null
-//       }
+        return null
+      }
 
-//       // createPage is an action passed to createPages
-//       // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-//       await gatsbyUtilities.actions.createPage({
-//         path: getPagePath(pageNumber),
+      // createPage is an action passed to createPages
+      // See https://www.gatsbyjs.com/docs/actions#createPage for more info
+      await gatsbyUtilities.actions.createPage({
+        path: getPagePath(pageNumber),
 
-//         // use the blog post archive template as the page component
-//         component: path.resolve(`./src/templates/post-archive.js`),
+        // use the blog post archive template as the page component
+        component: path.resolve(`./src/templates/post-archive.js`),
 
-//         // `context` is available in the template as a prop and
-//         // as a variable in GraphQL.
-//         context: {
-//           // the index of our loop is the offset of which posts we want to display
-//           // so for page 1, 0 * 10 = 0 offset, for page 2, 1 * 10 = 10 posts offset,
-//           // etc
-//           offset: index * postsPerPage,
+        // `context` is available in the template as a prop and
+        // as a variable in GraphQL.
+        context: {
+          // the index of our loop is the offset of which posts we want to display
+          // so for page 1, 0 * 10 = 0 offset, for page 2, 1 * 10 = 10 posts offset,
+          // etc
+          offset: index * postsPerPage,
 
-//           // We need to tell the template how many posts to display too
-//           postsPerPage,
+          // We need to tell the template how many posts to display too
+          postsPerPage,
 
-//           nextPagePath: getPagePath(pageNumber + 1),
-//           previousPagePath: getPagePath(pageNumber - 1),
-//         },
-//       })
-//     })
-//   )
-// }
+          nextPagePath: getPagePath(pageNumber + 1),
+          previousPagePath: getPagePath(pageNumber - 1),
+        },
+      })
+    })
+  )
+}
 
-// const createJobPostArchive = async ({ jobPosts, gatsbyUtilities }) => {
-//   const graphqlResult = await gatsbyUtilities.graphql(/* GraphQL */ `
-//     {
-//       wp {
-//         readingSettings {
-//           postsPerPage
-//         }
-//       }
-//     }
-//   `)
+const getJobPosts = async ({ graphql, reporter }) => {
+  const graphqlResult = await graphql(`
+    query WpJobPosts {
+      allWpJobPost(sort: {order: ASC, fields: date}) {
+        edges {
+          jobPost: node {
+            uri
+            id
+          }
+        }
+      }
+    }
+  `)
 
-//   const { postsPerPage } = graphqlResult.data.wp.readingSettings
+  if (graphqlResult.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your blog posts`,
+      graphqlResult.errors
+    )
+    return
+  }
 
-//   const postsChunkedIntoArchivePages = chunk(jobPosts, postsPerPage)
-//   const totalPages = postsChunkedIntoArchivePages.length
+  return graphqlResult.data.allWpJobPost.edges
+}
 
-//   return Promise.all(
-//     postsChunkedIntoArchivePages.map(async (_posts, index) => {
-//       const pageNumber = index + 1
+const getPosts = async ({ graphql, reporter }) => {
+  const graphqlResult = await graphql(`
+    query WpPosts {
+      allWpPost(sort: {order: ASC, fields: date}) {
+        edges {
+          previous {
+            databaseId
+            id
+            uri
+          }
+          post: node {
+            uri
+            databaseId
+            id
+          }
+          next {
+            databaseId
+            uri
+            id
+          }
+        }
+      }
+    }
+  `)
 
-//       const getPagePath = page => {
-//         if (page > 0 && page <= totalPages) {
-//           // Since our homepage is our blog page
-//           // we want the first page to be "/" and any additional pages
-//           // to be numbered.
-//           // "/blog/2" for example
-//           return page === 1 ? `/connect-platform/jobs` : `/connect/jobs/${page}`
-//         }
+  if (graphqlResult.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your blog posts`,
+      graphqlResult.errors
+    )
+    return
+  }
 
-//         return null
-//       }
-
-//       // createPage is an action passed to createPages
-//       // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-//       await gatsbyUtilities.actions.createPage({
-//         path: getPagePath(pageNumber),
-
-//         // use the blog post archive template as the page component
-//         component: path.resolve(`./src/templates/job-post-archive.js`),
-
-//         // `context` is available in the template as a prop and
-//         // as a variable in GraphQL.
-//         context: {
-//           // the index of our loop is the offset of which posts we want to display
-//           // so for page 1, 0 * 10 = 0 offset, for page 2, 1 * 10 = 10 posts offset,
-//           // etc
-//           offset: index * postsPerPage,
-
-//           // We need to tell the template how many posts to display too
-//           postsPerPage,
-
-//           nextPagePath: getPagePath(pageNumber + 1),
-//           previousPagePath: getPagePath(pageNumber - 1),
-//         },
-//       })
-//     })
-//   )
-// }
-
-// const createPageArchive = async ({ pages, gatsbyUtilities }) => {
-//   const postsPerPage = 20
-//   const postsChunkedIntoArchivePages = chunk(pages, postsPerPage)
-//   const totalPages = postsChunkedIntoArchivePages.length
-
-//   return Promise.all(
-//     postsChunkedIntoArchivePages.map(async (_pages, index) => {
-//       const pageNumber = index + 1
-
-//       const getPagePath = page => {
-//         if (page > 0 && page <= totalPages) {
-//           // Since our homepage is our blog page
-//           // we want the first page to be "/" and any additional pages
-//           // to be numbered.
-//           // "/blog/2" for example
-//           return page === 1 ? `/` : `/${page}`
-//         }
-
-//         return null
-//       }
-
-//       // createPage is an action passed to createPages
-//       // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-//       await gatsbyUtilities.actions.createPage({
-//         path: getPagePath(pageNumber),
-
-//         // use the blog post archive template as the page component
-//         component: path.resolve(`./src/templates/page-archive.js`),
-
-//         // `context` is available in the template as a prop and
-//         // as a variable in GraphQL.
-//         context: {
-//           // the index of our loop is the offset of which posts we want to display
-//           // so for page 1, 0 * 10 = 0 offset, for page 2, 1 * 10 = 10 posts offset,
-//           // etc
-//           offset: index * postsPerPage,
-
-//           // We need to tell the template how many posts to display too
-//           postsPerPage,
-
-//           nextPagePath: getPagePath(pageNumber + 1),
-//           previousPagePath: getPagePath(pageNumber - 1),
-//         },
-//       })
-//     })
-//   )
-// }
-
-// const getJobPosts = async ({ graphql, reporter }) => {
-//   const graphqlResult = await graphql(`
-//     query WpJobPosts {
-//       allWpJobPost(sort: {order: ASC, fields: date}) {
-//         edges {
-//           jobPost: node {
-//             uri
-//             id
-//           }
-//         }
-//       }
-//     }
-//   `)
-
-//   if (graphqlResult.errors) {
-//     reporter.panicOnBuild(
-//       `There was an error loading your blog posts`,
-//       graphqlResult.errors
-//     )
-//     return
-//   }
-
-//   return graphqlResult.data.allWpJobPost.edges
-// }
-
-// const getPosts = async ({ graphql, reporter }) => {
-//   const graphqlResult = await graphql(`
-//     query WpPosts {
-//       allWpPost(sort: {order: ASC, fields: date}) {
-//         edges {
-//           previous {
-//             databaseId
-//             id
-//             uri
-//           }
-//           post: node {
-//             uri
-//             databaseId
-//             id
-//           }
-//           next {
-//             databaseId
-//             uri
-//             id
-//           }
-//         }
-//       }
-//     }
-//   `)
-
-//   if (graphqlResult.errors) {
-//     reporter.panicOnBuild(
-//       `There was an error loading your blog posts`,
-//       graphqlResult.errors
-//     )
-//     return
-//   }
-
-//   return graphqlResult.data.allWpPost.edges
-// }
+  return graphqlResult.data.allWpPost.edges
+}
 
 
 
