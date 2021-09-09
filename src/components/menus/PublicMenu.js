@@ -9,8 +9,8 @@ export const PublicMenu = ({ menuopen, onclose }) => {
 		<StaticQuery
 			query={MENU_QUERY}
 			render={data => {
-				if (data.wpMenu.menuItems) {
-					const menuItems = data.wpMenu.menuItems.nodes
+				if (data.wpMenu?.menuItems) {
+					const menuItems = data.wpMenu?.menuItems?.nodes
 
 					return (
 						<>
