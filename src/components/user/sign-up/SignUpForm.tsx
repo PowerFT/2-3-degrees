@@ -100,9 +100,7 @@ export const SignUpForm = ({user}) => {
             type="submit"
             mt="8"
             w="full"
-            colorScheme="blue"
-            fontSize="md"
-            fontWeight="bold"
+            bg="dOrange.300"
           >
             Sign up
           </Button>

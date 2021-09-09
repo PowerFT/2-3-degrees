@@ -1,113 +1,179 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
+import parse from "html-react-parser"
+import { motion } from "framer-motion"
+
 // import Image from "gatsby-image"
 // import parse from "html-react-parser"
 import { Box } from "@chakra-ui/layout"
-// import { ControlBox } from "@chakra-ui/control-box"
+import { Text, Button, Flex, Heading, HStack, Icon, Stack, Spacer, Avatar, Breadcrumb, BreadcrumbItem, BreadcrumbLink, VStack } from "@chakra-ui/react"
+import { HiCalendar, HiCash, HiClock, HiLink, HiLocationMarker, HiOutlineClock, HiOutlineCurrencyPound, HiOutlineHand, HiOutlineLocationMarker } from "react-icons/hi"
+import Layout from "../components/layout/Layout"
+import { InnerSidebar } from "../components/layout/InnerSidebar"
 
-// We're using Gutenberg so we need the block styles
-// these are copied into this project due to a conflict in the postCSS
-// version used by the Gatsby and @wordpress packages that causes build
-// failures.
-// @todo update this once @wordpress upgrades their postcss version
-// import "../css/@wordpress/block-library/build-style/style.css"
-// import "../css/@wordpress/block-library/build-style/theme.css"
+const JobSidebar = ({salary, jobLocation, sector, skills, jobType, ...rest}) => {
 
-// import Bio from "../components/"
-// import Seo from "../components/seo"
+	const formattedSalary = parseInt(salary).toLocaleString() 
 
-const PageContainer = ({ children }) => (
-	<Box
-		id="pageContainer"
-		display="flex"
-		justifyContent="center"
-		w="100%"
-		h='100%'
-		bgColor="grey"
-		maxW="1024px"
-		position="relative"
-	>
-		{ children }
+	return (
+		<InnerSidebar className="inner-sidebar">
+			<Box p="4" fontSize="lg">
+				<VStack spacing="2" align="flex-start">
+					{
+						skills.nodes.map(skill => (
+							<HStack>
+								<Icon as={HiOutlineHand} w={8} h={8}/>
+								<Text>{skill.name}</Text>
+							</HStack>
+						))
+					}
+				</VStack>
+				<VStack spacing="2" align="flex-start" mt="6">
+					<HStack>
+						<Icon as={HiOutlineCurrencyPound} w={8} h={8}/>
+						<Text>{formattedSalary}</Text>
+					</HStack>
+					<HStack>
+						<Icon as={HiOutlineLocationMarker} w={8} h={8}/>
+						<Text>{jobLocation}</Text>
+					</HStack>
+					<HStack>
+						<Icon as={HiOutlineClock} w={8} h={8}/>
+						<Text>{jobType}</Text>
+					</HStack>
+				</VStack>
+			</Box>
+
+			<Spacer />
+
+			<Stack direction="column" spacing={4} align="center"  alignItems="stretch">
+				<Button colorScheme="teal" variant="outline">
+					Company Website
+				</Button>
+				<Button colorScheme="teal" variant="solid">
+					Apply
+				</Button>
+				<Button colorScheme="teal" variant="solid">
+					Save
+				</Button>
+			</Stack>
+
+		</InnerSidebar>
+	)
+}
+
+const JobContent = ({content}) => (
+	<Box borderRadius="lg" maxW="xl" position="relative" overflow="hidden" bg="white" p="10" mb="12">
+		<Box className="wp-content">
+			{parse(content)}
+		</Box>
+		<Box  
+			position="absolute"
+			bottom="0px"
+			top="0px"
+			right="0px"
+			w="4px"
+			bg="dyellow.300"
+		/>
 	</Box>
 )
 
-const ContentBox = ({ children }) => (
-	<Box
-		id="contentBox"
-		display="flex"
-		maxW="800px"
-		bgColor="lightgray"
-		borderRadius="0.75rem"
-		p={"1.2rem"}
-		m={"1.2rem"}
-		w="100%"
-	>
-		{ children }
-	</Box>
-)
 
-const ColThird = ({ children }) => (
-	<Box
-		id="colThird"
-		flexShrink="1"
-		flexGrow="0"
-		flexBasis="33.333%"
-	>
-		{ children }
-	</Box>
-)
+export const BreadCrumb = () => {
+	return (
+		<Breadcrumb bg="dBlue.200" w="fit-content" px={2} py={0}>
+			<BreadcrumbItem m="0">
+				<BreadcrumbLink as={Link} to="/connect-platform">
+					Connect Platform
+				</BreadcrumbLink>
+			</BreadcrumbItem>
+			<BreadcrumbItem m="0">
+				<BreadcrumbLink as={Link} to="/connect-platform/jobs">
+					Jobs Board
+				</BreadcrumbLink>
+			</BreadcrumbItem>
+			<BreadcrumbItem m="0" isCurrentPage>
+				<BreadcrumbLink>Job</BreadcrumbLink>
+			</BreadcrumbItem>
+		</Breadcrumb>
+	)
+}
 
-const ColMain = ({ children }) => (
-	<Box
-		id="colMain"
-		flexShrink="1"
-		flexGrow="1"
-	>
-		{ children }
-	</Box>
-)
-
+const MotionBox = motion(Box)
+const MotionHeading = motion(Heading)
 
 const JobPostTemplate = ({ data: { jobPost } }) => {
 
-	// const title = jobPost.title
-	// const companyName = jobPost.companyName.nodes[0].name
-	const sector = jobPost?.sector?.nodes[0].name
-	// const jobType = jobPost.jobType.nodes[0].name
-	// const jobLocation = jobPost.jobLocation.nodes[0].name
-	// const salary = jobPost.salary.salary
-	// const description = jobPost.content
-	// console.log(jobPost)
-	// console.log(sector)
+	const title = jobPost?.title
+	const companyName = jobPost?.companyName?.nodes[0]?.name
+	const sector = jobPost?.sector?.nodes[0]?.name
+	const jobType = jobPost?.jobType?.nodes[0]?.name
+	const jobLocation = jobPost?.jobLocation?.nodes[0]?.name
+	const salary = jobPost?.salary
+	const content = jobPost?.content
+	const skills = jobPost?.skills
+	console.log(jobPost)
 
   return (
-    <PageContainer>
-			<ContentBox>
-				<ColThird>
-					<Box
-						id="jobPostSide"
-						display="flex"
-						bgColor="lightblue"
-						borderRadius="0.75rem"
-						w="100%"
+		<>
+			<Box w="full" bg="gray.50">
+				<Box py="6" w="full" bg="dOrange.100" position="relative" h="40vh" borderBottom="1px solid" borderColor="dOrange.300">
+					<Flex 
+						direction="column"
 						h="100%"
+						justifyContent="space-between"
+						overflow="hidden"
 					>
-					</Box>
-				</ColThird>
-				<ColMain>
-					<Box
-							id="jobPostSide"
-							display="flex"
-							bgColor="pink"
-							borderRadius="0.75rem"
-							w="100%"
-							h="100%"
+						<MotionHeading 
+							size="3xl" 
+							maxW="xl" 
+							ml="280px"
+							key="jobPostTitle"
+							initial={{ opacity: 0, y: -400 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: -400 }}
+							transition={{duration: 1}}
 						>
-						</Box>
-				</ColMain>
-			</ContentBox>
-		</PageContainer>
-    
+							{title}
+						</MotionHeading>
+						<Text fontSize="3xl" ml="280px" justifySelf="flex-end">{companyName}</Text>
+					</Flex>
+					<Avatar size="xl" name={companyName} bottom="0" right="0" position="absolute" m="6"/>
+				</Box>
+				<Flex h="fit-content" position="relative" overflow="auto">
+					<JobSidebar 
+						jobLocation={jobLocation}
+						sector={sector}
+						skills={skills}
+						salary={salary}
+						jobType={jobType}
+					/>
+
+					<Flex direction="column">
+
+						<BreadCrumb />
+
+						<MotionBox
+							key="jobPost"
+							initial={{ opacity: 0, x: 400 }}
+							animate={{ opacity: 1, x: 0 }}
+							exit={{ opacity: 0, x: 400 }}
+							transition={{
+								type: "spring",
+								mass: 0.15,
+								stiffness: 115,
+								duration: 1
+							}}
+							p="12" 
+							h="fit-content"
+						>
+							<JobContent content={content}/>
+						</MotionBox>
+					</Flex>
+				</Flex>
+			</Box>
+		</>
+
   )
 }
 
@@ -115,7 +181,7 @@ export default JobPostTemplate
 
 export const pageQuery = graphql`
 	query JobPostQuery($id: String!) {
-		wpJobPost(id: {eq: $id}) {
+		jobPost: wpJobPost(id: {eq: $id}) {
 			closeDate
 			companyBio
 			content
@@ -139,6 +205,12 @@ export const pageQuery = graphql`
 					name
 				}
 			}
+			skills {
+        nodes {
+          name
+					id
+        }
+      }
 			date(fromNow: true)
 			companyName {
 				nodes {

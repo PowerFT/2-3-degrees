@@ -1,7 +1,7 @@
 /**
 * External dependencies
 */
-import { Box, Flex, Heading, Stack } from '@chakra-ui/react'
+import { Box, Flex, Heading, Spinner, Stack } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 /**
 * Internal dependencies
@@ -22,6 +22,7 @@ export const CreateJobPostFormPage = () => {
     jobLocation: '',
     sector: '',
     salary: '',
+    salaryStructure: '',
     content: '',
     companyBio: '',
     closeDate: '',
@@ -29,6 +30,7 @@ export const CreateJobPostFormPage = () => {
   }
 
   const [ formDeets, setFormDeets ] = useState(initialState)
+  const [salStructure, setSalStructure] = useState('Year')
 
   const { viewer, loadingViewer } = useAuth()
 
@@ -38,9 +40,7 @@ export const CreateJobPostFormPage = () => {
     }
   }, [viewer, loadingViewer])
 
-  if( !viewer || loadingViewer ) return <p>loading user details...</p>
-
-console.log(viewer)
+  if( !viewer || loadingViewer ) return <Spinner />
 
   return (
 
@@ -85,6 +85,7 @@ console.log(viewer)
             sector = {formDeets.sector}
             salary = {formDeets.salary}
             content = {formDeets.content}
+            salStructure={salStructure}
           />
         </Box>
         <Box>
@@ -100,6 +101,9 @@ console.log(viewer)
             jobType = {formDeets.jobType}
             jobLocation = {formDeets.jobLocation}
             sector = {formDeets.sector}
+            salaryStructure = {formDeets.salaryStructure}
+            salStructure={salStructure}
+            setSalStructure={setSalStructure}
             salary = {formDeets.salary}
             content = {formDeets.content}
             companyBio = {formDeets.companyBio}

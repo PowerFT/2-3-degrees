@@ -2,96 +2,106 @@
 * External dependencies
 */
 import {
+  Box,
+  Button,
   Drawer,
-  DrawerCloseButton,
+  DrawerBody,
   DrawerContent,
+  DrawerFooter,
   DrawerOverlay,
   Flex,
-  IconButton,
-  useColorModeValue as mode,
+  Icon,
+  // useColorModeValue as mode,
+  useDisclosure,
+  Text,
+  HStack,
+  LinkOverlay,
+  LinkBox,
+  Stack,
 } from '@chakra-ui/react'
-import { FaRegImages } from 'react-icons/fa'
-import {BsFillLightningFill} from 'react-icons/bs'
+import { FiMenu, FiX } from 'react-icons/fi'
+import { RiCreativeCommonsSaFill, RiAccountPinCircleFill, RiBriefcase5Fill } from 'react-icons/ri'
 import * as React from 'react'
-import { HiOutlineMenu } from 'react-icons/hi'
+import {Link as GatsbyLink} from 'gatsby'
 /**
 * Internal dependencies
 */
 import { Logo } from './Logo'
-import { Sidebar } from './Sidebar'
-import { MenuItem } from '../menus/MenuItem'
-import { useMobileMenuState } from './useMobileMenuState'
 import { useAuth } from '../../hooks'
+import { NavMenus } from '../menus'
 
 export const MobileBottomBar = () => {
 
-  const { isOpen, onClose, onOpen } = useMobileMenuState()
+  // const { isOpen, onClose, onOpen } = useMobileMenuState()
 
   const { isLoggedIn } = useAuth()
 
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const btnRef = React.useRef()
+
   return (
-    <Flex
-      align="center"
-      justify="space-between"
-      px="4"
-      bg={mode('gray.50', 'gray.800')}
-      display={{
-        base: 'flex',
-        md: 'none',
-      }}
-      borderBottomWidth="1px"
-    >
-      <Logo h="6" iconColor="blue.600" display={isLoggedIn && {base: 'none'}}/>
-
-      <Flex
-        justify="space-around"
-        grow="1"
-      >
-        <MenuItem link="/connect-platform" label="Connect" icon={BsFillLightningFill} bg="pink.200"/>
-        {isLoggedIn && (
-          <>
-            <MenuItem link="/maker/jobs" label="Jobs" icon={FaRegImages} bg="pink.200"/>
-            <MenuItem link="/maker/account" label="Profile" icon={FaRegImages} bg="pink.200"/>
-          </>
-        )}
-      </Flex>
-
+    <Stack display={['flex', 'none']} position="sticky" bottom="0" id="mobileMenu">
       
-
-      <IconButton
-        onClick={onOpen}
-        variant="unstyled"
-        display="flex"
-        cursor="pointer"
-        aria-label="Menu"
-        icon={<HiOutlineMenu fontSize="1.5rem" />}
-      />
+        {isLoggedIn ? (
+          <HStack bg="dYellow.300" py={2} spacing={2} justify="stretch">
+            <Flex direction="column" justify="center" align="center" p={2} flex="1 1" ml="10px">
+              <LinkBox textAlign="center">
+                <Icon as={RiCreativeCommonsSaFill} w={6} h={6} />
+                <Text fontWeight="bold" fontSize="xs" textTransform="uppercase"><LinkOverlay as={GatsbyLink} to="/connect-platform">Connect</LinkOverlay></Text>
+              </LinkBox>
+            </Flex>
+            <Flex direction="column" justify="center" align="center" p={2} flex="1 1">
+              <LinkBox textAlign="center">
+                <Icon as={RiBriefcase5Fill} w={6} h={6} />
+                <Text fontWeight="bold" fontSize="xs" textTransform="uppercase"><LinkOverlay as={GatsbyLink} to="/maker/myjobs">Jobs</LinkOverlay></Text>
+              </LinkBox>
+            </Flex>
+            <Flex direction="column" justify="center" align="center" p={2} flex="1 1">
+              <LinkBox textAlign="center">
+                <Icon as={RiAccountPinCircleFill} w={6} h={6} />
+                <Text fontWeight="bold" fontSize="xs" textTransform="uppercase"><LinkOverlay as={GatsbyLink} to="/maker/account">Account</LinkOverlay></Text>
+              </LinkBox>
+            </Flex>
+            <Flex direction="column" justify="center" align="center" ref={btnRef} onClick={onOpen} w="80px" height="40px" p={2} cursor="pointer">
+              <Icon as={FiMenu} w={8} h={8}/>
+            </Flex>  
+          </HStack>
+        ) : (
+          <HStack bg="dYellow.300" pl={4} pt="3" pb="2" justify="space-between" align="center">
+            <Box h="60px" w="60px">
+              <Logo iconColor='whitesmoke' />
+            </Box>
+            <Flex direction="column" justify="center" align="center" ref={btnRef} onClick={onOpen} w="80px" height="40px" p={2} cursor="pointer">
+              <Icon as={FiMenu} w={8} h={8}/>
+            </Flex>  
+          </HStack>
+        )}
+        
+      
       <Drawer
-        size="full"
-        placement="right"
         isOpen={isOpen}
-        blockScrollOnMount={false}
+        placement="right"
         onClose={onClose}
+        finalFocusRef={btnRef}
+        size="full"
+        
       >
         <DrawerOverlay />
-        <DrawerContent bg={mode('white', 'gray.800')} shadow="none" position="relative" maxW={400}>
-          <Sidebar width="full" height="full" bg="inherit" border="0" />
-          <DrawerCloseButton
-            bg="blue.500"
-            _hover={{
-              bg: 'blue.600',
-            }}
-            _active={{
-              bg: 'blue.700',
-            }}
-            rounded="0"
-            position="absolute"
-            color="white"
-            right="-8"
-            top="0"
-          />
+        <DrawerContent bg="dYellow.300">
+          {/* <DrawerHeader></DrawerHeader> */}
+          <Box h="60px" w="60px" mb="5">
+            <Logo iconColor='whitesmoke' />
+          </Box>
+
+          <DrawerBody>
+            <NavMenus menuopen={true} onclose={onClose}/>
+          </DrawerBody>
+
+          <DrawerFooter h="80px">
+            <Icon as={FiX} w={8} h={8} position="absolute" onClick={onClose} cursor="pointer"/>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
-    </Flex>
+    </Stack>
   )
 }

@@ -23,40 +23,43 @@ export const SignUp = () => {
       height="100%"
       bg={mode('gray.50', 'inherit')}
     >
-      <Box
-        display={{ base: 'none', lg: 'block' }}
+      <Flex
         maxH="100vh"
         overflow="hidden"
-        flex="1"
-        bg="blue.600"
-        color="white"
-        px="20"
-        pt="32"
+        flex="1 0 50%"
+        bg="dOrange.300"
+        justify="center"
+        align="center"
+        direction="column"
+        p={10}
       >
-        <Badge
-          bg="blue.700"
-          px="4"
-          py="1"
-          rounded="md"
-          letterSpacing="wide"
-          color="whiteAlpha.900"
-        >
-          New and Improved
-        </Badge>
-        <Text
-          mt="6"
+        <Heading
+          size="3xl"
           fontWeight="extrabold"
-          fontSize={{ base: '2xl', lg: '3xl' }}
-          maxW="sm"
           letterSpacing="tight"
           lineHeight="normal"
+          textAlign="center"
         >
-          Find amazing talent with 2-3 Degrees
-        </Text>
-        <Text mt="5" maxW="md" fontSize="lg">
+          Life is about service to others.
+        </Heading>
+        {/* <Text mt="3" textAlign="center" fontSize="md">Connect with other incredible people who have joined 2-3 Degrees workshops and programme</Text> */}
+        <Badge
+          mt="6"
+          bg="dYellow.300"
+          px="5"
+          py="1"
+          rounded="full"
+          letterSpacing="wide"
+          color="gray.50"
+          fontSize="md"
+        >
+          Connect
+        </Badge>
+
+        {/* <Text mt="5" maxW="md" fontSize="lg">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun.
-        </Text>
-        <HStack
+        </Text> */}
+        {/* <HStack
           as="a"
           href="#"
           justify="center"
@@ -70,31 +73,31 @@ export const SignUp = () => {
           rounded="lg"
           transition="all 0.2s"
           _hover={{ bg: 'whiteAlpha.200' }}
-        >
-          <Box>Learn more</Box>
-          <HiOutlineExternalLink />
-        </HStack>
-        <Box mt="10" position="relative">
+        > */}
+          {/* <Button mt="5">Discover More</Button> */}
+        {/* </HStack> */}
+        {/* <Box mt="10" position="relative">
           <Img
             alt="App screenshot"
             src="https://res.cloudinary.com/chakra-ui-pro/image/upload/v1621082943/pro-website/screenshot-dark_w6jpks.png"
           />
-        </Box>
-      </Box>
-      <Box overflowY="auto" flex="1" py={{ base: '10', md: '16' }} px={{ base: '6', md: '10' }}>
-        <Box maxW="sm" mx="auto">
-          <Logo mb={{ base: '14', md: '32' }} w="auto" h="7" mx="auto" iconColor="blue.500" />
-          <Box textAlign="center" mb={{ base: '10', md: '16' }}>
-            <Heading as="h1" size="xl" fontWeight="extrabold" letterSpacing="tight">
-              Sign up to your account
-            </Heading>
-            <Text mt="3" color={mode('gray.600', 'gray.400')} fontWeight="medium">
-              Have an account? <UnderlineLink link='/maker'>Sign in here</UnderlineLink>
-            </Text>
+        </Box> */}
+      </Flex>
+      <Flex align="center" overflowY="auto" flex="1 0 50%" py={{ base: '10', md: '16' }} px={{ base: '6', md: '10' }}>
+        <Box overflowY="auto" flex="1" py={{ base: '10', md: '16' }} px={{ base: '6', md: '10' }}>
+          <Box maxW="sm" mx="auto">
+            <Box textAlign="center" mb={{ base: '10', md: '16' }}>
+              <Text as="h1" fontSize="3xl" fontWeight="extrabold" letterSpacing="tight">
+                Sign up to create an account
+              </Text>
+              <Text mt="3" color={mode('gray.600', 'gray.400')} fontWeight="medium">
+                Have an account? <UnderlineLink link='/maker'>Sign in here</UnderlineLink>
+              </Text>
+            </Box>
+            <SignUpForm user="maker" />
           </Box>
-          <SignUpForm user="maker" />
         </Box>
-      </Box>
+      </Flex>
     </Flex>
   )
 }

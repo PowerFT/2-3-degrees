@@ -4,7 +4,7 @@ import { BsFillLightningFill } from 'react-icons/bs'
 
 import { MenuItem } from './MenuItem'
 
-export const PublicMenu = ({ menuopen }) => {
+export const PublicMenu = ({ menuopen, onclose }) => {
 	return (
 		<StaticQuery
 			query={MENU_QUERY}
@@ -17,7 +17,7 @@ export const PublicMenu = ({ menuopen }) => {
 							{
 								menuItems &&
 								menuItems.map((item) => (
-									<MenuItem key={item.id} link={item.url} label={item.label} icon={BsFillLightningFill} menuopen={menuopen} />
+									<MenuItem key={item.id} link={item.url} label={item.label} icon={BsFillLightningFill} menuopen={menuopen} onclose={onclose} />
 								))
 							}
 						</>

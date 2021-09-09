@@ -52,6 +52,11 @@ const GET_JOB_POST_BY_ID = gql`
 					name
 				}
 			}
+      salaryStructure {
+				nodes {
+					name
+				}
+			}
 			jobType {
 				nodes {
 					name
@@ -87,6 +92,7 @@ export const UpdateJobPostFormPage = () => {
     jobLocation: '',
     sector: '',
     salary: '',
+    salaryStructure: '',
     content: '',
     companyBio: '',
     closeDate: '',
@@ -94,6 +100,7 @@ export const UpdateJobPostFormPage = () => {
   }
 
   const [formDeets, setFormDeets] = useState(initialState)
+  const [salStructure, setSalStructure] = useState('Year')
 
   const { loading, error, data } = useQuery(GET_JOB_POST_BY_ID, { variables: { id: jobToEditId } })
 
@@ -109,6 +116,7 @@ export const UpdateJobPostFormPage = () => {
         jobLocation: jobPost.jobLocation.nodes[0].name,
         sector: jobPost.sector.nodes[0].name,
         salary: jobPost.salary,
+        salaryStructure: jobPost.salaryStructure.nodes[0].name,
         content: jobPost.content,
         companyBio: jobPost.companyBio,
         closeDate: jobPost.closeDate,
@@ -157,6 +165,7 @@ export const UpdateJobPostFormPage = () => {
           sector={formDeets.sector}
           salary={formDeets.salary}
           content={formDeets.content}
+          salStructure={salStructure}
         />
 
         <JobPostForm
@@ -172,6 +181,9 @@ export const UpdateJobPostFormPage = () => {
           jobLocation={formDeets.jobLocation}
           sector={formDeets.sector}
           salary={formDeets.salary}
+          salStructure={salStructure}
+          salaryStructure={formDeets.salaryStructure}
+          setSalStructure={setSalStructure}
           content={formDeets.content}
           companyBio={formDeets.companyBio}
           closeDate={formDeets.closeDate}

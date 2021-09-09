@@ -11,24 +11,26 @@ import * as React from 'react'
 import { Link as GatsbyLink } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
-export const HalfHero = ({ image, title, text, button }) => {
+export const HalfHero = ({ image, title, text, button, imageSide }) => {
 
   const imageData = getImage(image.localFile)
   const buttonTitle = button?.title
   const buttonLink = button?.url
+  const side = imageSide === "left" ? 1 : null
 
   return (
-    <Box as="section" bg={mode('gray.50', 'gray.800')}>
+    <Box as="section" bg={mode('gray.50', 'gray.800')} minH="xl">
       <Box
-        maxW={{
-          base: 'xl',
-          md: '7xl',
-        }}
+        // maxW={{
+        //   base: 'xl',
+        //   md: '7xl',
+        // }}
         mx="auto"
       // px={{
       //   base: '6',
       //   md: '8',
       // }}
+      h="100%"
       >
         <Stack
           direction={{
@@ -39,26 +41,31 @@ export const HalfHero = ({ image, title, text, button }) => {
             base: '3rem',
             lg: '2rem',
           }}
-          mt="8"
           align={{
             lg: 'center',
           }}
           justify="space-between"
+          h="full"
         >
           <Box
-            flex="1"
-            maxW={{
-              lg: '520px',
-            }}
+            flex="1 1 50%"
+            // maxW={{
+            //   lg: '520px',
+            // }}
             px={{
               base: '6',
               md: '8',
             }}
+            py={{
+              base: '6',
+              md: '10',
+            }}
+            order="2"
           >
             <Heading
               as="h1"
               size="3xl"
-              color={mode('blue.600', 'blue.300')}
+              color="gray.800"
               mt="8"
               fontWeight="extrabold"
               letterSpacing="tight"
@@ -68,43 +75,30 @@ export const HalfHero = ({ image, title, text, button }) => {
             <Text color={mode('gray.600', 'gray.400')} mt="4" fontSize="lg" fontWeight="medium">
               {text}
             </Text>
-            <Button
-              as={GatsbyLink}
-              to={buttonLink}
-              size="lg"
-              minW="210px"
-              bg="white"
-              color="gray.900"
-              height="14"
-              px="8"
-              shadow="base"
-              mt="8"
-            >
+            <Button as={GatsbyLink} fontWeight="400" cover direction="down" to={buttonLink} mt="8" href="#" size="md" rounded="full" bg="gray.800" color="gray.50">
               {buttonTitle}
             </Button>
           </Box>
           <Box
+            flex="1 1 50%"
             pos="relative"
-            w={{
-              base: 'full',
-              lg: '560px',
-            }}
-            h={{
-              base: 'auto',
-              lg: '560px',
-            }}
+            w="full"
+            // h={{
+            //   base: 'auto',
+            //   lg: '560px',
+            // }}
+            height="full"
+            m={0}
+            order={side || 2}
           >
             <GatsbyImage
               image={imageData}
-              alt='tbc'
+              alt={image.altText}
               pos="relative"
-              objectFit="cover"
-              loading="lazt"
-              // height="100%"
-              w="100%"
-              h={{
-                lg: '100%',
-              }}
+              // w="100%"
+              // h={{
+              //   lg: '100%',
+              // }}
             />
           </Box>
         </Stack>

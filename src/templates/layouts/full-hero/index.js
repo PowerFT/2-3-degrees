@@ -1,7 +1,8 @@
 import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
 import * as React from 'react'
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
 import { Link } from 'gatsby'
+// import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 
 export const FullHero = ({ image, title, text, button }) => {
@@ -11,29 +12,48 @@ export const FullHero = ({ image, title, text, button }) => {
   const buttonLink = button?.url
 
   return (
-    <Box as="section" bg="gray.800" minH="140px" position="relative">
+    <Flex as="section" h="100vh" bg="dOrange.300" direction="column" position="relative" justify="center" align="center" overflow="hidden">
       <Box
-        maxW="2xl"
-        mx="auto"
-        px={{ base: '6', lg: '8' }}
-        py={{ base: '16', sm: '20' }}
+        maxW="3xl"
+        // mx="auto"
+        px={{ base: '4', lg: '8' }}
+        py={{ base: '8', sm: '20' }}
         textAlign="center"
         zIndex={1}
         position="relative"
         color="white"
       >
-        <Heading as="h2" size="3xl" fontWeight="extrabold" letterSpacing="tight">
+        <Heading as="h1" color="gray.50" fontSize={{base: '50px', sm: '65px', md: '100px'}} fontWeight="900" letterSpacing="tight">
           {title}
         </Heading>
-        <Text mt="4" fontSize="lg">
-          {text}
-        </Text>
-        <Button as={Link} to={buttonLink} mt="8" href="#" size="lg" colorScheme="blue" fontWeight="bold">
-          {buttonTitle}
-        </Button>
+        {text && (
+          <Text mt="4" fontSize="lg" color="gray.50">
+            {text}
+          </Text>
+        )}
+        {button && (
+          <Button as={Link} textDecoration="none" fontWeight="500" cover direction="down" to={buttonLink} mt="8" size="md" rounded="full" bg="gray.50" color="gray.800">
+            {buttonTitle}
+          </Button>
+        )}
       </Box>
-      <Flex
-        id="image-wrapper"
+      {/* <Flex
+        class="image-wrapper"
+        position={{base: "relative", sm: 'absolute'}}
+        w="100%"
+        h="fit-content"
+        overflow="hidden"
+        align="center"
+        bottom={{sm: 'unset', md: '0'}}
+      >
+        <StaticImage 
+          src="../../../images/hero.png" 
+          alt="2-3 Degrees logo pattern"
+        />
+      </Flex> */}
+      
+      {/* <Flex
+        class="image-wrapper"
         position="absolute"
         insetX="0"
         insetY="0"
@@ -45,46 +65,12 @@ export const FullHero = ({ image, title, text, button }) => {
         <Box position="relative" w="full" h="full">
           <GatsbyImage
             image={imageData}
-            alt={'tbc'}
+            alt={image.altText}
             objectFit="cover"
             loading="eager"
-            height="100%"
-            width="100%"
           />
-          {/* <Img
-            src="https://images.unsplash.com/photo-1590650153855-d9e808231d41?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2250&q=80"
-            alt="Main Image"
-            w="full"
-            h="full"
-            objectFit="cover"
-            objectPosition="top bottom"
-            position="absolute"
-          /> */}
-          <Box position="absolute" w="full" h="full" bg="blackAlpha.600" />
         </Box>
-      </Flex>
-    </Box>
+      </Flex> */}
+    </Flex>
   )
 }
-
-
-// export const query = graphql`
-//   fragment FullHeroFragment on WpPage_Pagebuilder_Layouts_FullHero {
-//       fieldGroupName
-//       image {
-//         localFile {
-//           childImageSharp {
-//             gatsbyImageData(quality: 90, placeholder: DOMINANT_COLOR)
-//             fluid(quality: 90, cropFocus: CENTER) {
-//               src
-//               srcSet
-//               aspectRatio
-//             }
-//           }
-//         }
-//       }
-//       textColour
-//       text
-//     }
-//   }
-// `

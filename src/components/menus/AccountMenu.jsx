@@ -2,19 +2,15 @@ import {
   Menu,
   MenuDivider,
   MenuItem,
-  // MenuItemOption,
   MenuList,
-  // MenuOptionGroup,
   Text,
   LinkBox,
   LinkOverlay,
 } from '@chakra-ui/react'
-// import {FaRegMoon, FaRegSun} from 'react-icons/fa'
 import * as React from 'react'
 import { AccountMenuButton } from './AccountMenuButton'
 
 import { useAuth } from '../../hooks'
-// import { MySpinner } from '../waiting/MySpinner'
 
 export const AccountMenu = ({ menuopen }) => {
 
@@ -24,15 +20,10 @@ export const AccountMenu = ({ menuopen }) => {
     logout()
   }
 
-  if (loadingViewer || !viewer) {
-    return (
-      <p>loading</p>
-    )
-  }
+  if(loadingViewer || !viewer) return null
 
   return (
-    // <Loading isLoading={loadingViewer}>
-    <Menu>
+    <Menu alignSelf="stretch">
       <AccountMenuButton
         viewer={viewer}
         menuopen={menuopen}
@@ -41,20 +32,6 @@ export const AccountMenu = ({ menuopen }) => {
         <Text fontSize="sm" mb="2">
           {viewer.email}
         </Text>
-        {/* <MenuOptionGroup defaultValue="chakra-ui">
-            <MenuItemOption value="chakra-ui" fontWeight="semibold" rounded="md">
-              <HStack spacing="4">
-                <Text as="span">Light Mode</Text>
-                <Icon as={FaRegSun} fontSize="xl" opacity={0.64} />
-              </HStack>
-            </MenuItemOption>
-            <MenuItemOption value="careerlyft" fontWeight="semibold" rounded="md">
-              <HStack spacing="4">
-                <Text as="span">Dark Mode</Text>
-                <Icon as={FaRegMoon} fontSize="xl" opacity={0.64} />
-              </HStack>
-            </MenuItemOption>
-          </MenuOptionGroup> */}
         <MenuDivider />
         <LinkBox>
           <MenuItem rounded="md"><LinkOverlay href="/maker/account">Account Setting</LinkOverlay></MenuItem>
@@ -71,7 +48,5 @@ export const AccountMenu = ({ menuopen }) => {
         </MenuItem>
       </MenuList>
     </Menu>
-    // </Loading>
-
   )
 }

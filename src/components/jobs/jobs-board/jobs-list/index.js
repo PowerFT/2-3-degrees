@@ -1,23 +1,22 @@
 /**
 * External dependencies
 */
-import React from 'react'
-import { Stack, Text } from '@chakra-ui/layout'
+import React, { useState } from 'react'
 import { gql, useQuery } from '@apollo/client'
 // import InfiniteScroll from 'react-infinite-scroll-component'
 /**
 * Internal dependencies
 */
 import { JobCard } from '../../job-card';
-import { Button } from '@chakra-ui/button';
 import { MySpinner } from '../../../waiting/MySpinner';
+import { JobsCardContainer } from '../../JobsCardContainer';
 
 const GET_JOBS = gql`
 	query MyQuery($first: Int!, $after: String, $where: RootQueryToJobPostConnectionWhereArgs) {
 		jobPosts(
 			first: $first, 
 			after: $after
-			where: $where) {
+			where: $where) { 
 			pageInfo {
 				hasNextPage
 				endCursor
@@ -26,6 +25,8 @@ const GET_JOBS = gql`
 				node {
 					title
 					salary
+					uri
+					id
 					content(format: RAW)
 					companyName {
 						nodes {
@@ -47,6 +48,11 @@ const GET_JOBS = gql`
 							name
 						}
 					}
+					skills {
+						nodes {
+							name
+						}
+					}
 				}
 			}
 		}
@@ -55,20 +61,28 @@ const GET_JOBS = gql`
 
 const BATCH_SIZE = 100
 
-export const JobsBoardJobList = ({ locations, sectors, jobTypes }) => {
-	console.log(locations, sectors, jobTypes)
+export const JobsBoardJobList = ({ locations, sectors, jobTypes, skills }) => {
 
-	const where = !locations.length && !sectors.length && !jobTypes.length ? null : {
+	const obj ={
+		jobLocations: { terms: locations, taxonomy: 'JOBLOCATION', operator: 'IN', field: 'NAME' },
+		sectors: { terms: sectors, taxonomy: 'SECTOR', operator: 'IN', field: 'NAME' },
+		jobTypes: { terms: jobTypes, taxonomy: 'JOBTYPE', operator: 'IN', field: 'NAME' },
+		skills:  { terms: skills, taxonomy: 'SKILL', operator: 'IN', field: 'NAME' }
+	}
+
+	let whereArr = []
+
+	for(const x in obj) {
+		if(obj[x].terms.length !== 0) whereArr.push(obj[x])
+	}
+	console.log(locations, sectors, jobTypes, skills)
+
+	const where = !locations.length && !sectors.length && !jobTypes.length && !skills.length ? null : {
 		taxQuery: {
-			relation: 'OR',
-			taxArray: [
-				{ terms: locations, taxonomy: 'JOBLOCATION', operator: 'IN', field: 'NAME' },
-				{ terms: jobTypes, taxonomy: 'JOBTYPE', operator: 'IN', field: 'NAME' },
-				{ terms: sectors, taxonomy: 'SECTOR', operator: 'IN', field: 'NAME' },
-			]
+			relation: 'AND',
+			taxArray: whereArr
 		}
 	}
-	console.log(where)
 
 	const { loading, error, data, fetchMore } = useQuery(GET_JOBS, {
 		variables: {
@@ -91,14 +105,13 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes }) => {
 	if (error) return <p>{`Error: ${error}`}</p>
 	if (!data && loading) return <MySpinner />
 	if (!data?.jobPosts.edges.length) return <p>No posts found.</p>
-	// console.log(data.jobPosts.pageInfo.endCursor)
-	const haveMorePosts = Boolean(data.jobPosts?.pageInfo?.hasNextPage)
+	
+	// const haveMorePosts = Boolean(data.jobPosts?.pageInfo?.hasNextPage)
+
 	const jobPosts = data.jobPosts.edges.map(edge => edge.node)
 
 	return (
-		<>
-			<Stack py="10" spacing="6" id="jobList">
-
+		<JobsCardContainer>
 				{/* <InfiniteScroll
 					dataLength={jobPosts.length}
 					next={fetchMorePosts()}
@@ -106,9 +119,9 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes }) => {
 					loader={<p>loading jobs...</p>}
 					endMessage={<p>All jobs loaded.</p>}
 				> */}
-				<Text>Discover new opportunities</Text>
 				{jobPosts.map(post => (
 					<JobCard
+						key={post?.id}
 						title={post?.title}
 						jobLocation={post?.jobLocation?.nodes[0]?.name}
 						jobType={post?.jobType?.nodes[0]?.name}
@@ -119,12 +132,12 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes }) => {
 						status={post?.status}
 						content={post?.content}
 						id={post?.id}
+						uri={post?.uri}
 					/>
 				))}
 				{/* </InfiniteScroll> */}
-			</Stack>
 
-			{haveMorePosts ? (
+			{/* {haveMorePosts ? (
 				<form
 					method="post"
 					onSubmit={(event) => {
@@ -144,7 +157,7 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes }) => {
 			) : (
 				// <p>✅ All posts loaded.</p>
 				<></>
-			)}
-		</>
+			)} */}
+		</JobsCardContainer>
 	)
 }

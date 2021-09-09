@@ -14,8 +14,8 @@ const PrivateRoute = ({ component: Component, location, ...rest }) => {
   
 	const { isLoggedIn } = useAuth()
 	
-	if (!isLoggedIn && location.pathname !== `/maker/login`) {
-    navigate("/maker/login")
+	if (!isLoggedIn && location.pathname !== `/maker/sign-in`) {
+    navigate("/maker/sign-in")
     return null
   }
 

@@ -16,7 +16,7 @@ exports.createPages = async gatsbyUtilities => {
 
   const posts = await getPosts(gatsbyUtilities)
   const jobPosts = await getJobPosts(gatsbyUtilities)
-  // const pages = await getPages(gatsbyUtilities)
+  const pages = await getPages(gatsbyUtilities)
 
   // if(!posts.length && !jobPosts.length && !pages.length) {
   //   return
@@ -31,9 +31,9 @@ exports.createPages = async gatsbyUtilities => {
     await createJobPostPages({ jobPosts, gatsbyUtilities })
   }
 
-  // if (pages.length) {
-  //   await createPagePages({ pages, gatsbyUtilities })
-  // }
+  if (pages?.length) {
+    await createPagePages({ pages, gatsbyUtilities })
+  }
 
 }
 
@@ -72,179 +72,253 @@ const createJobPostPages = async ({ jobPosts, gatsbyUtilities }) => {
   )
 }
 
-// const createPagePages = async ({ pages, gatsbyUtilities }) => {
+const createPagePages = async ({ pages, gatsbyUtilities }) => {
 
-//   const getPagePath = page => {
-//     // if (page.isFrontPage) {
-//     //   return '/'
-//     // }
-//     return page.uri
-//   }
+  const getPagePath = page => {
+    // if (page.isFrontPage) {
+    //   return '/'
+    // }
+    return page.uri
+  }
 
-//   return Promise.all(
-//     pages.map(({ page }) =>
-//       gatsbyUtilities.actions.createPage({
-//         path: getPagePath(page),
-//         component: path.resolve("./src/templates/page/index.js"),
-//         context: {
-//           id: page.id,
-//           page
-//         },
-//       })
-//     )
-//   )
-// }
+  return Promise.all(
+    pages.map(({ page }) =>
+      gatsbyUtilities.actions.createPage({
+        path: getPagePath(page),
+        component: path.resolve("./src/templates/page/index.js"),
+        context: {
+          id: page.id,
+          page
+        },
+      })
+    )
+  )
+}
 
-// const getPages = async ({ graphql, reporter }) => {
+const getPages = async ({ graphql, reporter }) => {
 
-//   const pagesData = await graphql(`
-//     query WpPages {
-//       allWpPage(sort: {order: ASC, fields: date}) {
-//         edges {
-//           page: node {
-//             uri
-//             databaseId
-//             id
-//             isFrontPage
-//             title
-//             slug
-//             pageBuilder {
-//               layouts {
-//                 ... on WpPage_Pagebuilder_Layouts_LogoGrid {
-//                   fieldGroupName
-//                 }
-//                 ... on WpPage_Pagebuilder_Layouts_Quote {
-//                   fieldGroupName
-//                   quoteAuthor
-//                   quoteText
-//                 }
-//                 ... on WpPage_Pagebuilder_Layouts_Tabs {
-//                   fieldGroupName
-//                   tabs {
-//                     fieldGroupName
-//                     image {
-//                       localFile {
-//                         childImageSharp {
-//                           gatsbyImageData(quality: 90)
-//                           fluid {
-//                             src
-//                           }
-//                         }
-//                       }
-//                     }
-//                     text
-//                     title
-//                     link {
-//                       url
-//                     }
-//                     list {
-//                       text
-//                       fieldGroupName
-//                     }
-//                   }
-//                 }
-//                 ... on WpPage_Pagebuilder_Layouts_Blog {
-//                   fieldGroupName
-//                   blogPosts {
-//                     ... on WpPost {
-//                       id
-//                       author {
-//                         node {
-//                           name
-//                         }
-//                       }
-//                       categories {
-//                         nodes {
-//                           name
-//                         }
-//                       }
-//                       date(fromNow: true)
-//                       dateGmt
-//                       excerpt
-//                       featuredImage {
-//                         node {
-//                           localFile {
-//                             childImageSharp {
-//                               gatsbyImageData(quality: 90)
-//                               fluid {
-//                                 src
-//                               }
-//                             }
-//                           }
-//                         }
-//                       }
-//                       uri
-//                       title
-//                     }
-//                   }
-//                 }
-//                 ... on WpPage_Pagebuilder_Layouts_Pillars {
-//                   fieldGroupName
-//                   pillars {
-//                     title
-//                     text
-//                   }
-//                 }
-//                 ... on WpPage_Pagebuilder_Layouts_Newsletter {
-//                   fieldGroupName
-//                   text
-//                 }
-//                 ... on WpPage_Pagebuilder_Layouts_FullHero {
-//                   fieldGroupName
-//                   title
-//                   text
-//                   button {
-//                     title
-//                     url
-//                   }
-//                   image {
-//                     localFile {
-//                       childImageSharp {
-//                         gatsbyImageData(quality: 90)
-//                         fluid {
-//                           src
-//                         }
-//                       }
-//                     }
-//                   }
-//                 }
-//                 ... on WpPage_Pagebuilder_Layouts_HalfHero {
-//                   fieldGroupName
-//                   title
-//                   text
-//                   button {
-//                     title
-//                     url
-//                   }
-//                   image {
-//                     localFile {
-//                       childImageSharp {
-//                         gatsbyImageData(quality: 90)
-//                         fluid {
-//                           src
-//                         }
-//                       }
-//                     }
-//                   }
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }    
-//   `)
+  const pagesData = await graphql(`
+  query WpPages {
+    allWpPage {
+      edges {
+        page: node {
+          uri
+          title
+          id
+          pageBuilder {
+            layouts {
+              ... on WpPage_Pagebuilder_Layouts_FullHero {
+                fieldGroupName
+                text
+                title
+                button {
+                  title
+                  url
+                }
+                image {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      fluid(quality: 90) {
+                        src
+                        srcSet
+                        aspectRatio
+                      }
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+              ... on WpPage_Pagebuilder_Layouts_HalfHero {
+                fieldGroupName
+                text
+                title
+                imageSide
+                button {
+                  title
+                  url
+                }
+                image {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      fluid(quality: 90) {
+                        src
+                        srcSet
+                        aspectRatio
+                      }
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+              ... on WpPage_Pagebuilder_Layouts_Tabs {
+                fieldGroupName
+                tabs {
+                  title
+                  text
+                  list {
+                    text
+                  }
+                  link {
+                    url
+                    title
+                  }
+                  image {
+                    altText
+                    localFile {
+                      childImageSharp {
+                      fluid(quality: 90) {
+                        src
+                        srcSet
+                        aspectRatio
+                      }
+                      gatsbyImageData
+                    }
+                    }
+                  }
+                }
+              }
+              ... on WpPage_Pagebuilder_Layouts_Pillars {
+                fieldGroupName
+                title
+                pillars {
+                  title
+                  text
+                  video
+                  link {
+                    url
+                    title
+                  }
+                  image {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        fluid(quality: 90) {
+                          src
+                          srcSet
+                          aspectRatio
+                        }
+                        gatsbyImageData(aspectRatio: 1)
+                      }
+                    }
+                  }
+                }
+              }
+              ... on WpPage_Pagebuilder_Layouts_Quote {
+                fieldGroupName
+                quoteAuthor
+                quoteText
+              }
+              ... on WpPage_Pagebuilder_Layouts_LogoGrid {
+                fieldGroupName
+              }
+              ... on WpPage_Pagebuilder_Layouts_Blog {
+                fieldGroupName
+                blogPosts {
+                  ... on WpPost {
+                    id
+                    uri
+                    title
+                    date(fromNow: true)
+                    author {
+                      node {
+                        name
+                        uri
+                      }
+                    }
+                    categories {
+                      nodes {
+                        name
+                        uri
+                      }
+                    }
+                    featuredImage {
+                      node {
+                        localFile {
+                          childImageSharp {
+                            fluid(quality: 90) {
+                              src
+                              srcSet
+                              aspectRatio
+                            }
+                            gatsbyImageData
+                          }
+                        }
+                        altText
+                      }
+                    }
+                  }
+                }
+              }
+              ... on WpPage_Pagebuilder_Layouts_Newsletter {
+                fieldGroupName
+                text
+              }
+              ... on WpPage_Pagebuilder_Layouts_TabsBlock {
+                fieldGroupName
+                title
+                link {
+                  url
+                  title
+                }
+                tabs {
+                  title
+                  text
+                  image {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      fluid(quality: 90) {
+                        src
+                        srcSet
+                        aspectRatio
+                      }
+                      gatsbyImageData
+                    }
+                  }
+                }
+                }
+              }
+              ... on WpPage_Pagebuilder_Layouts_PageBlock {
+                content
+                fieldGroupName
+                subTitle
+                title
+                image {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      fluid(quality: 90) {
+                        src
+                        srcSet
+                        aspectRatio
+                      }
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+    
+  `)
 
-//   if (pagesData.errors) {
-//     reporter.panicOnBuild(
-//       `There was an error loading your blog posts`,
-//       pagesData.errors
-//     )
-//     return
-//   }
+  if (pagesData.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your blog posts`,
+      pagesData.errors
+    )
+    return
+  }
 
-//   return pagesData.data.allWpPage.edges
-// }
+  return pagesData.data.allWpPage.edges
+}
 
 
 const createPostArchive = async ({ posts, gatsbyUtilities }) => {

@@ -12,6 +12,7 @@ import {
   Stack,
   useColorModeValue as mode,
 } from '@chakra-ui/react'
+import { navigate } from 'gatsby';
 import React, {useState} from 'react'
 // import {Link as GatsbyLink} from 'gatsby'
  /**
@@ -20,7 +21,7 @@ import React, {useState} from 'react'
 // import { UnderlineLink } from './UnderlineLink'
 import { useAuth } from '../../../hooks';
 
-export const SigninForm = () => {
+export const SigninForm = ({user}) => {
   const [ email, setEmail ] = useState( '' );
   const [ password, setPassword ] = useState( '' );
   const { login, error, status } = useAuth();
@@ -38,7 +39,7 @@ export const SigninForm = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault()
-          login(email, password)
+          login(email, password, user)
         }}
       >
         <Stack spacing="-px">
@@ -102,12 +103,10 @@ export const SigninForm = () => {
             type="submit"
             mt="8"
             w="full"
-            bg="#4c907f"
-            color={mode('gray.50', 'inherit')}
-            fontSize="md"
-            fontWeight="bold"
+            bg="dBlue.300"
+            // color="deg.500"
           >
-            Sign in
+            Sign In
           </Button>
         </LightMode>
       </form>

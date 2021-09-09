@@ -1,8 +1,11 @@
 import {
   Avatar,
   Box,
+  Heading,
   HStack,
   Icon,
+  LinkBox,
+  LinkOverlay,
   Stack,
   Text,
   useColorModeValue,
@@ -12,59 +15,45 @@ import {
 // import {RiEditLine} from 'react-icons/ri'
 // import {QuestionOutlineIcon} from '@chakra-ui/icons'
 import * as React from 'react'
-import { HiCash, HiLocationMarker } from 'react-icons/hi'
-// import { Link } from 'gatsby'
-import {AdminBlob} from '../../AdminBlob'
+import {Link as GatsbyLink} from 'gatsby'
+import { HiCash, HiClock, HiLocationMarker } from 'react-icons/hi'
+// import {AdminBlob} from '../../AdminBlob'
 
-export const JobCard = ({title, jobLocation, salary, jobType, sector, companyName, jobPostId, status, content, id}) => {
+export const JobCard = ({title, jobLocation, salary, jobType, sector, companyName, jobPostId, status, content, id, uri}) => {
 
   const formattedSalary = parseInt(salary).toLocaleString()
 	const pending = status !== "publish"
 	const jobPostLink = `/connect-platform${jobPostId}`
-  
+   
 
   return (
-    <AdminBlob
-      id="jobCard"
-      // maxW="3xl"
-      // mx="auto"
-      flex="1"
-      bg="white"
-      w="100%"
-      // rounded={{
-      //   md: 'xl',
-      // }}
-      borderTop="1px solid"
-      padding="4"
-      px={{
-        base: '4',
-        md: '6',
-      }}
-    >
-      <Stack
-        id="jobCardContainer"
-        // direction={{
-        //   base: 'column',
-        //   md: 'row',
-        // }}
-        align="flex-start"
-        direction="row"
-        // my={1}
-      >
-        <Avatar
-          size="lg"
-          name={companyName}
-          bg="pink.100"
-          alignSelf="center"
-          mr="8"
-          ml="3"
-          // src="https://images.unsplash.com/photo-1488282396544-0212eea56a21?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
-        />
-        <Box
-         ml="30px"
+    <LinkBox>
+      <Box borderRadius="md" position="relative" overflow="hidden" bg="white" px={{base: "4", sm: "6"}} py={{base: "4", sm: "6"}} maxW="2xl">
+
+        <Stack
+          id="jobCardContainer"
+          // direction={{
+          //   base: 'column',
+          //   md: 'row',
+          // }}
+          align="flex-start"
+          direction="row"
+          // my={1}
         >
+          <Avatar
+            size="md"
+            name={companyName}
+            // alignSelf="center"
+            mr={{base:"3",  sm:"6"}}
+            ml="0"
+            // src="https://images.unsplash.com/photo-1488282396544-0212eea56a21?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+          />
+          <Box>
           <HStack align="flex-start" justify="space-between" mb="1.5">
             <VStack align="flex-start" >
+              <Text fontSize={{base:"2xl",  sm:"3xl"}} as="h2" fontWeight="400">
+                <LinkOverlay as={GatsbyLink} to={`/connect-platform/jobs/${id}`}>{title}</LinkOverlay>
+              </Text>
               <HStack
                 spacing={{
                   base: '1',
@@ -80,99 +69,61 @@ export const JobCard = ({title, jobLocation, salary, jobType, sector, companyNam
                   md: 'lg',
                 }}
               >
-                <Text as="h2" fontWeight="bold" fontSize="xl">
+                <Text as="h3" fontSize={{base:"xl",  sm:"2xl"}} color="gray.600">
                   {companyName}
                 </Text>
-                <Text as="span" color={useColorModeValue('gray.500', 'gray.300')} lineHeight="1">
+                <Text as="h3" fontSize={{base:"xl",  sm:"2xl"}} color="gray.600" fontWeight="light">
                   {sector}
                 </Text>
               </HStack>
-              <Text fontSize="xl">{title}</Text>
             </VStack>
-            
-            {/* <Divider orientation="vertical" /> */}
-{/* 
-            <ButtonGroup isAttached variant="outline" flexDirection="column" borderLeft="1px">
-              <Button
-                as={Link}
-                to={`/maker/jobs/edit?job=${id}`}
-                // width="full"
-                colorScheme="blue"
-                size="sm"
-                mb="-px"
-                border="none"
-              >
-                <Icon as={RiEditLine} h="25px" w="25px" />
-              </Button>
-              <Button
-                // width="full"
-                colorScheme="blue"
-                border="none"
-                mt="2"
-                size="sm"
-              >
-                <Icon h="25px" w="25px" as={FaRegEye} />
-              </Button>
-            </ButtonGroup> */}
           </HStack>
 
-          {/* <Divider orientation="horizontal" /> */}
+            <Stack pt="1.5" direction={{base:"column",  sm:"row"}} spacing={{base:"2", sm:"3", md:"5"}} align="center" wrap="wrap" align="flex-start" justify="flex-start">
+              <HStack>
+                <Icon as={HiCash} fontSize="xl" color="gray.400" />
+                <Text
+                  fontSize="sm"
+                  fontWeight="medium"
+                  color={useColorModeValue('gray.600', 'gray.300')}
+                >
+                  <b>£{formattedSalary}</b> /yr
+                </Text>
+              </HStack>
+              <HStack spacing="1">
+                <Icon as={HiClock} color="gray.400" />
+                <Text
+                  fontSize="sm"
+                  fontWeight="medium"
+                  color={useColorModeValue('gray.600', 'gray.300')}
+                >
+                  {jobType}
+                </Text>
+              </HStack>
+              <HStack spacing="1">
+                <Icon as={HiLocationMarker} color="gray.400" />
+                <Text
+                  fontSize="sm"
+                  fontWeight="medium"
+                  color={useColorModeValue('gray.600', 'gray.300')}
+                >
+                  {jobLocation}
+                </Text>
+              </HStack>
+            </Stack>
+          </Box>
+        </Stack>
 
-          <HStack py="1.5" spacing="2" align="center">
-            <HStack>
-              <Icon as={HiCash} fontSize="xl" color="gray.400" />
-              <Text
-                fontSize="sm"
-                fontWeight="medium"
-                color={useColorModeValue('gray.600', 'gray.300')}
-              >
-                <b>£{formattedSalary}</b> /yr
-              </Text>
-            </HStack>
-            <HStack spacing="1">
-              <Icon as={HiLocationMarker} color="gray.400" />
-              <Text
-                fontSize="sm"
-                fontWeight="medium"
-                color={useColorModeValue('gray.600', 'gray.300')}
-              >
-                {jobType}
-              </Text>
-            </HStack>
-            <HStack spacing="1">
-              <Icon as={HiLocationMarker} color="gray.400" />
-              <Text
-                fontSize="sm"
-                fontWeight="medium"
-                color={useColorModeValue('gray.600', 'gray.300')}
-              >
-                {jobLocation}
-              </Text>
-            </HStack>
-            {/* <Badge
-              display="flex"
-              alignItems="center" 
-              borderRadius="full" 
-              px="2" 
-              cursor={pending ? "help" : "default"}
-              colorScheme={pending ? "orange" : "green"}>
-              { pending ? (
-                <>
-                  Pending <QuestionOutlineIcon ml="1"/>
-                </>
-              ) : (
-                "Approved"
-              )}
-            </Badge> */}
-          </HStack>
+        <Box  
+          position="absolute"
+          bottom="0px"
+          top="0px"
+          right="0px"
+          w="4px"
+          bg="dYellow.200"
+        />
 
-          {/* <Divider orientation="horizontal" /> */}
-
-          {/* <Text mt="1.5" fontSize="sm" noOfLines={2}>
-            {content}
-          </Text> */}
-        </Box>
-      </Stack>
-    </AdminBlob>
+      </Box>
+    </LinkBox>
   )
 }

@@ -1,15 +1,17 @@
 import React from "react"
 import { FullHero } from "../templates/layouts/full-hero"
 import { HalfHero } from "../templates/layouts/half-hero"
-import { TabsBlock } from "../templates/layouts/tabs"
+import { TabSection } from "../templates/layouts/tabs"
 import { Pillars } from "../templates/layouts/pillars"
 import { Quote } from "../templates/layouts/quote"
 import { LogoGrid } from "../templates/layouts/logo-grid"
 import { LatestBlog } from "../templates/layouts/blog"
 import { Newsletter } from "../templates/layouts/newsletter"
+import { PageBlock } from "../templates/layouts/page-block"
+// import { TabsBlock } from "../templates/layouts/services"
 
 const AllLayouts = ({ layoutData }) => {
-  console.log('All layout')
+  console.log(layoutData)
   const layoutType = layoutData.fieldGroupName
 
   /**
@@ -23,12 +25,14 @@ const AllLayouts = ({ layoutData }) => {
   const layouts = {
     Page_Pagebuilder_Layouts_FullHero: FullHero,
     Page_Pagebuilder_Layouts_HalfHero: HalfHero,
-    Page_Pagebuilder_Layouts_Tabs: TabsBlock,
+    Page_Pagebuilder_Layouts_Tabs: TabSection,
     Page_Pagebuilder_Layouts_Pillars: Pillars,
     Page_Pagebuilder_Layouts_Quote: Quote,
     Page_Pagebuilder_Layouts_LogoGrid: LogoGrid,
     Page_Pagebuilder_Layouts_Blog: LatestBlog,
     Page_Pagebuilder_Layouts_Newsletter: Newsletter,
+    Page_Pagebuilder_Layouts_PageBlock: PageBlock,
+    // Page_Pagebuilder_Layouts_TabsBlock: TabsBlock,
     page_default: Default
   }
 

@@ -9,6 +9,8 @@ import { Stack } from '@chakra-ui/layout'
 */
 // import { useUserJobsDataQuery } from '../../../hooks/queries/use-user-jobs-data-query'
 import { MyJobCard } from '../job-card/MyJobCard'
+import { JobCard } from '../job-card'
+import { JobsCardContainer } from '../JobsCardContainer'
 
 const GET_JOBS_BY_VIEWER = gql`
 	query MyQuery($status: PostStatusEnum) {
@@ -66,7 +68,7 @@ export const JobsList = ({ statusSelected, setLoading, setError }) => {
 	if (!data) return <p>No posts found.</p>
 
 	return (
-		<Stack maxW="lg">
+		<JobsCardContainer >
 			{data.viewer.jobPosts.nodes.map(post => (
 				<MyJobCard
 					title={post?.title}
@@ -81,6 +83,6 @@ export const JobsList = ({ statusSelected, setLoading, setError }) => {
 					id={post?.id}
 				/>
 			))}
-		</Stack>
+		</JobsCardContainer>
 	)
 }

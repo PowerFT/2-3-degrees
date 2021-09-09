@@ -19,7 +19,7 @@ export const UnderlineLink = (props) => {
         w: 'full',
         h: '2px',
         bottom: 0,
-        bg: 'blue.500',
+        bg: "red",
         insetX: 0,
         insetY: 0,
       }}

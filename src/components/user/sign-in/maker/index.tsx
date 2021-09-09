@@ -1,16 +1,12 @@
 import {
   Badge,
   Box,
-  Button,
   Flex,
   Heading,
-  HStack,
-  Img,
   Text,
   useColorModeValue as mode,
 } from '@chakra-ui/react'
 import * as React from 'react'
-import { HiOutlineExternalLink } from 'react-icons/hi'
 import { Logo } from '../../../layout/Logo'
 import { SigninForm } from '../SigninForm'
 import { UnderlineLink } from '../../UnderlineLink'
@@ -24,54 +20,71 @@ export const SignIn = () => {
       height="100%"
       bg={mode('gray.50', 'inherit')}
     >
-      <Box overflowY="auto" flex="1" py={{ base: '10', md: '16' }} px={{ base: '6', md: '10' }}>
+      <Flex align="center" overflowY="auto" flex="1 0 50%" py={{ base: '10', md: '16' }} px={{ base: '6', md: '10' }}>
         <Box maxW="sm" mx="auto">
-          <Logo mb={{ base: '7', md: '16' }} w="auto" h="20" mx="auto" iconColor="#cef85c" />
-          <Box textAlign="center" mb={{ base: '10', md: '16' }}>
-            <Heading as="h1" size="xl" fontWeight="extrabold" letterSpacing="tight">
+          {/* <Logo mb={{ base: '7', md: '16' }} w="auto" h="20" mx="auto" iconColor="#FF6A29" /> */}
+          <Box textAlign="center" mb={{ base: '5', md: '8' }}>
+            <Text as="h1" fontSize="3xl" fontWeight="extrabold" letterSpacing="tight">
               Sign in to your account
-            </Heading>
+            </Text>
             <Text mt="3" color={mode('gray.600', 'gray.400')} fontWeight="medium">
               Need an account? <UnderlineLink link='/maker/sign-up'>Sign up here</UnderlineLink>
             </Text>
           </Box>
-          <SigninForm />
+          <SigninForm user="maker" />
         </Box>
-      </Box>
+      </Flex>
 
-      <Box
-        display={{ base: 'none', lg: 'block' }}
+      <Flex
         maxH="100vh"
         overflow="hidden"
-        flex="1"
-        bg='#4c907f'
-        color="white"
-        px="20"
-        pt="32"
+        flex="1 0 50%"
+        bg="dBlue.300"
+        justify="center"
+        align="center"
+        direction="column"
+        p={10}
       >
-        <Badge
-          bg="#f42ea6"
-          px="4"
-          py="1"
-          rounded="md"
-          letterSpacing="wide"
-          color="whiteAlpha.900"
-        >
-          Connect
-        </Badge>
-        <Text
-          mt="6"
+        <Heading
+          size="3xl"
           fontWeight="extrabold"
-          fontSize={{ base: '2xl', lg: '3xl' }}
-          maxW="sm"
           letterSpacing="tight"
           lineHeight="normal"
         >
-          Start Making Opportunites
-        </Text>
-        <Text mt="5" maxW="md" fontSize="lg">
+          Start
+        </Heading>
+        <Heading
+          size="3xl"
+          fontWeight="extrabold"
+          letterSpacing="tight"
+          lineHeight="normal"
+        >
+          Making
+        </Heading>
+        <Heading
+          size="3xl"
+          fontWeight="extrabold"
+          letterSpacing="tight"
+          lineHeight="normal"
+        >
+          Opportunites
+        </Heading>
+        <Badge
+          mt="6"
+          bg="dOrange.300"
+          px="5"
+          py="1"
+          rounded="full"
+          letterSpacing="wide"
+          color="gray.50"
+          fontSize="md"
+        >
+          Connect
+        </Badge>
+
+        {/* <Text mt="5" maxW="md" fontSize="lg">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun.
-        </Text>
+        </Text> */}
         {/* <HStack
           as="a"
           href="#"
@@ -95,7 +108,7 @@ export const SignIn = () => {
             src="https://res.cloudinary.com/chakra-ui-pro/image/upload/v1621082943/pro-website/screenshot-dark_w6jpks.png"
           />
         </Box> */}
-      </Box>
+      </Flex>
     </Flex>
   )
 }

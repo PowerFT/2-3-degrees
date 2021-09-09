@@ -27,11 +27,11 @@ export const DangerZone = (props) => {
 					{error}
 				</Alert>
 			}
-			<Text fontWeight="bold">Delete account and data</Text>
+			<Text fontWeight="500">Delete account and data</Text>
 			<Text fontSize="sm" mt="1" mb="3">
 				Once you delete your user, there is no going back. Please be certain.
 			</Text>
-			<Button size="sm" colorScheme="red" onClick={handleDelete}>
+			<Button fontWeight="medium" size="sm" colorScheme="red" onClick={handleDelete}>
 				Delete account
 			</Button>
 		</Stack>

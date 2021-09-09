@@ -1,10 +1,11 @@
 import { Box, Heading, SimpleGrid, Text } from '@chakra-ui/react'
+import { StaticImage } from 'gatsby-plugin-image'
 import * as React from 'react'
 import * as Logos from './Brands'
 
 export const LogoGrid = () => {
 	return (
-		<Box bg="blue.600" color="white" as="section" pt="16" pb="24">
+		<Box bg="dBlue.300" color="white" as="section" pt="16" pb="24">
 			<Box
 				maxW={{
 					base: 'xl',
@@ -17,35 +18,36 @@ export const LogoGrid = () => {
 				}}
 			>
 				<Box textAlign="center">
-					<Heading size="lg" mb="4">
-						Our Partners
+					<Heading size="3xl" mb="4" color="white">
+						Get Connected
 					</Heading>
-					<Text maxW="2xl" mx="auto">
+					{/* <Text maxW="2xl" mx="auto">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
 						incididunt ut labore et dolore magna aliqua elit consectetur adipiscing.
-					</Text>
+					</Text> */}
 				</Box>
 				<SimpleGrid
 					columns={{
 						base: 2,
-						lg: 5,
+						lg: 3,
 					}}
 					spacing={{
-						base: '6',
+						base: '10',
 						md: '12',
 						lg: '16',
 					}}
 					mt="12"
 					alignItems="center"
 					justifyItems="center"
-					fontSize="2xl"
 					opacity={0.6}
 				>
-					<Logos.Wakanda />
-					<Logos.Wakanda />
-					<Logos.Wakanda />
-					<Logos.Wakanda />
-					<Logos.Wakanda />
+					<StaticImage height={80} src="../../../images/client-logos/4.svg"/>
+					<StaticImage height={80} src="../../../images/client-logos/BNPARIB.svg"/>
+					<StaticImage height={80} src="../../../images/client-logos/Coke.svg"/>
+					<StaticImage height={80} src="../../../images/client-logos/Converse.svg"/>
+					<StaticImage height={80} src="../../../images/client-logos/Google.svg"/>
+					<StaticImage height={80} src="../../../images/client-logos/LANDSEC.svg"/>
+					<StaticImage height={80} src="../../../images/client-logos/microsoft.svg"/>
 
 				</SimpleGrid>
 			</Box>

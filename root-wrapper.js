@@ -4,27 +4,30 @@
  import React from 'react'
 import { ChakraProvider } from "@chakra-ui/react"
 import { ApolloProvider } from "@apollo/client"
-import Layout from './src/components/layout/Layout'
+import { AnimatePresence } from "framer-motion"
 
-// import "./src/styles/global.css";
 // /**
 //  * Internal dependencies
 //  */
 import { UseAppApolloClient } from './src/hooks';
 import { AuthContextProvider } from './src/context';
-import { ExtendTheme } from './src/components/ExtendTheme'
+import theme from "./src/@chakra-ui/gatsby-plugin/theme.js"
 
 //global styles
 import './src/css/global.css'
+import './src/css/style.css'
+
+//fonts
+import "@fontsource/big-shoulders-display/100.css"
 import "@fontsource/big-shoulders-display/300.css"
-import "@fontsource/big-shoulders-display/700.css"
+import "@fontsource/big-shoulders-display/500.css"
+import "@fontsource/big-shoulders-display/600.css"
 import "@fontsource/big-shoulders-display/900.css"
-// // // normalize CSS across browsers
-// // import "./src/css/normalize.css"
-// // // custom CSS styles
-// // import "./src/css/style.css"
-// // // custom Chakra Theme
-// // import Theme from "./src/css/theme/index"
+import "@fontsource/roboto/100.css"
+import "@fontsource/roboto/300.css"
+import "@fontsource/roboto/400.css"
+import "@fontsource/roboto/500.css"
+import Layout from './src/components/layout/Layout';
 
 export const wrapPageElement = ({element}) => {
 
@@ -33,10 +36,10 @@ export const wrapPageElement = ({element}) => {
 	return (
 		<AuthContextProvider>
 			<ApolloProvider client={ client }> 
-				<ChakraProvider theme={ ExtendTheme }>
-					<Layout>
+				<ChakraProvider theme={ theme } resetCSS>
+
 						{element}
-					</Layout>
+
 				</ChakraProvider>
 			</ApolloProvider>
 		</AuthContextProvider>

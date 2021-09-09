@@ -1,0 +1,57 @@
+.wp-content h1 {
+  font-size: var(--fontSize-7) !important;
+}
+.wp-content h2 {
+  font-size: var(--fontSize-6) !important;
+}
+.wp-content h3 {
+  font-size: var(--fontSize-5) !important;
+}
+.wp-content h4 {
+  font-size: var(--fontSize-4) !important;
+}
+.wp-content h5 {
+  font-size: var(--fontSize-3) !important;
+}
+.wp-content h6 {
+  font-size: var(--fontSize-2) !important;
+}
+.wp-content h2,
+.wp-content h3,
+.wp-content h4,
+.wp-content h5,
+.wp-content h6 {
+  font-weight: var(--fontWeight-bold) !important;
+  color: var(--color-heading) !important;
+}
+.wp-content h1,
+.wp-content h2,
+.wp-content h3,
+.wp-content h4,
+.wp-content h5,
+.wp-content h6 {
+  font-family: var(--font-heading) !important;
+  margin-top: var(--spacing-12) !important;
+  margin-bottom: var(--spacing-6) !important;
+  line-height: var(--lineHeight-tight) !important;
+  letter-spacing: -0.025em !important;
+}
+
+.wp-content p {
+  line-height: var(--lineHeight-relaxed) !important;
+  --baseline-multiplier: 0.179 !important;
+  --x-height-multiplier: 0.35 !important;
+  margin: var(--spacing-0) var(--spacing-0) var(--spacing-8) var(--spacing-0) !important;
+  padding: var(--spacing-0) !important;
+}
+
+.wp-content ul,
+.wp-content ol {
+  list-style: disc inside;
+}
+
+.wp-content ul li,
+.wp-content ol li {
+  padding-left: var(--spacing-4);
+  margin-bottom: calc(var(--spacing-8) / 2);
+}

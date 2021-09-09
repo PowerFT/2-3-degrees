@@ -13,6 +13,7 @@ export const AccountCompletedCard = ({completed, limit, ...rest}) => {
       rounded="md"
       overflow="hidden"
       shadow="base"
+      // display={allComplete && "none"}
 			{...rest}
     >
       <Box id="accountCompletedCard" srOnly>
@@ -26,27 +27,27 @@ export const AccountCompletedCard = ({completed, limit, ...rest}) => {
           lg: '4',
         }}
         py="2"
-        color={mode('gray.500', 'gray.400')}
+        color="dBlue.500"
 				
       >
         <Text as="dt" fontSize="sm" fontWeight="medium">
-          {allComplete ? "Profile Completed!" : "Profile Completion"}
+          {allComplete ? "Profile Completed!" : "Complete your account details to access all of the features"}
         </Text>
 				{!allComplete && (
 					<Stack direction="row" as="dd" mt="2" align="flex-end">
 						<Box
 							fontSize={{
-								base: '2xl',
-								lg: '3xl',
+								base: 'xl',
+								lg: '2xl',
 							}}
 							as="span"
 							fontWeight="bold"
-							color={mode('gray.800', 'white')}
+							color="dBlue.500"
 							lineHeight="1"
 						>
-							{completed} sections
+							{completed} SECTIONS
 						</Box>
-						<Flex fontWeight="semibold">
+						<Flex fontWeight="semibold" align="flex-end">
 							<Box as="span" aria-hidden>
 								/
 							</Box>
@@ -62,8 +63,8 @@ export const AccountCompletedCard = ({completed, limit, ...rest}) => {
         value={completed}
         max={limit}
         min={0}
-        size={allComplete ? "xs" : "lg"}
-        colorScheme= {allComplete ? "green" : "blue"}
+        size={allComplete ? "xs" : "sm"}
+        colorScheme= {allComplete ? "green" : "dBlue"}
       />
     </Flex>
   )

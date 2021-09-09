@@ -48,7 +48,6 @@ export const useAuth = () => {
 		setIsLoggedIn(true);
 		setStatus('resolved');
 		setLoading(false)
-		navigate('/connect-platform')
 	});
 
 	const onLogoutSuccess = useSafeDispatch(() => {
@@ -68,13 +67,14 @@ export const useAuth = () => {
 		setStatus('resolved');
 	});
 
-	const login = (email, password) => {
-		console.log('login')
+	const login = (email, password, user) => {
+		console.log('login', user)
 		// setLoading(true)
 		setError(null);
 		setStatus('resolving');
 		return loginMutation(email, password)
-			.then(onLoginSuccess)
+			.then(onLoginSuccess(user))
+			.then(() => navigate(`/${user}/account`))
 			.catch(onError);
 	};
 

@@ -50,7 +50,7 @@ export const useRegistration = () => {
 				// setIsLoggedIn( true );
 				
 				setStatus( 'resolved' );
-				navigate(user === 'maker' ? '/maker' : '/talent')
+				navigate(`/${user}/sign-in`)
 			} )
 			.catch( ( errors ) => {
 				// console.log(errors)

@@ -3,6 +3,11 @@
 */
 import React from 'react';
 import { Flex } from '@chakra-ui/react'
+// import { graphql, useStaticQuery } from 'gatsby';
+import { Box } from "@chakra-ui/react"
+// import { motion } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
+
 /**
 * Internal dependencies
 */
@@ -10,44 +15,53 @@ import { Flex } from '@chakra-ui/react'
 import { MobileBottomBar } from './MobileBottomBar'
 import { Sidebar } from './Sidebar'
 import { useAuth } from '../../hooks'
-import { graphql, useStaticQuery } from 'gatsby';
+import { InnerSidebar } from './InnerSidebar';
+import { Content } from './Content';
+import { Header } from './Header';
+// import "@wordpress/block-library/build-style/style.css"
 
-export default function Layout({ children }) {
+// const MotionBox = motion(Box)
+
+export default function Layout({children}) {
+
+  console.log(children)
 
   const { isLoggedIn } = useAuth()
 
-const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `
-)
+  // const data = useStaticQuery(graphql`
+  //     query SiteTitleQuery {
+  //       site {
+  //         siteMetadata {
+  //           title
+  //         }
+  //       }
+  //     }
+  //   `
+  // )
 
   return (
-      <Flex
-        h="100vh" 
-        flexDirection={{
-          base: 'column',
-          md: 'row'
-        }}
+    <AnimatePresence>
+      <Box
+        className="site"
+        w="100vw"
       >
-        <Flex className="site__content" flex="1" overflow="hidden">
+        <Flex className="site__container" width="100%">
           <Sidebar
-            // sitetitle={data.site.siteMetadata.title}
-            // isloggedIn={isLoggedIn}
-            name="joe"
             display={{
               base: 'none',
               md: 'flex',
             }}
           />
-          {children}
+          {/* <Header />
+          <InnerSidebar /> */}
+          <Content>
+            {children} 
+          </Content>
         </Flex>
+
         <MobileBottomBar isLoggedIn={isLoggedIn}/>
-      </Flex>
+
+      </Box>
+    </AnimatePresence>
   );
 }

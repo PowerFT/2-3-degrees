@@ -12,7 +12,7 @@ import { HiShieldCheck } from 'react-icons/hi'
 
 export const Newsletter = ({ text }) => {
 	return (
-		<Box as="section" bg={mode('gray.100', 'gray.700')} py="12">
+		<Box as="section" bg="dBlue.300" py="12">
 			<Box
 				textAlign="center"
 				bg={mode('white', 'gray.800')}
@@ -27,7 +27,7 @@ export const Newsletter = ({ text }) => {
 					md: '8',
 				}}
 				py="12"
-				rounded="lg"
+				rounded={{base: "3xl", md: "full"}}
 			>
 				<Box maxW="md" mx="auto">
 					{/* <Text
@@ -38,7 +38,7 @@ export const Newsletter = ({ text }) => {
           >
             6,000+ PEOPLE ALREADY JOINED ❤️️
           </Text> */}
-					<Heading mt="4" fontWeight="extrabold">
+					<Heading mt="4" size="3xl">
 						{text}
 					</Heading>
 					<Box mt="6">
@@ -47,7 +47,7 @@ export const Newsletter = ({ text }) => {
 								e.preventDefault() // your subscribe logic here
 							}}
 						>
-							<Stack>
+							<Stack justify="center" align="center" spacing="6">
 								<Input
 									aria-label="Enter your email"
 									placeholder="Enter your email to join"
@@ -55,15 +55,17 @@ export const Newsletter = ({ text }) => {
 								/>
 								<Button
 									type="submit"
-									w="full"
-									colorScheme="blue"
+									w="fit-content"
+									// mx="auto"
+									// mt="6"
+									bg="dYellow.300"
 									size="lg"
 									textTransform="uppercase"
 									fontSize="sm"
 									fontWeight="bold"
 									rounded="full"
 								>
-									Join now
+									Subscribe
 								</Button>
 							</Stack>
 						</form>
@@ -76,7 +78,7 @@ export const Newsletter = ({ text }) => {
 								fontSize="lg"
 								color={mode('green.600', 'green.400')}
 							/>
-							No spams. We&apos;re only send you relevant content
+							We&apos;re only send you relevant content
 						</Text>
 					</Box>
 				</Box>

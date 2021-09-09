@@ -11,29 +11,28 @@ module.exports = {
       resolve: "gatsby-source-wordpress",
       options: {
         url: process.env.GATSBY_WORDPRESS_API_URL,
-        schema: {
-          perPage: 50,
-          timeOut: 50000
-        },
+        // schema: {
+        //   perPage: 20,
+        //   timeOut: 90000
+        // },
       },
     },
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-gatsby-cloud`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-scroll-reveal`,
     {
       resolve: "@chakra-ui/gatsby-plugin",
       options: {
-        /**
-         * @property {boolean} [resetCSS=true]
-         * if false, this plugin will not use `<CSSReset />
-         */
-        resetCSS: true,
-        /**
-         * @property {boolean} [isUsingColorMode=true]
-         * if false, this plugin will not use <ColorModeProvider />
-         */
-        isUsingColorMode: true,
+        resetCSS: false,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/layout/Layout`),
       },
     },
   ],

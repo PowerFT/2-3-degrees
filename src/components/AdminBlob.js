@@ -1,4 +1,4 @@
-import { Heading, VStack } from '@chakra-ui/react'
+import { VStack, Text, Box } from '@chakra-ui/react'
 import * as React from 'react'
 
 export const AdminBlob = (props) => {
@@ -6,19 +6,24 @@ export const AdminBlob = (props) => {
 	return (
 		<VStack
 			bg="white"
-			rounded="xl"
+			rounded="md"
 			borderWidth="1px"
 			borderColor="gray.800"
-			w={["xs", "sm"]}
+			w={["xs", "md"]}
 			spacing="3"
 			p="6"
 			align="flex-start"
+			position="relative"
+			overflow="hidden"
 			{...flexProps}
 		>
 			{title && (
-				<Heading as="h2" fontWeight="semibold" fontSize="lg" flexShrink={0} alignSelf="center">
-					{title}
-				</Heading>
+				<Box position="absolute" top="0" right="0" left="0" bg="gray.800" color="gray.50" py="1">
+					<Text as="h4" textAlign="center" color="inherit" fontSize="xs" fontWeight="500">
+						{title}
+					</Text>
+				</Box>
+				
 			)}
 			{children}
 		</VStack>

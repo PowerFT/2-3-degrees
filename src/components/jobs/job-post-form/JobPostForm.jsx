@@ -1,9 +1,10 @@
 /**
 * External dependencies
 */
-import React from 'react'
+import React, { useState } from 'react'
 import { InputLeftAddon, InputRightAddon, Button, FormControl, FormHelperText, FormLabel, Input, Select, Stack, Textarea, VStack, InputGroup, } from '@chakra-ui/react'
 import { v4 as uuidv4 } from "uuid"
+import { graphql, StaticQuery } from 'gatsby'
 /**
 * Internal dependencies
 */
@@ -16,10 +17,10 @@ import { MySpinner } from '../../waiting/MySpinner'
 import { AdminBlob } from '../../AdminBlob'
 
 
-export const JobPostForm = (props) => {
 
-  const { formType, formDeets, setFormDeets, setFormLoading } = props
-  const { title, salary, content, companyBio, closeDate, jobLocation, sector, jobType, companyName, id } = props
+export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, setSalStructure, title, salary, content, companyBio, closeDate, jobLocation, sector, jobType, companyName, salaryStructure, id}) => {
+
+  console.log(salStructure)
 
   const { submitJobPost, submitLoading } = useSubmitJobPost(formType);
 
@@ -35,6 +36,8 @@ export const JobPostForm = (props) => {
         console.log(error); //fix
       });
   }
+
+  
 
   if (loadingViewer || !viewer) {
     return <MySpinner />
@@ -83,11 +86,25 @@ export const JobPostForm = (props) => {
                     })
                   }
                 >
-                  <option value="East London">East London</option>
-                  <option value="North London">North London</option>
-                  <option value="South London">South London</option>
-                  <option value="West London">West London</option>
-                  <option value="Remote">Remote</option>
+                  <StaticQuery
+                    query={META_QUERY}
+                    render={data => {
+                      if (data.allWpJobLocation) {
+                        const locations = data.allWpJobLocation.nodes
+
+                        return (
+                          <>
+                            {
+                              locations &&
+                              locations.map((item) => (
+                                <option key={item.id} value={item.name}>{item.name}</option>
+                              ))
+                            }
+                          </>
+                        )
+                      }
+                    }}
+                  />
                 </Select>
               </FormControl>
 
@@ -105,11 +122,63 @@ export const JobPostForm = (props) => {
                     })
                   }
                 >
-                  <option value="Internship">Internship</option>
-                  <option value="Graduate Job">Graduate Job</option>
-                  <option value="Work Experience">Work Experience</option>
-                  <option value="Full Time">Full Time</option>
-                  <option value="Part Time">Part Time</option>
+                  <StaticQuery
+                    query={META_QUERY}
+                    render={data => {
+                      if (data.allWpSector) {
+                        const sectors = data.allWpSector.nodes
+
+                        return (
+                          <>
+                            {
+                              sectors &&
+                              sectors.map((item) => (
+                                <option key={item.id} value={item.name}>{item.name}</option>
+                              ))
+                            }
+                          </>
+                        )
+                      }
+                    }}
+                  />
+                </Select>
+              </FormControl>
+
+              <FormControl isRequired>
+                <FormLabel htmlFor="jobTypeSelect">Salary Structure</FormLabel>
+                <Select
+                  isRequired
+                  id="salaryStructureSelect"
+                  placeholder="Select Salary Structure"
+                  value={salaryStructure}
+                  onChange={e => {
+                    setFormDeets({
+                      ...formDeets,
+                      salaryStructure: e.target.value,
+                    })
+                    setSalStructure(e.target.value)
+                  }
+                  }
+                >
+                  <StaticQuery
+                    query={META_QUERY}
+                    render={data => {
+                      if (data.allWpSalaryStructure) {
+                        const salaryStructures = data.allWpSalaryStructure.nodes
+
+                        return (
+                          <>
+                            {
+                              salaryStructures &&
+                              salaryStructures.map((item) => (
+                                <option key={item.id} value={item.name}>{item.name}</option>
+                              ))
+                            }
+                          </>
+                        )
+                      }
+                    }}
+                  />
                 </Select>
               </FormControl>
 
@@ -128,7 +197,7 @@ export const JobPostForm = (props) => {
                       })
                     }
                   />
-                  <InputRightAddon children="/yr" />
+                  <InputRightAddon children={`/ ${salStructure.toLocaleLowerCase()}`} />
                 </InputGroup>
               </FormControl>
 
@@ -306,3 +375,38 @@ export const JobPostForm = (props) => {
     </>
   )
 }
+const META_QUERY = graphql`
+	query MetaQuery {
+		allWpJobLocation {
+      nodes {
+        name
+        id
+      }
+    }
+    allWpSector {
+      nodes {
+        name
+        id
+      }
+    }
+    allWpJobType {
+      nodes {
+        name
+        id
+      }
+    }
+    allWpSkill {
+      nodes {
+        name
+        id
+      }
+    }
+    allWpSalaryStructure {
+      nodes {
+        name
+        id
+      }
+    }
+	}
+`
+

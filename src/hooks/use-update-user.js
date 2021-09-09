@@ -34,7 +34,7 @@ export const useUpdateUser = () => {
 			.then( () => {
 				console.log('successfully updated account')
 				setStatus( 'resolved' );
-				navigate('/connect-platform')
+				// navigate('/connect-platform')
 			} )
 			.catch( ( errors ) => {
 				console.log(errors)

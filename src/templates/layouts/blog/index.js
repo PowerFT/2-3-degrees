@@ -16,37 +16,37 @@ import { BsArrowRight } from 'react-icons/bs'
 const Blog = (props) => {
 	const { title, href, description, media, author, category, date } = props
 
-	// console.log([author, date, href])
+	console.log(props)
 	return (
 		<LinkBox
 			as="article"
-			bg={{
-				sm: mode('white', 'gray.700'),
-			}}
-			shadow={{
-				sm: 'base',
-			}}
-			rounded={{
-				sm: 'md',
-			}}
+			// shadow={{
+			// 	sm: 'base',
+			// }}
+			// rounded={{
+			// 	sm: 'md',
+			// }}
 			overflow="hidden"
 			transition="all 0.2s"
 			_hover={{
 				shadow: {
 					sm: 'lg',
 				},
+				bg: {
+					sm: mode('white', 'gray.700'),
+				}
 			}}
 		>
 			<Flex direction="column">
 				<Img height="60" objectFit="cover" alt={title} src={media} />
 				<Flex
 					direction="column"
-					px={{
-						sm: '6',
-					}}
+					// px={{
+					// 	sm: '6',
+					// }}
 					py="5"
 				>
-					<Text
+					{/* <Text
 						casing="uppercase"
 						letterSpacing="wider"
 						fontSize="xs"
@@ -55,11 +55,11 @@ const Blog = (props) => {
 						color="gray.500"
 					>
 						{category}
-					</Text>
-					<Heading as="h3" size="sm" mb="2" lineHeight="base">
+					</Text> */}
+					<Heading as="h3" size="lg" mb="2" noOfLines={2}>
 						<LinkOverlay href={href}>{title}</LinkOverlay>
 					</Heading>
-					<Text noOfLines={2} mb="8" color={mode('gray.600', 'gray.400')}>
+					<Text noOfLines={2} mb="4" color={mode('gray.600', 'gray.400')}>
 						{description}
 					</Text>
 					<Flex
@@ -68,15 +68,15 @@ const Blog = (props) => {
 						fontSize="sm"
 						color={mode('gray.600', 'gray.400')}
 					>
-						<Text>
+						{/* <Text>
 							By{' '}
 							<Box as="a" textDecor="underline" href="#">
 								{author}
 							</Box>
-						</Text>
-						<Link href="#">
+						</Text> */}
+						<Text href="#">
 							{date}
-						</Link>
+						</Text>
 					</Flex>
 				</Flex>
 			</Flex>
@@ -106,7 +106,7 @@ export const LatestBlog = ({ blogPosts }) => {
 					md: '8',
 				}}
 			>
-				<Heading size="xl" mb="8" fontWeight="extrabold">
+				<Heading size="4xl" textAlign="center" mb="8">
 					Featured Articles
 				</Heading>
 				<SimpleGrid
@@ -121,7 +121,7 @@ export const LatestBlog = ({ blogPosts }) => {
 						blogPosts.map(post => {
 							// console.log(post)
 							const { id, date, excerpt, uri, title, author, categories, featuredImage } = post
-							const blogAuthor = author.node.name
+							// const blogAuthor = author.node.name
 							const category = categories.nodes[0].name
 							const imageSrc = featuredImage.node.localFile.childImageSharp.fluid.src
 							return (
@@ -132,7 +132,7 @@ export const LatestBlog = ({ blogPosts }) => {
 									title={title}
 									description={excerpt}
 									href={uri}
-									author={blogAuthor}
+									// author={blogAuthor}
 									date={date}
 								/>
 							)
@@ -140,7 +140,7 @@ export const LatestBlog = ({ blogPosts }) => {
 					}
 
 				</SimpleGrid>
-				<Link fontSize="xl" fontWeight="bold" color={mode('blue.600', 'blue.400')}>
+				<Link fontSize="xl" fontWeight="bold" color="gray.800">
 					<span>View all articles</span>
 					<Box as={BsArrowRight} display="inline-block" ms="2" />
 				</Link>

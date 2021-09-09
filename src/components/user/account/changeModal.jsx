@@ -42,7 +42,7 @@ export function ChangeModal({ title, type, curInput, accountDeets, setNewEmail, 
   
 	return (
     <>
-      <Button onClick={onOpen}>Change {type}</Button>
+      <Button fontWeight="medium" onClick={onOpen}>Change {type}</Button>
 
       <Modal
 				isCentered
@@ -91,10 +91,10 @@ export function ChangeModal({ title, type, curInput, accountDeets, setNewEmail, 
 							</FormControl>
 						</ModalBody>
 						<ModalFooter>
-							<Button colorScheme="blue" mr={3} onClick={onClose}>
+							<Button fontWeight="medium" colorScheme="blue" mr={3} onClick={onClose}>
 								Cancel
 							</Button>
-							<Button type="submit" variant="ghost">Save</Button>
+							<Button fontWeight="medium" type="submit" variant="ghost">Save</Button>
 						</ModalFooter>
 					</form>
 				</ModalContent>

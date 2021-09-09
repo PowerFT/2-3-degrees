@@ -13,6 +13,7 @@ const UPDATE_JOB_MUTATION = gql`
     $jobLocation: String,
     $sector: String,
     $salary: String,
+    $salaryStructure: String,
     $content: String,
     $category: String,
     $closeDate: String,
@@ -27,6 +28,7 @@ const UPDATE_JOB_MUTATION = gql`
         jobLocation: {nodes: {name: $jobLocation}},
         sector: {nodes: {name: $sector}},
         salary: $salary,
+        salaryStructure: {nodes: {name: $salaryStructure}},
         content: $content,
         closeDate: $closeDate,
         companyBio: $companyBio
