@@ -13,7 +13,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 export const HalfHero = ({ image, title, text, button, imageSide }) => {
 
-  const imageData = getImage(image.localFile)
+  const imageData = getImage(image?.localFile)
   const buttonTitle = button?.title
   const buttonLink = button?.url
   const side = imageSide === "left" ? 1 : null
@@ -79,28 +79,30 @@ export const HalfHero = ({ image, title, text, button, imageSide }) => {
               {buttonTitle}
             </Button>
           </Box>
-          <Box
-            flex="1 1 50%"
-            pos="relative"
-            w="full"
-            // h={{
-            //   base: 'auto',
-            //   lg: '560px',
-            // }}
-            height="full"
-            m={0}
-            order={side || 2}
-          >
-            <GatsbyImage
-              image={imageData}
-              alt={image.altText}
+          {image && (
+            <Box
+              flex="1 1 50%"
               pos="relative"
-              // w="100%"
+              w="full"
               // h={{
-              //   lg: '100%',
+              //   base: 'auto',
+              //   lg: '560px',
               // }}
-            />
-          </Box>
+              height="full"
+              m={0}
+              order={side || 2}
+            >
+              <GatsbyImage
+                image={imageData}
+                alt={image?.altText}
+                pos="relative"
+                // w="100%"
+                // h={{
+                //   lg: '100%',
+                // }}
+              />
+            </Box>
+          )}
         </Stack>
       </Box>
     </Box>

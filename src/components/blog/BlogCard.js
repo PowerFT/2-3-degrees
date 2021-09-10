@@ -16,7 +16,7 @@ export const BlogCard = ({ postData }) => {
 	const { id, title, uri, featuredImage, date } = postData
 
 	const image = getImage(featuredImage?.node?.localFile)
-	const altText = featuredImage?.node?.localFile.altText
+	const altText = featuredImage?.node?.localFile?.altText
 
 	return (
 		<LinkBox

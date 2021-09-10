@@ -17,7 +17,7 @@ import { InnerSidebar } from '../../../layout/InnerSidebar'
 import { Content } from '../../../layout/Content'
 import { Header } from '../../../layout/Header'
 
-export const AccountSettings = ({user}) => {
+export const TalentAccountSettings = ({user}) => {
   // const { FileUploadInput } = useFileUpload()
 
   const pageType = "admin"

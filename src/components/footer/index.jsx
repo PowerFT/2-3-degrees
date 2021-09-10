@@ -37,7 +37,7 @@ export const Footer = () => (
         >
           <Logo color="white" h="6" />
           <HStack spacing="4" mt="8" as="ul">
-            {socialLinks.map((link, idx) => (
+            {socialLinks?.map((link, idx) => (
               <SocialButton key={idx} href={link.href}>
                 <Box srOnly>{link.label}</Box>
                 {link.icon}
@@ -61,13 +61,13 @@ export const Footer = () => (
           }}
           fontSize="sm"
         >
-          {links.map((group, idx) => (
+          {links?.map((group, idx) => (
             <Box key={idx}>
               <Text fontWeight="bold" mb="4">
                 {group.title}
               </Text>
               <Stack as="ul" listStyleType="none">
-                {group.links.map((link, idx) => (
+                {group.links?.map((link, idx) => (
                   <Box as="li" key={idx}>
                     <Box
                       as="a"
@@ -117,7 +117,7 @@ export const Footer = () => (
           <WrapItem>
             <Box>&copy; Envelope</Box>
           </WrapItem>
-          {footerLinks.map((link, idx) => (
+          {footerLinks?.map((link, idx) => (
             <WrapItem key={idx}>
               <Box as="a" href={link.href}>
                 {link.label}

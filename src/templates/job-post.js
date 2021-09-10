@@ -20,7 +20,7 @@ const JobSidebar = ({salary, jobLocation, sector, skills, jobType, ...rest}) => 
 			<Box p="4" fontSize="lg">
 				<VStack spacing="2" align="flex-start">
 					{
-						skills.nodes.map(skill => (
+						skills.nodes?.map(skill => (
 							<HStack>
 								<Icon as={HiOutlineHand} w={8} h={8}/>
 								<Text>{skill.name}</Text>

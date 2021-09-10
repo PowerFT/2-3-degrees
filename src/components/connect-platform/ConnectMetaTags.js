@@ -36,7 +36,7 @@ export const ConnectMetaTags = () => {
 				wrap="wrap"
 				mt="2"
 			>
-				{data.allJobType.nodes.map(node => (
+				{data?.allJobType?.nodes.map(node => (
 					<LinkBox
 						key={node.id}
 						as="span"
@@ -68,7 +68,7 @@ export const ConnectMetaTags = () => {
 				mt="2"
 				justifyContent="center"
 			>
-				{data.skills.nodes.map(node => (
+				{data?.skills?.nodes?.map(node => (
 					<LinkBox
 						key={node.id}
 						as="span"

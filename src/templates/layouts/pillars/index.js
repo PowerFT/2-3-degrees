@@ -5,7 +5,7 @@ import { getImage, GatsbyImage } from 'gatsby-plugin-image'
 
 export const Feature = ({ img, linkUrl, title, children, icon, video, ...rest }) => {
 
-	const imgData = getImage(img.localFile)
+	const imgData = getImage(img?.localFile)
 
 	// const [isShown, setIsShown] = useState(false);
 	// console.log(title, "....entered")
@@ -26,7 +26,7 @@ export const Feature = ({ img, linkUrl, title, children, icon, video, ...rest })
 					>
 						<GatsbyImage
 							image={imgData}
-							alt={img.altText}
+							alt={img?.altText}
 							objectFit="cover"
 						/>
 					</Flex>
@@ -71,7 +71,7 @@ export const Feature = ({ img, linkUrl, title, children, icon, video, ...rest })
 
 						<GatsbyImage
 							image={imgData}
-							alt={img.altText}
+							alt={img?.altText}
 							objectFit="cover"
 						/>
 					</Flex>
@@ -152,7 +152,7 @@ export const Pillars = ({ title, pillars }) => {
 				w="100%"
 				justifyItems="center"
 			>
-				{pillars.map((pillar, i) => (
+				{pillars?.map((pillar, i) => (
 					<Feature 
 						key={i} 
 						title={pillar.title}

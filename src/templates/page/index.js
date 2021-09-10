@@ -21,7 +21,7 @@ const Page = ({ pageContext }) => {
         <Seo title={pageContext.page.title}/>
 
         {
-          layouts.map((layout, index) => {
+          layouts?.map((layout, index) => {
             return <AllLayouts key={index} layoutData={layout} id="pageLayout" />
           })
         }

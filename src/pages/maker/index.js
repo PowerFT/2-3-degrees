@@ -1,6 +1,6 @@
 import React from "react"
 import { Router } from "@reach/router"
-import { AccountSettings } from "../../components/user/account/maker"
+import { MakerAccountSettings } from "../../components/user/account/maker"
 import MyJobs from "../../components/jobs/MyJobs"
 import { CreateJobPostFormPage } from "../../components/jobs/job-post-form/CreateJobPostFormPage"
 import { UpdateJobPostFormPage } from "../../components/jobs/job-post-form/UpdateJobPostPage"
@@ -21,7 +21,7 @@ const MakerApp = () => {
   return (
     <>
       <Router basepath="/maker">
-        <PrivateRoute path="/account" user="maker" component={AccountSettings} />
+        <PrivateRoute path="/account" user="maker" component={MakerAccountSettings} />
         <PrivateRoute path="/jobs" component={MyJobs} />
         <PrivateRoute path="/jobs/post" component={CreateJobPostFormPage} />
         <PrivateRoute path="/jobs/edit" component={UpdateJobPostFormPage} />

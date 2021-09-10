@@ -12,7 +12,7 @@ export const LatestBlog = ({ blogPosts }) => {
 				Featured Articles
 			</Heading>
 			<BlogGrid archiveLink="/blog">
-				{ blogPosts.map(post=> (<BlogCard postData={post} />)) }
+				{ blogPosts?.map(post=> (<BlogCard postData={post} />)) }
 			</BlogGrid>
 		</>
 	

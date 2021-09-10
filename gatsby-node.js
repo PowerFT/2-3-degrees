@@ -39,7 +39,7 @@ exports.createPages = async gatsbyUtilities => {
 
 const createPostPages = async ({ posts, gatsbyUtilities }) => {
  return Promise.all(
-   posts.map(({ previous, post, next }) =>
+   posts?.map(({ previous, post, next }) =>
      gatsbyUtilities.actions.createPage({
        path: `/blog${post.uri}`,
        component: path.resolve(`./src/templates/post.js`),
@@ -60,7 +60,7 @@ const createPostPages = async ({ posts, gatsbyUtilities }) => {
 
 const createJobPostPages = async ({ jobPosts, gatsbyUtilities }) => {
   return Promise.all(
-    jobPosts.map(({ jobPost }) =>
+    jobPosts?.map(({ jobPost }) =>
       gatsbyUtilities.actions.createPage({
         path: `/connect-platform/jobs/${jobPost.id}`,
         component: path.resolve(`./src/templates/job-post.js`),
@@ -82,7 +82,7 @@ const createPagePages = async ({ pages, gatsbyUtilities }) => {
   }
 
   return Promise.all(
-    pages.map(({ page }) =>
+    pages?.map(({ page }) =>
       gatsbyUtilities.actions.createPage({
         path: getPagePath(page),
         component: path.resolve("./src/templates/page/index.js"),

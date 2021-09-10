@@ -44,7 +44,7 @@ const BlogPostTemplate = ({ data: { post } }) => {
 				<Box className="blog__body--content wp-content">
           <HStack  align="center" justify="space-between" my="8">
             <HStack>
-              {post.categories.nodes.map(cat => (
+              {post.categories?.nodes.map(cat => (
                 <Box key={cat.id} borderRadius="full" bg="dBlue.300" color="gray.50" px={6} py={0}>
                   {cat.name}
                   {/* <Link as={GatsbyLink} to={cat.uri}></Link>  */}

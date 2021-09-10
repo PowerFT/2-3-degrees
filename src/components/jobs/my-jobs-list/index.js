@@ -67,7 +67,7 @@ export const JobsList = ({ statusSelected, setLoading, setError }) => {
 
 	return (
 		<JobsCardContainer >
-			{data.viewer.jobPosts.nodes.map(post => (
+			{data.viewer.jobPosts?.nodes.map(post => (
 				<MyJobCard
 					title={post?.title}
 					jobLocation={post?.jobLocation?.nodes[0]?.name}

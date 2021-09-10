@@ -108,7 +108,7 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes, skills }) => {
 	
 	// const haveMorePosts = Boolean(data.jobPosts?.pageInfo?.hasNextPage)
 
-	const jobPosts = data.jobPosts.edges.map(edge => edge.node)
+	const jobPosts = data?.jobPosts?.edges.map(edge => edge.node)
 
 	return (
 		<JobsCardContainer>

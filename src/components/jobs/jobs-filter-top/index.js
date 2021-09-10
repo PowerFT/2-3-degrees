@@ -203,7 +203,7 @@ export const JobsFilterTop = ({ setError, setLoading, locations, setLocations, s
 											</h2>
 											<AccordionPanel p={0} bg="gray.200" maxH="200px" overflow="auto">
 												{
-													data.allJobLocation.nodes.map((node) => (
+													data.allJobLocation?.nodes.map((node) => (
 														<Box
 															key={node.id}
 															width="100%"
@@ -249,7 +249,7 @@ export const JobsFilterTop = ({ setError, setLoading, locations, setLocations, s
 											</h2>
 											<AccordionPanel p={0} bg="gray.200" maxH="200px" overflow="auto">
 												{
-													data.allSector.nodes.map((node) => (
+													data.allSector?.nodes.map((node) => (
 														<Box
 															key={node.id}
 															width="100%"
@@ -291,7 +291,7 @@ export const JobsFilterTop = ({ setError, setLoading, locations, setLocations, s
 								wrap="wrap"
 								mt="2"
 							>
-								{data.allJobType.nodes.map((node) => (
+								{data.allJobType?.nodes.map((node) => (
 									<Box
 										key={node.id}
 										as="span"
@@ -335,7 +335,7 @@ export const JobsFilterTop = ({ setError, setLoading, locations, setLocations, s
 								wrap="wrap"
 								mt="2"
 							>
-								{data.skills.nodes.map((node) => (
+								{data.skills?.nodes.map((node) => (
 									<Box
 										key={node.id}
 										as="span"

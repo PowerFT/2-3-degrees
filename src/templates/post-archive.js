@@ -42,7 +42,7 @@ const BlogIndex = ({
       />
 
       <BlogGrid>
-			  { posts.map(post=> (<BlogCard postData={post} />)) }
+			  { posts?.map(post=> (<BlogCard postData={post} />)) }
 		  </BlogGrid>
 
 

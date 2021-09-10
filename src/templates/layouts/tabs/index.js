@@ -79,7 +79,7 @@ export const TabSection = ({ tabs }) => {
 												<GatsbyImage
 													className="tabblock__image--img"
 													image={imageData}
-													alt={tab.image.altText}
+													alt={tab?.image?.altText}
 													objectFit="cover"
 													// loading="eager"
 												/>
