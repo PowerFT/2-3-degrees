@@ -1,7 +1,7 @@
 /**
 * External dependencies
 */
-import React, { useState } from 'react'
+import React from 'react'
 import { InputLeftAddon, InputRightAddon, Button, FormControl, FormHelperText, FormLabel, Input, Select, Stack, Textarea, VStack, InputGroup, } from '@chakra-ui/react'
 import { v4 as uuidv4 } from "uuid"
 import { graphql, StaticQuery } from 'gatsby'

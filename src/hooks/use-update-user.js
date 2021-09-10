@@ -1,7 +1,6 @@
 /**
  * External dependencies
  */
-import { navigate } from 'gatsby-link';
 import { useState } from 'react';
 // import { decodeEntities } from '@wordpress/html-entities';
 // import { stripHtml } from 'string-strip-html';

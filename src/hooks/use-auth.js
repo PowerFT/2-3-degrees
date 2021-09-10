@@ -48,6 +48,7 @@ export const useAuth = () => {
 		setIsLoggedIn(true);
 		setStatus('resolved');
 		setLoading(false)
+		// navigate(user === "maker" ? "/connect-platform?user=maker" : "/connect-platform?user=talent")
 	});
 
 	const onLogoutSuccess = useSafeDispatch(() => {
@@ -55,7 +56,7 @@ export const useAuth = () => {
 		setIsLoggedIn(false);
 		setStatus('resolved');
 		setLoading(false)
-		navigate('/')
+		// navigate('/')
 	});
 
 	const onError = useSafeDispatch((errors) => {
@@ -68,13 +69,13 @@ export const useAuth = () => {
 	});
 
 	const login = (email, password, user) => {
-		console.log('login', user)
 		// setLoading(true)
 		setError(null);
 		setStatus('resolving');
 		return loginMutation(email, password)
 			.then(onLoginSuccess(user))
-			.then(() => navigate(`/${user}/account`))
+			.then(() => { if(viewer) navigate('/')})
+			// .then(navigate(user === "maker" ? "/connect-platform?user=maker" : "/connect-platform?user=talent"))
 			.catch(onError);
 	};
 

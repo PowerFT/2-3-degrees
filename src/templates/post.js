@@ -3,7 +3,7 @@ import { Link as GatsbyLink, graphql } from "gatsby"
 import {GatsbyImage, getImage} from "gatsby-plugin-image"
 import parse from "html-react-parser"
 
-import { Box, Heading, Text, Link } from "@chakra-ui/react"
+import { Box, Heading, Text, Link, HStack, Flex } from "@chakra-ui/react"
 
 // We're using Gutenberg so we need the block styles
 // these are copied into this project due to a conflict in the postCSS
@@ -14,24 +14,50 @@ import { Box, Heading, Text, Link } from "@chakra-ui/react"
 // import "@wordpress/block-library/build-style/style.css"
 import "../css/wordpress.css"
 import "../css/style.css"
-
 import Seo from "../components/seo"
-import Layout from "../components/layout/Layout"
+import { Header } from "../components/layout/Header"
 
-const BlogPostTemplate = ({ data: { previous, next, post } }) => {
+const BlogPostTemplate = ({ data: { post } }) => {
 	console.log(post)
 
   const imageData = getImage(post.featuredImage?.node?.localFile)
   const ImgAlt = post.featuredImage?.node?.alt || ``
 
-  console.log(imageData)
-  console.log(post.featuredImage?.node?.localFile)
+  const pageType = "blog"
 
   return (
-    <>
+    <Box
+      as="article"
+      className="blog-post"
+      itemScope
+      itemType="http://schema.org/Article"
+    >
       <Seo title={post.title} description={post.excerpt} />
-
-      <Box
+      <Header
+				title={parse(post.title)}
+				subTitle={parse(post.excerpt)}
+				imageData={imageData}
+        imageAlt={ImgAlt}
+				pageType={pageType}
+			/>
+			<Flex w="100%" direction="column" maxW="xl" mx="auto">
+				<Box className="blog__body--content wp-content">
+          <HStack  align="center" justify="space-between" my="8">
+            <HStack>
+              {post.categories.nodes.map(cat => (
+                <Box key={cat.id} borderRadius="full" bg="dBlue.300" color="gray.50" px={6} py={0}>
+                  {cat.name}
+                  {/* <Link as={GatsbyLink} to={cat.uri}></Link>  */}
+                </Box>
+              ))}
+            </HStack>
+            <Text as="span" fontSize="sm" m="0 !important" fontWeight="bold" textTransform="uppercase">{post.date}</Text>
+          </HStack>
+          {parse(post.content)}
+				</Box>
+			</Flex>
+      
+      {/* <Box
 				as="article"
         className="blog-post"
         itemScope
@@ -70,7 +96,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
 
         
 
-      </Box>
+      </Box> */}
 
       {/* <nav className="blog-post-nav">
         <ul
@@ -99,7 +125,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
           </li>
         </ul>
       </nav> */}
-    </>
+    </Box>
   )
 }
 
@@ -148,7 +174,7 @@ export const pageQuery = graphql`
                 srcSet
                 aspectRatio
               }
-              gatsbyImageData(aspectRatio: 2)
+              gatsbyImageData
             }
           }
         }

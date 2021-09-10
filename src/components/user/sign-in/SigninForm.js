@@ -22,9 +22,24 @@ import React, {useState} from 'react'
 import { useAuth } from '../../../hooks';
 
 export const SigninForm = ({user}) => {
+  
   const [ email, setEmail ] = useState( '' );
   const [ password, setPassword ] = useState( '' );
-  const { login, error, status } = useAuth();
+  const { login, viewer, loadingViewer, error, status } = useAuth();
+
+  const handleSubmit = (e) => {
+    console.log("user", user)
+    e.preventDefault()
+    login(email, password)
+    .then(console.log("viewwwwerrrrr: ", viewer))
+    // .then(
+    //   (() => {
+    //     if(viewer && !loadingViewer) {
+    //       navigate(user === "maker" ? "/connect-platform?user=maker" : "/connect-platform?user=talent")
+    //     }
+    //   })()
+    // )
+  }
 
   return (
     <>
@@ -37,10 +52,7 @@ export const SigninForm = ({user}) => {
       }
 
       <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          login(email, password, user)
-        }}
+        onSubmit={handleSubmit}
       >
         <Stack spacing="-px">
           <FormControl id="email-address">

@@ -1,7 +1,6 @@
 import {
   Avatar,
   Box,
-  Heading,
   HStack,
   Icon,
   LinkBox,
@@ -22,8 +21,8 @@ import { HiCash, HiClock, HiLocationMarker } from 'react-icons/hi'
 export const JobCard = ({title, jobLocation, salary, jobType, sector, companyName, jobPostId, status, content, id, uri}) => {
 
   const formattedSalary = parseInt(salary).toLocaleString()
-	const pending = status !== "publish"
-	const jobPostLink = `/connect-platform${jobPostId}`
+	// const pending = status !== "publish"
+	// const jobPostLink = `/connect-platform${jobPostId}`
    
 
   return (
@@ -79,7 +78,7 @@ export const JobCard = ({title, jobLocation, salary, jobType, sector, companyNam
             </VStack>
           </HStack>
 
-            <Stack pt="1.5" direction={{base:"column",  sm:"row"}} spacing={{base:"2", sm:"3", md:"5"}} align="center" wrap="wrap" align="flex-start" justify="flex-start">
+            <Stack pt="1.5" direction={{base:"column",  sm:"row"}} spacing={{base:"2", sm:"3", md:"5"}} wrap="wrap" align="flex-start" justify="flex-start">
               <HStack>
                 <Icon as={HiCash} fontSize="xl" color="gray.400" />
                 <Text

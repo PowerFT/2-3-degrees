@@ -1,10 +1,7 @@
 import {
   Box,
-  Button,
   Heading,
-  Stack,
   Text,
-  useColorModeValue as mode,
 } from '@chakra-ui/react'
 import * as React from 'react'
 import { ConnectMetaTags } from './ConnectMetaTags'
@@ -12,8 +9,7 @@ import { ConnectMetaTags } from './ConnectMetaTags'
 export const ConnectJobsTagsBlock = () => {
 
   return (
-		<Box>
-			<Box as="section" bg="dYellow.100" color="dBlue.500" py="7.5rem">
+			<Box as="section" alignSelf="stretch" bg="dYellow.100" color="dBlue.500" py="7.5rem">
 				<Box
 					maxW={{
 						base: 'xl',
@@ -46,6 +42,5 @@ export const ConnectJobsTagsBlock = () => {
 					<ConnectMetaTags />
 				</Box>
 			</Box>
-		</Box>
   )
 }

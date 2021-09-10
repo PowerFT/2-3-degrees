@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { gql, useQuery } from '@apollo/client'
-import { Box, Flex, Heading, VStack } from '@chakra-ui/layout'
+import { Box, Flex } from '@chakra-ui/layout'
 import { MySpinner } from '../../../waiting/MySpinner'
-import { Select } from '@chakra-ui/select'
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Button, HStack, SimpleGrid, Stack, Text } from '@chakra-ui/react'
+import { Accordion, AccordionButton, AccordionItem, AccordionPanel, HStack, SimpleGrid, Text } from '@chakra-ui/react'
 import { AddIcon, CloseIcon, MinusIcon } from '@chakra-ui/icons'
 
 const GET_META_DATA = gql`

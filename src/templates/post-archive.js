@@ -1,6 +1,9 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import parse from "html-react-parser"
+
+import { BlogGrid } from "../components/blog/BlogGrid"
+import { BlogCard } from "../components/blog/BlogCard"
+import { Header } from '../components/layout/Header'
 
 // import Bio from "../components/bio"
 // import Layout from "../components/layout"
@@ -11,6 +14,8 @@ const BlogIndex = ({
   pageContext: { nextPagePath, previousPagePath },
 }) => {
   const posts = data.allWpPost.nodes
+
+  const pageType = "archive"
 
   if (!posts.length) {
     return (
@@ -30,8 +35,19 @@ const BlogIndex = ({
       {/* <Seo title="All posts" />
 
       <Bio /> */}
+      <Header
+        title="Blog"
+        subTitle="Latest posts from the 2-3 Degrees team"
+        pageType={pageType}
+      />
 
-      <ol style={{ listStyle: `none` }}>
+      <BlogGrid>
+			  { posts.map(post=> (<BlogCard postData={post} />)) }
+		  </BlogGrid>
+
+
+
+      {/* <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.title
 
@@ -55,7 +71,7 @@ const BlogIndex = ({
             </li>
           )
         })}
-      </ol>
+      </ol> */}
 
       {previousPagePath && (
         <>
@@ -73,6 +89,7 @@ export default BlogIndex
 export const pageQuery = graphql`
   query WordPressPostArchive($offset: Int!, $postsPerPage: Int!) {
     allWpPost(
+      filter: {terms: {nodes: {elemMatch: {name: {nin: "Locked"}}}}}
       sort: { fields: [date], order: DESC }
       limit: $postsPerPage
       skip: $offset
@@ -83,6 +100,20 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         title
         excerpt
+        featuredImage {
+          node {
+            localFile {
+              childImageSharp {
+                fluid(quality: 90) {
+                  src
+                  srcSet
+                }
+                gatsbyImageData(aspectRatio: 1.1)
+              }
+            }
+            altText
+          }
+        }
       }
     }
   }

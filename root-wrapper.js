@@ -4,7 +4,7 @@
  import React from 'react'
 import { ChakraProvider } from "@chakra-ui/react"
 import { ApolloProvider } from "@apollo/client"
-import { AnimatePresence } from "framer-motion"
+// import { AnimatePresence } from "framer-motion"
 
 // /**
 //  * Internal dependencies
@@ -27,7 +27,8 @@ import "@fontsource/roboto/100.css"
 import "@fontsource/roboto/300.css"
 import "@fontsource/roboto/400.css"
 import "@fontsource/roboto/500.css"
-import Layout from './src/components/layout/Layout';
+import "@fontsource/roboto/700.css"
+import "@fontsource/roboto/900.css"
 
 export const wrapPageElement = ({element}) => {
 

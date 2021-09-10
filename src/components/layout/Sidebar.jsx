@@ -1,5 +1,5 @@
-import { Box, Collapse, Flex, Icon, LinkBox, LinkOverlay, Spacer, Stack, Text, useDisclosure } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import { Box, Collapse, Flex, Icon, LinkBox, LinkOverlay, Spacer, useDisclosure } from '@chakra-ui/react'
+import React from 'react'
 import { FiMenu, FiX } from 'react-icons/fi'
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa'
 import { Logo } from './Logo'
@@ -10,7 +10,6 @@ import { NavMenus } from '../menus'
 // import AniLink from "gatsby-plugin-transition-link/AniLink";
 // import InternalProvider from 'gatsby-plugin-transition-link/context/InternalProvider';
 import { Link } from 'gatsby'
-import Layout from './Layout'
 
 
 export const Sidebar = ({...rest}) => {
@@ -33,7 +32,15 @@ export const Sidebar = ({...rest}) => {
       h="100vh"
       {...rest}
     >
-        <Flex className="sidebar__content" direction="column" transform={""} align={isOpen ? "flex-start" : "center"} flex="1" pt="5" pb="4" maxH="100%">
+        <Flex 
+          className="sidebar__content"
+          direction="column"
+          align={isOpen ? "stretch" : "center"} 
+          flex="1" 
+          pt="5" 
+          pb="4" 
+          maxH="100%"
+        >
           
           <Flex id="menuButtons" position="relative" px="3" w="100%" h={8} align="center" justifyContent={isOpen ? "flex-end" : "center"} mb="5">
             {isOpen ?

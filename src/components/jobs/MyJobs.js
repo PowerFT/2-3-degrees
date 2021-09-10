@@ -9,9 +9,7 @@ import { Button } from '@chakra-ui/button'
 * External dependencies
 */
 // import { useAuth } from '../../hooks'
-import { ColumnContainter, MainColumn, SecondColumn } from '../layout/columns'
 import { JobsList } from './my-jobs-list'
-import { Select } from '@chakra-ui/select'
 import { FormControl } from '@chakra-ui/form-control'
 import { MySpinner } from '../waiting/MySpinner'
 import { Accordion, AccordionButton, AccordionPanel, AccordionItem, Box, Flex } from '@chakra-ui/react'

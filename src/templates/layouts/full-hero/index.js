@@ -1,13 +1,13 @@
 import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
 import * as React from 'react'
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
+// import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
 import { Link } from 'gatsby'
 // import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 
 export const FullHero = ({ image, title, text, button }) => {
 
-  const imageData = getImage(image.localFile)
+  // const imageData = getImage(image.localFile)
   const buttonTitle = button?.title
   const buttonLink = button?.url
 

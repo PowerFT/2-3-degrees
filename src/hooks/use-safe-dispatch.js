@@ -13,7 +13,7 @@ export const useSafeDispatch = ( dispatch ) => {
 
 	return useCallback(
 		( ...args ) => ( mounted.current ? dispatch( ...args ) : void 0 ),
-		[ dispatch ]
+		[ dispatch ],
 	);
 };
 

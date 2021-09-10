@@ -8,22 +8,13 @@ import { TalentMenu } from './TalentMenu'
 
 export const NavMenus = ({menuopen, viewer, loadingViewer, isLoggedIn, onclose}) => {
 	console.log('menus', menuopen)
-	
+	 
 	return (
 			<Stack spacing="1">
-
-				<MenuItem 
-					menuopen={menuopen} 
-					link="/connect-platform" 
-					label="Connent Platform" 
-					icon={BsFillLightningFill} 
-					isActive 
-					onclose={onclose}
-				/>
 				<MakerMenu onclose={onclose} menuopen={menuopen} />
 				<TalentMenu onclose={onclose} menuopen={menuopen} />
 				{
-					!isLoggedIn && (
+					!isLoggedIn ? (
 						<>
 							<MenuItem 
 								onclose={onclose}
@@ -38,6 +29,25 @@ export const NavMenus = ({menuopen, viewer, loadingViewer, isLoggedIn, onclose})
 								link="/talent/sign-in" 
 								label="Young Talent" 
 								icon={BsPlug} 
+							/>
+						</>
+					) : (
+						<>
+							<MenuItem 
+								menuopen={menuopen} 
+								link="/connect-platform" 
+								label="Connect" 
+								icon={BsFillLightningFill} 
+								isActive 
+								onclose={onclose}
+							/>
+							<MenuItem 
+								menuopen={menuopen} 
+								link="/connect-platform/jobs" 
+								label="Opportunity Board" 
+								icon={BsFillLightningFill} 
+								isActive 
+								onclose={onclose}
 							/>
 						</>
 					)

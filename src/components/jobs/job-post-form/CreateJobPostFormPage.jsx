@@ -38,7 +38,7 @@ export const CreateJobPostFormPage = () => {
     if(viewer && !loadingViewer) {
       setFormDeets({...formDeets, companyName: viewer.nickname, companyBio: viewer.description})
     }
-  }, [viewer, loadingViewer])
+  }, [viewer, loadingViewer, formDeets])
 
   if( !viewer || loadingViewer ) return <Spinner />
 

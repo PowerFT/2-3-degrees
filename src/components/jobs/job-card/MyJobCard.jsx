@@ -1,36 +1,29 @@
 import {
   Avatar,
   Box,
-  Button,
   HStack,
   Icon,
   Stack,
   Text,
   useColorModeValue,
-  Wrap,
-  Badge,
-  ButtonGroup,
   VStack,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
   IconButton,
-  LinkBox,
-  LinkOverlay,
 } from '@chakra-ui/react'
-import {FaRegEye} from 'react-icons/fa'
 import {AiOutlinePlus} from 'react-icons/ai'
 import * as React from 'react'
-import { HiCash, HiClock, HiLocationMarker, HiOutlineEye, HiOutlinePencil, HiPlus } from 'react-icons/hi'
+import { HiCash, HiClock, HiLocationMarker, HiOutlineEye, HiOutlinePencil } from 'react-icons/hi'
 import { Link } from 'gatsby'
 
 
 export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyName, jobPostId, status, content, id}) => {
 
   const formattedSalary = parseInt(salary).toLocaleString()
-	const pending = status !== "publish"
-	const jobPostLink = `/connect-platform${jobPostId}`
+	// const pending = status !== "publish"
+	// const jobPostLink = `/connect-platform${jobPostId}`
   
 
   return (

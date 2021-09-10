@@ -1,77 +1,105 @@
-import { Avatar, Box, Flex, Heading, Text } from '@chakra-ui/react'
+import { Avatar, Box, Flex, Heading, Text, VStack } from '@chakra-ui/react'
 import { getImage, GatsbyImage } from 'gatsby-plugin-image'
 import React from 'react'
 // import { motion } from 'framer-motion';
 // const MotionBox = motion(Box)
 
-export const Header = ({title, subTitle, image, pageType, avatar}) => {
+export const Header = ({title, subTitle, imageData, imgAlt, pageType, avatar, blogAuthor}) => {
 
-	console.log(image)
-
-	const imageData = getImage(image)
+	
+	// const imageData = getImage(image)
+	console.log("header",imageData)
   // const ImgAlt = post.featuredImage?.node?.alt || ``
 	
-	const colour = {
-		admin: "dBlue.200",
-		connectPage: "dOrange.300",
-	}
+	// const colour = {
+	// 	admin: "dBlue.200",
+	// 	connectPage: "dOrange.300",
+	// }
 
 	const hidden = pageType === "home" || pageType === "connectHome" || pageType === "login"
 
+	console.log(pageType)
 	return (
 		<Flex 
 			className="page__header" 
 			textAlign={{ base: 'center', md: 'start', lg: 'start' }} 
-			direction={[
-				"column", "column", "row"
-			]}
-			height= {{
+			direction={{
+				base:"column", sm:"column", md:"row"
+			}}
+			minH= {{
 				md: "300px",
 				lg: "400px",
 			}}
 			w="full"
 			// bg={colour.pageType}
 			bg="pink.100"
-			h="40vh"
+			minH="40vh"
+			h={{
+				base:"auto", sm:"auto", md:"40vh"
+			}}
 			position="relative"
 			display={hidden ? "none" : "flex"}
 		>
 			<Flex 
-				flex={image ? "1 1 50%" : "1"} 
-				px={image ? "10" : "0"} 
+				flex={imageData ? "1 1 50%" : "1"} 
+				px={imageData ? "10" : "0"} 
 				py="10"
-				ml={{md: "0", lg: image ? "0" : "280px"}} 
+				ml={{md: "0", lg: imageData ? "0" : "280px"}} 
 				color="gray.800" 
 				direction="column"
 				justifyContent="space-between"
 				align={{sm: "center", md: "center", lg: "flex-start"}}
 			>
-				<Heading
-					className="page__header--title"
-					size="4xl"
-					maxW="lg"
-					textAlign={{md: "center", lg: "start"}}
-					// noOfLines={2}
-				> 
-					{title}
-				</Heading>
+				<VStack>
+					<Heading
+						className="page__header--title"
+						fontSize={{
+							base: pageType === "blog" ? "3rem" : "3rem", 
+							sm: pageType === "blog" ? "4rem" : "4rem",
+							md: pageType === "blog" ? "2.5rem" : "4rem"
+						}}
+						lineHeight={{
+							base: pageType === "blog" ? "3.2rem" : "3.2rem", 
+							sm: pageType === "blog" ? "4.2rem" : "4.3rem",
+							md: pageType === "blog" ? "2.7rem" : "4.3rem"
+						}}
+						w="full"
+						textAlign={{md: pageType === "blog" ? "start" : "center", lg: "start"}}
+						// noOfLines={2}
+					> 
+						{title}
+					</Heading>
+					{
+						blogAuthor && (
+						<Text
+							className="pageblock__header--author"
+							fontSize="xl"
+							mt="4"
+							maxW="lg"
+							mx={{ base: 'auto', lg: 'unset' }}
+						>
+							{blogAuthor}
+						</Text>
+						)
+					}
+				</VStack>
 				<Text
 					className="pageblock__header--subtitle"
-					fontSize={{ base: 'xl', lg: '2xl' }}
-					mt="4"
+					fontSize={{ base: pageType === "blog" ? 'sm' : "xl", lg: pageType === "blog" ? 'sm' : "2xl" }}
+					mt="6"
 					maxW="2xl"
 					mx={{ base: 'auto', lg: 'unset' }}
+					noOfLines="5"
 				>
 					{subTitle}
 				</Text>
 			</Flex>
-			{image && (
-				<Box position="relative" w="full" h="full" flex="1 1 50%">
+			{imageData && (
+				<Box className="pageblock__header--imagecontainer" position="relative" w="full" h="full" flex="1 1 50%">
 					<GatsbyImage
 						className="pageblock__image--img"
 						image={imageData}
-						// alt={image.altText}
-						objectFit="cover"
+						alt={imgAlt ? imgAlt : "header image"}
 						// loading="eager"
 					/>
 				</Box>

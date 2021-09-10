@@ -1,7 +1,7 @@
 import React from "react"
-import { ConnectPlatformHero } from '../../components/connect-platform-content/ConnectPlatformHero'
+import { ConnectPlatform } from '../../components/connect-platform'
 
-const ConnectPlatform = () => {
+const ConnectPlatformPage = () => {
 
   // Hello {name}
   // User (maker) Profile Reminder + button
@@ -12,9 +12,9 @@ const ConnectPlatform = () => {
 
   return (
     <>
-      <ConnectPlatformHero />
+      <ConnectPlatform />
     </>
   )
 }
 
-export default ConnectPlatform
+export default ConnectPlatformPage

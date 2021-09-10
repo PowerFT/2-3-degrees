@@ -1,7 +1,7 @@
 /**
 * External dependencies
 */
-import React, { useState } from 'react'
+import React from 'react'
 import { gql, useQuery } from '@apollo/client'
 // import InfiniteScroll from 'react-infinite-scroll-component'
 /**

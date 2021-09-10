@@ -1,31 +1,32 @@
 /**
 * External dependencies
 */
-import { Alert, AlertIcon, Box, Button, ButtonGroup, Flex, FormControl, FormHelperText, FormLabel, Heading, HStack, Input, InputGroup, InputLeftAddon, LinkBox, LinkOverlay, Stack, Text, Textarea, VStack, } from '@chakra-ui/react'
+import { Alert, AlertIcon, Button, Flex, FormControl, FormHelperText, FormLabel, HStack, Input, InputGroup, InputLeftAddon, Stack, Textarea, VStack, } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 /**
 * Internal dependencies
 */
-import { ChangeModal } from './changeModal'
-import { useAuth } from '../../../hooks'
-import { DangerZone } from './DangerZone'
-import { MySpinner } from '../../waiting/MySpinner'
-// import { MyError } from '../../waiting/MyError'
-import { useUpdateUser } from '../../../hooks'
-import { AdminBlob } from '../../AdminBlob'
-import { MyError } from '../../waiting/MyError'
-import { Link } from 'gatsby'
-import { InnerSidebar } from '../../layout/InnerSidebar'
-import { Content } from '../../layout/Content'
-import { Header } from '../../layout/Header'
+import { ChangeModal } from '../changeModal'
+import { useAuth } from '../../../../hooks'
+import { DangerZone } from '../DangerZone'
+import { MySpinner } from '../../../waiting/MySpinner'
+// import { MyError } from '../../../waiting/MyError'
+import { useUpdateUser } from '../../../../hooks'
+import { AdminBlob } from '../../../AdminBlob'
+import { MyError } from '../../../waiting/MyError'
+import { InnerSidebar } from '../../../layout/InnerSidebar'
+import { Content } from '../../../layout/Content'
+import { Header } from '../../../layout/Header'
 
-export const AccountSettings = ({user}) => {
-console.log("user", user)
+export const MakerAccountSettings = () => {
+
   // const { FileUploadInput } = useFileUpload()
-
+  const pageType = "admin"
   const { viewer, loadingViewer } = useAuth()
+  const { updateUser, error, status } = useUpdateUser()
   const [newEmail, setNewEmail] = useState('');
   const [passwordChanged, setPasswordChanged] = useState(false);
+  const [accountDeets, setAccountDeets] = useState(initialMaker)
 
   const initialMaker = {
     id: '',
@@ -35,25 +36,14 @@ console.log("user", user)
     companyBio: '',
     companyWebsite: '',
   }
-  const initialTalent = {
-    id: '',
-    firstName: '',
-    lastName: '',
-  }
-  const [accountDeets, setAccountDeets] = useState(user === "maker" ? initialMaker : initialTalent)
-  // const [companyLogo, setCompanyLogo] = useState('')
 
-  const { updateUser, error, status } = useUpdateUser()
   const handleSubmit = () => {
-    console.log("account detts",accountDeets)
     updateUser(accountDeets)
   }
 
   useEffect(() => {
-    console.log('use effect: ', viewer)
     if (viewer && !loadingViewer) {
-
-      if(user === "maker" & viewer.roles.nodes[0].name === 'maker') {
+      if(viewer.roles.nodes[0].name === 'maker') {
         setAccountDeets({
           ...accountDeets,
           id: viewer.id,
@@ -63,14 +53,7 @@ console.log("user", user)
           companyBio: viewer.description,
           companyWebsite: viewer.url,
         })
-      } else if(user === "talent" & viewer.roles.nodes[0].name === 'talent') {
-        setAccountDeets({
-          ...accountDeets,
-          id: viewer.id,
-          firstName: viewer.firstName,
-          lastName: viewer.lastName,
-        })
-      } else if(user === "maker") {
+      } else {
         setAccountDeets({
           ...accountDeets,
           id: viewer.id,
@@ -81,23 +64,7 @@ console.log("user", user)
           companyBio: viewer.description,
           companyWebsite: viewer.url,
         })
-      } else if(user === "talent") {
-        setAccountDeets({
-          ...accountDeets,
-          id: viewer.id,
-          firstName: viewer.firstName,
-          lastName: viewer.lastName,
-          companyName: viewer.nickname,
-          roles: ['talent'],
-          companyBio: viewer.description,
-          companyWebsite: viewer.url,
-        })
-      } else {
-        setAccountDeets({
-          ...accountDeets,
-        })
       }
-      
     }
   }, [viewer, loadingViewer])
 
@@ -111,8 +78,6 @@ console.log("user", user)
   //account data complete check
   const accountInputs = [viewer.firstName, viewer.lastName, viewer.nickname, viewer.description, viewer.url]
   const completed = accountInputs.every((input) => input)
-
-  const pageType = "admin"
 
   return (
     <>
@@ -165,56 +130,33 @@ console.log("user", user)
 
               </AdminBlob>
 
-              {
-                user === "maker" && (
-                  <AdminBlob title="Organisation Info" spacing="6">
+              <AdminBlob title="Organisation Info" spacing="6">
 
-                  <VStack width="full" spacing="6">
+              <VStack width="full" spacing="6">
 
-                    <FormControl id="cNameEdit">
-                      <FormLabel>Organisation Name</FormLabel>
-                      <Input type="text" value={accountDeets.companyName} onChange={(e) => setAccountDeets({ ...accountDeets, companyName: e.target.value })} />
-                    </FormControl>
+                <FormControl id="cNameEdit">
+                  <FormLabel>Organisation Name</FormLabel>
+                  <Input type="text" value={accountDeets.companyName} onChange={(e) => setAccountDeets({ ...accountDeets, companyName: e.target.value })} />
+                </FormControl>
 
-                    <FormControl id="cNameEdit">
-                      <FormLabel>Organisation Website</FormLabel>
-                      <InputGroup>
-                        <InputLeftAddon children="https://" />
-                        <Input placeholder="mysite" type="text" value={accountDeets.companyWebsite} onChange={(e) => setAccountDeets({ ...accountDeets, companyWebsite: e.target.value })} />
-                      </InputGroup>
-                    </FormControl>
+                <FormControl id="cNameEdit">
+                  <FormLabel>Organisation Website</FormLabel>
+                  <InputGroup>
+                    <InputLeftAddon children="https://" />
+                    <Input placeholder="mysite" type="text" value={accountDeets.companyWebsite} onChange={(e) => setAccountDeets({ ...accountDeets, companyWebsite: e.target.value })} />
+                  </InputGroup>
+                </FormControl>
 
-                    {/* <Stack direction="row" spacing="6" align="center" width="full">
-                      <Avatar
-                        size="xl"
-                        name="Alyssa Mall"
-                        src="https://images.unsplash.com/photo-1488282396544-0212eea56a21?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
-                      />
-                      <Box>
-                        <HStack spacing="5">
-                          <Button leftIcon={<HiCloudUpload />}>Change logo</Button>
-                          <Button variant="ghost" colorScheme="red">
-                            Delete
-                          </Button>
-                        </HStack>
-                        <Text fontSize="sm" mt="3">
-                          .jpg, .gif, or .png. Max file size 700K.
-                        </Text>
-                      </Box>
-                    </Stack> */}
+                <FormControl id="bio">
+                  <FormLabel>Organisation Bio</FormLabel>
+                  <Textarea rows={5} value={accountDeets.companyBio} onChange={(e) => setAccountDeets({ ...accountDeets, companyBio: e.target.value })} />
+                  <FormHelperText>
+                    Brief description for your organisation's account.
+                  </FormHelperText>
+                </FormControl>
+              </VStack>
 
-                    <FormControl id="bio">
-                      <FormLabel>Organisation Bio</FormLabel>
-                      <Textarea rows={5} value={accountDeets.companyBio} onChange={(e) => setAccountDeets({ ...accountDeets, companyBio: e.target.value })} />
-                      <FormHelperText>
-                        Brief description for your organisation's account.
-                      </FormHelperText>
-                    </FormControl>
-                  </VStack>
-
-                  </AdminBlob>
-                )
-              }
+              </AdminBlob>
 
                 <Button
                   size="md"

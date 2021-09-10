@@ -1,7 +1,7 @@
 import React from "react"
 import { Router } from "@reach/router"
 // import Profile from "../../components/user/Profile"
-import { AccountSettings } from "../../components/user/account"
+import { AccountSettings } from "../../components/user/account/talent"
 import MyJobs from "../../components/jobs/MyJobs"
 import { SignIn } from "../../components/user/sign-in/talent"
 import { SignUp } from "../../components/user/sign-up/talent"
@@ -9,7 +9,6 @@ import { SignUp } from "../../components/user/sign-up/talent"
 
 // import Default from "../../components/Default"
 import PrivateRoute from "../../components/PrivateRoute"
-import Layout from '../../components/layout/Layout'
 
 const NotFound = () => {
   if (typeof window !== 'undefined') {

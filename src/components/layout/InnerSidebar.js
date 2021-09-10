@@ -8,10 +8,10 @@ import {JobsFilter} from '../jobs/jobs-board/jobs-filter'
 
 export const InnerSidebar = ({primaryLinks, secondaryLinks, pageType, locations, setLocations, sectors, setSectors, jobTypes, setJobTypes, skills, setSkills}) => {
 	
-	const colour = {
-		admin: "dBlue.200",
-		connectPage: "dOrange.300",
-	}
+	// const colour = {
+	// 	admin: "dBlue.200",
+	// 	connectPage: "dOrange.300",
+	// }
 
 	const hidden = pageType === "blog" || pageType === "generic" || pageType === "home" || pageType === "connectHome" || pageType === "login"
 

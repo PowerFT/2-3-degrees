@@ -1,7 +1,6 @@
-import { Box, Heading, SimpleGrid, Text } from '@chakra-ui/react'
+import { Box, Heading, SimpleGrid } from '@chakra-ui/react'
 import { StaticImage } from 'gatsby-plugin-image'
 import * as React from 'react'
-import * as Logos from './Brands'
 
 export const LogoGrid = () => {
 	return (

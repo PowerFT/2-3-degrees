@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
-import { Box, Collapse, Heading, Flex, LinkBox, LinkOverlay, SimpleGrid, Stack, Text, useColorModeValue as mode, useDisclosure, VStack, Icon, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, AspectRatio } from '@chakra-ui/react'
-import { FaFileSignature, FaPlay } from 'react-icons/fa'
+import React from 'react'
+import { Box, Collapse, Heading, Flex, SimpleGrid, Text, useDisclosure, VStack, Icon, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, AspectRatio } from '@chakra-ui/react'
+import { FaPlay } from 'react-icons/fa'
 import { getImage, GatsbyImage } from 'gatsby-plugin-image'
-import { Link } from 'gatsby'
 
 export const Feature = ({ img, linkUrl, title, children, icon, video, ...rest }) => {
 
 	const imgData = getImage(img.localFile)
 
-	const [isShown, setIsShown] = useState(false);
+	// const [isShown, setIsShown] = useState(false);
 	// console.log(title, "....entered")
 
 	const { isOpen, onOpen, onClose } = useDisclosure()
@@ -89,7 +88,6 @@ export const Feature = ({ img, linkUrl, title, children, icon, video, ...rest })
 					zIndex={1}
 					transition="all 2s"
 					w="100%"
-					justify="center"
 					textAlign="center"
 					display={{base: "flex", sm:"none"}}
 				>
@@ -113,15 +111,11 @@ export const Feature = ({ img, linkUrl, title, children, icon, video, ...rest })
 					onMouseEnter={onOpen}
 					onMouseLeave={onClose}
 					position="absolute"
-					bottom="0"
-					zIndex="10"
 					// insetX="0"
 					// insetY="0" 
 					bottom="0"
-					zIndex={1}
 					transition="all 2s"
 					w="100%"
-					justify="center"
 					textAlign="center"
 					display={{base: "none", sm:"flex"}}
 				>

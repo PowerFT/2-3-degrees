@@ -2,7 +2,7 @@
 * External dependencies
 */
 import React from 'react'
-import { HStack, Heading, Box, LinkOverlay, LinkBox } from '@chakra-ui/react'
+import { HStack, Heading, LinkOverlay, LinkBox } from '@chakra-ui/react'
 // import AniLink from "gatsby-plugin-transition-link/AniLink";
 import { Link } from 'gatsby'
 /**

@@ -3,13 +3,11 @@
 */
 import React, { useEffect } from 'react'
 import { gql, useQuery } from '@apollo/client'
-import { Stack } from '@chakra-ui/layout'
 /**
 * Internal dependencies
 */
 // import { useUserJobsDataQuery } from '../../../hooks/queries/use-user-jobs-data-query'
 import { MyJobCard } from '../job-card/MyJobCard'
-import { JobCard } from '../job-card'
 import { JobsCardContainer } from '../JobsCardContainer'
 
 const GET_JOBS_BY_VIEWER = gql`
@@ -61,7 +59,7 @@ export const JobsList = ({ statusSelected, setLoading, setError }) => {
 	useEffect(() => {
 		refetch({ variables: { status: statusSelected } }).catch(err => console.log(err))
 		console.log(statusSelected)
-	}, [statusSelected])
+	}, [statusSelected, refetch])
 
 	if (error) return <p>{`Error: ${error}`}</p>
 	if (loading) return <p>loading jobs...</p>

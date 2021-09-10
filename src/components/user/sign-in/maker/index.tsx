@@ -7,7 +7,6 @@ import {
   useColorModeValue as mode,
 } from '@chakra-ui/react'
 import * as React from 'react'
-import { Logo } from '../../../layout/Logo'
 import { SigninForm } from '../SigninForm'
 import { UnderlineLink } from '../../UnderlineLink'
 

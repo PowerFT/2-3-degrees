@@ -4,7 +4,6 @@ import React from "react"
 // import { Layout } from "../../components/layout/Layout"
 import Seo from "../../components/seo"
 import AllLayouts from "../../components/AllLayouts"
-import Layout from "../../components/layout/Layout"
 
 
 const Page = ({ pageContext }) => {

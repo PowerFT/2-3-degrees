@@ -15,9 +15,7 @@ import { AnimatePresence } from "framer-motion"
 import { MobileBottomBar } from './MobileBottomBar'
 import { Sidebar } from './Sidebar'
 import { useAuth } from '../../hooks'
-import { InnerSidebar } from './InnerSidebar';
 import { Content } from './Content';
-import { Header } from './Header';
 // import "@wordpress/block-library/build-style/style.css"
 
 // const MotionBox = motion(Box)

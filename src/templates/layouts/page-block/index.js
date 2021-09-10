@@ -1,14 +1,29 @@
-import { Box, Flex, Heading, Text, useColorModeValue } from '@chakra-ui/react'
+import { Box, Flex, Heading, Text } from '@chakra-ui/react'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import React from 'react'
 import parse from "html-react-parser"
+import { Header } from '../../../components/layout/Header'
 
 export const PageBlock = ({ title, subTitle, content, image, ...rest }) => {
 
 	const imageData = getImage(image?.localFile)
-
+	const pageType="page"
+	console.log("page",image)
+	console.log("page image data",imageData)
 	return (
-		<Box className="pageblock" { ...rest } >
+		<>
+			<Header
+				title={title}
+				subTitle={subTitle}
+				imageData={imageData}
+				pageType={pageType}
+			/>
+			<Flex w="100%">
+				<Box className="pageblock__body--content wp-content" maxW="xl" mx="auto">
+						{parse(content)}
+					</Box>
+			</Flex>
+		{/* <Box className="pageblock" { ...rest } >
 			<Flex 
 				className="pageblock__header" 
 				textAlign={{ base: 'center', md: 'start', lg: 'start' }} 
@@ -49,7 +64,7 @@ export const PageBlock = ({ title, subTitle, content, image, ...rest }) => {
 					</Box>
 				)}
 			</Flex>
-			<Box
+			 <Box
 				className="pageblock__body"
 				bg="dOrange.200"
 				p={[
@@ -61,7 +76,8 @@ export const PageBlock = ({ title, subTitle, content, image, ...rest }) => {
 				<Box className="pageblock__body--content wp-content" maxW="xl" mx="auto">
 					{parse(content)}
 				</Box>
-			</Box>
-		</Box>
+			</Box> 
+		</Box>*/}
+		</>
 	)
 }

@@ -59,7 +59,7 @@ const ConnectJobs = () => {
 		if(tagName.skill) {
 			setSkills([tagName.skill])
 		}
-	}, [])
+	}, [tagName.type, tagName.skill])
 
 	if (error) return <p>{`Error: ${error}`}</p>
 	if (loading) return <MySpinner />

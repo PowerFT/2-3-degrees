@@ -221,12 +221,7 @@ const getPages = async ({ graphql, reporter }) => {
                     uri
                     title
                     date(fromNow: true)
-                    author {
-                      node {
-                        name
-                        uri
-                      }
-                    }
+                    content
                     categories {
                       nodes {
                         name
@@ -240,9 +235,8 @@ const getPages = async ({ graphql, reporter }) => {
                             fluid(quality: 90) {
                               src
                               srcSet
-                              aspectRatio
                             }
-                            gatsbyImageData
+                            gatsbyImageData(aspectRatio: 1.1)
                           }
                         }
                         altText
