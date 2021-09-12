@@ -28,13 +28,13 @@ const getJobPostId = (query) => {
 
     // Ensure a valid expected value is passed
     if (job) {
-      console.log('link query returned')
+      //console.log('link query returned')
       return job;
     }
-    console.log('parsing didnt work')
+    //console.log('parsing didnt work')
     return fallback;
   }
-  console.log('location.search doesnt exsit')
+  //console.log('location.search doesnt exsit')
   return fallback;
 };
 
@@ -82,7 +82,7 @@ export const UpdateJobPostFormPage = () => {
   const jobToEditId = location.search ? getJobPostId(location.search) : '';
   const formType = jobToEditId ? 'update' : 'create'
 
-  console.log(jobToEditId)
+  //console.log(jobToEditId)
 
   const initialState = {
     id: '',

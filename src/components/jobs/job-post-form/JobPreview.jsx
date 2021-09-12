@@ -13,7 +13,7 @@ import { HiCash, HiClock, HiLocationMarker } from 'react-icons/hi'
 
 
 export const JobPreviewCard = ({ title, jobLocation, salary, jobType, sector, companyName, salStructure}) => {
-  console.log(salStructure)
+  //console.log(salStructure)
   const formattedSalary = parseInt(salary).toLocaleString()
 
   return (

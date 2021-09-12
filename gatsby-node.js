@@ -185,6 +185,7 @@ const getPages = async ({ graphql, reporter }) => {
                 pillars {
                   title
                   text
+                  videoimage
                   video
                   link {
                     url
@@ -601,12 +602,15 @@ exports.onCreatePage = async ({ page, actions }) => {
 
   // page.matchPath is a special key that's used for matching pages
   // only on the client.
-  if (page.path.match(/^\/talent/) || page.path.match(/^\/maker/)) {
+  if (page.path.match(/^\/talent/) || page.path.match(/^\/maker/) || page.path.match(/^\/connect-platform/)) {
     if (page.path.match(/^\/talent/)) {
       page.matchPath = `/talent/*`
     }
     if (page.path.match(/^\/maker/)) {
       page.matchPath = `/maker/*`
+    }
+    if (page.path.match(/^\/connect-platform/)) {
+      page.matchPath = `/connect-platform/*`
     }
 
     // Update the page.

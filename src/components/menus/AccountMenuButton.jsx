@@ -3,7 +3,7 @@ import * as React from 'react'
 import { HiSelector } from 'react-icons/hi'
 
 export const AccountMenuButton = (props) => {
-  const buttonProps = useMenuButton(props)
+  const buttonProps = useMenuButton(props.menuopen)
 	const { viewer, menuopen } = props
   return (
     <Flex

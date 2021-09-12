@@ -20,11 +20,11 @@ export const useDeleteUser = (userId) => {
 		setStatus( 'resolving' );
 		return deleteUserMutation( userId )
 			.then( () => {
-				console.log('sent delete mutation')
+				//console.log('sent delete mutation')
 				setStatus( 'resolved' );
 			} )
 			.catch( ( errors ) => {
-				console.log(errors)
+				//console.log(errors)
 				setError(errors);
 				setStatus( 'resolved' );
 			} );

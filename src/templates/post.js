@@ -18,7 +18,7 @@ import Seo from "../components/seo"
 import { Header } from "../components/layout/Header"
 
 const BlogPostTemplate = ({ data: { post } }) => {
-	console.log(post)
+	//console.log(post)
 
   const imageData = getImage(post.featuredImage?.node?.localFile)
   const ImgAlt = post.featuredImage?.node?.alt || ``

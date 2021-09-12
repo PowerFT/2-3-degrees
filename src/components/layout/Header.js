@@ -8,7 +8,7 @@ export const Header = ({title, subTitle, imageData, imgAlt, pageType, avatar, bl
 
 	
 	// const imageData = getImage(image)
-	console.log("header",imageData)
+	//console.log("header",imageData)
   // const ImgAlt = post.featuredImage?.node?.alt || ``
 	
 	// const colour = {
@@ -18,7 +18,7 @@ export const Header = ({title, subTitle, imageData, imgAlt, pageType, avatar, bl
 
 	const hidden = pageType === "home" || pageType === "connectHome" || pageType === "login"
 
-	console.log(pageType)
+	//console.log(pageType)
 	return (
 		<Flex 
 			className="page__header" 
@@ -32,8 +32,8 @@ export const Header = ({title, subTitle, imageData, imgAlt, pageType, avatar, bl
 			}}
 			w="full"
 			// bg={colour.pageType}
-			bg="pink.100"
-			minH="40vh"
+			bg="dOrange.300"
+			minH={{base:"30vh", sm: "40vh"}}
 			h={{
 				base:"auto", sm:"auto", md:"40vh"
 			}}
@@ -43,14 +43,14 @@ export const Header = ({title, subTitle, imageData, imgAlt, pageType, avatar, bl
 			<Flex 
 				flex={imageData ? "1 1 50%" : "1"} 
 				px={imageData ? "10" : "0"} 
-				py="10"
+				py={{base: "6", sm: "10"}}
 				ml={{md: "0", lg: imageData ? "0" : "280px"}} 
 				color="gray.800" 
 				direction="column"
 				justifyContent="space-between"
-				align={{sm: "center", md: "center", lg: "flex-start"}}
+				align={{base: "center", md: "center", lg: "flex-start"}}
 			>
-				<VStack>
+				<VStack maxW={{base: "xs", md: "lg"}}>
 					<Heading
 						className="page__header--title"
 						fontSize={{

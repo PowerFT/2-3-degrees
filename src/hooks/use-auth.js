@@ -73,8 +73,8 @@ export const useAuth = () => {
 		setError(null);
 		setStatus('resolving');
 		return loginMutation(email, password)
-			.then(onLoginSuccess(user))
-			.then(() => { if(viewer) navigate('/')})
+			.then(onLoginSuccess)
+			// .then(() => { if(viewer) navigate('/')})
 			// .then(navigate(user === "maker" ? "/connect-platform?user=maker" : "/connect-platform?user=talent"))
 			.catch(onError);
 	};

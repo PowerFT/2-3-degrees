@@ -22,7 +22,7 @@ const MyJobs = () => {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(null)
 
-	console.log('MYYYYY JOBSSSS')
+	// console.log('MYYYYY JOBSSSS')
 
 	if (loading) return <MySpinner />;
 	if (error) return `Error! ${error}`;

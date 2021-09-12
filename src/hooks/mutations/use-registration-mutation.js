@@ -23,7 +23,7 @@ export const useRegisterMutation = () => {
 	const [ mutation, mutationResults ] = useMutation( REGISTER );
 
 	const registerMutation = ( email, password ) => {
-		console.log(email, password)
+		//console.log(email, password)
 		return mutation( {
 			variables: {
 				username: email,

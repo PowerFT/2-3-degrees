@@ -35,7 +35,7 @@ export const useRegistration = () => {
 
 	// const register = ( email, password, role ) => {
 	const register = ( email, password, user ) => {
-		console.log(isLoggedIn)
+		//console.log(isLoggedIn)
 		setError( null );
 		setStatus( 'resolving' );
 		return registerMutation( email, password )
@@ -46,7 +46,7 @@ export const useRegistration = () => {
 				// return updateRoleMutation( id )
 			// })
 			.then(() => {
-				console.log('success', isLoggedIn, setIsLoggedIn)
+				//console.log('success', isLoggedIn, setIsLoggedIn)
 				// setIsLoggedIn( true );
 				
 				setStatus( 'resolved' );

@@ -112,7 +112,7 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
 	const salary = jobPost?.salary
 	const content = jobPost?.content
 	const skills = jobPost?.skills
-	console.log(jobPost)
+	//console.log(jobPost)
 
   return (
 		<>

@@ -28,12 +28,12 @@ export function ChangeModal({ title, type, curInput, accountDeets, setNewEmail, 
 	const { updateUserLogin, error, status } = useUpdateUser()
 
 	const typeSlug = type.toLowerCase()
-	console.log(typeSlug)
+	//console.log(typeSlug)
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		accountDeets[typeSlug] = val
-		console.log(accountDeets)
+		//console.log(accountDeets)
 		updateUserLogin(accountDeets)
 		.then(() => (typeSlug === 'email') ? setNewEmail(val) : setPasswordChanged(true))
 		.then(onClose)

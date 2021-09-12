@@ -22,7 +22,7 @@ import { Content } from './Content';
 
 export default function Layout({children}) {
 
-  console.log(children)
+  // console.log(children)
 
   const { isLoggedIn } = useAuth()
 
@@ -43,7 +43,7 @@ export default function Layout({children}) {
         className="site"
         w="100vw"
       >
-        <Flex className="site__container" width="100%">
+        <Flex className="site__container" width="100%" bg="gray.50">
           <Sidebar
             display={{
               base: 'none',

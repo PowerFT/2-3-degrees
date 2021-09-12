@@ -8,8 +8,8 @@ export const PageBlock = ({ title, subTitle, content, image, ...rest }) => {
 
 	const imageData = getImage(image?.localFile)
 	const pageType="page"
-	console.log("page",image)
-	console.log("page image data",imageData)
+	//console.log("page",image)
+	//console.log("page image data",imageData)
 	return (
 		<>
 			<Header

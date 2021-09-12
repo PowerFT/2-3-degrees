@@ -18,7 +18,7 @@
 	 const [ mutation, mutationResults ] = useMutation( UPDATE_ROLE );
  
 	 const updateRoleMutation = ( id, role ) => {
-		 console.log(id, role)
+		 //console.log(id, role)
 		 return mutation( {
 			 variables: {
 				 id,

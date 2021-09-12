@@ -14,7 +14,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 export const Services = ({data}) => {
 
-	console.log(data)
+	//console.log(data)
 
   // const imageData = getImage(image.localFile)
 

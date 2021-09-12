@@ -7,7 +7,7 @@ import { MakerMenu } from './MakerMenu'
 import { TalentMenu } from './TalentMenu'
 
 export const NavMenus = ({menuopen, viewer, loadingViewer, isLoggedIn, onclose}) => {
-	console.log('menus', menuopen)
+	// console.log('menus', menuopen)
 	 
 	return (
 			<Stack spacing="1">

@@ -11,7 +11,7 @@ import { PageBlock } from "../templates/layouts/page-block"
 // import { TabsBlock } from "../templates/layouts/services"
 
 const AllLayouts = ({ layoutData }) => {
-  console.log(layoutData)
+  // console.log(layoutData)
   const layoutType = layoutData.fieldGroupName
 
   /**

@@ -14,7 +14,6 @@ const VIEWER = gql`
 	query viewer {
 		viewer {
 			id
-			databaseId
 			firstName
 			lastName
 			nickname
@@ -51,16 +50,16 @@ export const useViewerQuery = () => {
 
 	const onCompleted = useSafeDispatch( ( theData ) => {
 		console.log('onComplete', theData)
-		if ( ! theData?.viewer ) {
-			console.log('onComplete')
+		if ( !theData.viewer ) {
+			console.log('onComplete failed, no data, logging out')
 			setIsLoggedIn( false );
 		}
-	} );
+	});
 
 	const [ getViewer, { loading, error, data } ] = useLazyQuery( VIEWER, {
 		fetchPolicy: 'network-only',
 		onError,
-		onCompleted, //understand this further
+		onCompleted,
 	} );
 
 	return {

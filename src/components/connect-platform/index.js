@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Stack } from '@chakra-ui/react'
-import { useLocation } from '@reach/router';
+import { navigate, useLocation } from '@reach/router';
 import queryString from 'query-string';
 
 import { MySpinner } from '../waiting/MySpinner'
@@ -18,13 +18,13 @@ const getUser = (query) => {
     const { user } = queryString.parse(query);
     // Ensure a valid expected value is passed
     if (user) {
-      console.log('link query returned')
+      //console.log('link query returned')
       return user;
     }
-    console.log('parsing didnt work')
+    //console.log('parsing didnt work')
     return fallback;
   }
-  console.log('location.search doesnt exsit')
+  //console.log('location.search doesnt exsit')
   return fallback;
 };
 
@@ -33,7 +33,7 @@ export const ConnectPlatform = () => {
   const location = useLocation();
   const user = location.search ? getUser(location.search) : null;
 
-  console.log("user: ", user)
+  //console.log("user: ", user)
 
   const { viewer, loadingViewer } = useAuth()
 
@@ -42,6 +42,8 @@ export const ConnectPlatform = () => {
       <MySpinner />
     )
   }
+
+  if(!viewer) (navigate('/'))
 
   const userType = user || viewer.roles.nodes[0].name
 
@@ -58,14 +60,14 @@ export const ConnectPlatform = () => {
     }
   } //change
 
-  console.log("users: ",users)
-  console.log("userType: ",userType)
+  //console.log("users: ",users)
+  //console.log("userType: ",userType)
 
-  const limit = users[userType].limit
-  const completed = users[userType].completed
+  const limit = users[userType]?.limit
+  const completed = users[userType]?.completed
   const complete = Boolean(limit === completed)
 
-  console.log(limit, completed, complete)
+  //console.log(limit, completed, complete)
 
   return (
     <Stack as="section" h="full" spacing="12" py="6" align="center">

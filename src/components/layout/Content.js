@@ -7,9 +7,10 @@ export const Content = ({children, ...rest}) => {
 	return (
 		<Box 
 			className="site__content"
-			bg="pink.50"
+			// bg=".50"
 			flex="1"
 			w="100%"
+			pb="6"
 		>
 			<Flex justify="center" width="100%" direction="column">
 				{children}

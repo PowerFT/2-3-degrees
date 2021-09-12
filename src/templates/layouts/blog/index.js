@@ -4,7 +4,7 @@ import { BlogCard } from '../../../components/blog/BlogCard'
 import { Heading } from '@chakra-ui/react'
 
 export const LatestBlog = ({ blogPosts }) => {
-	console.log(blogPosts)
+	//console.log(blogPosts)
 	
 	return (
 		<>

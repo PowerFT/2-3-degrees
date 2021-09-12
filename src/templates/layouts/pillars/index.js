@@ -3,7 +3,7 @@ import { Box, Collapse, Heading, Flex, SimpleGrid, Text, useDisclosure, VStack, 
 import { FaPlay } from 'react-icons/fa'
 import { getImage, GatsbyImage } from 'gatsby-plugin-image'
 
-export const Feature = ({ img, linkUrl, title, children, icon, video, ...rest }) => {
+export const Feature = ({ img, linkUrl, title, children, icon, videoOrImage, videoLink, i, ...rest }) => {
 
 	const imgData = getImage(img?.localFile)
 
@@ -12,13 +12,13 @@ export const Feature = ({ img, linkUrl, title, children, icon, video, ...rest })
 
 	const { isOpen, onOpen, onClose } = useDisclosure()
 
-	console.log(children)
+	//console.log(children)
 
 	return (
 		<Box alignItems="center" {...rest}>
 			
 			{
-				video === "image" ? (
+				videoOrImage === "image" ? (
 					<Flex
 						position="relative"
 						align="center"
@@ -60,8 +60,8 @@ export const Feature = ({ img, linkUrl, title, children, icon, video, ...rest })
 								<ModalBody bg="black" px={{base:"2",sm:"12"}} py="12">
 									<AspectRatio maxW="560px" ratio={1.25} mx="auto">
 										<iframe
-											title="naruto"
-											src="https://www.youtube.com/embed/QhBnZ6NPOY0"
+											title={`Embassador ${i}`}
+											src={videoLink}
 											allowFullScreen
 										/>
 									</AspectRatio>
@@ -137,7 +137,7 @@ export const Feature = ({ img, linkUrl, title, children, icon, video, ...rest })
 }
 
 export const Pillars = ({ title, pillars }) => {
-	console.log(pillars)
+	//console.log(pillars)
 	
 	return (
 
@@ -159,7 +159,9 @@ export const Pillars = ({ title, pillars }) => {
 						img={pillar.image}
 						linkUrl={pillar.link?.url}
 						maxW={{sm:"md",md:"lg"}}
-						video={pillar.video}
+						videoOrImage={pillar.videoimage}
+						i={i}
+						videoLink={pillar.video}
 						// data-sal="slide-up"
 						// data-sal-delay={400*i}
 						// data-sal-easing="ease"

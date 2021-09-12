@@ -56,8 +56,8 @@ export const JobsFilter = ({ setError, setLoading, locations, setLocations, sect
 		jobTypes: [],
 		skills: []
 	})
-	console.log(skills, 'skills')
-	console.log(filters)
+	//console.log(skills, 'skills')
+	//console.log(filters)
 
 	useEffect(() => {
 		setFilters({
@@ -119,7 +119,7 @@ export const JobsFilter = ({ setError, setLoading, locations, setLocations, sect
 							cursor="pointer"
 							onClick={() => {
 								// active = !active
-								console.log(filters.skills.includes(item))
+								//console.log(filters.skills.includes(item))
 								jobTypes.includes(item)
 									? setJobTypes(jobTypes.filter(type => type !== item))
 									: setJobTypes([...jobTypes, item])
@@ -136,7 +136,7 @@ export const JobsFilter = ({ setError, setLoading, locations, setLocations, sect
 							cursor="pointer"
 							onClick={() => {
 								// active = !active
-								console.log(filters.skills.includes(item))
+								//console.log(filters.skills.includes(item))
 								skills.includes(item)
 									? setSkills(skills.filter(type => type !== item))
 									: setSkills([...skills, item])
@@ -145,7 +145,6 @@ export const JobsFilter = ({ setError, setLoading, locations, setLocations, sect
 					</HStack>
 				))}
 			</SimpleGrid>
-			<Box>
 
 				{/* <Heading size="sm">Location</Heading>
 
@@ -153,7 +152,7 @@ export const JobsFilter = ({ setError, setLoading, locations, setLocations, sect
 					placeholder="Select Location"
 					mt="2"
 					onChange={(e) => {
-						console.log(locations)
+						//console.log(locations)
 						locations.includes(e.target.value)
 							? setLocations(locations.filter(location => location !== e.target.value))
 							: setLocations([e.target.value, ...locations])
@@ -171,7 +170,7 @@ export const JobsFilter = ({ setError, setLoading, locations, setLocations, sect
 					}
 				</Select> */}
 
-				<Accordion allowMultiple mt="2">
+				<Accordion allowMultiple w="100%">
 					<AccordionItem>
 						{({ isExpanded }) => (
 							<>
@@ -265,8 +264,6 @@ export const JobsFilter = ({ setError, setLoading, locations, setLocations, sect
 					</AccordionItem>
 				</Accordion>
 
-			</Box>
-
 			<Box mt="4">
 				<Box flex="1" textAlign="left" fontWeight="400">
 					Contract Type
@@ -347,7 +344,7 @@ export const JobsFilter = ({ setError, setLoading, locations, setLocations, sect
 							}}
 							onClick={() => {
 								// active = !active
-								console.log(filters.skills.includes(node.name))
+								//console.log(filters.skills.includes(node.name))
 								skills.includes(node.name)
 									? setSkills(skills.filter(type => type !== node.name))
 									: setSkills([...skills, node.name])

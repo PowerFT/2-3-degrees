@@ -22,12 +22,12 @@ export const useFileUpload = () => {
 			return fileUploadMutation( selectedFile.current )
 
 			.then( (res) => {
-				console.log(res)
+				//console.log(res)
 				setStatus( 'resolved' );
 				// navigate('/maker/jobs')
 			} )
 			.catch( ( errors ) => {
-				console.log(errors)
+				//console.log(errors)
 				setError(errors);
 				setStatus( 'resolved' );
 			} );
@@ -35,7 +35,7 @@ export const useFileUpload = () => {
 
 		const onFileSelectSuccess = (file) => {
 			selectedFile.current = file
-			console.log(selectedFile.current)
+			//console.log(selectedFile.current)
 		}
 	
 		const handleInputValidation = (e) => {

@@ -7,7 +7,7 @@ import AllLayouts from "../../components/AllLayouts"
 
 
 const Page = ({ pageContext }) => {
-  console.log(pageContext)
+  //console.log(pageContext)
 
   const pageBuilder = pageContext.page.pageBuilder
 

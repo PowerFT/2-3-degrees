@@ -20,7 +20,7 @@ import { AdminBlob } from '../../AdminBlob'
 
 export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, setSalStructure, title, salary, content, companyBio, closeDate, jobLocation, sector, jobType, companyName, salaryStructure, id}) => {
 
-  console.log(salStructure)
+  //console.log(salStructure)
 
   const { submitJobPost, submitLoading } = useSubmitJobPost(formType);
 
@@ -33,7 +33,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
     })
       // .then(navigate(`/maker/jobs`))
       .catch(error => {
-        console.log(error); //fix
+        //console.log(error); //fix
       });
   }
 

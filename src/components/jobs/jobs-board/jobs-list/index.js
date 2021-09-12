@@ -10,6 +10,7 @@ import { gql, useQuery } from '@apollo/client'
 import { JobCard } from '../../job-card';
 import { MySpinner } from '../../../waiting/MySpinner';
 import { JobsCardContainer } from '../../JobsCardContainer';
+import { Alert, AlertIcon } from '@chakra-ui/react';
 
 const GET_JOBS = gql`
 	query MyQuery($first: Int!, $after: String, $where: RootQueryToJobPostConnectionWhereArgs) {
@@ -83,13 +84,14 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes, skills }) => {
 			taxArray: whereArr
 		}
 	}
+	console.log(where)
 
-	const { loading, error, data, fetchMore } = useQuery(GET_JOBS, {
+	const { loading, error, data } = useQuery(GET_JOBS, {
 		variables: {
 			first: BATCH_SIZE,
 			after: null,
 			notifyOnNetworkStatusChange: true,
-			where
+			where: where
 		}
 	});
 
@@ -102,10 +104,11 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes, skills }) => {
 	// 		}} )
 	// }
 
-	if (error) return <p>{`Error: ${error}`}</p>
+	if (error) return <Alert status="warning"> <AlertIcon/><p>{`Error: ${error}`}</p></Alert>
 	if (!data && loading) return <MySpinner />
-	if (!data?.jobPosts.edges.length) return <p>No posts found.</p>
+	// if (!data?.jobPosts.edges.length) return <Flex justify="center" align="center"><Alert status="warning"> <AlertIcon/>Sorry, No Opportunities found.</Alert></Flex>
 	
+	console.log(data)
 	// const haveMorePosts = Boolean(data.jobPosts?.pageInfo?.hasNextPage)
 
 	const jobPosts = data?.jobPosts?.edges.map(edge => edge.node)
@@ -141,7 +144,7 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes, skills }) => {
 				<form
 					method="post"
 					onSubmit={(event) => {
-						console.log('submitting!')
+						//console.log('submitting!')
 						event.preventDefault();
 						fetchMore({
 							variables: {

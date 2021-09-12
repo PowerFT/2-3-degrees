@@ -19,7 +19,9 @@ export const HalfHero = ({ image, title, text, button, imageSide }) => {
   const side = imageSide === "left" ? 1 : null
 
   return (
-    <Box as="section" bg={mode('gray.50', 'gray.800')} minH="xl">
+    <Box as="section" bg={mode('gray.50', 'gray.800')} 
+      // minH="xl"
+    >
       <Box
         // maxW={{
         //   base: 'xl',
@@ -62,22 +64,29 @@ export const HalfHero = ({ image, title, text, button, imageSide }) => {
             }}
             order="2"
           >
-            <Heading
-              as="h1"
-              size="3xl"
-              color="gray.800"
-              mt="8"
-              fontWeight="extrabold"
-              letterSpacing="tight"
-            >
-              {title}
-            </Heading>
-            <Text color={mode('gray.600', 'gray.400')} mt="4" fontSize="lg" fontWeight="medium">
-              {text}
-            </Text>
-            <Button as={GatsbyLink} fontWeight="400" cover direction="down" to={buttonLink} mt="8" href="#" size="md" rounded="full" bg="gray.800" color="gray.50">
-              {buttonTitle}
-            </Button>
+            {title && (
+              <Heading
+                as="h1"
+                size="3xl"
+                color="gray.800"
+                mt="8"
+                fontWeight="extrabold"
+                letterSpacing="tight"
+              >
+                {title}
+              </Heading>
+            )}
+            {text && (
+              <Text color={mode('gray.600', 'gray.400')} mt="4" fontSize="lg" fontWeight="medium">
+                {text}
+              </Text>
+            )}
+            {button && (
+              <Button as={GatsbyLink} fontWeight="400" cover direction="down" to={buttonLink} mt="8" href="#" size="md" rounded="full" bg="gray.800" color="gray.50">
+                {buttonTitle}
+              </Button>
+            )}
+           
           </Box>
           {image && (
             <Box

@@ -57,8 +57,9 @@ export const JobsList = ({ statusSelected, setLoading, setError }) => {
 	})
 
 	useEffect(() => {
-		refetch({ variables: { status: statusSelected } }).catch(err => console.log(err))
-		console.log(statusSelected)
+		refetch({ variables: { status: statusSelected } }).catch(err => 
+			console.log(err))
+			console.log(statusSelected)
 	}, [statusSelected, refetch])
 
 	if (error) return <p>{`Error: ${error}`}</p>

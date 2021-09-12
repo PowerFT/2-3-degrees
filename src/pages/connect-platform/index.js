@@ -1,5 +1,9 @@
 import React from "react"
+import { Router } from "@reach/router"
+
+import { ConnectJobs } from '../../components/connect-platform/ConnectJobsBoard'
 import { ConnectPlatform } from '../../components/connect-platform'
+import PrivateRoute from "../../components/PrivateRoute"
 
 const ConnectPlatformPage = () => {
 
@@ -12,7 +16,10 @@ const ConnectPlatformPage = () => {
 
   return (
     <>
-      <ConnectPlatform />
+      <Router basepath="/connect-platform">
+        <PrivateRoute path="/" component={ ConnectPlatform } />
+        <ConnectJobs path="/jobs" component={ ConnectJobs } />
+      </Router>
     </>
   )
 }

@@ -31,14 +31,10 @@ export const SigninForm = ({user}) => {
     console.log("user", user)
     e.preventDefault()
     login(email, password)
-    .then(console.log("viewwwwerrrrr: ", viewer))
-    // .then(
-    //   (() => {
-    //     if(viewer && !loadingViewer) {
-    //       navigate(user === "maker" ? "/connect-platform?user=maker" : "/connect-platform?user=talent")
-    //     }
-    //   })()
-    // )
+    // .then(()=> {
+    //   if(status==="resolved")
+    //   (navigate(user === "maker" ? "/connect-platform?user=maker" : "/connect-platform?user=talent"))()
+    // })
   }
 
   return (

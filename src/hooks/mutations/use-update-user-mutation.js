@@ -37,7 +37,7 @@ const UPDATEUSER = gql`
 	 const [ mutation, mutationResults ] = useMutation( UPDATEUSER );
  
 	 const updateUserMutation = ( accountDeets ) => {
-		 console.log(accountDeets)
+		 //console.log(accountDeets)
 		 return mutation( {
 			 variables: {
 				clientMutationId: uuidv4(),

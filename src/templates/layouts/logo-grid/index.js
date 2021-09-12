@@ -45,7 +45,7 @@ export const LogoGrid = () => {
 					<StaticImage height={80} src="../../../images/client-logos/Coke.svg"/>
 					<StaticImage height={80} src="../../../images/client-logos/Converse.svg"/>
 					<StaticImage height={80} src="../../../images/client-logos/Google.svg"/>
-					<StaticImage height={80} src="../../../images/client-logos/LANDSEC.svg"/>
+					{/* <StaticImage height={80} src="../../../images/client-logos/LANDSEC.svg"/> */}
 					<StaticImage height={80} src="../../../images/client-logos/microsoft.svg"/>
 
 				</SimpleGrid>

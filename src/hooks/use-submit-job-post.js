@@ -23,19 +23,19 @@ export const useSubmitJobPost = ( formType ) => {
 
 	const submitJobPost = ( props ) => {
 
-		console.log(props)
+		//console.log(props)
 		setSubmitLoading( true );
 
 		const success = ( result ) => {
 			navigate('/maker/myjobs')
-			console.log(result)
-			console.log('update success')
+			//console.log(result)
+			//console.log('update success')
 			setSubmitLoading( false );
 			return result.data;
 		};
 
 		const fail = ( errors ) => {
-			console.log('update fail', errors)
+			//console.log('update fail', errors)
 			setSubmitLoading( false );
 			throw new Error(
 				`${ stripHtml( decodeEntities( errors.message ) ).result }`
@@ -57,12 +57,12 @@ export const useSubmitJobPost = ( formType ) => {
 			closeDate,
 		} = props.variables;
 
-		console.log(id, title)
-		console.log(formType)
+		//console.log(id, title)
+		//console.log(formType)
 
 		switch ( formType ) {
 			case 'create':
-				console.log('create fired: ', title)
+				//console.log('create fired: ', title)
 				return createJobPost( {
 					variables: {
 						clientMutationId,

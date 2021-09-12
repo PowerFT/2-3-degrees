@@ -21,12 +21,12 @@ export const useDeleteJobPost = (jobPostId) => {
 		setStatus( 'resolving' );
 		return deleteJobPostMutation( jobPostId )
 			.then( () => {
-				console.log('sent delete mutation')
+				//console.log('sent delete mutation')
 				setStatus( 'resolved' );
 				navigate('/maker/jobs')
 			} )
 			.catch( ( errors ) => {
-				console.log(errors)
+				//console.log(errors)
 				setError(errors);
 				setStatus( 'resolved' );
 			} );

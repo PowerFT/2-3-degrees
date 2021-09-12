@@ -6,7 +6,7 @@ import { Box, Heading } from '@chakra-ui/react'
 
 export const ConnectBlogBlock = ({ data }) => {
 
-  console.log("data" , data)
+  //console.log("data" , data)
 	
 	
 	return (

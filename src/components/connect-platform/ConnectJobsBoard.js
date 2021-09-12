@@ -6,14 +6,14 @@ import { useLocation } from '@reach/router';
 import queryString from 'query-string';
 
 // import { JobsFilter } from "../../../components/jobs/jobs-board/jobs-filter";
-import { JobsBoardJobList } from "../../../components/jobs/jobs-board/jobs-list";
+import { JobsBoardJobList } from "../jobs/jobs-board/jobs-list";
 // import Layout from '../../../components/layout/Layout';
-import { InnerSidebar } from '../../../components/layout/InnerSidebar';
+import { InnerSidebar } from '../layout/InnerSidebar';
 // import { JobsCardContainer } from '../../../components/jobs/JobsCardContainer';
-import { Header } from '../../../components/layout/Header';
-import { Content } from '../../../components/layout/Content';
-import { JobsFilterTop } from '../../../components/jobs/jobs-filter-top';
-import { MySpinner } from '../../../components/waiting/MySpinner';
+import { Header } from '../layout/Header';
+import { Content } from '../layout/Content';
+import { JobsFilterTop } from '../jobs/jobs-filter-top';
+import { MySpinner } from '../waiting/MySpinner';
 
 const MotionBox = motion(Box)
 
@@ -26,20 +26,20 @@ const getTagName = (query) => {
 
     // Ensure a valid expected value is passed
     if (skill || type) {
-      console.log('link query returned', skill, type)
+      //console.log('link query returned', skill, type)
       return {
 				skill: skill,
 				type: type
 			};
     }
-    console.log('parsing didnt work')
+    //console.log('parsing didnt work')
     return fallback;
   }
-  console.log('location.search doesnt exsit')
+  //console.log('location.search doesnt exsit')
   return fallback;
 };
 
-const ConnectJobs = () => {
+export const ConnectJobs = () => {
 
 	// url query
 	const location = useLocation();
@@ -139,5 +139,3 @@ const ConnectJobs = () => {
 		</>
 	)
 }
-
-export default ConnectJobs
