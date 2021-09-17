@@ -20,7 +20,7 @@ import { AdminBlob } from '../../AdminBlob'
 
 export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, setSalStructure, title, salary, content, companyBio, closeDate, jobLocation, sector, jobType, companyName, salaryStructure, id}) => {
 
-  //console.log(salStructure)
+  console.log(salStructure)
 
   const { submitJobPost, submitLoading } = useSubmitJobPost(formType);
 
@@ -125,14 +125,14 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                   <StaticQuery
                     query={META_QUERY}
                     render={data => {
-                      if (data.allWpSector) {
-                        const sectors = data.allWpSector.nodes
+                      if (data.allWpJobType) {
+                        const jobTypes = data.allWpJobType.nodes
 
                         return (
                           <>
                             {
-                              sectors &&
-                              sectors.map((item) => (
+                              jobTypes &&
+                              jobTypes.map((item) => (
                                 <option key={item.id} value={item.name}>{item.name}</option>
                               ))
                             }
@@ -165,7 +165,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                     render={data => {
                       if (data.allWpSalaryStructure) {
                         const salaryStructures = data.allWpSalaryStructure.nodes
-
+                        console.log('salaryS', data)
                         return (
                           <>
                             {
@@ -265,9 +265,25 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                     })
                   }
                 >
-                  <option value="Tech">Tech</option>
-                  <option value="Sport">Sport</option>
-                  <option value="Publishing">Publishing</option>
+                  <StaticQuery
+                    query={META_QUERY}
+                    render={data => {
+                      if (data.allWpSector) {
+                        const sectors = data.allWpSector.nodes
+
+                        return (
+                          <>
+                            {
+                              sectors &&
+                              sectors.map((item) => (
+                                <option key={item.id} value={item.name}>{item.name}</option>
+                              ))
+                            }
+                          </>
+                        )
+                      }
+                    }}
+                  />
                 </Select>
               </FormControl>
 
