@@ -120,11 +120,11 @@ export const MakerAccountSettings = () => {
                 <Stack w="100%">
                   <FormControl id="name">
                     <FormLabel>First Name</FormLabel>
-                    <Input type="text" maxLength={100} value={accountDeets.firstName} onChange={(e) => setAccountDeets({ ...accountDeets, firstName: e.target.value })} />
+                    <Input type="text" maxLength={100} value={accountDeets?.firstName} onChange={(e) => setAccountDeets({ ...accountDeets, firstName: e.target.value })} />
                   </FormControl>
                   <FormControl id="name">
                     <FormLabel>Last Name</FormLabel>
-                    <Input type="text" maxLength={100} value={accountDeets.lastName} onChange={(e) => setAccountDeets({ ...accountDeets, lastName: e.target.value })} />
+                    <Input type="text" maxLength={100} value={accountDeets?.lastName} onChange={(e) => setAccountDeets({ ...accountDeets, lastName: e.target.value })} />
                   </FormControl>
                 </Stack>
 
@@ -136,20 +136,20 @@ export const MakerAccountSettings = () => {
 
                 <FormControl id="cNameEdit">
                   <FormLabel>Organisation Name</FormLabel>
-                  <Input type="text" value={accountDeets.companyName} onChange={(e) => setAccountDeets({ ...accountDeets, companyName: e.target.value })} />
+                  <Input type="text" value={accountDeets?.companyName} onChange={(e) => setAccountDeets({ ...accountDeets, companyName: e.target.value })} />
                 </FormControl>
 
                 <FormControl id="cNameEdit">
                   <FormLabel>Organisation Website</FormLabel>
                   <InputGroup>
                     <InputLeftAddon children="https://" />
-                    <Input placeholder="mysite" type="text" value={accountDeets.companyWebsite} onChange={(e) => setAccountDeets({ ...accountDeets, companyWebsite: e.target.value })} />
+                    <Input placeholder="mysite" type="text" value={accountDeets?.companyWebsite} onChange={(e) => setAccountDeets({ ...accountDeets, companyWebsite: e.target.value })} />
                   </InputGroup>
                 </FormControl>
 
                 <FormControl id="bio">
                   <FormLabel>Organisation Bio</FormLabel>
-                  <Textarea rows={5} value={accountDeets.companyBio} onChange={(e) => setAccountDeets({ ...accountDeets, companyBio: e.target.value })} />
+                  <Textarea rows={5} value={accountDeets?.companyBio} onChange={(e) => setAccountDeets({ ...accountDeets, companyBio: e.target.value })} />
                   <FormHelperText>
                     Brief description for your organisation's account.
                   </FormHelperText>

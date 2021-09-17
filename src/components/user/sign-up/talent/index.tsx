@@ -91,7 +91,7 @@ export const SignUp = () => {
                 Sign up to create an account
               </Text>
               <Text mt="3" color={mode('gray.600', 'gray.400')} fontWeight="medium">
-                Have an account? <UnderlineLink link='/talent' >Sign in here</UnderlineLink>
+                Have an account? <UnderlineLink link='/talent/sign-in' >Sign in here</UnderlineLink>
               </Text>
             </Box>
             <SignUpForm user="talent" />

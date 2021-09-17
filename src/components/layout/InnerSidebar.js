@@ -54,7 +54,7 @@ export const InnerSidebar = ({
 				{
 					primaryLinks && (
 						<VStack spacing="0" border="1px solid" color="gray.50" w="100%" rounded="sm">
-							<Flex align="center" bg="gray.50" fontSize="xs" textAlign="start" rounded="sm" color="pink.200" w="100%" py="1" pl="2"><Icon as={BsFillLightningFill} mr="1"/>Quick Links</Flex>
+							<Flex align="center" bg="gray.50" fontSize="xs" textAlign="start" rounded="sm" color="dBlue.300" w="100%" py="1" pl="2"><Icon as={BsFillLightningFill} mr="1"/>Quick Links</Flex>
 							{primaryLinks.map((link, i) => (
 								<LinkBox 
 									_hover={{ bg: 'whiteAlpha.400' }}
@@ -74,7 +74,7 @@ export const InnerSidebar = ({
 				{
 					secondaryLinks && (
 						<VStack spacing="0" border="1px solid" color="gray.50" w="100%" rounded="sm">
-							<Flex align="center" bg="gray.50" fontSize="xs" textAlign="start" rounded="sm" color="pink.200" w="100%" py="1" pl="2"><Icon as={BsInfoCircleFill} mr="1"/>Useful Links</Flex>
+							<Flex align="center" bg="gray.50" fontSize="xs" textAlign="start" rounded="sm" color="dBlue.300" w="100%" py="1" pl="2"><Icon as={BsInfoCircleFill} mr="1"/>Useful Links</Flex>
 							{secondaryLinks.map((link, i) => (
 								<LinkBox 
 									_hover={{ bg: 'whiteAlpha.400' }}

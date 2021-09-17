@@ -61,7 +61,7 @@ export const Feature = ({ img, linkUrl, title, children, icon, videoOrImage, vid
 									<AspectRatio maxW="560px" ratio={1.25} mx="auto">
 										<iframe
 											title={`Embassador ${i}`}
-											src={videoLink}
+											src={`${videoLink}?autoplay=1`}
 											allowFullScreen
 										/>
 									</AspectRatio>

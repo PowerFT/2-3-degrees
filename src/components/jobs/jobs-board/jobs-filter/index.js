@@ -292,10 +292,10 @@ export const JobsFilter = ({ setError, setLoading, locations, setLocations, sect
 							fontWeight="bold"
 							bg={active ? "red.700" : "gray.50"}
 							_hover={{
-								bg: 'gray.600',
+								bg: 'gray.100',
 							}}
 							_active={{
-								bg: 'red.700',
+								bg: 'gray.200',
 							}}
 							onClick={() => {
 								jobTypes.includes(node.name)
@@ -337,10 +337,10 @@ export const JobsFilter = ({ setError, setLoading, locations, setLocations, sect
 							fontWeight="bold"
 							bg={active ? "red.700" : "gray.50"}
 							_hover={{
-								bg: 'gray.600',
+								bg: 'gray.100',
 							}}
 							_active={{
-								bg: 'red.700',
+								bg: 'gray.200',
 							}}
 							onClick={() => {
 								// active = !active
