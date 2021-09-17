@@ -80,7 +80,7 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes, skills }) => {
 
 	const where = !locations.length && !sectors.length && !jobTypes.length && !skills.length ? null : {
 		taxQuery: {
-			relation: 'AND',
+			relation: 'OR',
 			taxArray: whereArr
 		}
 	}
@@ -108,7 +108,7 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes, skills }) => {
 	if (!data && loading) return <MySpinner />
 	// if (!data?.jobPosts.edges.length) return <Flex justify="center" align="center"><Alert status="warning"> <AlertIcon/>Sorry, No Opportunities found.</Alert></Flex>
 	
-	console.log(data)
+	console.log(data) 
 	// const haveMorePosts = Boolean(data.jobPosts?.pageInfo?.hasNextPage)
 
 	const jobPosts = data?.jobPosts?.edges.map(edge => edge.node)

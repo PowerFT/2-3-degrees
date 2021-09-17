@@ -9,8 +9,14 @@ import {
 import * as React from 'react'
 import { SigninForm } from '../SigninForm'
 import { UnderlineLink } from '../../UnderlineLink'
+import { useAuth } from '../../../../hooks'
+import { navigate } from 'gatsby'
 
 export const SignIn = () => {
+
+  const { isLoggedIn } = useAuth()
+  if(isLoggedIn) navigate("/connect/platform?user=maker")
+
   return (
     <Flex
       direction={{ base: 'column', md: 'row' }}

@@ -14,8 +14,15 @@ import { HiOutlineExternalLink } from 'react-icons/hi'
 import { Logo } from '../../../layout/Logo'
 import { SigninForm } from '../SigninForm'
 import { UnderlineLink } from '../../UnderlineLink'
+import { useAuth } from '../../../../hooks'
+import { navigate } from 'gatsby'
+
 
 export const SignIn = () => {
+
+  const { isLoggedIn } = useAuth()
+  if(isLoggedIn) navigate("/connect/platform?user=talent")
+
   return (
     <Flex
       direction={{ base: 'column', lg: 'row' }}

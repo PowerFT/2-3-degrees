@@ -56,7 +56,7 @@ export const useAuth = () => {
 		setIsLoggedIn(false);
 		setStatus('resolved');
 		setLoading(false)
-		// navigate('/')
+		navigate('/')
 	});
 
 	const onError = useSafeDispatch((errors) => {
