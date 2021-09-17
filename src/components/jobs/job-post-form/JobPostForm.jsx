@@ -4,7 +4,7 @@
 import React from 'react'
 import { InputLeftAddon, InputRightAddon, Button, FormControl, FormHelperText, FormLabel, Input, Select, Stack, Textarea, VStack, InputGroup, } from '@chakra-ui/react'
 import { v4 as uuidv4 } from "uuid"
-import { graphql, StaticQuery } from 'gatsby'
+import { graphql, StaticQuery, navigate } from 'gatsby'
 /**
 * Internal dependencies
 */
@@ -31,10 +31,10 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
     submitJobPost({
       variables: { clientMutationId: uuidv4(), ...formDeets }
     })
-      // .then(navigate(`/maker/jobs`))
-      .catch(error => {
-        //console.log(error); //fix
-      });
+    // .then(navigate(`/maker/jobs`))
+    .catch(error => {
+      console.log(error); //fix
+    });
   }
 
   

@@ -27,7 +27,7 @@ export const useSubmitJobPost = ( formType ) => {
 		setSubmitLoading( true );
 
 		const success = ( result ) => {
-			navigate('/maker/myjobs')
+			navigate('/maker/jobs')
 			//console.log(result)
 			//console.log('update success')
 			setSubmitLoading( false );
