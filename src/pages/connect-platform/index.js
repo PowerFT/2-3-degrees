@@ -5,6 +5,13 @@ import { ConnectJobs } from '../../components/connect-platform/ConnectJobsBoard'
 import { ConnectPlatform } from '../../components/connect-platform'
 import PrivateRoute from "../../components/PrivateRoute"
 
+const NotFound = () => {
+  if (typeof window !== 'undefined') {
+    window.location = '/';
+  }
+
+  return null;
+}
 const ConnectPlatformPage = () => {
 
   // Hello {name}
@@ -16,9 +23,10 @@ const ConnectPlatformPage = () => {
 
   return (
     <>
-      <Router basepath="/connect-platform">
-        <PrivateRoute path="/" component={ ConnectPlatform } />
+      <Router basepath="/connect">
+        <PrivateRoute path="/platform" component={ ConnectPlatform } />
         <ConnectJobs path="/jobs" component={ ConnectJobs } />
+        <NotFound default />
       </Router>
     </>
   )

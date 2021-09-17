@@ -48,7 +48,7 @@ export const useAuth = () => {
 		setIsLoggedIn(true);
 		setStatus('resolved');
 		setLoading(false)
-		// navigate(user === "maker" ? "/connect-platform?user=maker" : "/connect-platform?user=talent")
+		// navigate(user === "maker" ? "/connect/platform?user=maker" : "/connect/platform?user=talent")
 	});
 
 	const onLogoutSuccess = useSafeDispatch(() => {
@@ -75,7 +75,7 @@ export const useAuth = () => {
 		return loginMutation(email, password)
 			.then(onLoginSuccess)
 			// .then(() => { if(viewer) navigate('/')})
-			// .then(navigate(user === "maker" ? "/connect-platform?user=maker" : "/connect-platform?user=talent"))
+			// .then(navigate(user === "maker" ? "/connect/platform?user=maker" : "/connect/platform?user=talent"))
 			.catch(onError);
 	};
 

@@ -46,7 +46,7 @@ export const MobileBottomBar = () => {
             <Flex direction="column" justify="center" align="center" p={2} flex="1 1" ml="10px">
               <LinkBox textAlign="center">
                 <Icon as={RiCreativeCommonsSaFill} w={6} h={6} />
-                <Text fontWeight="bold" fontSize="xs" textTransform="uppercase"><LinkOverlay as={GatsbyLink} to="/connect-platform">Connect</LinkOverlay></Text>
+                <Text fontWeight="bold" fontSize="xs" textTransform="uppercase"><LinkOverlay as={GatsbyLink} to="/connect/platform">Connect</LinkOverlay></Text>
               </LinkBox>
             </Flex>
             <Flex direction="column" justify="center" align="center" p={2} flex="1 1">

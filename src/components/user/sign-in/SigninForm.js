@@ -33,7 +33,7 @@ export const SigninForm = ({user}) => {
     login(email, password)
     // .then(()=> {
     //   if(status==="resolved")
-    //   (navigate(user === "maker" ? "/connect-platform?user=maker" : "/connect-platform?user=talent"))()
+    //   (navigate(user === "maker" ? "/connect/platform?user=maker" : "/connect/platform?user=talent"))()
     // })
   }
 

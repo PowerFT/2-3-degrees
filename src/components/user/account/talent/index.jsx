@@ -94,7 +94,7 @@ export const TalentAccountSettings = ({user}) => {
       <Flex w="100%">
         <InnerSidebar
           title="Test"
-          primaryLinks={[["Connect Platform", "/connect-platform"], ["Latest Opportunites", "/connect-platform/jobs"]]}
+          primaryLinks={[["Connect Platform", "/connect/platform"], ["Latest Opportunites", "/connect/jobs"]]}
           secondaryLinks={[["Why we ask for account information", "#"], ["Terms and Conditions", "#"]]}
           pageType={pageType}
         />

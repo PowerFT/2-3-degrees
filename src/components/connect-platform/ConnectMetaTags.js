@@ -57,7 +57,7 @@ export const ConnectMetaTags = () => {
 							bg: 'gray.600',
 						}}
 					>
-						<LinkOverlay as={Link} to={`/connect-platform/jobs/?type=${node.name}`}>{node.name}</LinkOverlay>
+						<LinkOverlay as={Link} to={`/connect/jobs/?type=${node.name}`}>{node.name}</LinkOverlay>
 					</LinkBox>
 				))}
 			</Flex>
@@ -89,7 +89,7 @@ export const ConnectMetaTags = () => {
 							bg: 'gray.600',
 						}}
 					>
-						<LinkOverlay as={Link} to={`/connect-platform/jobs/?skill=${node.name}`}>{node.name}</LinkOverlay>
+						<LinkOverlay as={Link} to={`/connect/jobs/?skill=${node.name}`}>{node.name}</LinkOverlay>
 					</LinkBox>
 				))}
 			</Flex>

@@ -23,7 +23,7 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
 
   const formattedSalary = parseInt(salary).toLocaleString()
 	// const pending = status !== "publish"
-	// const jobPostLink = `/connect-platform${jobPostId}`
+	// const jobPostLink = `/connect${jobPostId}`
   
 
   return (
@@ -151,7 +151,7 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
             size="lg"
           />
           <MenuList>
-            <MenuItem as={Link} to={`/connect-platform/jobs/${id}`} icon={<HiOutlineEye />} command="⌘T">
+            <MenuItem as={Link} to={`/connect/jobs/${id}`} icon={<HiOutlineEye />} command="⌘T">
                 View
             </MenuItem>
             <MenuItem as={Link} to={`/maker/jobs/edit?job=${id}`} icon={<HiOutlinePencil />} command="⌘N">

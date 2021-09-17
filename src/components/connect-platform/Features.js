@@ -49,7 +49,7 @@ export const Features = ({complete, user}) => {
 						/>
 						<Feature 
 							complete={complete}
-							featureLink="/connect-platform/jobs"
+							featureLink="/connect/jobs"
 							title="Connect Opportunity Board" 
 							icon={<HiSearchCircle />} 
 						/>
@@ -70,19 +70,19 @@ export const Features = ({complete, user}) => {
 					<>
 						<Feature 
 							complete={complete}
-							featureLink="/connect-platform/jobs"
+							featureLink="/connect/jobs"
 							title="Connect Opportunity Board" 
 							icon={<HiSearchCircle />} 
 						/>
 						<Feature 
 							complete={complete}
-							featureLink="/connect-platform#connect-content" 
+							featureLink="/connect/platform#connect-content" 
 							title="Connected Content" 
 							icon={<HiSpeakerphone />} 
 						/>
 						<Feature 
 							complete={complete}
-							featureLink="/connect-platform#opportunity-tags"
+							featureLink="/connect/platform#opportunity-tags"
 							title="Search Jobs by Skill" 
 							icon={<HiSearchCircle />} 
 						/>

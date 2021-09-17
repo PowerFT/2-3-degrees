@@ -1,13 +1,10 @@
 import React from "react"
 import { Router } from "@reach/router"
-// import Profile from "../../components/user/Profile"
+
 import { TalentAccountSettings } from "../../components/user/account/talent"
 import MyJobs from "../../components/jobs/MyJobs"
 import { SignIn } from "../../components/user/sign-in/talent"
 import { SignUp } from "../../components/user/sign-up/talent"
-// import { Hello } from "../../components/user/hello"
-
-// import Default from "../../components/Default"
 import PrivateRoute from "../../components/PrivateRoute"
 
 const NotFound = () => {

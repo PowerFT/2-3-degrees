@@ -35,7 +35,7 @@ export const NavMenus = ({menuopen, viewer, loadingViewer, isLoggedIn, onclose})
 						<>
 							<MenuItem 
 								menuopen={menuopen} 
-								link="/connect-platform" 
+								link="/connect/platform" 
 								label="Connect" 
 								icon={BsFillLightningFill} 
 								isActive 
@@ -43,7 +43,7 @@ export const NavMenus = ({menuopen, viewer, loadingViewer, isLoggedIn, onclose})
 							/>
 							<MenuItem 
 								menuopen={menuopen} 
-								link="/connect-platform/jobs" 
+								link="/connect/jobs" 
 								label="Opportunity Board" 
 								icon={BsFillLightningFill} 
 								isActive 

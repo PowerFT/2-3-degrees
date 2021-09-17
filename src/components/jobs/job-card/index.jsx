@@ -10,20 +10,13 @@ import {
   useColorModeValue,
   VStack,
 } from '@chakra-ui/react'
-// import {FaRegEye} from 'react-icons/fa'
-// import {RiEditLine} from 'react-icons/ri'
-// import {QuestionOutlineIcon} from '@chakra-ui/icons'
 import * as React from 'react'
 import {Link as GatsbyLink} from 'gatsby'
 import { HiCash, HiClock, HiLocationMarker } from 'react-icons/hi'
-// import {AdminBlob} from '../../AdminBlob'
 
 export const JobCard = ({title, jobLocation, salary, jobType, sector, companyName, jobPostId, status, content, id, uri}) => {
 
   const formattedSalary = parseInt(salary).toLocaleString()
-	// const pending = status !== "publish"
-	// const jobPostLink = `/connect-platform${jobPostId}`
-   
 
   return (
     <LinkBox>
@@ -51,7 +44,7 @@ export const JobCard = ({title, jobLocation, salary, jobType, sector, companyNam
           <HStack align="flex-start" justify="space-between" mb="1.5">
             <VStack align="flex-start" >
               <Text fontSize={{base:"2xl",  sm:"3xl"}} as="h2" fontWeight="400">
-                <LinkOverlay as={GatsbyLink} to={`/connect-platform/jobs/${id}`}>{title}</LinkOverlay>
+                <LinkOverlay as={GatsbyLink} to={`/connect/jobs/${id}`}>{title}</LinkOverlay>
               </Text>
               <HStack
                 spacing={{

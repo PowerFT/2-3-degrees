@@ -2,13 +2,9 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import parse from "html-react-parser"
 import { motion } from "framer-motion"
-
-// import Image from "gatsby-image"
-// import parse from "html-react-parser"
 import { Box } from "@chakra-ui/layout"
 import { Text, Button, Flex, Heading, HStack, Icon, Stack, Spacer, Avatar, Breadcrumb, BreadcrumbItem, BreadcrumbLink, VStack } from "@chakra-ui/react"
-import { HiCalendar, HiCash, HiClock, HiLink, HiLocationMarker, HiOutlineClock, HiOutlineCurrencyPound, HiOutlineHand, HiOutlineLocationMarker } from "react-icons/hi"
-import Layout from "../components/layout/Layout"
+import { HiOutlineClock, HiOutlineCurrencyPound, HiOutlineHand, HiOutlineLocationMarker } from "react-icons/hi"
 import { InnerSidebar } from "../components/layout/InnerSidebar"
 
 const JobSidebar = ({salary, jobLocation, sector, skills, jobType, ...rest}) => {
@@ -83,12 +79,12 @@ export const BreadCrumb = () => {
 	return (
 		<Breadcrumb bg="dBlue.200" w="fit-content" px={2} py={0}>
 			<BreadcrumbItem m="0">
-				<BreadcrumbLink as={Link} to="/connect-platform">
+				<BreadcrumbLink as={Link} to="/connect/platform">
 					Connect Platform
 				</BreadcrumbLink>
 			</BreadcrumbItem>
 			<BreadcrumbItem m="0">
-				<BreadcrumbLink as={Link} to="/connect-platform/jobs">
+				<BreadcrumbLink as={Link} to="/connect/jobs">
 					Jobs Board
 				</BreadcrumbLink>
 			</BreadcrumbItem>

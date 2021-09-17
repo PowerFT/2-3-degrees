@@ -18,6 +18,14 @@ const PrivateRoute = ({ component: Component, location, ...rest }) => {
     navigate("/maker/sign-in")
     return null
   }
+  if (!isLoggedIn && location.pathname !== `/talent/sign-in`) {
+    navigate("/talent/sign-in")
+    return null
+  }
+  if (!isLoggedIn && location.pathname !== `/connect/*`) {
+    navigate("/")
+    return null
+  }
 
   return <Component {...rest} />
 }

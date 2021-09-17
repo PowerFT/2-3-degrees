@@ -62,7 +62,7 @@ const createJobPostPages = async ({ jobPosts, gatsbyUtilities }) => {
   return Promise.all(
     jobPosts?.map(({ jobPost }) =>
       gatsbyUtilities.actions.createPage({
-        path: `/connect-platform/jobs/${jobPost.id}`,
+        path: `/connect/jobs/${jobPost.id}`,
         component: path.resolve(`./src/templates/job-post.js`),
         context: {
           id: jobPost.id,
@@ -602,15 +602,15 @@ exports.onCreatePage = async ({ page, actions }) => {
 
   // page.matchPath is a special key that's used for matching pages
   // only on the client.
-  if (page.path.match(/^\/talent/) || page.path.match(/^\/maker/) || page.path.match(/^\/connect-platform/)) {
+  if (page.path.match(/^\/talent/) || page.path.match(/^\/maker/) || page.path.match(/^\/connect/)) {
     if (page.path.match(/^\/talent/)) {
       page.matchPath = `/talent/*`
     }
     if (page.path.match(/^\/maker/)) {
       page.matchPath = `/maker/*`
     }
-    if (page.path.match(/^\/connect-platform/)) {
-      page.matchPath = `/connect-platform/*`
+    if (page.path.match(/^\/connect/)) {
+      page.matchPath = `/connect/*`
     }
 
     // Update the page.
