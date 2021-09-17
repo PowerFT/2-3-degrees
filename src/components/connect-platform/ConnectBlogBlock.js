@@ -6,7 +6,7 @@ import { Box, Heading } from '@chakra-ui/react'
 
 export const ConnectBlogBlock = ({ data }) => {
 
-  //console.log("data" , data)
+  // console.log("data" , data)
 	
 	
 	return (
@@ -32,7 +32,7 @@ export const ConnectBlogBlock = ({ data }) => {
 
 const connectBlogQuery = graphql`
   query connectBlogQuery {
-    allWpPost(filter: {terms: {nodes: {elemMatch: {name: {eq: "Locked"}}}}}) {
+    allWpPost(filter: {categories: {nodes: {elemMatch: {name: {eq: "Connect"}}}}}) {
       nodes {
         excerpt
         uri

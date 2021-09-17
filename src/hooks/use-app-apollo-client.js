@@ -1,9 +1,9 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { createUploadLink } from 'apollo-upload-client';
-// import { BatchHttpLink } from '@apollo/client/link/batch-http';
+// import { createUploadLink } from 'apollo-upload-client';
+import { BatchHttpLink } from '@apollo/client/link/batch-http';
 import fetch from "cross-fetch";
 
-const link = new createUploadLink({
+const link = new BatchHttpLink({
   uri: process.env.GATSBY_WORDPRESS_API_URL,
   credentials: 'include',
   fetch,

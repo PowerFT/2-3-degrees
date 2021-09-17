@@ -54,7 +54,7 @@ export const ConnectMetaTags = () => {
 						fontWeight="bold"
 						// bg={active ? "red.700" : "gray.50"}
 						_hover={{
-							bg: 'gray.600',
+							bg: 'dOrange.100',
 						}}
 					>
 						<LinkOverlay as={Link} to={`/connect/jobs/?type=${node.name}`}>{node.name}</LinkOverlay>
@@ -86,7 +86,7 @@ export const ConnectMetaTags = () => {
 						fontWeight="bold"
 						// bg={active ? "red.700" : "gray.50"}
 						_hover={{
-							bg: 'gray.600',
+							bg: 'dOrange.200',
 						}}
 					>
 						<LinkOverlay as={Link} to={`/connect/jobs/?skill=${node.name}`}>{node.name}</LinkOverlay>

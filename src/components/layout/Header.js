@@ -16,7 +16,7 @@ export const Header = ({title, subTitle, imageData, imgAlt, pageType, avatar, bl
 	// 	connectPage: "dOrange.300",
 	// }
 
-	const hidden = pageType === "home" || pageType === "connectHome" || pageType === "login"
+	const hidden = pageType === "home" || pageType === "connect-home" || pageType === "login"
 
 	//console.log(pageType)
 	return (

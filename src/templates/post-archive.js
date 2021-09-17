@@ -86,7 +86,7 @@ const BlogIndex = ({
 
 export default BlogIndex
 
-export const pageQuery = graphql`
+export const archiveQuery = graphql`
   query WordPressPostArchive($offset: Int!, $postsPerPage: Int!) {
     allWpPost(
       filter: {terms: {nodes: {elemMatch: {name: {nin: "Locked"}}}}}

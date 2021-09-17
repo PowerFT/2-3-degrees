@@ -5,15 +5,33 @@ import { BsFillLightningFill, BsInfoCircleFill } from 'react-icons/bs'
 // import { motion } from 'framer-motion';
 // const MotionBox = motion(Box)
 import {JobsFilter} from '../jobs/jobs-board/jobs-filter'
+import { JobSidebar } from '../jobs/job-post/jobPostSidebar'
 
-export const InnerSidebar = ({primaryLinks, secondaryLinks, pageType, locations, setLocations, sectors, setSectors, jobTypes, setJobTypes, skills, setSkills}) => {
+export const InnerSidebar = ({
+	primaryLinks, 
+	secondaryLinks, 
+	pageType, 
+	locations, 
+	setLocations, 
+	sectors, 
+	setSectors, 
+	jobTypes, 
+	setJobTypes, 
+	skills, 
+	setSkills,
+	jobLocation,
+	sector,
+	jobType,
+	jobSkills,
+	salary
+}) => {
 	
 	// const colour = {
 	// 	admin: "dBlue.200",
 	// 	connectPage: "dOrange.300",
 	// }
 
-	const hidden = pageType === "blog" || pageType === "generic" || pageType === "home" || pageType === "connectHome" || pageType === "login"
+	const hidden = pageType === "blog" || pageType === "generic" || pageType === "home" || pageType === "connect-home" || pageType === "login"
 
 	return (
 		<Box 
@@ -32,7 +50,7 @@ export const InnerSidebar = ({primaryLinks, secondaryLinks, pageType, locations,
 				lg: hidden ? 'none' : 'block',
 			}}
 		>
-			<VStack spacing="4">
+			<VStack spacing="4" h="full">
 				{
 					primaryLinks && (
 						<VStack spacing="0" border="1px solid" color="gray.50" w="100%" rounded="sm">
@@ -84,6 +102,18 @@ export const InnerSidebar = ({primaryLinks, secondaryLinks, pageType, locations,
 							setJobTypes={setJobTypes}
 							skills={skills}
 							setSkills={setSkills}
+						/>
+					)
+				}
+
+				{
+					pageType === "job-post" && (
+						<JobSidebar
+							jobLocation={jobLocation}
+							sector={sector}
+							jobType={jobType}
+							jobSkills={jobSkills}
+							salary={salary}
 						/>
 					)
 				}

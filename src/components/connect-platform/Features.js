@@ -7,14 +7,14 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { Link } from 'gatsby'
-import { HiSpeakerphone, HiLockOpen, HiUserCircle, HiSearchCircle } from 'react-icons/hi'
+import { HiSpeakerphone, HiUserCircle, HiSearchCircle } from 'react-icons/hi'
 
 
 const Feature = (props) => {
   const { title, icon, featureLink, complete } = props
   return (
     <Link to={featureLink}>
-      <Flex direction="column" align="center" bg="dOrange.300" rounded="xl" p="5" _hover={{bg: "dOrange.200"}} h="100%">
+      <Flex direction="column" align="center" bg="dOrange.300" p="10" _hover={{bg: "dOrange.200"}} h="100%">
         <Box color="gray.50" fontSize="3rem">
           {icon}
         </Box>
@@ -34,9 +34,8 @@ export const Features = ({complete, user}) => {
 		<SimpleGrid
 			flex="1"
 			columns={{ base: 1, md: 2 }}
-			spacing={{ base: '2rem', md: '1.5rem' }}
-			mt="4"
-			maxW="xl"
+			spacing="0"
+			w='100%'
 		>
 			{
 				user === 'maker' ? (

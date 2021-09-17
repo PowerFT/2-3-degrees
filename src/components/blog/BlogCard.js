@@ -44,7 +44,7 @@ export const BlogCard = ({ postData }) => {
 					pl="3"
 					pr="9"
 				>
-					<Heading as="h3" size="lg" mb="2" noOfLines={2}>
+					<Heading as="h3" fontSize={{base:"2.5rem", sm:"3rem",md:"1rem", lg:"2rem"}} mb="2" noOfLines={2}>
 						<LinkOverlay as={Link} to={`/blog${uri}`}>{title}</LinkOverlay>
 					</Heading>
 					<Flex

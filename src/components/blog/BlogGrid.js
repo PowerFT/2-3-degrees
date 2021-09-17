@@ -31,10 +31,15 @@ export const BlogGrid = ({ children, archiveLink }) => {
 			>
 				<SimpleGrid
 					columns={{
-						md: 1,
-						lg: 3
+						sm: 1,
+						md: 3,
+						// lg: 3
 					}}
-					spacing="12"
+					spacing={{
+						// sm: 6,
+						md: 6,
+						lg: 12
+					}}
 					mb="10"
 				>
 					{ children }
