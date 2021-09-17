@@ -16,7 +16,8 @@ export const AccountProgress = ({completed, limit, complete, user, ...rest}) => 
       px={{base:"8", sm:"10", md:"24"}} 
       py="3" 
       bg="dOrange.300"
-
+      display={complete && "none"}
+      {...rest}
     >
 
       <LinkBox zIndex="100">

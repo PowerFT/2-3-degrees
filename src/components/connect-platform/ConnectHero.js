@@ -2,10 +2,10 @@ import React from 'react'
 import { StaticImage } from 'gatsby-plugin-image'
 import { Box, Heading, Stack, Text } from '@chakra-ui/react'
 
-export const ConnectHero = ({user}) => {
+export const ConnectHero = ({user, ...rest}) => {
 
 	return (
-		<Box as="section">
+		<Box as="section" {...rest}>
 			<Box
 				mx="auto"
 				h="100%"
@@ -19,8 +19,8 @@ export const ConnectHero = ({user}) => {
 				>
 					<Box
 						flex="1 1 50%"
-						px={{base: '6',md: '8',}}
-						py={{base: '6',md: '10',}}
+						px={{base: '6', md: '8',}}
+						py={{base: '6',sm: "0", md: '4',}}
 					>
 						<Heading
 							as="h1"

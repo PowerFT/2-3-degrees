@@ -77,10 +77,12 @@ export const ConnectPlatform = () => {
         completed={completed}
         complete={complete}
         user={userType}
+        
       />
       
       <ConnectHero
-        user={userType} 
+        user={userType}
+        marginTop="0 !important"
       />
 
       <Features 

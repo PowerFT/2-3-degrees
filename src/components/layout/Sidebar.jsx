@@ -30,6 +30,7 @@ export const Sidebar = ({...rest}) => {
       top="0"
       alignSelf="flex-start"
       h="100vh"
+      zIndex="100"
       {...rest}
     >
         <Flex 
