@@ -1,14 +1,18 @@
 /**
 * External dependencies
 */
-import { Box, Flex, Heading, Spinner, Stack } from '@chakra-ui/react'
+import {  Flex, Spinner } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 /**
 * Internal dependencies
 */
-import { JobPreviewCard } from './JobPreview'
+// import { JobPreviewCard } from './JobPreview'
 import { JobPostForm } from './JobPostForm'
 import { useAuth } from '../../../hooks'
+import { Header } from '../../layout/Header'
+import { Content } from '../../layout/Content'
+import { InnerSidebar } from '../../layout/InnerSidebar'
+import { MySpinner } from '../../waiting/MySpinner'
 
 export const CreateJobPostFormPage = () => {
 
@@ -34,61 +38,36 @@ export const CreateJobPostFormPage = () => {
 
   const { viewer, loadingViewer } = useAuth()
 
+  const pageType = "job-form"
+
   useEffect(() => {
     if(viewer && !loadingViewer) {
       setFormDeets({...formDeets, companyName: viewer.nickname, companyBio: viewer.description})
     }
   }, [viewer, loadingViewer])
 
-  if( !viewer || loadingViewer ) return <Spinner />
+  // if( !viewer || loadingViewer ) return <MySpinner />
 
   return (
 
-    <Flex
-      className="account"
-      bg="gray.200"
-        // px={{
-        //   base: '4',
-        //   md: '10',
-        // }}
-        // py="16"
-        // maxW="5xl"
-        w="100%"
-        direction="column"
-        align="center"
-        h="fit-content"
-        py="10"
-    >
-
+    <>
+      <Header
+        title="Post an Opportunity"
+        pageType={pageType}
+      />
       {/* <FileUploadInput /> */}
-
-      <Heading size="lg" as="h1" paddingBottom="4">
-        Job Post Form
-      </Heading>
-    
-      <Stack spacing="4" justify="center" align="center" 
-        direction={{
-          base: 'column',
-          md: 'row',
-        }}
-      >
-        <Box 
-          alignSelf="flex-start"
-          position="sticky"
-          top= "4"
-        >
-          <JobPreviewCard
-            title = {formDeets.title}
-            companyName = {formDeets.companyName }
-            jobType = {formDeets.jobType}
-            jobLocation = {formDeets.jobLocation}
-            sector = {formDeets.sector}
-            salary = {formDeets.salary}
-            content = {formDeets.content}
-            salStructure={salStructure}
-          />
-        </Box>
-        <Box>
+      <Flex w="100%">
+        <InnerSidebar
+          pageType={pageType}
+          formTitle = {formDeets.title}
+          formCompanyName = {formDeets.companyName}
+          formJobLocation = {formDeets.jobLocation}
+          formSalStructure = {salStructure}
+          formSector = {formDeets.sector}
+          formJobType = {formDeets.jobType}
+          formSalary = {formDeets.salary}
+        />
+        <Content>
           <JobPostForm 
           formType = { formType }
             formDeets = { formDeets }
@@ -109,8 +88,8 @@ export const CreateJobPostFormPage = () => {
             companyBio = {formDeets.companyBio}
             closeDate = {formDeets.closeDate}
           />
-        </Box>
-      </Stack>
-    </Flex>
+        </Content>
+      </Flex>
+    </>
   )
 }

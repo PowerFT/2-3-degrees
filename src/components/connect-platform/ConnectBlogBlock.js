@@ -15,8 +15,8 @@ export const ConnectBlogBlock = ({ data }) => {
     render={data => {
       const posts = data.allWpPost?.nodes
       return (
-        <Box alignSelf="stretch">
-          <Heading size="4xl" textAlign="center" mb="8">
+        <Box alignSelf="stretch" py="12">
+          <Heading size="4xl" textAlign="center" mb="4">
             Connected Content
           </Heading>
           <BlogGrid archiveLink="/blog">

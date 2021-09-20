@@ -11,11 +11,10 @@ import { BsArrowRight } from 'react-icons/bs'
 export const BlogGrid = ({ children, archiveLink }) => {
 	return (
 		<Box
-			as="section"
 			// bg={mode('gray.50', 'gray.800')}
-			py={{
-				base: '10',
-				sm: '24',
+			pt={{
+				base: '6',
+				sm: '12',
 			}}
 		>
 			<Box

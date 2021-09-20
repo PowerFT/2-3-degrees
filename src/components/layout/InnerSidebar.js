@@ -1,11 +1,14 @@
-import { Box, Flex, Heading, Icon, LinkBox, LinkOverlay, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Icon, LinkBox, LinkOverlay, Text, VStack, Accordion, AccordionButton, AccordionPanel, AccordionItem } from '@chakra-ui/react'
 import React from 'react'
 import {Link} from 'gatsby'
 import { BsFillLightningFill, BsInfoCircleFill } from 'react-icons/bs'
 // import { motion } from 'framer-motion';
 // const MotionBox = motion(Box)
+import { AddIcon, MinusIcon } from '@chakra-ui/icons'
+import { FormControl } from '@chakra-ui/form-control'
 import {JobsFilter} from '../jobs/jobs-board/jobs-filter'
 import { JobSidebar } from '../jobs/job-post/jobPostSidebar'
+import { JobPreviewCard } from '../jobs/job-post-form/JobPreview'
 
 export const InnerSidebar = ({
 	primaryLinks, 
@@ -23,7 +26,15 @@ export const InnerSidebar = ({
 	sector,
 	jobType,
 	jobSkills,
-	salary
+	salary,
+	setStatusSelected,
+	formTitle,
+	formCompanyName,
+	formJobLocation,
+	formSalStructure,
+	formSector,
+	formJobType,
+	formSalary,
 }) => {
 	
 	// const colour = {
@@ -115,6 +126,90 @@ export const InnerSidebar = ({
 							jobSkills={jobSkills}
 							salary={salary}
 						/>
+					)
+				}
+				{
+					pageType === "myjobs" && (
+						<>
+							<Heading alignSelf="flex-start">My Opportunities</Heading>
+							<FormControl id="myJobsSelect">
+							{/* <Select bg="gray.400" onChange={(e) => setStatusSelected(e.target.value)}>
+									<option value="PUBLISH">Published</option>
+									<option value="DRAFT">Pending</option>
+								</Select> */}
+							<Accordion allowMultiple mt="2">
+								<AccordionItem>
+									{({ isExpanded }) => (
+										<>
+											<h2>
+												<AccordionButton bg="whiteAlpha.600" px="1">
+													<Box flex="1" textAlign="left" >
+														Post Status
+													</Box>
+													{isExpanded ? (
+														<MinusIcon fontSize="12px" color="gray.50"/>
+													) : (
+														<AddIcon fontSize="12px" color="gray.50"/>
+													)}
+												</AccordionButton>
+											</h2>
+											<AccordionPanel bg="whiteAlpha.400" p={0} maxH="200px" overflow="auto">
+												<Box
+													width="100%"
+													py="1"
+													px="1"
+													fontSize="sm"
+													cursor="pointer"
+													_hover={{ bg: "whiteAlpha.600" }}
+													// _active={{
+													// 	bg: "#dddfe2",
+													// 	transform: "scale(0.98)",
+													// 	borderColor: "#bec3c9",
+													// }}
+													onClick={(e) => setStatusSelected("PUBLISH")}
+												>
+													Published
+												</Box>
+												<Box
+													width="100%"
+													py="1"
+													px="1"
+													fontSize="sm"
+													cursor="pointer"
+													_hover={{ bg: "whiteAlpha.600" }}
+													// _active={{
+													// 	bg: "#dddfe2",
+													// 	transform: "scale(0.98)",
+													// 	borderColor: "#bec3c9",
+													// }}
+													onClick={(e) => setStatusSelected("DRAFT")}
+												>
+													Pending
+												</Box>
+											</AccordionPanel>
+										</>
+									)}
+								</AccordionItem>
+							</Accordion>
+							</FormControl>
+							<Button as={Link} variant="outline" to="/maker/jobs/post" w="100%" mt="2" color="gray.50" rounded="full" _hover={{bg:"gray.50", color:"dBlue.300"}}>
+								Post an Opportunity
+							</Button>
+						</>
+					)
+				}
+
+				{
+					pageType === "job-form" && (
+						<JobPreviewCard
+              title = {formTitle}
+              companyName = {formCompanyName }
+              jobType = {formJobType}
+              jobLocation = {formJobLocation}
+              sector = {formSector}
+              salary = {formSalary}
+              salStructure={formSalStructure}
+            />
 					)
 				}
 				

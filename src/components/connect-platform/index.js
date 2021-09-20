@@ -70,7 +70,7 @@ export const ConnectPlatform = () => {
   //console.log(limit, completed, complete)
 
   return (
-    <Stack as="section" h="full" spacing="12" py="6" align="center">
+    <Stack as="section" h="full" spacing="0" pb="6" align="center">
 
       <AccountProgress
         limit={limit}

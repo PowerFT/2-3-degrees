@@ -12,7 +12,7 @@ export const Content = ({children, ...rest}) => {
 			w="100%"
 			pb="6"
 		>
-			<Flex justify="center" width="100%" direction="column">
+			<Flex justify="center" width="100%" direction="column" p="6">
 				{children}
 			</Flex>
 		</Box>

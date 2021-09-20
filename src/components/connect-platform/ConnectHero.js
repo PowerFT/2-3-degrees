@@ -1,54 +1,74 @@
 import React from 'react'
 import { StaticImage } from 'gatsby-plugin-image'
-import { Box, Heading, Stack, Text } from '@chakra-ui/react'
+import { Box, Heading, Stack, Text, useColorModeValue as mode,
+} from '@chakra-ui/react'
 
 export const ConnectHero = ({user, ...rest}) => {
 
 	return (
-		<Box as="section" {...rest}>
 			<Box
-				mx="auto"
-				h="100%"
+				as="section"
+				bg={mode('gray.50', 'gray.800')}
+				pb="24"
+				w="full"
+				pos="relative"
+				px={{
+					base: '6',
+					lg: '12',
+				}}
 			>
-				<Stack
-					direction={{base: 'column',lg: 'row',}}
-					spacing={{base: '3rem',lg: '2rem',}}
-					align={{lg: 'center',}}
-					justify="space-between"
-					h="full"
-				>
+				<Box maxW="7xl" mx="auto">
 					<Box
-						flex="1 1 50%"
-						px={{base: '6', md: '8',}}
-						py={{base: '6',sm: "0", md: '4',}}
+						maxW={{
+							lg: 'md',
+							xl: 'xl',
+						}}
+						pt={{
+							base: '20',
+							lg: '40',
+						}}
+						pb={{
+							base: '16',
+							lg: '24',
+						}}
 					>
-						<Heading
-							as="h1"
-							size="3xl"
-							color="gray.800"
-							mt="8"
-							fontWeight="extrabold"
-							letterSpacing="tight"
-						>
+						<Heading as="h1" size="3xl" lineHeight="1" fontWeight="extrabold" letterSpacing="tight">
 							Connect Platform
 						</Heading>
-						<Text color="gray.800" mt="4" fontSize="lg" fontWeight="medium">
+						<Text mt={4} fontSize="xl" fontWeight="medium" color={mode('gray.600', 'gray.400')}>
 							The place to connect with opportunities
 						</Text>
 					</Box>
-					<Box
-						flex="1 1 50%"
-						pos="relative"
-						w="full"
-						height="full"
-						m={0}
-					>
-						<StaticImage
-							src="../../images/testImage1.jpg"
-						/>
-					</Box>
-				</Stack>
+				</Box>
+				<Box
+					pos={{
+						lg: 'absolute',
+					}}
+					insetY={{
+						lg: '0',
+					}}
+					insetEnd={{
+						lg: '0',
+					}}
+					bg="gray.50"
+					w={{
+						base: 'full',
+						lg: '50%',
+					}}
+					height={{
+						base: '96',
+						lg: 'full',
+					}}
+					sx={{
+						clipPath: {
+							lg: 'polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%)',
+						},
+					}}
+				>
+					<StaticImage
+						src="../../images/testImage1.jpg"
+					/>
+				</Box>
 			</Box>
-		</Box>
 	)
 }

@@ -175,18 +175,18 @@ export const JobsFilter = ({ setError, setLoading, locations, setLocations, sect
 						{({ isExpanded }) => (
 							<>
 								<h2>
-									<AccordionButton px="0" bg={isExpanded && "gray.50"} _hover={{bg:"gray.50"}}>
+									<AccordionButton px="1" bg={isExpanded && "whiteAlpha.200"} _hover={{bg:"whiteAlpha.700"}}>
 										<Box flex="1" textAlign="left" >
 											Location
 										</Box>
 										{isExpanded ? (
-											<MinusIcon fontSize="12px" />
+											<MinusIcon fontSize="12px" color="whiteAlpha.900"/>
 										) : (
-											<AddIcon fontSize="12px" />
+											<AddIcon fontSize="12px" color="whiteAlpha.900" />
 										)}
 									</AccordionButton>
 								</h2>
-								<AccordionPanel p={0} bg="gray.200" maxH="200px" overflow="auto">
+								<AccordionPanel p={0} bg="whiteAlpha.600" maxH="200px" overflow="auto">
 									{
 										data.allJobLocation.nodes.map((node) => (
 											<Box
@@ -196,12 +196,7 @@ export const JobsFilter = ({ setError, setLoading, locations, setLocations, sect
 												px="1"
 												fontSize="sm"
 												cursor="pointer"
-												_hover={{ bg: "gray.300" }}
-												_active={{
-													bg: "#dddfe2",
-													transform: "scale(0.98)",
-													borderColor: "#bec3c9",
-												}}
+												_hover={{ bg: "whiteAlpha.600" }}
 												onClick={() => {
 													locations.includes(node.name)
 														? setLocations(locations.filter(type => type !== node.name))
@@ -221,18 +216,18 @@ export const JobsFilter = ({ setError, setLoading, locations, setLocations, sect
 						{({ isExpanded }) => (
 							<>
 								<h2>
-								<AccordionButton px="0" bg={isExpanded && "gray.50"} _hover={{bg:"gray.50"}}>
+								<AccordionButton px="1" bg={isExpanded && "whiteAlpha.200"} _hover={{bg:"whiteAlpha.700"}}>
 										<Box flex="1" textAlign="left">
 											Sectors
 										</Box>
 										{isExpanded ? (
-											<MinusIcon fontSize="12px" />
+											<MinusIcon fontSize="12px" color="whiteAlpha.900"/>
 										) : (
-											<AddIcon fontSize="12px" />
+											<AddIcon fontSize="12px" color="whiteAlpha.900"/>
 										)}
 									</AccordionButton>
 								</h2>
-								<AccordionPanel p={0} bg="gray.200" maxH="200px" overflow="auto">
+								<AccordionPanel p={0} bg="whiteAlpha.600" maxH="200px" overflow="auto">
 									{
 										data.allSector.nodes.map((node) => (
 											<Box
@@ -242,12 +237,7 @@ export const JobsFilter = ({ setError, setLoading, locations, setLocations, sect
 												px="1"
 												fontSize="sm"
 												cursor="pointer"
-												_hover={{ bg: "gray.300" }}
-												_active={{
-													bg: "#dddfe2",
-													transform: "scale(0.98)",
-													borderColor: "#bec3c9",
-												}}
+												_hover={{ bg: "whiteAlpha.600" }}
 												onClick={() => {
 													sectors.includes(node.name)
 														? setSectors(sectors.filter(type => type !== node.name))

@@ -52,9 +52,9 @@ export default function Layout({children}) {
           />
           {/* <Header />
           <InnerSidebar /> */}
-          <Content>
-            {children} 
-          </Content>
+          <Box flex="1">
+            {children}
+          </Box>
         </Flex>
 
         <MobileBottomBar isLoggedIn={isLoggedIn}/>

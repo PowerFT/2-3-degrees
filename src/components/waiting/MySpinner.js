@@ -7,7 +7,7 @@ export const MySpinner = () => {
 		<Flex
         id="loadingBlock"
         w="100%"
-        h="100vh"
+        h="50vh"
         justify="center"
         align="center"
       >
@@ -15,7 +15,7 @@ export const MySpinner = () => {
           thickness="4px"
           speed="0.65s"
           emptyColor="gray.200"
-          color="blue.500"
+          color="dYellow.300"
           size="xl"
         />
       </Flex>

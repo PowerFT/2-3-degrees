@@ -49,7 +49,7 @@ export const useViewerQuery = () => {
 	} );
 
 	const onCompleted = useSafeDispatch( ( theData ) => {
-		console.log('onComplete', theData)
+		// console.log('onComplete', theData)
 		if ( !theData.viewer ) {
 			console.log('onComplete failed, no data, logging out')
 			setIsLoggedIn( false );

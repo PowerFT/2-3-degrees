@@ -31,6 +31,7 @@ export const Sidebar = ({...rest}) => {
       alignSelf="flex-start"
       h="100vh"
       zIndex="100"
+      flexShrink="0"
       {...rest}
     >
         <Flex 

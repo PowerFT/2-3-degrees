@@ -109,7 +109,7 @@ export const TalentAccountSettings = ({user}) => {
             }}
           >
 
-            <VStack spacing="4" mt="6">
+            <VStack spacing="4">
 
               {!completed && (
                 <Alert status="info" w={["xs", "sm"]}>

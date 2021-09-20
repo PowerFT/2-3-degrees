@@ -2,7 +2,7 @@
 * External dependencies
 */
 import React from 'react'
-import { InputLeftAddon, InputRightAddon, Button, FormControl, FormHelperText, FormLabel, Input, Select, Stack, Textarea, VStack, InputGroup, } from '@chakra-ui/react'
+import { InputLeftAddon, InputRightAddon, Button, FormControl, FormHelperText, FormLabel, Input, Select, Stack, Textarea, VStack, InputGroup, Flex, } from '@chakra-ui/react'
 import { v4 as uuidv4 } from "uuid"
 import { graphql, StaticQuery, navigate } from 'gatsby'
 /**
@@ -44,7 +44,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
   }
 
   return (
-    <>
+    <Flex justify="center" w="100%">
 
       {/* <pre>{JSON.stringify( formDeets , null, 2)}</pre> */}
 
@@ -52,14 +52,14 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
         id="settings-form"
         onSubmit={handleSubmit}
       >
-        <Stack spacing="6" justify="center" align="center">
+        <Stack spacing="6" justify="center" align="center" w={["xs", "md"]}>
 
-          <AdminBlob title="Job Information">
+          <AdminBlob title="Opportunity Information">
 
             <VStack width="full" spacing="6">
 
               <FormControl>
-                <FormLabel htmlFor="jobTitleSelect">Job Title</FormLabel>
+                <FormLabel htmlFor="jobTitleSelect">Opportunity Title</FormLabel>
                 <Input
                   id="jobTitleSelect"
                   type="text"
@@ -329,7 +329,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
             </VStack>
           </AdminBlob>
 
-          <AdminBlob title="Job Description">
+          <AdminBlob title="Opportunity Description">
             <FormControl >
               <Textarea
                 id="jobDescription Input"
@@ -382,13 +382,13 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
             colorScheme={!submitLoading ? "green" : "blue"}
             disabled={submitLoading}
           >
-            {"Submit Job"}
+            Submit Opportunity
           </Button >
         </Stack>
 
 
       </form>
-    </>
+    </Flex>
   )
 }
 const META_QUERY = graphql`

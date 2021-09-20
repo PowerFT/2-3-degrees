@@ -106,7 +106,7 @@ export const MakerAccountSettings = () => {
             }}
           >
 
-            <VStack spacing="4" mt="6">
+            <VStack spacing="4">
 
               {!completed && (
                 <Alert status="info" w={["xs", "sm"]}>
