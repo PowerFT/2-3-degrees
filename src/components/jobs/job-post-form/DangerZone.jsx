@@ -5,7 +5,7 @@ import { useDeleteJobPost } from '../../../hooks'
 
 export const DangerZone = ( props ) => {
 	
-	const userId = props.jobPostId
+	const userId = props.id
 	const { deleteJobPost, error, status } = useDeleteJobPost(userId)
 
 

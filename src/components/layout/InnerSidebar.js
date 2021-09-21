@@ -44,6 +44,8 @@ export const InnerSidebar = ({
 
 	const hidden = pageType === "blog" || pageType === "generic" || pageType === "home" || pageType === "connect-home" || pageType === "login"
 
+
+	console.log(pageType)
 	return (
 		<Box 
 			className="innersidebar sticky"

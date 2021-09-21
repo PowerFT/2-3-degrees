@@ -20,7 +20,7 @@ import { AdminBlob } from '../../AdminBlob'
 
 export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, setSalStructure, title, salary, content, companyBio, closeDate, jobLocation, sector, jobType, companyName, salaryStructure, id}) => {
 
-  console.log(salStructure)
+  // console.log(salStructure)
 
   const { submitJobPost, submitLoading } = useSubmitJobPost(formType);
 
@@ -197,7 +197,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                       })
                     }
                   />
-                  <InputRightAddon children={`/ ${salStructure.toLocaleLowerCase()}`} />
+                  <InputRightAddon children={`/ ${formDeets?.salaryStructure?.toLocaleLowerCase()}`} />
                 </InputGroup>
               </FormControl>
 
@@ -241,7 +241,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                 <Input
                   id="jobSalarySelect"
                   type="text"
-                  value={companyName}
+                  value={formDeets.companyName}
                   onChange={e =>
                     setFormDeets({
                       ...formDeets,
@@ -354,7 +354,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
           {
             formType === 'update' && (
               <FieldGroup>
-                <DangerZone jobPostId={id} />
+                <DangerZone idd={id} />
               </FieldGroup>
             )
           }
