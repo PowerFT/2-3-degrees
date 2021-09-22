@@ -10,11 +10,11 @@ export const Quote = ({ quoteText, quoteAuthor }) => (
 			px={{ base: '6', lg: '8' }}
 			py={{ base: '16', sm: '20' }}
 		>
-			<Heading as="h2"  size="3xl" fontWeight="extrabold" letterSpacing="tight" color="gray.50"
-				data-sal="slide-up"
-  			data-sal-delay="300"
-  			data-sal-easing="ease"
-				data-sal-duration="500"
+			<Heading as="h2" fontSize={{base:"2.75rem", sm:"4rem"}} lineHeight={{base:"3rem", sm:"4.25rem"}} fontWeight="extrabold" letterSpacing="tight" color="gray.50"
+				// data-sal="slide-up"
+  			// data-sal-delay="300"
+  			// data-sal-easing="ease"
+				// data-sal-duration="500"
 			>
 				"{quoteText}"
 			</Heading>

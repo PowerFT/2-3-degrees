@@ -12,7 +12,7 @@ import { HiShieldCheck } from 'react-icons/hi'
 
 export const Newsletter = ({ text }) => {
 	return (
-		<Box as="section" bg="dBlue.300" py="12">
+		<Box as="section" bg="dBlue.300" py="12" px="6">
 			<Box
 				textAlign="center"
 				bg={mode('white', 'gray.800')}

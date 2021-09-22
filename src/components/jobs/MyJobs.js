@@ -31,7 +31,7 @@ const MyJobs = () => {
         subTitle="Edit, view your opportunity posts"
         pageType={pageType}
       />
-			<Flex w="100%">
+			<Flex w="100%" id="flex">
 				<InnerSidebar
 					pageType={pageType}
 					setStatusSelected={setStatusSelected}

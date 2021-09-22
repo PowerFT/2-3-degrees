@@ -10,8 +10,9 @@ import { Link } from 'gatsby'
 */
 
 export const MenuItem = (props) => {
-  const { icon, isActive, label, link, menuopen, onclose, ...rest } = props
+  const { icon, isActive, label, link, menuopen, onclose, mobile, ...rest } = props
   // console.log(isActive, label)
+  console.log("mobile? : ",mobile)
   return (
     <LinkBox
       onClick={onclose}
@@ -42,7 +43,7 @@ export const MenuItem = (props) => {
     >
       <HStack spacing="3" w="full">
         {/* <Icon as={BsFillLightningFill} fontSize="2xl" opacity={0.9} /> */}
-        {menuopen && <Heading size="lg"><LinkOverlay as={Link} to={link}>{label}</LinkOverlay></Heading>}
+        {menuopen && <Heading size={mobile ? "2xl" : "lg"}><LinkOverlay as={Link} to={link}>{label}</LinkOverlay></Heading>}
       </HStack>
     </LinkBox>
   )

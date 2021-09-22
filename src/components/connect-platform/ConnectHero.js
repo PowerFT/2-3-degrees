@@ -17,7 +17,7 @@ export const ConnectHero = ({user, ...rest}) => {
 					lg: '12',
 				}}
 			>
-				<Box maxW="7xl" mx="auto">
+				<Box maxW="7xl" w="50%">
 					<Box
 						maxW={{
 							lg: 'md',

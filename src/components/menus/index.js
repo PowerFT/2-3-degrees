@@ -6,13 +6,13 @@ import { PublicMenu } from './PublicMenu'
 import { MakerMenu } from './MakerMenu'
 import { TalentMenu } from './TalentMenu'
 
-export const NavMenus = ({menuopen, viewer, loadingViewer, isLoggedIn, onclose}) => {
+export const NavMenus = ({menuopen, mobile, viewer, loadingViewer, isLoggedIn, onclose}) => {
 	// console.log('menus', menuopen)
 	 
 	return (
 			<Stack spacing="1">
-				<MakerMenu onclose={onclose} menuopen={menuopen} />
-				<TalentMenu onclose={onclose} menuopen={menuopen} />
+				<MakerMenu mobile={mobile}  onclose={onclose} menuopen={menuopen} />
+				<TalentMenu mobile={mobile}  onclose={onclose} menuopen={menuopen} />
 				{
 					!isLoggedIn ? (
 						<>
@@ -21,7 +21,8 @@ export const NavMenus = ({menuopen, viewer, loadingViewer, isLoggedIn, onclose})
 								menuopen={menuopen}
 								link="/maker/sign-in" 
 								label="Opportunity Maker" 
-								icon={BsPlug} 
+								icon={BsPlug}
+								mobile={mobile} 
 							/>
 							<MenuItem
 								onclose={onclose}
@@ -29,6 +30,7 @@ export const NavMenus = ({menuopen, viewer, loadingViewer, isLoggedIn, onclose})
 								link="/talent/sign-in" 
 								label="Young Talent" 
 								icon={BsPlug} 
+								mobile={mobile} 
 							/>
 						</>
 					) : (
@@ -40,6 +42,7 @@ export const NavMenus = ({menuopen, viewer, loadingViewer, isLoggedIn, onclose})
 								icon={BsFillLightningFill} 
 								isActive 
 								onclose={onclose}
+								mobile={mobile} 
 							/>
 							<MenuItem 
 								menuopen={menuopen} 
@@ -48,6 +51,7 @@ export const NavMenus = ({menuopen, viewer, loadingViewer, isLoggedIn, onclose})
 								icon={BsFillLightningFill} 
 								isActive 
 								onclose={onclose}
+								mobile={mobile} 
 							/>
 						</>
 					)
@@ -55,7 +59,7 @@ export const NavMenus = ({menuopen, viewer, loadingViewer, isLoggedIn, onclose})
 
 				{menuopen && <Divider borderColor="black" />}
 
-				<PublicMenu onclose={onclose} menuopen={menuopen} />
+				<PublicMenu mobile={mobile}  onclose={onclose} menuopen={menuopen} />
 
 			</Stack>
 	)

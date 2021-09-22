@@ -2,6 +2,8 @@ import React from 'react'
 import {
 	Box,
 	Heading,
+	LinkBox,
+	LinkOverlay,
 	SimpleGrid,
 	useColorModeValue as mode,
 } from '@chakra-ui/react'
@@ -24,8 +26,8 @@ export const BlogGrid = ({ children, archiveLink }) => {
 				}}
 				mx="auto"
 				px={{
-					base: '6',
-					md: '8',
+					base: '0',
+					sm: '8',
 				}}
 			>
 				<SimpleGrid
@@ -39,14 +41,14 @@ export const BlogGrid = ({ children, archiveLink }) => {
 						md: 6,
 						lg: 12
 					}}
-					mb="10"
+					mb={{base:"4",sm:"6"}}
 				>
 					{ children }
 				</SimpleGrid>
-				<Link to={archiveLink} fontSize="xl" fontWeight="bold" color="gray.800">
-					<span>View all articles</span>
+				<LinkBox to={archiveLink} fontSize="xl" fontWeight="bold" color="gray.800" ml={{base:"2"}}>
+					<LinkOverlay as={Link} to={archiveLink}><span>View all articles</span></LinkOverlay>
 					<Box as={BsArrowRight} display="inline-block" ms="2" />
-				</Link>
+				</LinkBox>
 			</Box>
 		</Box>
 	)

@@ -27,8 +27,8 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
   
 
   return (
-    <Box position="relative" maxW="2xl">
-      <Box borderRadius="md" position="relative" overflow="hidden" bg="white" px="6" py="7" w="100%">
+    <Box position="relative" maxW="2xl" overflow="hidden" borderRadius="md">
+      <Box position="relative" overflow="hidden" bg="white" px={{base:"3",sm:"6"}} py={{base:"5",sm:"7"}} w="100%">
 
         <Stack
           id="jobCardContainer"
@@ -41,10 +41,10 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
           // my={1}
         >
           <Avatar
-            size="lg"
+            size="md"
             name={companyName}
             // alignSelf="center"
-            mr="6"
+            mr={{base:"2",sm:"6"}}
             ml="0"
             // src="https://images.unsplash.com/photo-1488282396544-0212eea56a21?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
           />
@@ -82,7 +82,7 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
           </HStack>
 
             <HStack pt="1.5" spacing="5" align="center">
-              <HStack>
+              <HStack display={{base: "none", sm: "flex"}}>
                 <Icon as={HiCash} fontSize="xl" color="gray.400" />
                 <Text
                   fontSize="sm"
@@ -92,7 +92,7 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
                   <b>£{formattedSalary}</b> /yr
                 </Text>
               </HStack>
-              <HStack spacing="1">
+              <HStack spacing="1" marginInlineStart={{base:"0 !important"}}>
                 <Icon as={HiClock} color="gray.400" />
                 <Text
                   fontSize="sm"
@@ -141,7 +141,7 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
         />
 
       </Box>
-      <Box position="absolute" bottom="0" right="0" zIndex={1} id="jobCardMenu">
+      <Box position="absolute" bottom={{base:"unset", sm:"0"}} top={{base:"0", sm:"unset"}} right="0" zIndex={1} id="jobCardMenu">
         <Menu placement="left-start">
           <MenuButton
             as={IconButton}

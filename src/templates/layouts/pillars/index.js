@@ -122,7 +122,7 @@ export const Feature = ({ img, linkUrl, title, children, icon, videoOrImage, vid
 					<Text color="gray.800" fontSize={["2xl", "2xl", "xl"]} fontWeight="bold">
 						{title}
 					</Text>
-					{children && (
+					{children && videoOrImage === "image" && (
 						<Collapse in={isOpen} animateOpacity textAlign="center" mt="0">
 							<Text p={2} bg="dBlue.400" color="gray.800">
 								{children}

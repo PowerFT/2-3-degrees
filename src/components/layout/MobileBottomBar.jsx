@@ -21,13 +21,14 @@ import {
 import { FiMenu, FiX } from 'react-icons/fi'
 import { RiCreativeCommonsSaFill, RiAccountPinCircleFill, RiBriefcase5Fill } from 'react-icons/ri'
 import * as React from 'react'
-import {Link as GatsbyLink} from 'gatsby'
+import {Link as GatsbyLink, Link} from 'gatsby'
 /**
 * Internal dependencies
 */
 import { Logo } from './Logo'
 import { useAuth } from '../../hooks'
 import { NavMenus } from '../menus'
+import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
 
 export const MobileBottomBar = () => {
 
@@ -39,25 +40,32 @@ export const MobileBottomBar = () => {
   const btnRef = React.useRef()
 
   return (
-    <Stack display={['flex', 'none']} position="sticky" bottom="0" id="mobileMenu">
-      
+    <Stack 
+      display={['flex', 'none']} 
+      position="sticky" 
+      bottom="0" 
+      id="mobileMenu" 
+      h="8vh"
+      bg="dYellow.300"
+      justify="center"
+    >
         {isLoggedIn ? (
-          <HStack bg="dYellow.300" py={2} spacing={2} justify="stretch">
-            <Flex direction="column" justify="center" align="center" p={2} flex="1 1" ml="10px">
+          <HStack py={2} spacing={0} justify="stretch" h="100%">
+            <Flex direction="column" justify="center" align="center" p={2} flex="1 1">
               <LinkBox textAlign="center">
-                <Icon as={RiCreativeCommonsSaFill} w={6} h={6} />
+                <Icon as={RiCreativeCommonsSaFill} w={5} h={5} mb={1} />
                 <Text fontWeight="bold" fontSize="xs" textTransform="uppercase"><LinkOverlay as={GatsbyLink} to="/connect/platform">Connect</LinkOverlay></Text>
               </LinkBox>
             </Flex>
             <Flex direction="column" justify="center" align="center" p={2} flex="1 1">
               <LinkBox textAlign="center">
-                <Icon as={RiBriefcase5Fill} w={6} h={6} />
-                <Text fontWeight="bold" fontSize="xs" textTransform="uppercase"><LinkOverlay as={GatsbyLink} to="/maker/myjobs">Jobs</LinkOverlay></Text>
+                <Icon as={RiBriefcase5Fill} w={5} h={5} mb={1} />
+                <Text fontWeight="bold" fontSize="xs" textTransform="uppercase"><LinkOverlay as={GatsbyLink} to="/maker/jobs">Jobs</LinkOverlay></Text>
               </LinkBox>
             </Flex>
             <Flex direction="column" justify="center" align="center" p={2} flex="1 1">
               <LinkBox textAlign="center">
-                <Icon as={RiAccountPinCircleFill} w={6} h={6} />
+                <Icon as={RiAccountPinCircleFill} w={5} h={5} mb={1} />
                 <Text fontWeight="bold" fontSize="xs" textTransform="uppercase"><LinkOverlay as={GatsbyLink} to="/maker/account">Account</LinkOverlay></Text>
               </LinkBox>
             </Flex>
@@ -66,17 +74,16 @@ export const MobileBottomBar = () => {
             </Flex>  
           </HStack>
         ) : (
-          <HStack bg="dYellow.300" pl={4} pt="3" pb="2" justify="space-between" align="center">
-            <Box h="60px" w="60px">
-              <Logo iconColor='whitesmoke' />
-            </Box>
+          <HStack bg="dYellow.300" pl={3} justify="space-between" align="center">
+            <LinkBox h="50px" w="50px">
+              <LinkOverlay as={Link} to="/"><Logo iconColor='whitesmoke' /></LinkOverlay>
+            </LinkBox>
             <Flex direction="column" justify="center" align="center" ref={btnRef} onClick={onOpen} w="80px" height="40px" p={2} cursor="pointer">
               <Icon as={FiMenu} w={8} h={8}/>
             </Flex>  
           </HStack>
         )}
         
-      
       <Drawer
         isOpen={isOpen}
         placement="right"
@@ -88,16 +95,40 @@ export const MobileBottomBar = () => {
         <DrawerOverlay />
         <DrawerContent bg="dYellow.300">
           {/* <DrawerHeader></DrawerHeader> */}
-          <Box h="60px" w="60px" mb="5">
-            <Logo iconColor='whitesmoke' />
-          </Box>
+          
 
-          <DrawerBody>
-            <NavMenus menuopen={true} onclose={onClose}/>
+          <DrawerBody p="0">
+            <LinkBox h="60px" w="60px" mb="5" m="3" onClick={onClose}>
+              <LinkOverlay as={GatsbyLink} to="/"><Logo iconColor='whitesmoke' /></LinkOverlay>
+            </LinkBox>
+            <NavMenus menuopen={true} onclose={onClose} mobile={true}/>
           </DrawerBody>
 
-          <DrawerFooter h="80px">
-            <Icon as={FiX} w={8} h={8} position="absolute" onClick={onClose} cursor="pointer"/>
+          <DrawerFooter h="80px" justifyContent="flex-start">
+            <HStack justify="space-between" w="100%" align="center">
+              <HStack spacing="4">
+                <a href="https://www.facebook.com/2.3degrees/" target="_blank">
+                  <Icon as={FaFacebook} w={7} h={7}/>
+                </a>
+                <a href="https://www.instagram.com/2_3degrees/" target="_blank">
+                  <Icon as={FaInstagram} w={7} h={7}/>
+                </a> 
+                <a href="https://twitter.com/2_3degrees?lang=en" target="_blank">
+                  <Icon as={FaTwitter} w={7} h={7}/>
+                </a>
+                <a href="https://www.youtube.com/channel/UC9nxulVkNqGn3XV5UxSEvNQ" target="_blank">
+                  <Icon as={FaYoutube} w={7} h={7} />
+                </a>
+                
+              </HStack>
+              <Icon 
+                as={FiX} 
+                w={8} 
+                h={8} 
+                onClick={onClose} 
+                cursor="pointer"
+              />
+            </HStack>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

@@ -7,7 +7,7 @@ export const LatestBlog = ({ blogPosts }) => {
 	//console.log(blogPosts)
 	
 	return (
-		<Box p="4">
+		<Box px={{base:"0",sm:"4"}} pb={{base:"8", sm: "12"}}>
 			<Heading size="4xl" textAlign="center" mb="8" mt="10">
 				Featured Articles
 			</Heading>
