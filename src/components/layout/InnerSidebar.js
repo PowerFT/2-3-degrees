@@ -35,6 +35,9 @@ export const InnerSidebar = ({
 	formSector,
 	formJobType,
 	formSalary,
+	applicationLink,
+	closeDate,
+	companyBio
 }) => {
 	
 	// const colour = {
@@ -49,7 +52,7 @@ export const InnerSidebar = ({
 	return (
 		<Box 
 			className="innersidebar sticky"
-			bg="dBlue.300"
+			bg={pageType === "myjobs" ? "dOrange.100" : "dBlue.300"}
 			w="280px"
 			position="sticky"
 			top="0"
@@ -69,7 +72,8 @@ export const InnerSidebar = ({
 						<VStack spacing="0" border="1px solid" color="gray.50" w="100%" rounded="sm">
 							<Flex align="center" bg="gray.50" fontSize="xs" textAlign="start" rounded="sm" color="dBlue.300" w="100%" py="1" pl="2"><Icon as={BsFillLightningFill} mr="1"/>Quick Links</Flex>
 							{primaryLinks.map((link, i) => (
-								<LinkBox 
+								<LinkBox
+									key={i} 
 									_hover={{ bg: 'whiteAlpha.400' }}
 									borderBottom={i !== primaryLinks.length -1 ? "1px solid" : null}
 									// borderColor="gray.50"
@@ -90,6 +94,7 @@ export const InnerSidebar = ({
 							<Flex align="center" bg="gray.50" fontSize="xs" textAlign="start" rounded="sm" color="dBlue.300" w="100%" py="1" pl="2"><Icon as={BsInfoCircleFill} mr="1"/>Useful Links</Flex>
 							{secondaryLinks.map((link, i) => (
 								<LinkBox 
+								key={i} 
 									_hover={{ bg: 'whiteAlpha.400' }}
 									borderBottom={i !== secondaryLinks.length -1 ? "1px solid" : null}
 									// borderColor="gray.50"
@@ -127,6 +132,9 @@ export const InnerSidebar = ({
 							jobType={jobType}
 							jobSkills={jobSkills}
 							salary={salary}
+							applicationLink={applicationLink}
+							closeDate={closeDate}
+							companyBio={companyBio}
 						/>
 					)
 				}

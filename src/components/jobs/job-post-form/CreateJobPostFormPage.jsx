@@ -30,6 +30,7 @@ export const CreateJobPostFormPage = () => {
     content: '',
     companyBio: '',
     closeDate: '',
+    applicationLink: '',
     category:'Job Post',
   }
 
@@ -85,8 +86,6 @@ export const CreateJobPostFormPage = () => {
             setSalStructure={setSalStructure}
             salary = {formDeets.salary}
             content = {formDeets.content}
-            companyBio = {formDeets.companyBio}
-            closeDate = {formDeets.closeDate}
           />
         </Content>
       </Flex>

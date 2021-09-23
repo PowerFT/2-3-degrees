@@ -18,7 +18,7 @@ import { AdminBlob } from '../../AdminBlob'
 
 
 
-export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, setSalStructure, title, salary, content, companyBio, closeDate, jobLocation, sector, jobType, companyName, salaryStructure, id}) => {
+export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, setSalStructure, title, salary, content, companyBio, closeDate, jobLocation, sector, jobType, companyName, salaryStructure, id, applicationLink}) => {
 
   // console.log(salStructure)
 
@@ -37,16 +37,12 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
     });
   }
 
-  
-
   if (loadingViewer || !viewer) {
     return <MySpinner />
   }
 
   return (
     <Flex justify="center" w="100%">
-
-      {/* <pre>{JSON.stringify( formDeets , null, 2)}</pre> */}
 
       <form
         id="settings-form"
@@ -206,6 +202,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                 <FormLabel htmlFor="closeDateInput">Close Date</FormLabel>
                 <Input
                   value={closeDate}
+                  placeholder="dd/mm/yyyy"
                   onChange={e =>
                     setFormDeets({
                       ...formDeets,
@@ -285,6 +282,14 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                     }}
                   />
                 </Select>
+              </FormControl>
+
+              <FormControl isRequired>
+                <FormLabel htmlFor="applicationLink">Application Link</FormLabel>
+                <InputGroup>
+                    <InputLeftAddon children="https://" />
+                    <Input htmlFor="applicationLink" type="text" value={applicationLink} onChange={(e) => setFormDeets({ ...formDeets, applicationLink: e.target.value })} />
+                  </InputGroup>
               </FormControl>
 
               <FormControl isRequired>

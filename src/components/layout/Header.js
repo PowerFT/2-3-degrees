@@ -1,7 +1,6 @@
 import { Avatar, Box, Flex, Heading, Text, VStack } from '@chakra-ui/react'
-import { getImage, GatsbyImage } from 'gatsby-plugin-image'
+import { getImage, GatsbyImage, StaticImage } from 'gatsby-plugin-image'
 import React from 'react'
-// import { motion } from 'framer-motion';
 // const MotionBox = motion(Box)
 
 export const Header = ({title, subTitle, imageData, imgAlt, pageType, avatar, blogAuthor}) => {
@@ -38,8 +37,33 @@ export const Header = ({title, subTitle, imageData, imgAlt, pageType, avatar, bl
 				base:"auto", sm:"auto", md:"40vh"
 			}}
 			position="relative"
+			overflow="hidden"
 			display={hidden ? "none" : "flex"}
 		>
+			{ pageType === "admin" && <StaticImage 
+				src="../../images/adminBg.svg" 
+				alt="shape pattern"
+				// height={400}
+				fit="cover"
+				imgStyle={{height:"100%", objectFit:"cover", objectPosition:"left"}}
+				style={{height:"100%", width:"auto", position:"absolute", zIndex:"1"}}
+			/>}
+			{ pageType === "myjobs" && <StaticImage 
+				src="../../images/myJobsBg.svg" 
+				alt="shape pattern"
+				// height={400}
+				fit="cover"
+				imgStyle={{height:"100%", objectFit:"cover", objectPosition:"left"}}
+				style={{height:"100%", width:"auto", position:"absolute", zIndex:"1"}}
+			/>}
+			{ pageType === "job-form" && <StaticImage 
+				src="../../images/postJobBg.svg" 
+				alt="shape pattern"
+				// height={400}
+				fit="cover"
+				imgStyle={{height:"100%", objectFit:"cover", objectPosition:"left"}}
+				style={{height:"100%", width:"auto", position:"absolute", zIndex:"1"}}
+			/>}
 			<Flex 
 				flex={imageData ? "1 1 50%" : "1"} 
 				px={imageData ? "10" : "0"} 
@@ -49,6 +73,7 @@ export const Header = ({title, subTitle, imageData, imgAlt, pageType, avatar, bl
 				direction="column"
 				justifyContent="space-between"
 				align={{base: "center", md: "center", lg: "flex-start"}}
+				zIndex="10"
 			>
 				<VStack maxW={{base: "xs", md: "lg"}}>
 					<Heading

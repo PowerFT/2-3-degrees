@@ -2,6 +2,9 @@ import React from 'react'
 import {
   Box,
   Flex,
+  Heading,
+  LinkBox,
+  LinkOverlay,
   SimpleGrid,
   Stack,
   Text,
@@ -13,18 +16,22 @@ import { HiSpeakerphone, HiUserCircle, HiSearchCircle } from 'react-icons/hi'
 const Feature = (props) => {
   const { title, icon, featureLink, complete } = props
   return (
-    <Link to={featureLink}>
-      <Flex direction="column" align="center" bg="dOrange.300" p="10" _hover={{bg: "dOrange.200"}} h="100%">
+    <LinkBox >
+      <Flex rounded="lg" direction="row" align="center" cursor={!complete && title === "Post an Opportunity" && "not-allowed"} bg={!complete && title === "Post an Opportunity" ? "gray.300" : "dOrange.300"} p={{base:"5",sm:"10"}} _hover={{bg: "dOrange.200"}} h="100%">
         <Box color="gray.50" fontSize="3rem">
           {icon}
         </Box>
-        <Stack mt="4" mx="auto">
-          <Text as="h3" textAlign="center" color="gray.800" fontSize="xl" fontWeight="bold">
-            {title}
-          </Text>
+        <Stack mx="auto">
+          <Heading as="h3" textAlign="center" color="gray.50" size="xl">
+            {!complete && title === "Post an Opportunity" ? (
+							{title}
+						) : (
+							<LinkOverlay as={Link} to={featureLink} >{title}</LinkOverlay>
+						)}
+          </Heading>
         </Stack>
       </Flex>
-    </Link>
+    </LinkBox>
   )
 }
 
@@ -34,7 +41,9 @@ export const Features = ({complete, user}) => {
 		<SimpleGrid
 			flex="1"
 			columns={{ base: 1, md: 2 }}
-			spacing="0"
+			spacing="3"
+			py="12"
+			px="6"
 			w='100%'
 		>
 			{

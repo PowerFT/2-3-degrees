@@ -46,6 +46,7 @@ const GET_JOB_POST_BY_ID = gql`
 		jobPost(id: $id) {
 			closeDate
 			companyBio
+      applicationLink
 			content(format: RAW)
 			salary
 			title
@@ -99,6 +100,7 @@ export const UpdateJobPostFormPage = () => {
     content: '',
     companyBio: '',
     closeDate: '',
+    applicationLink: '',
     category: 'Job Post',
   }
 
@@ -123,6 +125,7 @@ export const UpdateJobPostFormPage = () => {
         content: jobPost?.content,
         companyBio: jobPost?.companyBio,
         closeDate: jobPost?.closeDate,
+        applicationLink: jobPost?.applicationLink,
         category: 'Job Post',
       })
     }
@@ -173,8 +176,6 @@ export const UpdateJobPostFormPage = () => {
             salaryStructure={formDeets.salaryStructure}
             setSalStructure={setSalStructure}
             content={formDeets.content}
-            companyBio={formDeets.companyBio}
-            closeDate={formDeets.closeDate}
           />
         </Content>
       </Flex>

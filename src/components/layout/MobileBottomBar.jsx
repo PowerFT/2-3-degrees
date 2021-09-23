@@ -107,16 +107,16 @@ export const MobileBottomBar = () => {
           <DrawerFooter h="80px" justifyContent="flex-start">
             <HStack justify="space-between" w="100%" align="center">
               <HStack spacing="4">
-                <a href="https://www.facebook.com/2.3degrees/" target="_blank">
+                <a href="https://www.facebook.com/2.3degrees/" target="_blank" rel="noreferrer">
                   <Icon as={FaFacebook} w={7} h={7}/>
                 </a>
-                <a href="https://www.instagram.com/2_3degrees/" target="_blank">
+                <a href="https://www.instagram.com/2_3degrees/" target="_blank" rel="noreferrer">
                   <Icon as={FaInstagram} w={7} h={7}/>
                 </a> 
-                <a href="https://twitter.com/2_3degrees?lang=en" target="_blank">
+                <a href="https://twitter.com/2_3degrees?lang=en" target="_blank" rel="noreferrer">
                   <Icon as={FaTwitter} w={7} h={7}/>
                 </a>
-                <a href="https://www.youtube.com/channel/UC9nxulVkNqGn3XV5UxSEvNQ" target="_blank">
+                <a href="https://www.youtube.com/channel/UC9nxulVkNqGn3XV5UxSEvNQ" target="_blank" rel="noreferrer">
                   <Icon as={FaYoutube} w={7} h={7} />
                 </a>
                 

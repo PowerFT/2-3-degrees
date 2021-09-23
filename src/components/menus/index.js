@@ -20,7 +20,7 @@ export const NavMenus = ({menuopen, mobile, viewer, loadingViewer, isLoggedIn, o
 								onclose={onclose}
 								menuopen={menuopen}
 								link="/maker/sign-in" 
-								label="Opportunity Maker" 
+								label="Employer" 
 								icon={BsPlug}
 								mobile={mobile} 
 							/>
@@ -28,7 +28,7 @@ export const NavMenus = ({menuopen, mobile, viewer, loadingViewer, isLoggedIn, o
 								onclose={onclose}
 								menuopen={menuopen} 
 								link="/talent/sign-in" 
-								label="Young Talent" 
+								label="Young Person" 
 								icon={BsPlug} 
 								mobile={mobile} 
 							/>

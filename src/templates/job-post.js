@@ -39,6 +39,9 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
 	const jobType = jobPost?.jobType?.nodes[0]?.name
 	const jobLocation = jobPost?.jobLocation?.nodes[0]?.name
 	const salary = jobPost?.salary
+	const applicationLink = jobPost?.applicationLink
+	const companyBio = jobPost?.companyBio
+	const closeDate = jobPost?.closeDate
 	const content = jobPost?.content
 	const skills = jobPost?.skills
 	console.log(jobPost)
@@ -61,6 +64,9 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
 					jobSkills={skills}
 					salary={salary}
 					pageType={pageType}
+					applicationLink={applicationLink}
+					companyBio={companyBio}
+          closeDate={closeDate}
 				/>
 				<Content>
 					<Box borderRadius="lg" maxW="xl" position="relative" overflow="hidden" bg="white" p="10" mb="12">
@@ -89,6 +95,7 @@ export const jobPostQuery = graphql`
 		jobPost: wpJobPost(id: {eq: $id}) {
 			closeDate
 			companyBio
+			applicationLink
 			content
 			id
 			salary

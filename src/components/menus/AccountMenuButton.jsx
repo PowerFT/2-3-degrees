@@ -42,9 +42,11 @@ export const AccountMenuButton = (props) => {
             </Box>
             <Box fontSize="xs" color="gray.400">
               {viewer.roles.nodes[0].name !== 'waiting' && (
-                viewer.roles.nodes[0].name === 'maker' ?
+                viewer.roles.nodes[0].name === 'maker' ||
+                viewer.roles.nodes[0].name === 'administrator' ||
+                viewer.roles.nodes[0].name === '2-3_admin'  ?
                   "Opportunity Maker" :
-                  "Me, Talent"
+                  "I am Talent"
               )}
             </Box>
           </Box>
