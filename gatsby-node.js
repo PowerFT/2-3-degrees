@@ -256,31 +256,6 @@ const getPages = async ({ graphql, reporter }) => {
                 fieldGroupName
                 text
               }
-              ... on WpPage_Pagebuilder_Layouts_TabsBlock {
-                fieldGroupName
-                title
-                link {
-                  url
-                  title
-                }
-                tabs {
-                  title
-                  text
-                  image {
-                  altText
-                  localFile {
-                    childImageSharp {
-                      fluid(quality: 90) {
-                        src
-                        srcSet
-                        aspectRatio
-                      }
-                      gatsbyImageData
-                    }
-                  }
-                }
-                }
-              }
               ... on WpPage_Pagebuilder_Layouts_PageBlock {
                 content
                 fieldGroupName
