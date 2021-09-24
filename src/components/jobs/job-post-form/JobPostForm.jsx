@@ -18,9 +18,9 @@ import { AdminBlob } from '../../AdminBlob'
 
 
 
-export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, setSalStructure, title, salary, content, companyBio, closeDate, jobLocation, sector, jobType, companyName, salaryStructure, id, applicationLink}) => {
+export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
 
-  // console.log(salStructure)
+  console.log(formDeets)
 
   const { submitJobPost, submitLoading } = useSubmitJobPost(formType);
 
@@ -28,9 +28,8 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
 
   function handleSubmit(e) {
     e.preventDefault();
-    submitJobPost({
-      variables: { clientMutationId: uuidv4(), ...formDeets }
-    })
+    console.log(formDeets)
+    submitJobPost({ clientMutationId: uuidv4(), ...formDeets })
     // .then(navigate(`/maker/jobs`))
     .catch(error => {
       console.log(error); //fix
@@ -59,7 +58,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                 <Input
                   id="jobTitleSelect"
                   type="text"
-                  value={title}
+                  value={formDeets.title}
                   onChange={e =>
                     setFormDeets({
                       ...formDeets,
@@ -74,7 +73,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                 <Select
                   id="jobLocationSelect"
                   placeholder="Select Location"
-                  value={jobLocation}
+                  value={formDeets.jobLocation}
                   onChange={e =>
                     setFormDeets({
                       ...formDeets,
@@ -110,7 +109,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                   isRequired
                   id="jobTypeSelect"
                   placeholder="Select Job Type"
-                  value={jobType}
+                  value={formDeets.jobType}
                   onChange={e =>
                     setFormDeets({
                       ...formDeets,
@@ -146,13 +145,13 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                   isRequired
                   id="salaryStructureSelect"
                   placeholder="Select Salary Structure"
-                  value={salaryStructure}
+                  value={formDeets.salaryStructure}
                   onChange={e => {
                     setFormDeets({
                       ...formDeets,
                       salaryStructure: e.target.value,
                     })
-                    setSalStructure(e.target.value)
+                    // setSalStructure(e.target.value)
                   }
                   }
                 >
@@ -185,7 +184,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                   <Input
                     id="jobSalarySelect"
                     type="text"
-                    value={salary}
+                    value={formDeets.salary}
                     onChange={e =>
                       setFormDeets({
                         ...formDeets,
@@ -201,7 +200,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
               <FormControl isRequired>
                 <FormLabel htmlFor="closeDateInput">Close Date</FormLabel>
                 <Input
-                  value={closeDate}
+                  value={formDeets.closeDate}
                   placeholder="dd/mm/yyyy"
                   onChange={e =>
                     setFormDeets({
@@ -254,7 +253,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                   isRequired
                   id="jobSectorSelect"
                   placeholder="Select Sector"
-                  value={sector}
+                  value={formDeets.sector}
                   onChange={e =>
                     setFormDeets({
                       ...formDeets,
@@ -288,7 +287,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                 <FormLabel htmlFor="applicationLink">Application Link</FormLabel>
                 <InputGroup>
                     <InputLeftAddon children="https://" />
-                    <Input htmlFor="applicationLink" type="text" value={applicationLink} onChange={(e) => setFormDeets({ ...formDeets, applicationLink: e.target.value })} />
+                    <Input htmlFor="applicationLink" type="text" value={formDeets.applicationLink} onChange={(e) => setFormDeets({ ...formDeets, applicationLink: e.target.value })} />
                   </InputGroup>
               </FormControl>
 
@@ -297,16 +296,16 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                 <Textarea
                   htmlFor="jobContentSelect"
                   rows={5}
-                  value={companyBio}
+                  value={formDeets.companyBio}
                   onChange={e =>
                     setFormDeets({
                       ...formDeets,
                       companyBio: e.target.value,
                     })
                   }
-                >
-                  {formDeets.companyBio}
-                </Textarea>
+                />
+                  {/* {formDeets.companyBio} */}
+                {/* </Textarea> */}
                 <FormHelperText>
                   Brief description for your organisation's account.
                 </FormHelperText>
@@ -340,7 +339,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                 id="jobDescription Input"
                 type="text"
                 rows={5}
-                value={content}
+                value={formDeets.content}
                 onChange={e =>
                   setFormDeets({
                     ...formDeets,
@@ -348,7 +347,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, salStructure, se
                   })
                 }
               >
-                {formDeets.content}
+                {/* {formDeets.content} */}
               </Textarea>
               <FormHelperText>
                 Brief description for your organisation's account.

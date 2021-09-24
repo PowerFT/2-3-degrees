@@ -19,7 +19,7 @@ export const JobCard = ({title, jobLocation, salary, jobType, sector, companyNam
   const formattedSalary = parseInt(salary).toLocaleString()
 
   return (
-    <LinkBox>
+    <LinkBox w="100%">
       <Box 
         borderRadius="md" 
         position="relative" 
@@ -27,7 +27,9 @@ export const JobCard = ({title, jobLocation, salary, jobType, sector, companyNam
         bg="white" 
         px={{base: "4", sm: "6"}} 
         py={{base: "4", sm: "6"}} 
-        maxW="2xl"
+        maxW="xl"
+        
+        minW={{base:"xs",md:"lg"}}
         _hover={{shadow:"base", transform:"translateY(-5px) scale(1.01)" }}
         transition="all .4s"
       >

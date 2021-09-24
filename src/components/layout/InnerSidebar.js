@@ -52,7 +52,7 @@ export const InnerSidebar = ({
 	return (
 		<Box 
 			className="innersidebar sticky"
-			bg={pageType === "myjobs" ? "dOrange.100" : "dBlue.300"}
+			bg={pageType === "myjobs" ? "gray.300" : "dBlue.300"}
 			w="280px"
 			position="sticky"
 			top="0"
@@ -88,7 +88,7 @@ export const InnerSidebar = ({
 						</VStack>
 					)
 				}
-				{
+				{/* {
 					secondaryLinks && (
 						<VStack spacing="0" border="1px solid" color="gray.50" w="100%" rounded="sm">
 							<Flex align="center" bg="gray.50" fontSize="xs" textAlign="start" rounded="sm" color="dBlue.300" w="100%" py="1" pl="2"><Icon as={BsInfoCircleFill} mr="1"/>Useful Links</Flex>
@@ -108,7 +108,7 @@ export const InnerSidebar = ({
 							))}
 						</VStack>
 					)
-				}
+				} */}
 				{
 					pageType === "jobs-board" && (
 						<JobsFilter 
@@ -141,7 +141,6 @@ export const InnerSidebar = ({
 				{
 					pageType === "myjobs" && (
 						<>
-							<Heading alignSelf="flex-start">My Opportunities</Heading>
 							<FormControl id="myJobsSelect">
 							{/* <Select bg="gray.400" onChange={(e) => setStatusSelected(e.target.value)}>
 									<option value="PUBLISH">Published</option>
@@ -152,14 +151,14 @@ export const InnerSidebar = ({
 									{({ isExpanded }) => (
 										<>
 											<h2>
-												<AccordionButton bg="whiteAlpha.600" px="1">
-													<Box flex="1" textAlign="left" >
+												<AccordionButton bg="gray.50" px="2" py="3">
+													<Box flex="1" textAlign="left" fontWeight="600">
 														Post Status
 													</Box>
 													{isExpanded ? (
-														<MinusIcon fontSize="12px" color="gray.50"/>
+														<MinusIcon fontSize="12px" color="gray.800"/>
 													) : (
-														<AddIcon fontSize="12px" color="gray.50"/>
+														<AddIcon fontSize="12px" color="gray.800"/>
 													)}
 												</AccordionButton>
 											</h2>

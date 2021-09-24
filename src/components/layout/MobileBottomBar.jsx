@@ -48,6 +48,7 @@ export const MobileBottomBar = () => {
       h="8vh"
       bg="dYellow.300"
       justify="center"
+      zIndex="1000"
     >
         {isLoggedIn ? (
           <HStack py={2} spacing={0} justify="stretch" h="100%">

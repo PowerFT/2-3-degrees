@@ -35,7 +35,7 @@ export const Footer = () => (
             base: '10',
             lg: 0,
           }}
-        >
+        > 
           <Logo iconColor="white" h="16" />
           <HStack spacing="4" mt="8" as="ul">
             {socialLinks?.map((link, i) => (
@@ -69,7 +69,7 @@ export const Footer = () => (
               </Text>
               <Stack as="ul" listStyleType="none">
                 {group.links?.map((link, idx) => (
-                  <Box as="li" key={idx}>
+                  <Box as="li" key={idx} mt="1" mb="0">
                     <Box
                       as="a"
                       href={link.href}

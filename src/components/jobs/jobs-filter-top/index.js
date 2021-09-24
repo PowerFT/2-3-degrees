@@ -89,6 +89,7 @@ export const JobsFilterTop = ({ setError, setLoading, locations, setLocations, s
 					margin={{
 						base: "3"
 					}}
+					zIndex="100"
 				>
 					<ModalHeader>Filter Opportunities</ModalHeader>
 					<SimpleGrid columns={2} spacingX="2" spacingY="2" bg="whiteAlpha.800" px="6" pt="2" pb="2" wrap="wrap" align="flex-start" justify="flex-start" border="1px solid grey.600" rounded="sm" w="100%">

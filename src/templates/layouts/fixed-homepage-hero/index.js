@@ -25,11 +25,12 @@ export const FixedHomepageHero = ({ image, title, text, button }) => {
   return (
     <Flex 
       as="section" 
-      h="100vh" 
+      h={{base: "unset", md:"100vh" }}
+      minH="90vh"
       bg="dBlue.300" 
       direction="column" 
       position="relative" 
-      justify="center" 
+      justify={{base:"space-between", md:"flex-start", xl:"center"}} 
       overflow="hidden"
       px={{ base: '4', md: '12' }}
     >
@@ -37,7 +38,7 @@ export const FixedHomepageHero = ({ image, title, text, button }) => {
         maxW="3xl"
         // mx="auto"
         // px={{ base: '4', lg: '8' }}
-        py={{ base: '8', sm: '20' }}
+        py={{ base: '8', sm: '12' }}
         // textAlign="center"
         zIndex={100}
         position="relative"
@@ -47,10 +48,10 @@ export const FixedHomepageHero = ({ image, title, text, button }) => {
         <Heading 
           as="h1" 
           color="gray.50" 
-          fontSize={{base: '50px', sm: '65px', md: '120px'}} 
+          fontSize={{base: '65px', sm: '75px', md:"100px", lg: '120px'}} 
           letterSpacing="tight" 
           textTransform="uppercase"
-          maxW="2xl"
+          maxW={{sm:"lg", md:"2xl"}}
           lineHeight="1"
         >
           <Box as="mark" bg="transparent" color="inherit" fontWeight="100">Are </Box> 
@@ -86,6 +87,7 @@ export const FixedHomepageHero = ({ image, title, text, button }) => {
         bottom="0"
         right="12"
         zIndex="10"
+        display={{base:"none", md:"block"}}
         // style={{transform: `translateY(-${offsetY * 0.5}px)`}}
       >
         <StaticImage 
@@ -104,6 +106,7 @@ export const FixedHomepageHero = ({ image, title, text, button }) => {
         bottom="0"
         right="16"
         zIndex="5"
+        display={{base:"none", md:"block"}}
         style={{transform: `translatex(-${offsetY * 0.01}px)`}}
       >
         <StaticImage 
@@ -115,25 +118,99 @@ export const FixedHomepageHero = ({ image, title, text, button }) => {
           style={{height:"100%", width:"auto"}}
         />
       </Box>
+
+
+
+
       <Box 
-        w="65%"
-        h="100%"
-        pos="absolute"
-        bottom="0"
-        right="0"
-        zIndex="1"
-        id="pattern"
-        style={{transform: `translateY(${offsetY * .3}px)`}}
-      >
-        <StaticImage 
-          src="../../../images/pattern-1.png" 
-          alt="shape pattern"
-          // height={400}
-          fit="cover"
-          imgStyle={{height:"100%", objectFit:"cover", objectPosition:"left"}}
-          style={{height:"100%", width:"auto"}}
-        />
-      </Box>
+          pos={{base:"relative", md:"relative"}}
+          w={{base:"100%", sm:"80%", md:"65%"}}
+          alignSelf={{base:"flex-end", md:"center"}}
+          display={{base:"block", md:"none"}}
+        >
+          <Box 
+            w={{base:"100%", md:"auto"}}
+            h={{base:"auto", md:"95%"}}
+            pos={{base:"relative", md:"absolute"}}
+            bottom="0"
+            right={{base:"0", md:"12"}}
+            zIndex="10"
+            // style={{transform: `translateY(-${offsetY * 0.5}px)`}}
+          >
+            <StaticImage 
+              src="../../../images/cutout.png" 
+              alt="young person smiling"
+              // height={400}
+              fit="cover"
+              imgStyle={{height:"100%", objectFit:"contain", objectPosition:"bottom right"}}
+              style={{height:"100%", width:"auto"}}
+            />
+          </Box>
+          <Box 
+            w={{base:"100%", md:"auto"}}
+            h={{base:"auto", md:"95%"}}
+            pos="absolute"
+            bottom="0"
+            right={{base:"3", md:"16"}}
+            zIndex="5"
+            style={{transform: `translatex(-${offsetY * 0.01}px)`}}
+          >
+            <StaticImage 
+              src="../../../images/cutout-shadow.png" 
+              alt="shadow"
+              // height={400}
+              fit="cover"
+              imgStyle={{height:"100%", objectFit:"contain", objectPosition:"bottom right"}}
+              style={{height:"100%", width:"auto"}}
+            />
+          </Box>
+        </Box>
+
+
+
+
+
+
+      <Box 
+          w="65%"
+          h="100%"
+          pos="absolute"
+          bottom="0"
+          right="0"
+          zIndex="1"
+          id="pattern"
+          style={{transform: `translateY(${offsetY * .3}px)`}}
+          display={{base:"none", md:"block"}}
+        >
+          <StaticImage 
+            src="../../../images/pattern-1.png" 
+            alt="shape pattern"
+            // height={400}
+            fit="cover"
+            imgStyle={{height:"100%", objectFit:"cover", objectPosition:"left"}}
+            style={{height:"100%", width:"auto"}}
+          />
+        </Box>
+        <Box 
+          w="100%"
+          h={{base: "75%", sm:"85%"}}
+          pos="absolute"
+          bottom="0"
+          right="0"
+          zIndex="1"
+          id="pattern"
+          style={{transform: `translateY(-${offsetY * .3}px)`}}
+          display={{base:"block", md:"none"}}
+        >
+          <StaticImage 
+            src="../../../images/longPattern.png" 
+            alt="shape pattern"
+            // height={400}
+            fit="cover"
+            imgStyle={{height:"100%", objectFit:"contain", objectPosition:"bottom"}}
+            style={{height:"100%", width:"auto"}}
+          />
+        </Box>
       {/* <Flex
         class="image-wrapper"
         position={{base: "relative", sm: 'absolute'}}
@@ -177,6 +254,15 @@ export const FixedHomepageHero = ({ image, title, text, button }) => {
           />
         </Box>
       </Flex> */}
+
+
+
+
+
+
+
+
+  
     </Flex>
   )
 }

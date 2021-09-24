@@ -27,7 +27,7 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
   
 
   return (
-    <Box position="relative" maxW="2xl" overflow="hidden" borderRadius="md">
+    <Box position="relative" maxW="xl" minW={{base:"xs",md:"lg"}} overflow="hidden" borderRadius="md" width="100%">
       <Box position="relative" overflow="hidden" bg="white" px={{base:"3",sm:"6"}} py={{base:"5",sm:"7"}} w="100%">
 
         <Stack
@@ -92,7 +92,7 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
                   <b>£{formattedSalary}</b> /yr
                 </Text>
               </HStack>
-              <HStack spacing="1" marginInlineStart={{base:"0 !important"}}>
+              <HStack spacing="1" marginInlineStart={{base:"0", sm:"5"}}>
                 <Icon as={HiClock} color="gray.400" />
                 <Text
                   fontSize="sm"
@@ -141,7 +141,7 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
         />
 
       </Box>
-      <Box position="absolute" bottom={{base:"unset", sm:"0"}} top={{base:"0", sm:"unset"}} right="0" zIndex={1} id="jobCardMenu">
+      <Box position="absolute" bottom={{base:"unset", sm:"5px"}} top={{base:"5px", sm:"unset"}} right="10px" zIndex={1} id="jobCardMenu">
         <Menu placement="left-start">
           <MenuButton
             as={IconButton}

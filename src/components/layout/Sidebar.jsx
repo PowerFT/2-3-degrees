@@ -74,9 +74,9 @@ export const Sidebar = ({...rest}) => {
               <Icon as={FaInstagram} w={6} h={6} mr={isOpen ? "4" : "0"} mb={isOpen ? "0" : "4"}/>
               <Icon as={FaTwitter} w={6} h={6} />
             </Flex> */}
-            <Flex spacing="4" w={isOpen ? "max-content" : "min-content"} h={isOpen ? "min-content" : "max-content"} alignSelf="center" mb="5" px="3" justifySelf="flex-end" transition="all 2s" flexWrap="wrap" as="ul">
+            <Flex w={isOpen ? "max-content" : "min-content"} h={isOpen ? "min-content" : "max-content"} alignSelf="center" mb="5" px="3" justifySelf="flex-end" transition="all 2s" flexWrap="wrap" as="ul">
               {socialLinks?.map((link, i) => (
-                <SocialButton key={i} target="_blank" rel="noreferrer" href={link.href}>
+                <SocialButton key={i} target="_blank" mb={isOpen ? "0" : "4"} mr={isOpen && i !== 3 ? "4" : "0"} rel="noreferrer" href={link.href}>
                   <Box srOnly>{link.label}</Box>
                   {link.icon}
                 </SocialButton>

@@ -77,7 +77,7 @@ export const JobsList = (props) => {
 	if (error) return <MyError error={`Error: ${error}`} />
 	if (!data && loading) return <MySpinner />
 	if (!data) return <p>No posts found.</p>
-	if(!data.viewer.jobPosts.nodes.length) return <MyError error="No Opportunities found, try a different 'post status'"/>
+	if(data.viewer.jobPosts.nodes.length === 0) return <MyError error="No Opportunities found, try a different 'post status'"/>
 
 	console.log(data.viewer.jobPosts.nodes)
 

@@ -11,6 +11,7 @@ export const Content = ({children, ...rest}) => {
 			flex="1"
 			w="100%"
 			// pb="6"
+			{...rest}
 		>
 			<Flex align="center" width="100%" direction="column" minH={{base:"62vh"}}>
 				{children}

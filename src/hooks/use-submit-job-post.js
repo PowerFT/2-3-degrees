@@ -23,7 +23,7 @@ export const useSubmitJobPost = ( formType ) => {
 
 	const submitJobPost = ( props ) => {
 
-		//console.log(props)
+		console.log(props)
 		setSubmitLoading( true );
 
 		const success = ( result ) => {
@@ -52,10 +52,11 @@ export const useSubmitJobPost = ( formType ) => {
 			sector,
 			salary,
 			salaryStructure,
+			applicationLink,
 			content,
 			companyBio,
 			closeDate,
-		} = props.variables;
+		} = props;
 
 		//console.log(id, title)
 		//console.log(formType)
@@ -73,6 +74,7 @@ export const useSubmitJobPost = ( formType ) => {
 						sector,
 						salary,
 						salaryStructures: salaryStructure,
+						applicationLink,
 						content,
 						companyBio,
 						closeDate,
@@ -93,6 +95,7 @@ export const useSubmitJobPost = ( formType ) => {
 						sector,
 						salary,
 						salaryStructures: salaryStructure,
+						applicationLink,
 						content,
 						companyBio,
 						closeDate,

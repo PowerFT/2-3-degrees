@@ -74,11 +74,12 @@ export const ConnectJobs = () => {
 		<>
 
 			<Flex 
-				as="section" 
 				h= {{
-					md: "300px",
-					lg: "400px",
+					base:"300px",
+					md: "400px",
+					lg: "500px",
 				}} 
+
 				bg="dOrange.300" 
 				direction="column" 
 				position="relative" 
@@ -91,8 +92,10 @@ export const ConnectJobs = () => {
 					h="95%"
 					pos="absolute"
 					bottom="0"
-					left="12"
+					left="4"
 					zIndex="10"
+					display={{base:"none", md:"block"}}
+
 					// style={{transform: `translateY(-${offsetY * 0.5}px)`}}
 				>
 					<StaticImage 
@@ -109,8 +112,10 @@ export const ConnectJobs = () => {
 					h="95%"
 					pos="absolute"
 					bottom="0"
-					left="8"
+					left="1"
 					zIndex="5"
+					display={{base:"none", md:"block"}}
+
 					// style={{transform: `translatex(-${offsetY * 0.05}px)`}}
 				>
 					<StaticImage 
@@ -118,48 +123,48 @@ export const ConnectJobs = () => {
 						alt="shadow"
 						// height={400}
 						fit="cover"
-						imgStyle={{height:"100%", objectFit:"contain", objectPosition:"bottom left"}}
+						imgStyle={{height:"100%", objectFit:"contain", objectPosition:"left"}}
 						style={{height:"100%", width:"auto"}}
 					/>
 				</Box>
 				<Box 
-					w="65%"
-					h="100%"
+					w="auto"
+					h="90%"
 					pos="absolute"
-					bottom="0"
-					left="0"
+					left="2%"
 					zIndex="1"
 					id="pattern"
-					// style={{transform: `translateY(${offsetY * .3}px)`}}
+					top="50%"
+					style={{transform: `translateY(-50%)`}}
 				>
         <StaticImage 
           src="../../images/adminBg.svg" 
           alt="shape pattern"
           // height={400}
           fit="cover"
-          imgStyle={{height:"100%", objectFit:"cover", objectPosition:"left"}}
+          imgStyle={{height:"100%", objectFit:"contain", objectPosition:"left"}}
           style={{height:"100%", width:"auto"}}
         />
       </Box>
 
 				<Box
-					maxW="3xl"
 					// mx="auto"
 					// px={{ base: '4', lg: '8' }}
-					py={{ base: '8', sm: '20' }}
+					py={{ base: '8', sm: '12', lg: "16" }}
 					// textAlign="center"
-					zIndex={100}
+					zIndex={11}
 					position="relative"
 					alignSelf="flex-end"
+					maxW={{base: "300px", sm:"sm",md:"md",lg:"2xl"}}
 				>
 					<Heading 
 						as="h1" 
 						color="gray.50" 
-						fontSize={{base: '50px', sm: '65px', md: '120px'}} 
+						fontSize={{base: '50px', sm: '75px', md:"90px", lg: '120px'}} 
 						letterSpacing="tight" 
 						textTransform="uppercase"
-						maxW="2xl"
 						lineHeight="1"
+						textAlign="end"
 					>
 						<Box as="mark" bg="transparent" color="inherit" fontWeight="300">Connect </Box> 
 						<Box as="mark" bg="transparent" color="inherit" fontWeight="600">Platfrom </Box> 
@@ -190,6 +195,7 @@ export const ConnectJobs = () => {
 						top="3"
 						width="100%"
 						p="3"
+						py="6"
 						justify="center"
 						zIndex="10"
 						display={{
@@ -209,21 +215,12 @@ export const ConnectJobs = () => {
 							setSkills={setSkills}
 						/>
 					</Flex>
-					<MotionBox
-						key="jobList"
-						initial={{ opacity: 0, x: 400 }}
-						animate={{ opacity: 1, x: 0 }}
-						exit={{ opacity: 0, x: 400 }}
-						transition={{
-							type: "spring",
-							mass: 0.15,
-							stiffness: 115,
-							duration: 1
-						}}
+					<Box
 						h="fit-content"
+						minH="90vh"
 					>
 						<JobsBoardJobList locations={locations} sectors={sectors} jobTypes={jobTypes} skills={skills}/>
-					</MotionBox>
+					</Box>
 				</Content>
 			</Flex>
 

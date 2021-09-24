@@ -2,7 +2,7 @@
 * External dependencies
 */
 // import { ViewIcon } from '@chakra-ui/icons'
-import { Box, Flex } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useLocation } from '@reach/router';
 import queryString from 'query-string';
@@ -11,7 +11,7 @@ import { useQuery, gql } from '@apollo/client'
 * Internal dependencies
 */
 // import { useAuth } from '../../../hooks'
-import { JobPreviewCard } from './JobPreview'
+// import { JobPreviewCard } from './JobPreview'
 import { JobPostForm } from './JobPostForm'
 import { MySpinner } from '../../waiting/MySpinner'
 import { MyError } from '../../waiting/MyError'
@@ -111,7 +111,7 @@ export const UpdateJobPostFormPage = () => {
 
   useEffect(() => {
     if (!loading && data) {
-      // console.log('use effect fired')
+      console.log('use effect fired', data)
       const jobPost = data.jobPost
       setFormDeets({
         id: jobPost?.id,
@@ -166,16 +166,16 @@ export const UpdateJobPostFormPage = () => {
             // setIsLoading = { setIsLoading }
             // isLoading = { isLoading }
             id={formDeets.id}
-            title={formDeets.title}
-            companyName={formDeets.companyName}
-            jobType={formDeets.jobType}
-            jobLocation={formDeets.jobLocation}
-            sector={formDeets.sector}
-            salary={formDeets.salary}
-            salStructure={salStructure}
-            salaryStructure={formDeets.salaryStructure}
-            setSalStructure={setSalStructure}
-            content={formDeets.content}
+            // title={formDeets.title}
+            // companyName={formDeets.companyName}
+            // jobType={formDeets.jobType}
+            // jobLocation={formDeets.jobLocation}
+            // sector={formDeets.sector}
+            // salary={formDeets.salary}
+            // // salStructure={salStructure}
+            // salaryStructure={formDeets.salaryStructure}
+            // // setSalStructure={setSalStructure}
+            // content={formDeets.content}
           />
         </Content>
       </Flex>

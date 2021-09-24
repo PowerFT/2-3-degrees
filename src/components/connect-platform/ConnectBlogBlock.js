@@ -15,7 +15,7 @@ export const ConnectBlogBlock = ({ data }) => {
     render={data => {
       const posts = data.allWpPost?.nodes
       return (
-        <Box alignSelf="stretch" py="12">
+        <Box alignSelf="stretch" py="12" display={posts.length === 0 && "none"}>
           <Heading size="4xl" textAlign="center" mb="4">
             Connected Content
           </Heading>
@@ -24,9 +24,7 @@ export const ConnectBlogBlock = ({ data }) => {
           </BlogGrid>
         </Box>
       )}}
-			
 		/>
-	
 	)
 }
 

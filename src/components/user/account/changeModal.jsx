@@ -74,15 +74,8 @@ export function ChangeModal({ title, type, curInput, accountDeets, setNewEmail, 
 					<ModalCloseButton />
 					<form onSubmit={handleSubmit}>
 						<ModalBody>
-							<FormControl id="changeEmailForm">
-								<FormLabel>{`Current ${type}:`}</FormLabel>
-								<Input 
-									isReadOnly
-									value={curInput}
-								/>
-							</FormControl>
 							<FormControl>
-							<FormLabel>{`New ${type}:`}</FormLabel>
+								<FormLabel>{`New ${type}:`}</FormLabel>
 								<Input 
 									type={type.toLowerCase()} 
 									value={val}
@@ -91,10 +84,18 @@ export function ChangeModal({ title, type, curInput, accountDeets, setNewEmail, 
 							</FormControl>
 						</ModalBody>
 						<ModalFooter>
-							<Button fontWeight="medium" colorScheme="blue" mr={3} onClick={onClose}>
+							<Button fontWeight="medium" colorScheme="gray" variant="outline" mr={3} onClick={onClose}>
 								Cancel
 							</Button>
-							<Button fontWeight="medium" type="submit" variant="ghost">Save</Button>
+							<Button 
+								fontWeight="medium" 
+								type="submit"
+								isLoading={status === 'resolving'}
+								loadingText="Updating"
+								disabled={status === 'resolving'}
+							>
+								{`Update ${type}`}
+							</Button>
 						</ModalFooter>
 					</form>
 				</ModalContent>

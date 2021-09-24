@@ -39,10 +39,6 @@ export const links = [
     title: 'Services',
     links: [
       {
-        label: '',
-        href: '#',
-      },
-      {
         label: 'Programmes',
         href: '/services',
       },

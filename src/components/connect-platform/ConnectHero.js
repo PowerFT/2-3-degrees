@@ -19,7 +19,7 @@ export const ConnectHero = () => {
       bg="dBlue.300" 
       direction="column" 
       position="relative" 
-      justify="center" 
+      justify={{base: "flex-end", sm:"center"}} 
       px={{ base: '4', md: '12' }}
 			w="full"
     >
@@ -32,17 +32,17 @@ export const ConnectHero = () => {
         zIndex={100}
         position="relative"
         color="white"
-				style={{transform: `translateY(${offsetY * 0.18}px) `}}
+				// style={{transform: `translateY(${offsetY * 0.18}px) `}}
       >
-        
         <Heading 
           as="h1" 
           color="gray.50" 
-          fontSize={{base: '100px', sm: '110px', md: '120px'}} 
+          fontSize={{base: '90px', sm: '110px', md: '120px'}} 
           letterSpacing="tight" 
           textTransform="uppercase"
           maxW="2xl"
           lineHeight="1"
+          
         >
           <Box as="mark" bg="transparent" color="inherit" fontWeight="300">Welcome </Box> 
           <Box as="mark" bg="transparent" color="inherit" fontWeight="100">to </Box> 
