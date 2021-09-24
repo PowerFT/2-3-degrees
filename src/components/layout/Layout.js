@@ -16,6 +16,7 @@ import { MobileBottomBar } from './MobileBottomBar'
 import { Sidebar } from './Sidebar'
 import { useAuth } from '../../hooks'
 import { Content } from './Content';
+import { Footer } from '../footer';
 // import "@wordpress/block-library/build-style/style.css"
 
 // const MotionBox = motion(Box)
@@ -56,6 +57,7 @@ export default function Layout({children}) {
           <InnerSidebar /> */}
           <Box flex="1">
             {children}
+            <Footer />
           </Box>
         </Flex>
 

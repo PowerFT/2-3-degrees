@@ -10,6 +10,8 @@ import { NavMenus } from '../menus'
 // import AniLink from "gatsby-plugin-transition-link/AniLink";
 // import InternalProvider from 'gatsby-plugin-transition-link/context/InternalProvider';
 import { Link } from 'gatsby'
+import { SocialButton } from '../footer/SocialButton'
+import { socialLinks } from '../footer/_data'
 
 
 export const Sidebar = ({...rest}) => {
@@ -52,7 +54,7 @@ export const Sidebar = ({...rest}) => {
           </Flex>
 
           <LinkBox h="60px" w="60px" mb="5" ml="3">
-            <LinkOverlay as={Link} to="/"><Logo iconColor='whitesmoke' /></LinkOverlay>
+            <LinkOverlay as={Link} to="/" onClick={onToggle}><Logo iconColor='whitesmoke' /></LinkOverlay>
           </LinkBox>
 
           <Collapse in={isOpen} animateOpacity>
@@ -72,21 +74,13 @@ export const Sidebar = ({...rest}) => {
               <Icon as={FaInstagram} w={6} h={6} mr={isOpen ? "4" : "0"} mb={isOpen ? "0" : "4"}/>
               <Icon as={FaTwitter} w={6} h={6} />
             </Flex> */}
-            <Flex spacing="4" w={isOpen ? "max-content" : "min-content"} h={isOpen ? "min-content" : "max-content"} alignSelf="center" mb="5" px="3" justifySelf="flex-end" transition="all 2s" flexWrap="wrap">
-              <Box _hover={{color:"gray.600"}}  mb="2" mx="2"><a href="https://www.facebook.com/2.3degrees/" target="_blank" rel="noreferrer">
-                <Icon as={FaFacebook} w={7} h={7}/></a>
-              </Box>
-              <Box _hover={{color:"gray.600"}}  mb="2" mx="2"><a href="https://www.instagram.com/2_3degrees/" target="_blank" rel="noreferrer" mb="2" mx="2">
-                <Icon as={FaInstagram} w={7} h={7}/></a>
-              </Box>
-              <Box _hover={{color:"gray.600"}}  mb="2" mx="2"><a href="https://twitter.com/2_3degrees?lang=en" target="_blank" rel="noreferrer" mb="2" mx="2">
-                <Icon as={FaTwitter} w={7} h={7}/>
-              </a>
-              </Box>
-              <Box _hover={{color:"gray.600"}}  mb="2" mx="2"><a href="https://www.youtube.com/channel/UC9nxulVkNqGn3XV5UxSEvNQ" target="_blank" rel="noreferrer" mb="2" mx="2">
-                <Icon as={FaYoutube} w={7} h={7} />
-              </a></Box>
-            
+            <Flex spacing="4" w={isOpen ? "max-content" : "min-content"} h={isOpen ? "min-content" : "max-content"} alignSelf="center" mb="5" px="3" justifySelf="flex-end" transition="all 2s" flexWrap="wrap" as="ul">
+              {socialLinks?.map((link, i) => (
+                <SocialButton key={i} target="_blank" rel="noreferrer" href={link.href}>
+                  <Box srOnly>{link.label}</Box>
+                  {link.icon}
+                </SocialButton>
+              ))}
             </Flex>
 
             {isLoggedIn && (

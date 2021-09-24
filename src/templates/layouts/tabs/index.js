@@ -3,8 +3,12 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import React from 'react'
 import { MdPermPhoneMsg } from 'react-icons/md'
 import parse from "html-react-parser"
+import { BsLightningFill } from 'react-icons/bs'
 
-export const TabSection = ({ tabs }) => {
+export const TabSection = ( props ) => {
+	console.log(props)
+
+	const {tabs, title} = props
 
 	// 1. Reuse the styles for the Tab
   const StyledTab = chakra("button", { themeKey: "Tabs.Tab" })
@@ -18,7 +22,7 @@ export const TabSection = ({ tabs }) => {
     const styles = useStyles()
 
     return (
-      <StyledTab __css={styles.tab} {...tabProps} p="10" cursor="pointer" shadow="none" _selected={{ color: "white", bg: "dOrange.400" }}>
+      <StyledTab __css={styles.tab} {...tabProps} p="10" cursor="pointer" shadow="none" _selected={{ color: "white", bg: "dOrange.300" }}>
         {tabProps.children}
       </StyledTab>
     )
@@ -27,12 +31,22 @@ export const TabSection = ({ tabs }) => {
 	return (
 		// <p>tabsssssss</p>
 		<Box>
-			<Tabs isFitted>
+			{title && (
+				<Heading
+					className="tabblock__header--title"
+					size="4xl"
+					p="8"
+				> 
+					{title}
+				</Heading>
+			)}
+
+			<Tabs borderTop="1px solid #f67011" isFitted>
 
 				<TabList>
 					{
 						tabs?.map((tab, i) => (
-							<CustomTab key={i}>{tab.title}</CustomTab>
+							<CustomTab key={i}><Text fontSize="xl" fontWeight="600">{tab.title}</Text></CustomTab>
 						))
 					}
 				</TabList>
@@ -56,8 +70,9 @@ export const TabSection = ({ tabs }) => {
 											md: "300px",
 											lg: "400px",
 										}}
+										justify="center"
 									>
-										<Box flex="1 1 50%" p="10" color="gray.800" order={i%2 === 0 ? 2 : 1}>
+										<Box flex="1 1 50%" p="8" bg="dBlue.300" color="gray.800" order={i%2 === 0 ? 2 : 1}>
 											<Heading
 												className="tabblock__header--title"
 												size="4xl"
@@ -77,7 +92,7 @@ export const TabSection = ({ tabs }) => {
 										{tab?.image && (
 											<Box position="relative" w="full" h="full" flex="1 1 50%" order={i%2 === 0 ? 1 : 2}>
 												<GatsbyImage
-													className="tabblock__image--img"
+													className="tab-block__image--img"
 													image={imageData}
 													alt={tab?.image?.altText}
 													objectFit="cover"
@@ -87,23 +102,25 @@ export const TabSection = ({ tabs }) => {
 										)}
 									</Flex>
 									<Box
-										className="tabblock__body"
-										bg="dOrange.200"
+										className="tab-block__body"
+										bg="gray.50"
 										p={[
 											"1.5rem",
 											"1.5rem",
 											"3rem"
 										]}
+										maxW="2xl"
+										mx="auto"
 									>
-										<Box className="tabblock__body--content wp-content" maxW="xl" mx="auto">
+										<Box className="tabblock__body--content wp-content" >
 											{parse(tab?.text)}
 										</Box>
-										<Stack mt={{ base: '8', md: '16' }} spacing="4" fontWeight="extrabold">
+										<Stack mt={{ base: '8', md: '8' }} spacing="4">
 											{
-												tab?.list?.map(item => (
-													<HStack spacing="5" color='blue.600'>
-														<Box fontSize="3xl" as={MdPermPhoneMsg} />
-														<Text fontSize={{ base: 'lg', md: 'xl' }}>{item.text}</Text>
+												tab?.list?.map((item, i) => (
+													<HStack key={i} spacing="5" color='blue.600' color="gray.800">
+														<Box fontSize="3xl" as={BsLightningFill} color="dBlue.300"/>
+														<Text fontSize={{ base: 'md', md: 'lg' }}>{item.text}</Text>
 													</HStack>
 												))
 											}

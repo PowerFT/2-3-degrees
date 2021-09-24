@@ -163,15 +163,12 @@ const getPages = async ({ graphql, reporter }) => {
               }
               ... on WpPage_Pagebuilder_Layouts_Tabs {
                 fieldGroupName
+                title
                 tabs {
                   title
                   text
                   list {
                     text
-                  }
-                  link {
-                    url
-                    title
                   }
                   image {
                     altText
@@ -204,7 +201,7 @@ const getPages = async ({ graphql, reporter }) => {
                     altText
                     localFile {
                       childImageSharp {
-                        fluid(quality: 90) {
+                        fluid(quality: 90, cropFocus: CENTER) {
                           src
                           srcSet
                           aspectRatio

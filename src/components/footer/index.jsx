@@ -9,12 +9,13 @@ import {
   Wrap,
   WrapItem,
 } from '@chakra-ui/react'
+import { Link } from 'gatsby'
 import * as React from 'react'
-import { LanguageSwitcher } from './LanguageSwitcher'
-import { Logo } from './Logo'
+// import { LanguageSwitcher } from './LanguageSwitcher'
+import { Logo } from '../layout/Logo'
 import { SocialButton } from './SocialButton'
 import { footerLinks, links, socialLinks } from './_data'
-
+ 
 export const Footer = () => (
   <Box as="footer" bg="dOrange.400" color="white" py="64px">
     <Box maxW="7xl" px="8" mx="auto">
@@ -35,10 +36,10 @@ export const Footer = () => (
             lg: 0,
           }}
         >
-          <Logo color="white" h="6" />
+          <Logo iconColor="white" h="16" />
           <HStack spacing="4" mt="8" as="ul">
-            {socialLinks?.map((link, idx) => (
-              <SocialButton key={idx} href={link.href}>
+            {socialLinks?.map((link, i) => (
+              <SocialButton key={i} target="_blank" rel="noreferrer" href={link.href}>
                 <Box srOnly>{link.label}</Box>
                 {link.icon}
               </SocialButton>
@@ -90,7 +91,7 @@ export const Footer = () => (
           ))}
         </SimpleGrid>
       </Flex>
-      <Divider my="10" borderColor="blue.300" />
+      <Divider my="10" borderColor="dYellow.300" />
       <Flex
         direction={{
           base: 'column-reverse',
@@ -115,17 +116,17 @@ export const Footer = () => (
           }}
         >
           <WrapItem>
-            <Box>&copy; Envelope</Box>
+            <Box>&copy; 2-3 Degrees</Box>
           </WrapItem>
           {footerLinks?.map((link, idx) => (
             <WrapItem key={idx}>
-              <Box as="a" href={link.href}>
+              <Box as={Link} to={link.href}>
                 {link.label}
               </Box>
             </WrapItem>
           ))}
         </Wrap>
-        <LanguageSwitcher />
+        {/* <LanguageSwitcher /> */}
       </Flex>
     </Box>
   </Box>

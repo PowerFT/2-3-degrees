@@ -89,6 +89,7 @@ export const Header = ({title, subTitle, imageData, imgAlt, pageType, avatar, bl
 							md: pageType === "blog" ? "2.7rem" : "4.3rem"
 						}}
 						w="full"
+						color="gray.50"
 						textAlign={{md: pageType === "blog" ? "start" : "center", lg: "start"}}
 						// noOfLines={2}
 					> 
@@ -115,6 +116,7 @@ export const Header = ({title, subTitle, imageData, imgAlt, pageType, avatar, bl
 					maxW="2xl"
 					mx={{ base: 'auto', lg: 'unset' }}
 					noOfLines="5"
+					color="gray.50"
 				>
 					{subTitle}
 				</Text>

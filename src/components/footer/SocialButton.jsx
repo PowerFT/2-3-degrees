@@ -3,16 +3,16 @@ import { chakra } from '@chakra-ui/react'
 export const SocialButton = chakra('a', {
   baseStyle: {
     rounded: 'lg',
-    w: '8',
-    h: '8',
+    w: '10',
+    h: '10',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    bg: 'blackAlpha.400',
+    bg: 'blackAlpha.500',
     color: 'white',
     transition: 'all 0.2s',
     _hover: {
-      bg: 'blackAlpha.500',
+      bg: 'blackAlpha.600',
     },
   },
 })
