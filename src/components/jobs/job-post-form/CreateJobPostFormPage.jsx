@@ -68,7 +68,7 @@ export const CreateJobPostFormPage = () => {
           formJobType = {formDeets.jobType}
           formSalary = {formDeets.salary}
         />
-        <Content>
+        <Content py="12">
           <JobPostForm 
           formType = { formType }
             formDeets = { formDeets }

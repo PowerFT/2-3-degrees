@@ -100,6 +100,7 @@ export const TalentAccountSettings = ({user}) => {
         />
         <Content
           pageType={pageType}
+          py="12"
         >
           <form
             id="accountForm"

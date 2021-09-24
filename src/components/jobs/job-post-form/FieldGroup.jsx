@@ -12,14 +12,13 @@ export const FieldGroup = (props) => {
       spacing="6"
       py="4"
       {...flexProps}
-    >
+    >{title && (
       <Box minW="3xs">
-        {title && (
-          <Heading as="h2" fontWeight="semibold" fontSize="lg" flexShrink={0}>
-            {title}
-          </Heading>
-        )}
+        <Heading as="h2" fontWeight="semibold" fontSize="lg" flexShrink={0}>
+          {title}
+        </Heading>
       </Box>
+      )}
       {children}
     </Stack>
   )

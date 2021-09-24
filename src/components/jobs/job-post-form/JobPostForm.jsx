@@ -338,7 +338,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               <Textarea
                 id="jobDescription Input"
                 type="text"
-                rows={5}
+                rows={15}
                 value={formDeets.content}
                 onChange={e =>
                   setFormDeets({
@@ -350,7 +350,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                 {/* {formDeets.content} */}
               </Textarea>
               <FormHelperText>
-                Brief description for your organisation's account.
+                Details of your opportunity, job, or placement.
               </FormHelperText>
             </FormControl>
           </AdminBlob>
@@ -358,7 +358,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
           {
             formType === 'update' && (
               <FieldGroup>
-                <DangerZone idd={id} />
+                <DangerZone id={id} />
               </FieldGroup>
             )
           }

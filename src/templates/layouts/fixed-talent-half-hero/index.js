@@ -96,7 +96,7 @@ export const FixedTalentHalfHero = ({ image, title, text, button }) => {
         >
           I am Talent
         </Heading>
-        <Text mt={4} fontSize="xl" fontWeight="medium" color="inherit">
+        <Text mt={4} fontSize="xl" fontWeight="medium" color="inherit" maxW="md">
           Are you ready to take the next step? Find jobs, internships and apprenticeship, now.
         </Text>
         <LinkBox mt="4">
