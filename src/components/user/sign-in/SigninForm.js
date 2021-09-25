@@ -4,6 +4,7 @@
 import {
   Alert,
   AlertIcon,
+  Box,
   Button,
   FormControl,
   FormLabel,
@@ -85,6 +86,8 @@ export const SigninForm = ({user}) => {
               disabled={ status === 'resolving' }
             />
           </FormControl>
+          <Box pb="3"></Box>
+          <Alert status="info"> <AlertIcon/>If "network error" - refresh the page</Alert>
         </Stack>
         {/* <Flex align="center" justify="space-between" mt="8">
           <LightMode>
@@ -105,6 +108,7 @@ export const SigninForm = ({user}) => {
           </LightMode>
           <UnderlineLink fontSize="sm">Forgot Password</UnderlineLink>
         </Flex> */}
+
         <LightMode>
           <Button
             size="lg"
