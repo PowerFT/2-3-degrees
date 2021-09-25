@@ -76,6 +76,11 @@ const GET_JOB_POST_BY_ID = gql`
 					name
 				}
 			}
+      skills {
+        nodes {
+          name
+        }
+      }
 		}
 	}
 `
@@ -105,7 +110,7 @@ export const UpdateJobPostFormPage = () => {
   }
 
   const [formDeets, setFormDeets] = useState(initialState)
-  const [salStructure, setSalStructure] = useState('Year')
+  // const [salStructure, setSalStructure] = useState('Year')
 
   const { loading, error, data } = useQuery(GET_JOB_POST_BY_ID, { variables: { id: jobToEditId } })
 

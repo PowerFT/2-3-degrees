@@ -28,7 +28,6 @@ export const JobCard = ({title, jobLocation, salary, jobType, sector, companyNam
         px={{base: "4", sm: "6"}} 
         py={{base: "4", sm: "6"}} 
         maxW="xl"
-        
         minW={{base:"xs",md:"lg"}}
         _hover={{shadow:"base", transform:"translateY(-5px) scale(1.01)" }}
         transition="all .4s"

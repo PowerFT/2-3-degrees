@@ -1,8 +1,8 @@
 /**
 * External dependencies
 */
-import React from 'react'
-import { InputLeftAddon, InputRightAddon, Button, FormControl, FormHelperText, FormLabel, Input, Select, Stack, Textarea, VStack, InputGroup, Flex, } from '@chakra-ui/react'
+import React, { useState } from 'react'
+import { useCheckboxGroup, useCheckbox, InputLeftAddon, InputRightAddon, Button, FormControl, FormHelperText, FormLabel, Input, Select, Stack, Textarea, VStack, InputGroup, Flex, Box, } from '@chakra-ui/react'
 import { v4 as uuidv4 } from "uuid"
 import { graphql, StaticQuery, navigate } from 'gatsby'
 /**
@@ -19,7 +19,34 @@ import { AdminBlob } from '../../AdminBlob'
 
 
 export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
+  
+  // const [checked, setChecked] = useState();
+  // const { getCheckboxProps } = useCheckboxGroup({
+  //   onChange: setChecked
+  // });
+  // const checkbox = getCheckboxProps({ value });
+  // const { getCheckboxProps } = useCheckbox(checkbox);
+  // const checkboxxx = getCheckboxProps();
+  const [active, setActive] = useState([])
 
+  const handleSkillClick = (skill) => {
+    if(!active.includes(skill) && active.length < 3) {
+      setActive([...active, skill])
+      // console.log(formDeets.skill)
+      setFormDeets({
+        ...formDeets,
+        skills: [...formDeets.skills, skill],
+      })
+    } else if(active.includes(skill)) {
+      setActive(active.filter(newskill => newskill !== skill))
+      setFormDeets({
+        ...formDeets,
+        skills: formDeets.skills.filter(newskill => newskill !== skill),
+      })
+    } else {
+      return
+    }
+  }
   console.log(formDeets)
 
   const { submitJobPost, submitLoading } = useSubmitJobPost(formType);
@@ -30,7 +57,6 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
     e.preventDefault();
     console.log(formDeets)
     submitJobPost({ clientMutationId: uuidv4(), ...formDeets })
-    // .then(navigate(`/maker/jobs`))
     .catch(error => {
       console.log(error); //fix
     });
@@ -226,6 +252,57 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               </FormControl> */}
 
             </VStack>
+          </AdminBlob>
+
+          <AdminBlob>
+          <Flex
+            justify="flex-start"
+            align="center"
+            wrap="wrap"
+            mt="2"
+            justifyContent="center"
+          >
+            <StaticQuery
+              query={META_QUERY}
+              render={data => {
+                if (data.allWpSkill) {
+                  const skills = data.allWpSkill.nodes
+                  
+                    return (
+                      <>
+                        {  
+                          skills && (
+                            skills.map(skill => (
+                              <Button
+                                key={skill.id}
+                                as="span"
+                                cursor="pointer"
+                                user-select="none"
+                                bg={active.includes(skill.name) ? "dBlue.300" : "gray.300"}
+                                color="gray.700"
+                                textAlign="center"
+                                mr="1"
+                                mb="2"
+                                rounded="full"
+                                px={3}
+                                py={2}
+                                fontSize="xs"
+                                fontWeight="bold"
+                                // bg={active ? "red.700" : "gray.50"}
+                                // _active={active === skill}
+                                onClick={() => handleSkillClick(skill.name)}
+                              >
+                                {skill.name}
+                              </Button>
+                            ))
+                          )
+                        }
+                      </>
+                    )
+                  }
+                }}
+              />
+          </Flex>
           </AdminBlob>
 
           <AdminBlob title="Company Info">
