@@ -16,6 +16,7 @@ import { socialLinks } from '../footer/_data'
 
 export const Sidebar = ({...rest}) => {
   const { isLoggedIn, loadingViewer, viewer } = useAuth()
+  console.log(viewer)
 
   const { isOpen, onToggle } = useDisclosure()
 
