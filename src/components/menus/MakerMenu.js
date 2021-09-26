@@ -8,7 +8,7 @@ export const MakerMenu = ( {mobile, menuopen, onclose} ) => {
 	if(loadingViewer || !viewer) return null
 	if(viewer.roles.nodes[0].name !== "maker" || !isLoggedIn) return null
 
-	console.log(viewer)
+	// console.log(viewer)
 	return (
 		<>
 			<MenuItem mobile={mobile}  link="/maker/jobs" label="My Opportunities"  menuopen={menuopen} onclose={onclose}/>

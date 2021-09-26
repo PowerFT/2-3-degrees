@@ -45,6 +45,7 @@ export const SigninForm = ({user}) => {
         <Alert status="warning">
           <AlertIcon />
           {error}
+          - Please refesh the page.
         </Alert>
       }
 
@@ -87,7 +88,9 @@ export const SigninForm = ({user}) => {
             />
           </FormControl>
           <Box pb="3"></Box>
-          <Alert status="info"> <AlertIcon/>If "network error" - refresh the page</Alert>
+          {/* {
+            <Alert status="info"> <AlertIcon/>If "network error" - refresh the page</Alert>
+          } */}
         </Stack>
         {/* <Flex align="center" justify="space-between" mt="8">
           <LightMode>
