@@ -4,7 +4,7 @@
 import { gql, useMutation } from '@apollo/client';
 
 const UPDATE_JOB_MUTATION = gql`
-  mutation CreateJobPost(
+  mutation UpdateJobPost(
     $clientMutationId: String!,
     $id: ID!,
     $title: String,
