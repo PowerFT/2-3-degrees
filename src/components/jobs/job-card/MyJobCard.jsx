@@ -19,10 +19,11 @@ import { HiCash, HiClock, HiLocationMarker, HiOutlineEye, HiOutlinePencil } from
 import { Link } from 'gatsby'
 
 
-export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyName, jobPostId, status, content, id}) => {
+export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyName, jobPostId, status, id}) => {
 
   const formattedSalary = parseInt(salary).toLocaleString()
 	// const pending = status !== "publish"
+  console.log(status)
 	// const jobPostLink = `/connect${jobPostId}`
   
 
@@ -151,7 +152,7 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
             size="lg"
           />
           <MenuList>
-            <MenuItem as={Link} to={`/connect/jobs/${id}`} icon={<HiOutlineEye />} command="⌘T">
+            <MenuItem as={Link} display={status === "publish" ? 'flex' : 'none'} to={`/connect/jobs/${id}`} icon={<HiOutlineEye />} command="⌘T">
                 View
             </MenuItem>
             <MenuItem as={Link} to={`/maker/jobs/edit?job=${id}`} icon={<HiOutlinePencil />} command="⌘N">
