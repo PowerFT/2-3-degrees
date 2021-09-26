@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 // import { BatchHttpLink } from '@apollo/client/link/batch-http';
 import fetch from "cross-fetch";
 
-const link = new CreateHttpLink({
+const link = new createHttpLink({
   uri: process.env.GATSBY_WORDPRESS_API_URL,
   credentials: 'include',
   fetch,
