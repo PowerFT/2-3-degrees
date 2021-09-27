@@ -19,17 +19,17 @@ import { AdminBlob } from '../../AdminBlob'
 
 export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
   
-  const [active, setActive] = useState([])
+  // const [active, setActive] = useState([])
 
   const handleSkillClick = (skill) => {
-    if(!active.includes(skill) && active.length < 3) {
-      setActive([...active, skill])
+    if(!formDeets.skills.includes(skill) && formDeets.skills.length < 3) {
+      // setActive([...active, skill])
       setFormDeets({
         ...formDeets,
         skills: [...formDeets.skills, {name: skill}],
       })
-    } else if(active.includes(skill)) {
-      setActive(active.filter(newskill => newskill !== skill))
+    } else if(formDeets.skills.includes(skill)) {
+      // setActive(active.filter(newskill => newskill !== skill))
       setFormDeets({
         ...formDeets,
         skills: formDeets.skills.filter(newskill => newskill.name !== skill),
