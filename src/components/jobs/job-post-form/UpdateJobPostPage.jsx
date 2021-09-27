@@ -131,6 +131,7 @@ export const UpdateJobPostFormPage = () => {
         companyBio: jobPost?.companyBio,
         closeDate: jobPost?.closeDate,
         applicationLink: jobPost?.applicationLink,
+        skills: jobPost?.skills.nodes,
         category: 'Job Post',
       })
     }
