@@ -13,12 +13,13 @@ const UPDATE_JOB_MUTATION = gql`
     $jobLocation: String,
     $sector: String,
     $salary: String,
-    $salaryStructures: String!,
+    $salaryStructures: String,
     $content: String,
     $category: String,
-    $closeDate: String!,
+    $closeDate: String,
     $companyBio: String,
-    $applicationLink: String!
+    $applicationLink: String,
+    $skills: [JobPostSkillsNodeInput]
     ) {
       updateJobPost(input: {
         clientMutationId: $clientMutationId,
@@ -35,7 +36,11 @@ const UPDATE_JOB_MUTATION = gql`
         companyBio: $companyBio,
         applicationLink: $applicationLink,
         categories: {nodes: {name: $category}},
-        status: DRAFT
+        status: DRAFT,
+        skills: {
+          append: true,
+          nodes: $skills
+        },
       }) {
           clientMutationId
           jobPost {

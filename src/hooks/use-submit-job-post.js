@@ -64,6 +64,7 @@ export const useSubmitJobPost = ( formType ) => {
 			content,
 			companyBio,
 			closeDate,
+			skills
 		} = props;
 
 		//console.log(id, title)
@@ -87,6 +88,7 @@ export const useSubmitJobPost = ( formType ) => {
 						companyBio,
 						closeDate,
 						category: 'Job Post',
+						skills
 					},
 				} )
 					.then( successCreate )

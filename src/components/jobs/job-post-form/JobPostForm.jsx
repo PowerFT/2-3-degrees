@@ -24,16 +24,15 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
   const handleSkillClick = (skill) => {
     if(!active.includes(skill) && active.length < 3) {
       setActive([...active, skill])
-      // console.log(formDeets.skill)
       setFormDeets({
         ...formDeets,
-        skills: [...formDeets.skills, skill],
+        skills: [...formDeets.skills, {name: skill}],
       })
     } else if(active.includes(skill)) {
       setActive(active.filter(newskill => newskill !== skill))
       setFormDeets({
         ...formDeets,
-        skills: formDeets.skills.filter(newskill => newskill !== skill),
+        skills: formDeets.skills.filter(newskill => newskill.name !== skill),
       })
     } else {
       return

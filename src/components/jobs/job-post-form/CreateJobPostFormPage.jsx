@@ -18,7 +18,7 @@ export const CreateJobPostFormPage = () => {
 
   const formType = 'create'
 
-  const [ formDeets, setFormDeets ] = useState({})
+  const [ formDeets, setFormDeets ] = useState({skills: []})
   const [salStructure, setSalStructure] = useState('Year')
 
   const { viewer, loadingViewer } = useAuth()

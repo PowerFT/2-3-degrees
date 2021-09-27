@@ -17,7 +17,8 @@ const CREATE_JOB_MUTATION = gql`
     $category: String!,
     $closeDate: String!,
     $companyBio: String!,
-    $applicationLink: String!
+    $applicationLink: String!,
+    $skills: [JobPostSkillsNodeInput]!
     ) {
       createJobPost(input: {
         clientMutationId: $clientMutationId,
@@ -33,7 +34,11 @@ const CREATE_JOB_MUTATION = gql`
         companyBio: $companyBio
         categories: {nodes: {name: $category}},
         applicationLink: $applicationLink,
-        status: DRAFT
+        status: DRAFT,
+        skills: {
+          append: true,
+          nodes: $skills
+        },
       }) {
           clientMutationId
           jobPost {
