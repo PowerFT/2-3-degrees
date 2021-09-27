@@ -28,13 +28,7 @@ export const InnerSidebar = ({
 	jobSkills,
 	salary,
 	setStatusSelected,
-	formTitle,
-	formCompanyName,
-	formJobLocation,
-	formSalStructure,
-	formSector,
-	formJobType,
-	formSalary,
+	formDeets,
 	applicationLink,
 	closeDate,
 	companyBio
@@ -211,13 +205,7 @@ export const InnerSidebar = ({
 				{
 					pageType === "job-form" && (
 						<JobPreviewCard
-              title = {formTitle}
-              companyName = {formCompanyName }
-              jobType = {formJobType}
-              jobLocation = {formJobLocation}
-              sector = {formSector}
-              salary = {formSalary}
-              salStructure={formSalStructure}
+              formDeets = { formDeets }
             />
 					)
 				}

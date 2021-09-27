@@ -12,7 +12,9 @@ import * as React from 'react'
 import { HiCash, HiClock, HiLocationMarker } from 'react-icons/hi'
 
 
-export const JobPreviewCard = ({ title, jobLocation, salary, jobType, sector, companyName, salStructure}) => {
+export const JobPreviewCard = ( {formDeets} ) => {
+
+  const { title, jobLocation, salary, jobType, sector, companyName, salaryStructure} = formDeets
   //console.log(salStructure)
   const formattedSalary = parseInt(salary)?.toLocaleString()
 
@@ -233,7 +235,7 @@ export const JobPreviewCard = ({ title, jobLocation, salary, jobType, sector, co
             // fontWeight="medium"
             color={useColorModeValue('gray.600', 'gray.300')}
           >
-            {salary && (`£${formattedSalary}`)} / {salStructure?.toLocaleLowerCase()}
+            {salary && (`£${formattedSalary}`)} / {salaryStructure?.toLocaleLowerCase()}
           </Text>
         </HStack>
         <HStack spacing="1">

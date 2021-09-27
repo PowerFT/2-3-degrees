@@ -12,10 +12,12 @@ const CREATE_JOB_MUTATION = gql`
     $jobLocation: String!,
     $sector: String!,
     $salary: String!,
+    $salaryStructures: String! 
     $content: String!,
     $category: String!,
     $closeDate: String!,
-    $companyBio: String!
+    $companyBio: String!,
+    $applicationLink: String!
     ) {
       createJobPost(input: {
         clientMutationId: $clientMutationId,
@@ -25,10 +27,12 @@ const CREATE_JOB_MUTATION = gql`
         jobLocation: {nodes: {name: $jobLocation}},
         sector: {nodes: {name: $sector}},
         salary: $salary,
+        salaryStructures: {nodes: {name: $salaryStructures}}
         content: $content,
         closeDate: $closeDate,
         companyBio: $companyBio
         categories: {nodes: {name: $category}},
+        applicationLink: $applicationLink,
         status: DRAFT
       }) {
           clientMutationId
@@ -41,6 +45,7 @@ const CREATE_JOB_MUTATION = gql`
 `
 
 export const useCreateJobPostMutation = () => {
+  console.log("create")
 	const [ mutation, mutationResults ] = useMutation( CREATE_JOB_MUTATION );
 
 	return { mutation, results: mutationResults };

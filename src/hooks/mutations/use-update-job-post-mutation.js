@@ -13,12 +13,12 @@ const UPDATE_JOB_MUTATION = gql`
     $jobLocation: String,
     $sector: String,
     $salary: String,
-    $salaryStructure: String,
+    $salaryStructures: String!,
     $content: String,
     $category: String,
-    $closeDate: String,
+    $closeDate: String!,
     $companyBio: String,
-    $applicationLink: String
+    $applicationLink: String!
     ) {
       updateJobPost(input: {
         clientMutationId: $clientMutationId,
@@ -46,6 +46,7 @@ const UPDATE_JOB_MUTATION = gql`
 `
 
 export const useUpdateJobPostMutation = () => {
+  console.log("update")
 	const [ mutation, mutationResults ] = useMutation( UPDATE_JOB_MUTATION );
 
 	return { mutation, results: mutationResults };

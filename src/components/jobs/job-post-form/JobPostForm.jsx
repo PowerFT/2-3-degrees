@@ -17,16 +17,8 @@ import { MySpinner } from '../../waiting/MySpinner'
 import { AdminBlob } from '../../AdminBlob'
 
 
-
 export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
   
-  // const [checked, setChecked] = useState();
-  // const { getCheckboxProps } = useCheckboxGroup({
-  //   onChange: setChecked
-  // });
-  // const checkbox = getCheckboxProps({ value });
-  // const { getCheckboxProps } = useCheckbox(checkbox);
-  // const checkboxxx = getCheckboxProps();
   const [active, setActive] = useState([])
 
   const handleSkillClick = (skill) => {
@@ -47,7 +39,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
       return
     }
   }
-  console.log(formDeets)
+  console.log(formDeets, formType)
 
   const { submitJobPost, submitLoading } = useSubmitJobPost(formType);
 
@@ -171,11 +163,11 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                   isRequired
                   id="salaryStructureSelect"
                   placeholder="Select Salary Structure"
-                  value={formDeets.salaryStructure}
+                  value={formDeets.salaryStructures}
                   onChange={e => {
                     setFormDeets({
                       ...formDeets,
-                      salaryStructure: e.target.value,
+                      salaryStructures: e.target.value,
                     })
                     // setSalStructure(e.target.value)
                   }

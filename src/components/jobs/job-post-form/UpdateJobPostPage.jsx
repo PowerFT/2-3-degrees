@@ -155,32 +155,14 @@ export const UpdateJobPostFormPage = () => {
       <Flex w="100%">
         <InnerSidebar
           pageType={pageType}
-          formTitle = {formDeets.title}
-          formCompanyName = {formDeets.companyName}
-          formJobLocation = {formDeets.jobLocation}
-          formSalStructure = {formDeets.salStructure}
-          formSector = {formDeets.sector}
-          formJobType = {formDeets.jobType}
-          formSalary = {formDeets.salary}
+          formDeets = { formDeets }
         />
         <Content py="12">
           <JobPostForm
             formDeets={formDeets}
             setFormDeets={setFormDeets}
             formType={formType}
-            // setIsLoading = { setIsLoading }
-            // isLoading = { isLoading }
             id={formDeets.id}
-            // title={formDeets.title}
-            // companyName={formDeets.companyName}
-            // jobType={formDeets.jobType}
-            // jobLocation={formDeets.jobLocation}
-            // sector={formDeets.sector}
-            // salary={formDeets.salary}
-            // // salStructure={salStructure}
-            // salaryStructure={formDeets.salaryStructure}
-            // // setSalStructure={setSalStructure}
-            // content={formDeets.content}
           />
         </Content>
       </Flex>

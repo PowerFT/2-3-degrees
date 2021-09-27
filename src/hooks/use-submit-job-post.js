@@ -26,9 +26,17 @@ export const useSubmitJobPost = ( formType ) => {
 		console.log(props)
 		setSubmitLoading( true );
 
-		const success = ( result ) => {
+		const successCreate = ( result ) => {
+			console.log(result, "create")
 			navigate('/maker/jobs')
-			//console.log(result)
+			//console.log('update success')
+			setSubmitLoading( false );
+			return result.data;
+		};
+		const successUpdate = ( result ) => {
+			console.log(result, "update")
+
+			navigate('/maker/jobs')
 			//console.log('update success')
 			setSubmitLoading( false );
 			return result.data;
@@ -51,7 +59,7 @@ export const useSubmitJobPost = ( formType ) => {
 			jobLocation,
 			sector,
 			salary,
-			salaryStructure,
+			salaryStructures,
 			applicationLink,
 			content,
 			companyBio,
@@ -59,11 +67,11 @@ export const useSubmitJobPost = ( formType ) => {
 		} = props;
 
 		//console.log(id, title)
-		//console.log(formType)
+		console.log("formType: ", formType)
 
 		switch ( formType ) {
 			case 'create':
-				//console.log('create fired: ', title)
+				console.log('create fired: ', title)
 				return createJobPost( {
 					variables: {
 						clientMutationId,
@@ -73,7 +81,7 @@ export const useSubmitJobPost = ( formType ) => {
 						jobLocation,
 						sector,
 						salary,
-						salaryStructures: salaryStructure,
+						salaryStructures,
 						applicationLink,
 						content,
 						companyBio,
@@ -81,9 +89,10 @@ export const useSubmitJobPost = ( formType ) => {
 						category: 'Job Post',
 					},
 				} )
-					.then( success )
+					.then( successCreate )
 					.catch( fail );
 			case 'update':
+				console.log('update fired: ', title)
 				return updateJobPost( {
 					variables: {
 						clientMutationId,
@@ -94,7 +103,7 @@ export const useSubmitJobPost = ( formType ) => {
 						jobLocation,
 						sector,
 						salary,
-						salaryStructures: salaryStructure,
+						salaryStructures,
 						applicationLink,
 						content,
 						companyBio,
@@ -102,7 +111,7 @@ export const useSubmitJobPost = ( formType ) => {
 						category: 'Job Post',
 					},
 				} )
-					.then( success )
+					.then( successUpdate )
 					.catch( fail );
 		}
 
