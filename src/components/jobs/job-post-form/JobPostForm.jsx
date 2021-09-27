@@ -20,15 +20,16 @@ import { AdminBlob } from '../../AdminBlob'
 export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
   
   // const [active, setActive] = useState([])
+  const selectedSkills = formDeets.skills.map(skill => skill.name)
 
   const handleSkillClick = (skill) => {
-    if(!formDeets.skills.includes(skill) && formDeets.skills.length < 3) {
+    if(!selectedSkills.includes(skill) && selectedSkills.length < 3) {
       // setActive([...active, skill])
       setFormDeets({
         ...formDeets,
         skills: [...formDeets.skills, {name: skill}],
       })
-    } else if(formDeets.skills.includes(skill)) {
+    } else if(selectedSkills.includes(skill)) {
       // setActive(active.filter(newskill => newskill !== skill))
       setFormDeets({
         ...formDeets,
@@ -258,9 +259,6 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               render={data => {
                 if (data.allWpSkill) {
                   const skills = data.allWpSkill.nodes
-                  const selectedSkills = formDeets.skills.map(skill => skill.name)
-                  console.log(selectedSkills)
-                  console.log(formDeets)
                     return (
                       <>
                         {  
