@@ -258,7 +258,9 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               render={data => {
                 if (data.allWpSkill) {
                   const skills = data.allWpSkill.nodes
-                  
+                  const selectedSkills = formDeets.skills.map(skill => skill.name)
+                  console.log(selectedSkills)
+                  console.log(formDeets)
                     return (
                       <>
                         {  
@@ -269,7 +271,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                                 as="span"
                                 cursor="pointer"
                                 user-select="none"
-                                bg={active.includes(skill.name) ? "dBlue.300" : "gray.300"}
+                                bg={selectedSkills.includes(skill.name) ? "dBlue.300" : "gray.300"}
                                 color="gray.700"
                                 textAlign="center"
                                 mr="1"
