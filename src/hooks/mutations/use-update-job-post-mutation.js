@@ -30,7 +30,7 @@ const UPDATE_JOB_MUTATION = gql`
         jobLocation: {nodes: {name: $jobLocation}},
         sector: {nodes: {name: $sector}},
         salary: $salary,
-        salaryStructures: {nodes: {name: $salaryStructure}},
+        salaryStructures: {nodes: {name: $salaryStructures}},
         content: $content,
         closeDate: $closeDate,
         companyBio: $companyBio,

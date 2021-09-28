@@ -82,7 +82,8 @@ export const MakerAccountSettings = () => {
   //     <MySpinner />
   //   )
   // }
-  if (error) return <MyError error={error} />
+  
+  // if (error) return <MyError error={error} />
 
   //account data complete check
   

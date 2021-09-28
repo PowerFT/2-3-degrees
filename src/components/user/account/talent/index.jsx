@@ -17,13 +17,15 @@ import { InnerSidebar } from '../../../layout/InnerSidebar'
 import { Content } from '../../../layout/Content'
 import { Header } from '../../../layout/Header'
 
-export const TalentAccountSettings = ({user}) => {
+export const TalentAccountSettings = () => {
   // const { FileUploadInput } = useFileUpload()
 
   const pageType = "admin"
   const { viewer, loadingViewer } = useAuth()
   const [newEmail, setNewEmail] = useState('');
   const [passwordChanged, setPasswordChanged] = useState(false);
+  const [profileUpdated, setProfileUpdated] = useState(false);
+  const [completed, setCompleted] = useState(false)
 
   const initialTalent = {
     id: '',
@@ -33,12 +35,16 @@ export const TalentAccountSettings = ({user}) => {
   const [accountDeets, setAccountDeets] = useState(initialTalent)
 
   const { updateUser, error, status } = useUpdateUser()
+
   const handleSubmit = () => {
-    updateUser(accountDeets)
+    updateUser(accountDeets).then(() => {setProfileUpdated(true)})
   }
 
   useEffect(() => {
     if (viewer && !loadingViewer) {
+      const accountInputs = [viewer.firstName, viewer.lastName]
+      const completed = accountInputs.every((input) => input)
+      if(completed) setCompleted(true)
       if(viewer.roles.nodes[0].name === 'talent') {
         setAccountDeets({
           ...accountDeets,
@@ -72,16 +78,12 @@ export const TalentAccountSettings = ({user}) => {
   //   };
   // }, []);
 
-  if (loadingViewer || !viewer) {
-    return (
-      <MySpinner />
-    )
-  }
-  if (error) return <MyError error={error} />
+  
+  // if (error) return <MyError error={error} />
 
   //account data complete check
-  const accountInputs = [viewer.firstName, viewer.lastName, viewer.nickname, viewer.description, viewer.url]
-  const completed = accountInputs.every((input) => input)
+  // const accountInputs = [viewer.firstName, viewer.lastName, viewer.nickname, viewer.description, viewer.url]
+  // const completed = accountInputs.every((input) => input)
 
   return (
     <>
@@ -98,6 +100,10 @@ export const TalentAccountSettings = ({user}) => {
           secondaryLinks={[["Why we ask for account information", "#"], ["Terms and Conditions", "#"]]}
           pageType={pageType}
         />
+
+      {loadingViewer || !viewer ? (
+        <MySpinner />
+      ) : (
         <Content
           pageType={pageType}
           py="12"
@@ -113,11 +119,11 @@ export const TalentAccountSettings = ({user}) => {
             <VStack spacing="4">
 
               {!completed && (
-                <Alert status="info" w={["xs", "sm"]}>
-                  <AlertIcon />
-                    Complete your account to use all of the Connect Platforms features.
-                </Alert>
-              )}
+                  <Alert status="info" w={["xs", "sm"]}>
+                    <AlertIcon />
+                      Complete your account to use all of the Connect Platforms features.
+                  </Alert>
+                )}
 
               <AdminBlob title="Personal Info">
 
@@ -133,6 +139,13 @@ export const TalentAccountSettings = ({user}) => {
                 </Stack>
 
               </AdminBlob>
+
+              {profileUpdated && (
+                <Alert status="success">
+                  <AlertIcon />
+                  Account updated
+                </Alert>
+              )}
 
               <Button
                 size="md"
@@ -180,6 +193,7 @@ export const TalentAccountSettings = ({user}) => {
           </VStack>
 
         </Content>
+      )}
       </Flex>
 
 </>

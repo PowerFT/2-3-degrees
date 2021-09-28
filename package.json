@@ -35,6 +35,7 @@
     "gatsby-plugin-gatsby-cloud": "^3.0.0",
     "gatsby-plugin-image": "^1.11.0",
     "gatsby-plugin-layout": "^2.13.0",
+    "gatsby-plugin-mailchimp": "^5.2.2",
     "gatsby-plugin-react-helmet": "^4.12.0",
     "gatsby-plugin-scroll-reveal": "^0.0.7",
     "gatsby-plugin-sharp": "^3.11.0",

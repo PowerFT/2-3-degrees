@@ -9,7 +9,7 @@ import { ConnectMetaTags } from './ConnectMetaTags'
 export const ConnectJobsTagsBlock = () => {
 
   return (
-			<Box as="section" alignSelf="stretch" bg="dYellow.100" color="dBlue.500" py="7.5rem">
+			<Box as="section" alignSelf="stretch" bg="dYellow.100" color="dBlue.500" py="7.5rem" id="opportunityTags">
 				<Box
 					maxW={{
 						base: 'xl',

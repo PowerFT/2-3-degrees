@@ -17,17 +17,13 @@ const Feature = (props) => {
   const { title, icon, featureLink, complete } = props
   return (
     <LinkBox >
-      <Flex rounded="lg" direction="row" align="center" cursor={!complete && title === "Post an Opportunity" && "not-allowed"} bg={!complete && title === "Post an Opportunity" ? "gray.300" : "dOrange.300"} p={{base:"5",sm:"10"}} _hover={{bg: "dOrange.200"}} h="100%">
+      <Flex rounded="lg" direction="row" align="center" cursor={!complete ? "not-allowed" : "pointer"} bg={!complete ? "gray.300" : "dOrange.300"} p={{base:"5",sm:"10"}} _hover={{bg: "dOrange.200"}} h="100%">
         <Box color="gray.50" fontSize="3rem">
           {icon}
         </Box>
         <Stack mx="auto">
           <Heading as="h3" textAlign="center" color="gray.50" size="xl">
-            {!complete && title === "Post an Opportunity" ? (
-							{title}
-						) : (
-							<LinkOverlay as={Link} to={featureLink} >{title}</LinkOverlay>
-						)}
+							<LinkOverlay as={Link} to={featureLink}>{title}</LinkOverlay>
           </Heading>
         </Stack>
       </Flex>
@@ -69,8 +65,8 @@ export const Features = ({complete, user}) => {
 						/>
 						<Feature 
 							complete={complete}
-							featureLink="/maker/account"
-							title="Update Account" 
+							featureLink="/connect/platform#connectContent"
+							title="Exclusive Content" 
 							icon={<HiUserCircle />} 
 						/>
 					</>
@@ -84,13 +80,13 @@ export const Features = ({complete, user}) => {
 						/>
 						<Feature 
 							complete={complete}
-							featureLink="/connect/platform#connect-content" 
-							title="Connected Content" 
+							featureLink="/connect/platform#connectContent" 
+							title="Exclusive Content" 
 							icon={<HiSpeakerphone />} 
 						/>
 						<Feature 
 							complete={complete}
-							featureLink="/connect/platform#opportunity-tags"
+							featureLink="/connect/platform#opportunityTags"
 							title="Search Jobs by Skill" 
 							icon={<HiSearchCircle />} 
 						/>

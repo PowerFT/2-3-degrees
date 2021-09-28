@@ -7,10 +7,37 @@ import {
 	Text,
 	useColorModeValue as mode,
 } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
 import { HiShieldCheck } from 'react-icons/hi'
+import addToMailchimp from 'gatsby-plugin-mailchimp'
 
 export const Newsletter = ({ text }) => {
+
+	const [submitted, setSubmitted] = useState(false)   
+
+
+  function errorHandling(data) {
+    // your error handling
+  }
+  
+  // const handleSubmit = () => {
+  //   addToMailchimp(email)
+		
+	// 	.then((data) => {
+
+  //     if (data.result == "error") {
+  //       errorHandling(data)
+  //     } else {
+  //       // trackCustomEvent({
+  //       //   category: "Newsletter",
+  //       //   action: "Click",
+  //       //   label: `Newsletter Click`,
+  //       // })
+  //       setSubmitted(true)
+  //     }
+  //   })
+  // }
+
 	return (
 		<Box as="section" bg="dBlue.300" py="12" px="6">
 			<Box
@@ -29,59 +56,65 @@ export const Newsletter = ({ text }) => {
 				py="12"
 				rounded={{base: "3xl", md: "full"}}
 			>
-				<Box maxW="md" mx="auto">
-					{/* <Text
-            color={mode('green.600', 'green.400')}
-            fontWeight="bold"
-            fontSize="sm"
-            letterSpacing="wide"
-          >
-            6,000+ PEOPLE ALREADY JOINED ❤️️
-          </Text> */}
-					<Heading mt="4" size="3xl">
-						{text}
-					</Heading>
-					<Box mt="6">
-						<form
-							onSubmit={(e) => {
-								e.preventDefault() // your subscribe logic here
-							}}
+
+				{submitted ? (
+						<Box maxW="md" mx="auto">Successfully subscribed</Box>
+				) : (
+					<Box maxW="md" mx="auto">
+						{/* <Text
+							color={mode('green.600', 'green.400')}
+							fontWeight="bold"
+							fontSize="sm"
+							letterSpacing="wide"
 						>
-							<Stack justify="center" align="center" spacing="6">
-								<Input
-									aria-label="Enter your email"
-									placeholder="Enter your email to join"
-									rounded="base"
+							6,000+ PEOPLE ALREADY JOINED ❤️️
+						</Text> */}
+						<Heading mt="4" size="3xl">
+							{text}
+						</Heading>
+						<Box mt="6">
+							<form
+								onSubmit={(e) => {
+									e.preventDefault() // your subscribe logic here
+								}}
+							>
+								<Stack justify="center" align="center" spacing="6">
+									<Input
+										aria-label="Enter your email"
+										placeholder="Enter your email to join"
+										rounded="base"
+									/>
+									<Button
+										type="submit"
+										w="fit-content"
+										// mx="auto"
+										// mt="6"
+										bg="dYellow.300"
+										size="lg"
+										textTransform="uppercase"
+										fontSize="sm"
+										fontWeight="bold"
+										rounded="full"
+									>
+										Subscribe
+									</Button>
+								</Stack>
+							</form>
+							<Text color={mode('gray.600', 'gray.400')} fontSize="sm" mt="5">
+								<Box
+									aria-hidden
+									as={HiShieldCheck}
+									display="inline-block"
+									marginEnd="2"
+									fontSize="lg"
+									color={mode('green.600', 'green.400')}
 								/>
-								<Button
-									type="submit"
-									w="fit-content"
-									// mx="auto"
-									// mt="6"
-									bg="dYellow.300"
-									size="lg"
-									textTransform="uppercase"
-									fontSize="sm"
-									fontWeight="bold"
-									rounded="full"
-								>
-									Subscribe
-								</Button>
-							</Stack>
-						</form>
-						<Text color={mode('gray.600', 'gray.400')} fontSize="sm" mt="5">
-							<Box
-								aria-hidden
-								as={HiShieldCheck}
-								display="inline-block"
-								marginEnd="2"
-								fontSize="lg"
-								color={mode('green.600', 'green.400')}
-							/>
-							We&apos;re only send you relevant content
-						</Text>
+								We&apos;re only send you relevant content
+							</Text>
+						</Box>
 					</Box>
-				</Box>
+				)}
+				
 			</Box>
 		</Box>
 	)

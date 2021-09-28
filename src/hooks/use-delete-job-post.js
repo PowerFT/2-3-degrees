@@ -23,7 +23,7 @@ export const useDeleteJobPost = (jobPostId) => {
 			.then( () => {
 				//console.log('sent delete mutation')
 				setStatus( 'resolved' );
-				navigate('/maker/jobs')
+				navigate('/connect/platform')
 			} )
 			.catch( ( errors ) => {
 				//console.log(errors)
