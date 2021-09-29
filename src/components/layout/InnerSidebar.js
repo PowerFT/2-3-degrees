@@ -31,7 +31,8 @@ export const InnerSidebar = ({
 	formDeets,
 	applicationLink,
 	closeDate,
-	companyBio
+	companyBio,
+	companyName,
 }) => {
 	
 	// const colour = {
@@ -129,6 +130,7 @@ export const InnerSidebar = ({
 							applicationLink={applicationLink}
 							closeDate={closeDate}
 							companyBio={companyBio}
+							companyName={companyName}
 						/>
 					)
 				}

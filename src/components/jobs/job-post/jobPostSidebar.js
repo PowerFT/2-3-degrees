@@ -3,10 +3,9 @@ import { Text, Button, HStack, Icon, Stack, Spacer, VStack, Box, LinkOverlay, Li
 import { HiOutlineClock, HiOutlineCurrencyPound, HiOutlineHand, HiOutlineLocationMarker } from "react-icons/hi"
 import { Link } from 'gatsby'
 
-
 export const JobSidebar = (props) => {
 
-	const {salary, jobLocation, sector, jobSkills, jobType, applicationLink, closeDate, companyBio, ...rest} = props
+	const {salary, jobLocation, sector, jobSkills, jobType, applicationLink, closeDate, companyBio, companyName, ...rest} = props
 	const formattedSalary = parseInt(salary).toLocaleString() 
 
 	console.log(applicationLink)
@@ -43,7 +42,7 @@ export const JobSidebar = (props) => {
 				</VStack>
 			</Box>
 
-			<Spacer />
+			
 
 			<Stack direction="column" spacing={4} align="center"  alignItems="stretch" w="full" position="sticky" b="0">
 				<Box p="2" fontSize="lg" bg="dYellow.400" w="full"><Text fontWeight="500">Close Date: <Box as="mark" fontWeight="300" bg="transparent">{closeDate}</Box></Text></Box>
@@ -52,10 +51,16 @@ export const JobSidebar = (props) => {
 							Apply
 					</Button>
 				</a>
-				{/* <Button bg="dYellow.300" color="dBlue.300" variant="solid">
-					Save
-				</Button> */}
+
+				
+
+				
 			</Stack>
+			<Spacer />
+			<Box border="2px solid" rounded="lg" p="1" w="100%">
+					<Text>{`About ${companyName}`}</Text>
+					<Text>{companyBio}</Text>
+				</Box>
 		</>
 	)
 }

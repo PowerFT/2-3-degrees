@@ -44,18 +44,14 @@ export const useAuth = () => {
 	} = useViewerQuery();
 
 	const onLoginSuccess = useSafeDispatch(() => {
-		console.log('successful login')
 		setIsLoggedIn(true);
 		setStatus('resolved');
-		setLoading(false)
-		// navigate(user === "maker" ? "/connect/platform?user=maker" : "/connect/platform?user=talent")
 	});
 
 	const onLogoutSuccess = useSafeDispatch(() => {
 		console.log('unsuccessful login')
 		setIsLoggedIn(false);
 		setStatus('resolved');
-		setLoading(false)
 		navigate('/')
 	});
 
@@ -68,14 +64,11 @@ export const useAuth = () => {
 		setStatus('resolved');
 	});
 
-	const login = (email, password, user) => {
-		// setLoading(true)
+	const login = (email, password) => {
 		setError(null);
 		setStatus('resolving');
 		return loginMutation(email, password)
 			.then(onLoginSuccess)
-			// .then(() => { if(viewer) navigate('/')})
-			// .then(navigate(user === "maker" ? "/connect/platform?user=maker" : "/connect/platform?user=talent"))
 			.catch(onError);
 	};
 

@@ -2,7 +2,7 @@
 * External dependencies
 */
 import React, { useState } from 'react'
-import { useCheckboxGroup, useCheckbox, InputLeftAddon, InputRightAddon, Button, FormControl, FormHelperText, FormLabel, Input, Select, Stack, Textarea, VStack, InputGroup, Flex, Box, } from '@chakra-ui/react'
+import { Text, InputLeftAddon, InputRightAddon, Button, FormControl, FormHelperText, FormLabel, Input, Select, Stack, Textarea, VStack, InputGroup, Flex, Box, } from '@chakra-ui/react'
 import { v4 as uuidv4 } from "uuid"
 import { graphql, StaticQuery, navigate } from 'gatsby'
 /**
@@ -19,8 +19,9 @@ import { AdminBlob } from '../../AdminBlob'
 
 export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
   
-  // const [active, setActive] = useState([])
   const selectedSkills = formDeets?.skills?.map(skill => skill.name)
+  const { submitJobPost, submitLoading } = useSubmitJobPost(formType);
+  const { viewer, loadingViewer } = useAuth()
 
   const handleSkillClick = (skill) => {
     if(!selectedSkills.includes(skill) && selectedSkills.length < 3) {
@@ -39,11 +40,6 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
       return
     }
   }
-  console.log(formDeets, formType)
-
-  const { submitJobPost, submitLoading } = useSubmitJobPost(formType);
-
-  const { viewer, loadingViewer } = useAuth()
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -158,6 +154,42 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               </FormControl>
 
               <FormControl isRequired>
+                <FormLabel htmlFor="jobSectorSelect">Sector</FormLabel>
+                <Select
+                  isRequired
+                  id="jobSectorSelect"
+                  placeholder="Select Sector"
+                  value={formDeets.sector}
+                  onChange={e =>
+                    setFormDeets({
+                      ...formDeets,
+                      sector: e.target.value,
+                    })
+                  }
+                >
+                  <StaticQuery
+                    query={META_QUERY}
+                    render={data => {
+                      if (data.allWpSector) {
+                        const sectors = data.allWpSector.nodes
+
+                        return (
+                          <>
+                            {
+                              sectors &&
+                              sectors.map((item) => (
+                                <option key={item.id} value={item.name}>{item.name}</option>
+                              ))
+                            }
+                          </>
+                        )
+                      }
+                    }}
+                  />
+                </Select>
+              </FormControl>
+
+              <FormControl isRequired>
                 <FormLabel htmlFor="jobTypeSelect">Salary Structure</FormLabel>
                 <Select
                   isRequired
@@ -214,35 +246,6 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                 </InputGroup>
               </FormControl>
 
-
-              <FormControl isRequired>
-                <FormLabel htmlFor="closeDateInput">Close Date</FormLabel>
-                <Input
-                  value={formDeets.closeDate}
-                  placeholder="dd/mm/yyyy"
-                  onChange={e =>
-                    setFormDeets({
-                      ...formDeets,
-                      closeDate: e.target.value,
-                    })
-                  }
-                />
-              </FormControl>
-              {/* <FormControl isRequired>
-                <FormLabel htmlFor="closeDateInput">Close Date</FormLabel>
-                <DatePicker 
-                  selected={closeDate} 
-                  isClearable={true} 
-                  value={closeDate}
-                  onChange={e =>
-                    setFormDeets({
-                      ...formDeets,
-                      closeDate: e.target.value,
-                    })
-                  }
-                />
-              </FormControl> */}
-
             </VStack>
           </AdminBlob>
 
@@ -260,35 +263,40 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                 if (data.allWpSkill) {
                   const skills = data.allWpSkill.nodes
                     return (
-                      <>
-                        {  
-                          skills && (
-                            skills.map(skill => (
-                              <Button
-                                key={skill.id}
-                                as="span"
-                                cursor="pointer"
-                                user-select="none"
-                                bg={selectedSkills.includes(skill.name) ? "dBlue.300" : "gray.300"}
-                                color="gray.700"
-                                textAlign="center"
-                                mr="1"
-                                mb="2"
-                                rounded="full"
-                                px={3}
-                                py={2}
-                                fontSize="xs"
-                                fontWeight="bold"
-                                // bg={active ? "red.700" : "gray.50"}
-                                // _active={active === skill}
-                                onClick={() => handleSkillClick(skill.name)}
-                              >
-                                {skill.name}
-                              </Button>
-                            ))
-                          )
-                        }
-                      </>
+                      <Box w="100%" align="flex-start">
+                        <Text fontWeight="700" >Skills</Text>
+                        <Text fontSize="xs">Select a maximum of three skills that are required for this opportunity.</Text>
+                          <Flex wrap="wrap" justify="center" mt="6">
+                            {  
+                              skills && (
+                                skills.map(skill => (
+                                  <Button
+                                    key={skill.id}
+                                    as="span"
+                                    cursor="pointer"
+                                    user-select="none"
+                                    bg={selectedSkills.includes(skill.name) ? "dBlue.300" : "gray.300"}
+                                    color="gray.700"
+                                    textAlign="center"
+                                    mr="1"
+                                    mb="2"
+                                    rounded="full"
+                                    px={3}
+                                    py={2}
+                                    fontSize="xs"
+                                    fontWeight="bold"
+                                    // bg={active ? "red.700" : "gray.50"}
+                                    // _active={active === skill}
+                                    onClick={() => handleSkillClick(skill.name)}
+                                  >
+                                    {skill.name}
+                                  </Button>
+                                ))
+                              )
+                            }
+                          </Flex>
+                      </Box>
+                      
                     )
                   }
                 }}
@@ -313,50 +321,6 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                     })
                   }
                 />
-              </FormControl>
-
-              <FormControl isRequired>
-                <FormLabel htmlFor="jobSectorSelect">Organisation Sector</FormLabel>
-                <Select
-                  isRequired
-                  id="jobSectorSelect"
-                  placeholder="Select Sector"
-                  value={formDeets.sector}
-                  onChange={e =>
-                    setFormDeets({
-                      ...formDeets,
-                      sector: e.target.value,
-                    })
-                  }
-                >
-                  <StaticQuery
-                    query={META_QUERY}
-                    render={data => {
-                      if (data.allWpSector) {
-                        const sectors = data.allWpSector.nodes
-
-                        return (
-                          <>
-                            {
-                              sectors &&
-                              sectors.map((item) => (
-                                <option key={item.id} value={item.name}>{item.name}</option>
-                              ))
-                            }
-                          </>
-                        )
-                      }
-                    }}
-                  />
-                </Select>
-              </FormControl>
-
-              <FormControl isRequired>
-                <FormLabel htmlFor="applicationLink">Application Link</FormLabel>
-                <InputGroup>
-                    <InputLeftAddon children="https://" />
-                    <Input htmlFor="applicationLink" type="text" value={formDeets.applicationLink} onChange={(e) => setFormDeets({ ...formDeets, applicationLink: e.target.value })} />
-                  </InputGroup>
               </FormControl>
 
               <FormControl isRequired>
@@ -418,9 +382,45 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                 {/* {formDeets.content} */}
               </Textarea>
               <FormHelperText>
-                Details of your opportunity, job, or placement.
+                Tell us more about the opportunity: expectations, outputs.
               </FormHelperText>
             </FormControl>
+
+            <FormControl isRequired>
+              <FormLabel htmlFor="applicationLink">Application Link</FormLabel>
+              <InputGroup>
+                  <InputLeftAddon children="https://" />
+                  <Input htmlFor="applicationLink" type="text" value={formDeets.applicationLink} onChange={(e) => setFormDeets({ ...formDeets, applicationLink: e.target.value })} />
+                </InputGroup>
+            </FormControl>
+
+            <FormControl isRequired>
+              <FormLabel htmlFor="closeDateInput">Close Date</FormLabel>
+              <Input
+                value={formDeets.closeDate}
+                placeholder="dd/mm/yyyy"
+                onChange={e =>
+                  setFormDeets({
+                    ...formDeets,
+                    closeDate: e.target.value,
+                  })
+                }
+              />
+            </FormControl>
+            {/* <FormControl isRequired>
+              <FormLabel htmlFor="closeDateInput">Close Date</FormLabel>
+              <DatePicker 
+                selected={closeDate} 
+                isClearable={true} 
+                value={closeDate}
+                onChange={e =>
+                  setFormDeets({
+                    ...formDeets,
+                    closeDate: e.target.value,
+                  })
+                }
+              />
+            </FormControl> */}
           </AdminBlob>
 
           {
@@ -446,16 +446,37 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
             </HStack>
           </FieldGroup> */}
 
-          <Button
-            isLoading={submitLoading}
-            loadingText="Submitting"
-            alignSelf="flex-end"
-            type="submit"
-            colorScheme={!submitLoading ? "green" : "blue"}
-            disabled={submitLoading}
-          >
-            Submit Opportunity
-          </Button >
+          {
+            formType === 'create' ? (
+              <Button
+                isLoading={submitLoading}
+                loadingText="Submitting"
+                alignSelf="flex-end"
+                type="submit"
+                color="gray.50"
+                bg={"dBlue.300"}
+                _hover={{bg:"dBlue.200"}}
+                disabled={submitLoading}
+              >
+                Submit Opportunity
+              </Button >
+            ) : (
+              <Button
+                isLoading={submitLoading}
+                loadingText="Updating"
+                alignSelf="flex-end"
+                type="submit"
+                color="gray.50"
+                bg="dBlue.300"
+                _hover={{bg:"dBlue.200"}}
+                disabled={submitLoading}
+              >
+                Update Opportunity
+              </Button >
+            )
+          }
+
+          
         </Stack>
 
 

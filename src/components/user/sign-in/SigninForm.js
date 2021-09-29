@@ -29,13 +29,8 @@ export const SigninForm = ({user}) => {
   const { login, viewer, loadingViewer, error, status } = useAuth();
 
   const handleSubmit = (e) => {
-    console.log("user", user)
     e.preventDefault()
-    login(email, password)
-    // .then(()=> {
-    //   if(status==="resolved")
-    //   (navigate(user === "maker" ? "/connect/platform?user=maker" : "/connect/platform?user=talent"))()
-    // })
+    login( email, password )
   }
 
   return (
@@ -88,42 +83,16 @@ export const SigninForm = ({user}) => {
             />
           </FormControl>
           <Box pb="3"></Box>
-          {/* {
-            <Alert status="info"> <AlertIcon/>If "network error" - refresh the page</Alert>
-          } */}
         </Stack>
-        {/* <Flex align="center" justify="space-between" mt="8">
-          <LightMode>
-            <Checkbox
-              size="lg"
-              colorScheme="blue"
-              sx={{
-                '.chakra-checkbox__control': {
-                  '&:not([data-checked])': { bg: mode('white', 'gray.700') },
-                  rounded: 'base',
-                  borderWidth: '1px',
-                },
-                '.chakra-checkbox__label': { fontSize: 'sm' },
-              }}
-            >
-              Remember me
-            </Checkbox>
-          </LightMode>
-          <UnderlineLink fontSize="sm">Forgot Password</UnderlineLink>
-        </Flex> */}
-
-        <LightMode>
-          <Button
-            size="lg"
-            type="submit"
-            mt="8"
-            w="full"
-            bg="dBlue.300"
-            // color="deg.500"
-          >
-            Sign In
-          </Button>
-        </LightMode>
+        <Button
+          size="lg"
+          type="submit"
+          mt="8"
+          w="full"
+          bg="dBlue.300"
+        >
+          Sign In
+        </Button>
       </form>
     </>
   )

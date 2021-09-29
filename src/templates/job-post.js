@@ -67,6 +67,7 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
 					applicationLink={applicationLink}
 					companyBio={companyBio}
           closeDate={closeDate}
+					companyName={companyName}
 				/>
 				<Content>
 					<Box borderRadius="lg" maxW="xl" position="relative" overflow="hidden" bg="white" p="10" mb="12">
