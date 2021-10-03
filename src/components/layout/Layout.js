@@ -6,7 +6,8 @@ import { Flex } from '@chakra-ui/react'
 // import { graphql, useStaticQuery } from 'gatsby';
 import { Box } from "@chakra-ui/react"
 // import { motion } from "framer-motion"
-import { AnimatePresence } from "framer-motion"
+// import { AnimatePresence } from "framer-motion"
+import CookieConsent from "react-cookie-consent";
 
 /**
 * Internal dependencies
@@ -39,7 +40,7 @@ export default function Layout({children}) {
   // )
 
   return (
-    <AnimatePresence>
+    <>
       <Box
         className="site"
         w="100vw"
@@ -64,6 +65,14 @@ export default function Layout({children}) {
         <MobileBottomBar isLoggedIn={isLoggedIn}/>
 
       </Box>
-    </AnimatePresence>
+      <CookieConsent
+        location="bottom"
+        buttonText="Accept"
+        declineButtonText="Decline"
+        cookieName="gatsby-gdpr-google-analytics"
+      >
+      This site uses cookies ...
+      </CookieConsent>
+    </>
   );
 }
