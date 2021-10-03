@@ -3,6 +3,8 @@ import {
   Box,
   Flex,
   Heading,
+  HStack,
+  IconButton,
   LinkBox,
   LinkOverlay,
   SimpleGrid,
@@ -11,23 +13,45 @@ import {
 } from '@chakra-ui/react'
 import { Link } from 'gatsby'
 import { HiSpeakerphone, HiUserCircle, HiSearchCircle } from 'react-icons/hi'
-
+import { VscAccount, VscMail, VscMegaphone, VscPinned, VscPreview } from 'react-icons/vsc'
 
 const Feature = (props) => {
   const { title, icon, featureLink, complete } = props
   return (
-    <LinkBox >
-      <Flex rounded="lg" direction="row" align="center" cursor={!complete ? "not-allowed" : "pointer"} bg={!complete ? "gray.300" : "dOrange.300"} p={{base:"5",sm:"10"}} _hover={{bg: "dOrange.200"}} h="100%">
-        <Box color="gray.50" fontSize="3rem">
-          {icon}
-        </Box>
-        <Stack mx="auto">
-          <Heading as="h3" textAlign="center" color="gray.50" size="xl">
-							<LinkOverlay as={Link} to={featureLink}>{title}</LinkOverlay>
-          </Heading>
-        </Stack>
-      </Flex>
-    </LinkBox>
+    // <LinkBox >
+    //   <Flex rounded="lg" direction="row" align="center" cursor={!complete ? "not-allowed" : "pointer"} bg={!complete ? "gray.300" : "dOrange.300"} p={{base:"5",sm:"10"}} _hover={{bg: "dOrange.200"}} h="100%">
+    //     
+    //     <Stack mx="auto">
+    //       <Heading as="h3" textAlign="center" color="gray.700" size="xl">
+		// 					<LinkOverlay as={Link} to=>{title}</LinkOverlay>
+    //       </Heading>
+    //     </Stack>
+    //   </Flex>
+    // </LinkBox>
+	<LinkBox >
+		<HStack 
+			color="gray.800" 
+			bg="transparent"
+			color={!complete ? "gray.300" : "gray.800"}
+			rounded="full" 
+			_hover={{bg: !complete ? "transparent" : "dYellow.300"}} 
+			transition="all .25s" 
+			px="3" 
+			py="3"
+		>
+			<Box color="inherit" fontSize="2rem" mr="1">
+    		{icon}
+    	</Box>
+			<Text color="inherit" fontWeight="500" fontSize={{base:"lg", sm:"lg", lg: "xl"}}>
+				{complete ? (
+					<LinkOverlay as={Link} to={featureLink}>{title}</LinkOverlay>
+				) : (
+					<Text cursor="not-allowed">{title}</Text>
+				)}
+				
+			</Text>
+		</HStack>
+	</LinkBox>
   )
 }
 
@@ -36,11 +60,12 @@ export const Features = ({complete, user}) => {
 	return (
 		<SimpleGrid
 			flex="1"
-			columns={{ base: 1, md: 2 }}
+			columns={{ base: 1, sm: 2, md: 2, lg: 4 }}
 			spacing="3"
-			py="12"
+			pt={{base: "16"}}
 			px="6"
 			w='100%'
+			justifyItems="center"
 		>
 			{
 				user === 'maker' ? (
@@ -49,25 +74,25 @@ export const Features = ({complete, user}) => {
 							complete={complete}
 							featureLink="/maker/jobs/post" 
 							title="Post an Opportunity" 
-							icon={<HiSpeakerphone />} 
+							icon={<VscMegaphone />} 
 						/>
 						<Feature 
 							complete={complete}
 							featureLink="/connect/jobs"
-							title="Connect Opportunity Board" 
-							icon={<HiSearchCircle />} 
+							title="Opportunity Board" 
+							icon={<VscPreview />} 
 						/>
 						<Feature 
 							complete={complete}
 							featureLink="/maker/jobs"
 							title="My Opportunities" 
-							icon={<HiSearchCircle />} 
+							icon={<VscPinned />} 
 						/>
 						<Feature 
 							complete={complete}
 							featureLink="/connect/platform#connectContent"
 							title="Exclusive Content" 
-							icon={<HiUserCircle />} 
+							icon={<VscAccount />} 
 						/>
 					</>
 				) : (
@@ -75,7 +100,7 @@ export const Features = ({complete, user}) => {
 						<Feature 
 							complete={complete}
 							featureLink="/connect/jobs"
-							title="Connect Opportunity Board" 
+							title="Opportunity Board" 
 							icon={<HiSearchCircle />} 
 						/>
 						<Feature 

@@ -43,12 +43,6 @@ export const SignIn = () => {
               </Text>
             </Box>
             <SigninForm user="talent"/>
-
-            <Box textAlign="center" mt={{ base: '3', md: '2' }}>
-              <Text mt="3" color={mode('gray.600', 'gray.400')} fontWeight="medium">
-                Need to reset? <UnderlineLink link="/talent/reset">Reset Password</UnderlineLink>
-              </Text>
-            </Box>
           </Box>
         </Box>
       </Flex>

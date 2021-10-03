@@ -150,7 +150,11 @@ export const MakerAccountSettings = () => {
 
                   <FormControl id="cNameEdit">
                     <FormLabel>Organisation Name</FormLabel>
-                    <Input type="text" value={accountDeets?.companyName} onChange={(e) => setAccountDeets({ ...accountDeets, companyName: e.target.value })} />
+                    <Input 
+                      type="text" 
+                      value={accountDeets?.companyName === viewer.username ? '' : accountDeets?.companyName} 
+                      onChange={(e) => setAccountDeets({ ...accountDeets, companyName: e.target.value })} 
+                    />
                   </FormControl>
 
                   <FormControl id="cNameEdit">

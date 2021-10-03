@@ -61,6 +61,7 @@ export const Sidebar = ({...rest}) => {
           <Collapse in={isOpen} animateOpacity>
             <NavMenus
               menuopen={isOpen}
+              onclose={onToggle}
               viewer={viewer}
               loadingViewer={loadingViewer}
               isLoggedIn={isLoggedIn}

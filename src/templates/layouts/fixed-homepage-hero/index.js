@@ -6,7 +6,7 @@ import { StaticImage } from 'gatsby-plugin-image'
 // import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 
-export const FixedHomepageHero = ({ image, title, text, button }) => {
+export const FixedHomepageHero = ({ button }) => {
 
   // const imageData = getImage(image.localFile)
   const buttonTitle = button?.title

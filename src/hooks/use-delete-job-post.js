@@ -5,7 +5,7 @@ import { navigate } from 'gatsby-link';
 import { useState } from 'react';
 // import { decodeEntities } from '@wordpress/html-entities';
 // import { stripHtml } from 'string-strip-html';
-
+ 
 /**
  * Internal dependencies
  */
@@ -23,7 +23,7 @@ export const useDeleteJobPost = (jobPostId) => {
 			.then( () => {
 				//console.log('sent delete mutation')
 				setStatus( 'resolved' );
-				navigate('/connect/platform')
+				navigate('/maker/jobs')
 			} )
 			.catch( ( errors ) => {
 				//console.log(errors)

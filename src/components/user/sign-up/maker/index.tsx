@@ -3,14 +3,14 @@ import {
   Box,
   Flex,
   Heading,
-  HStack,
-  Img,
+  // HStack,
+  // Img,
   Text,
   useColorModeValue as mode,
 } from '@chakra-ui/react'
 import * as React from 'react'
-import { HiOutlineExternalLink } from 'react-icons/hi'
-import { Logo } from '../../Logo'
+// import { HiOutlineExternalLink } from 'react-icons/hi'
+// import { Logo } from '../../Logo'
 import { SignUpForm } from '../SignUpForm'
 import { UnderlineLink } from '../../UnderlineLink'
 

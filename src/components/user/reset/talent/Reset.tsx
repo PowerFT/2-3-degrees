@@ -7,17 +7,15 @@ import {
   useColorModeValue as mode,
 } from '@chakra-ui/react'
 import * as React from 'react'
-import { SigninForm } from '../SigninForm'
+import { ResetForm } from '../ResetForm'
 import { UnderlineLink } from '../../UnderlineLink'
 import { useAuth } from '../../../../hooks'
 import { navigate } from 'gatsby'
-import { useAuthContext } from '../../../../context';
 
-export const SignIn = () => {
-  const { isLoggedIn } = useAuthContext();
-  // const { isLoggedIn } = useAuth()
-  console.log(isLoggedIn)
-  if(isLoggedIn) navigate("/connect/platform?user=maker")
+export const Reset = ({user}) => {
+
+  const { isLoggedIn } = useAuth()
+  if(isLoggedIn) navigate("/connect/platform?user=talent")
 
   return (
     <Flex
@@ -35,14 +33,14 @@ export const SignIn = () => {
               Sign in to your account
             </Text>
             <Text mt="3" color={mode('gray.600', 'gray.400')} fontWeight="medium">
-              Need an account? <UnderlineLink link='/maker/sign-up'>Sign up here</UnderlineLink>
+              Need an account? <UnderlineLink link={`/${user}/sign-up`}>Sign up here</UnderlineLink>
             </Text>
           </Box>
-          <SigninForm user="maker" />
+          <ResetForm user="maker" />
 
           <Box textAlign="center" mt={{ base: '3', md: '2' }}>
             <Text mt="3" color={mode('gray.600', 'gray.400')} fontWeight="medium">
-              Need to reset? <UnderlineLink link="/maker/reset">Reset Password</UnderlineLink>
+              Back to <UnderlineLink link={`/${user}/sign-in`}>Sign-in</UnderlineLink>
             </Text>
           </Box>
         </Box>
@@ -52,7 +50,7 @@ export const SignIn = () => {
         maxH="100vh"
         overflow="hidden"
         flex="1 0 50%"
-        bg="dBlue.300"
+        bg="dYellow.100"
         justify="center"
         align="center"
         direction="column"
@@ -84,7 +82,7 @@ export const SignIn = () => {
         </Heading>
         <Badge
           mt="6"
-          bg="dOrange.300"
+          bg="dYellow.300"
           px="5"
           py="1"
           rounded="full"

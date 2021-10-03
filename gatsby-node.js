@@ -109,6 +109,10 @@ const getPages = async ({ graphql, reporter }) => {
             layouts {
               ... on WpPage_Pagebuilder_Layouts_FixedHomepageHero {
                 fieldGroupName
+                button {
+                  title
+                  url
+                }
               }
               ... on WpPage_Pagebuilder_Layouts_FixedTalentHalfHero {
                 fieldGroupName

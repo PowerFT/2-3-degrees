@@ -59,11 +59,18 @@ export const JobsList = (props) => {
 
 	// const status = statusSelected === "PUBLISH" ? null : "DRAFT"
 
-	const { loading, error, data } = useQuery(GET_JOBS_BY_VIEWER, {
+	const { loading, error, data, refetch } = useQuery(GET_JOBS_BY_VIEWER, {
 		variables: {
-			status: statusSelected
+			status: statusSelected,
 		}
 	})
+
+	useEffect(() => {
+		console.log(statusSelected)
+		console.log("data-pre: ", data)
+		refetch()
+		console.log("data-post: ", data)
+	}, [statusSelected])
 	// console.log(statusSelected)
 
 	// useEffect(() => {

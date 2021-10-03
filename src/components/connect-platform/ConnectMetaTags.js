@@ -23,13 +23,13 @@ const GET_META_DATA = gql`
 	}
 `
 
-export const ConnectMetaTags = () => {
+export const ConnectMetaTags = ({...rest}) => {
 
 	const { loading, error, data } = useQuery(GET_META_DATA)
 	if (error) return <p>{`Error: ${error}`}</p> //change
 	if (loading || !data) return <MySpinner /> //change
 	return (
-		<Box mt="4" mx="auto">
+		<Box mt="4" mx="auto" {...rest}>
 			<Flex
 				justify="center"
 				align="center"
@@ -42,7 +42,7 @@ export const ConnectMetaTags = () => {
 						as="span"
 						cursor="pointer"
 						user-select="none"
-						bg="dOrange.200"
+						bg="dYellow.400"
 						color="gray.700"
 						textAlign="center"
 						mr="1"
@@ -54,7 +54,7 @@ export const ConnectMetaTags = () => {
 						fontWeight="bold"
 						// bg={active ? "red.700" : "gray.50"}
 						_hover={{
-							bg: 'dOrange.100',
+							bg: 'dYellow.200',
 						}}
 					>
 						<LinkOverlay as={Link} to={`/connect/jobs/?type=${node.name}`}>{node.name}</LinkOverlay>
@@ -74,7 +74,7 @@ export const ConnectMetaTags = () => {
 						as="span"
 						cursor="pointer"
 						user-select="none"
-						bg="dOrange.300"
+						bg="dYellow.300"
 						color="gray.700"
 						textAlign="center"
 						mr="1"
@@ -86,7 +86,7 @@ export const ConnectMetaTags = () => {
 						fontWeight="bold"
 						// bg={active ? "red.700" : "gray.50"}
 						_hover={{
-							bg: 'dOrange.200',
+							bg: 'dYellow.100',
 						}}
 					>
 						<LinkOverlay as={Link} to={`/connect/jobs/?skill=${node.name}`}>{node.name}</LinkOverlay>

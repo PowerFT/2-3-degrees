@@ -17,6 +17,7 @@ const VIEWER = gql`
 			firstName
 			lastName
 			nickname
+			username
 			description
 			email
 			url

@@ -6,7 +6,7 @@ import { PublicMenu } from './PublicMenu'
 import { MakerMenu } from './MakerMenu'
 import { TalentMenu } from './TalentMenu'
 
-export const NavMenus = ({menuopen, mobile, viewer, loadingViewer, isLoggedIn, onclose}) => {
+export const NavMenus = ({menuopen, mobile, isLoggedIn, onclose}) => {
 	// console.log('menus', menuopen)
 	 
 	return (
@@ -38,7 +38,7 @@ export const NavMenus = ({menuopen, mobile, viewer, loadingViewer, isLoggedIn, o
 							<MenuItem 
 								menuopen={menuopen} 
 								link="/connect/platform" 
-								label="Connect" 
+								label="Connect Platform" 
 								icon={BsFillLightningFill} 
 								isActive 
 								onclose={onclose}

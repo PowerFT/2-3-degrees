@@ -21,6 +21,7 @@ export const useResetUserPasswordMutation = () => {
 	const [ mutation, mutationResults ] = useMutation( QUERY );
 
 	const resetUserPassword = ( key, login, password ) => {
+		console.log( {key, login, password} )
 		return mutation( {
 			variables: {
 				key,

@@ -15,6 +15,7 @@ export const useSendPasswordResetEmailMutation = () => {
 	const [ mutation, mutationResults ] = useMutation( QUERY );
 
 	const sendPasswordResetEmail = ( username ) => {
+		// console.log("EEMMMMMAIL ", typeof email)
 		return mutation( {
 			variables: {
 				username,

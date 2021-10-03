@@ -3,6 +3,8 @@ import {
   Divider,
   Flex,
   HStack,
+  LinkBox,
+  LinkOverlay,
   SimpleGrid,
   Stack,
   Text,
@@ -36,7 +38,9 @@ export const Footer = () => (
             lg: 0,
           }}
         > 
-          <Logo iconColor="white" h="16" />
+          <LinkBox h="16">
+            <LinkOverlay as={Link} to="/"><Logo iconColor='whitesmoke' /></LinkOverlay>
+          </LinkBox>
           <HStack spacing="4" mt="8" as="ul">
             {socialLinks?.map((link, i) => (
               <SocialButton key={i} target="_blank" rel="noreferrer" href={link.href}>

@@ -242,8 +242,11 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                       })
                     }
                   />
-                  <InputRightAddon children={`/ ${formDeets?.salaryStructure?.toLocaleLowerCase()}`} />
+                  <InputRightAddon children={`/ ${formDeets.salaryStructures?.toLocaleLowerCase() || ''}`} />
                 </InputGroup>
+                <FormHelperText>
+                  Please do not use commas (e.g. 2000)
+                </FormHelperText>
               </FormControl>
 
             </VStack>
@@ -390,7 +393,12 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               <FormLabel htmlFor="applicationLink">Application Link</FormLabel>
               <InputGroup>
                   <InputLeftAddon children="https://" />
-                  <Input htmlFor="applicationLink" type="text" value={formDeets.applicationLink} onChange={(e) => setFormDeets({ ...formDeets, applicationLink: e.target.value })} />
+                  <Input 
+                    htmlFor="applicationLink" 
+                    type="text" 
+                    value={formDeets.applicationLink} 
+                    onChange={(e) => setFormDeets({ ...formDeets, applicationLink: e.target.value })} 
+                  />
                 </InputGroup>
             </FormControl>
 
@@ -475,15 +483,12 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               </Button >
             )
           }
-
-          
         </Stack>
-
-
       </form>
     </Flex>
   )
 }
+
 const META_QUERY = graphql`
 	query MetaQuery {
 		allWpJobLocation {

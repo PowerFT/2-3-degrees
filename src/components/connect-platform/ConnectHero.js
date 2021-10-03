@@ -16,7 +16,8 @@ export const ConnectHero = () => {
     <Flex 
       as="section" 
       h={{base:"70vh",sm:"90vh"}} 
-      bg="dBlue.300" 
+      // bg="dBlue.300"
+      bgGradient="linear(dBlue.300 0%, dBlue.300 80%, transparent 100%)"
       direction="column" 
       position="relative" 
       justify={{base: "flex-end", sm:"center"}} 

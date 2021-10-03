@@ -1,40 +1,39 @@
 /**
  * External dependencies
  */
-import {
+ import {
   Alert,
   AlertIcon,
-  Box,
   Button,
   FormControl,
   FormLabel,
   Input,
-  LightMode,
   Stack,
-  Text,
   useColorModeValue as mode,
 } from '@chakra-ui/react'
-import { navigate } from 'gatsby';
 import React, {useState} from 'react'
-// import {Link as GatsbyLink} from 'gatsby'
  /**
   * Internal dependencies
   */
 // import { UnderlineLink } from './UnderlineLink'
-import { useAuth } from '../../../hooks';
-import { UnderlineLink } from '../UnderlineLink';
-import { PasswordField } from './PasswordField';
+import { useResetPassword } from '../../../hooks';
 
-export const SigninForm = ({user}) => {
+export const ResetForm = ({user}) => {
   
   const [ email, setEmail ] = useState( '' );
-  const [ password, setPassword ] = useState( '' );
-  const { login, viewer, loadingViewer, error, status } = useAuth();
+	const { sendResetPasswordEmail, error, status } = useResetPassword();
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    login( email, password )
-  }
+  console.log(email, "form")
+	const handleSubmit = ( e ) => {
+		e.preventDefault();
+		sendResetPasswordEmail( email );
+	};
+
+	if ( status === 'resolved' && ! error ) {
+		return (
+			<p>Instructions have been emailed to you. Check your inbox.</p>
+		)
+	}
 
   return (
     <>
@@ -43,14 +42,13 @@ export const SigninForm = ({user}) => {
         <Alert status="warning">
           <AlertIcon />
           {error}
-          - Please refesh the page.
         </Alert>
       }
 
       <form
-        onSubmit={handleSubmit}
+        onSubmit={ handleSubmit }
       >
-        <Stack spacing="-px">
+        <Stack>
           <FormControl id="email-address">
             <FormLabel srOnly>Email address</FormLabel>
             <Input
@@ -68,10 +66,6 @@ export const SigninForm = ({user}) => {
               disabled={ status === 'resolving' }
             />
           </FormControl>
-
-          <PasswordField password={password} setPassword={setPassword} status={status} />
-
-          <Box pb="3"></Box>
         </Stack>
         <Button
           size="lg"
@@ -80,7 +74,7 @@ export const SigninForm = ({user}) => {
           w="full"
           bg="dBlue.300"
         >
-          Sign In
+          Reset Password
         </Button>
       </form>
     </>

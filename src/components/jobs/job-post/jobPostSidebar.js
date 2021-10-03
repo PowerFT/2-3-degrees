@@ -45,18 +45,20 @@ export const JobSidebar = (props) => {
 			
 
 			<Stack direction="column" spacing={4} align="center"  alignItems="stretch" w="full" position="sticky" b="0">
-				<Box p="2" fontSize="lg" bg="dYellow.400" w="full"><Text fontWeight="500">Close Date: <Box as="mark" fontWeight="300" bg="transparent">{closeDate}</Box></Text></Box>
-				<a href={applicationLink} target="_blank" rel="noreferrer">
+				<Box p="2" fontSize="lg" bg="dYellow.400" w="full">
+					<Text fontWeight="500">
+						Close Date: <Box as="mark" fontWeight="300" bg="transparent">{closeDate}</Box>
+					</Text>
+				</Box>
+				<a href={`https://${applicationLink}`} target="_blank" rel="noreferrer">
 					<Button bg="dYellow.300" color="gray.800" variant="solid" w="full" _hover={{bg:"dYellow.200"}}>
 							Apply
 					</Button>
-				</a>
-
-				
-
-				
+				</a>	
 			</Stack>
+
 			<Spacer />
+			
 			<Box border="2px solid" rounded="lg" p="1" w="100%">
 					<Text>{`About ${companyName}`}</Text>
 					<Text>{companyBio}</Text>
