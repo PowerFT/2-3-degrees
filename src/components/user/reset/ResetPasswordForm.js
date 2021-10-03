@@ -16,7 +16,7 @@
   IconButton,
 } from '@chakra-ui/react'
 import { Link } from 'gatsby';
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 import { useLocation } from '@reach/router';
 import queryString from 'query-string';
@@ -32,14 +32,15 @@ const getResetDeets = (query) => {
 
   if (query) {
     const queriedTag = queryString.parse(query);
-    const { key, user } = queriedTag
+    const { key, username, user } = queriedTag
 
     // Ensure a valid expected value is passed
-    if (key || user) {
-      //console.log('link query returned', key, user)
+    if (key || username || user) {
+      //console.log('link query returned', key, username)
       return {
-				key: key,
-				user: user
+				key,
+				username,
+        user
 			};
     }
     //console.log('parsing didnt work')
@@ -53,10 +54,6 @@ export const ResetPasswordForm = React.forwardRef ((props, ref) => {
 
   const location = useLocation();
 	const info = location.search ? getResetDeets(location.search) : '';
-
-  console.log(info)
-  
-  const { user } = props
 
   const [ password1, setPassword1 ] = useState( '' );
 	const [ password2, setPassword2 ] = useState( '' );
@@ -90,14 +87,14 @@ export const ResetPasswordForm = React.forwardRef ((props, ref) => {
 			setPasswordError( 'Passwords do not match!' );
 			return;
 		}
-		resetUserPassword( info.key, info.user, password1 );
+		resetUserPassword( info.key, info.username, password1 );
 	};
 
 	if ( status === 'resolved' && ! error ) {
 		return (
 				<p>
 					Your password has been reset. You can now{ ' ' }
-					<Link to={`/${user}/sign-in`}>
+					<Link to={`/${info.user}/sign-in`}>
 						Sign-in
 					</Link>
 					.
@@ -178,9 +175,6 @@ export const ResetPasswordForm = React.forwardRef ((props, ref) => {
             />
           </InputGroup>
         </FormControl>
-
-
-
 
         </Stack>
         <Button

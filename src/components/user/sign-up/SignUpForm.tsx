@@ -11,8 +11,9 @@ import {
   LightMode,
   Stack,
   useColorModeValue as mode,
+  useToast,
 } from '@chakra-ui/react'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 /**
 * Internal dependencies
 */
@@ -22,6 +23,21 @@ export const SignUpForm = ({user}) => {
   const [ email, setEmail ] = useState( '' );
   const [ password, setPassword ] = useState( '' );
   const { register, error, status } = useRegistration();
+  console.log(status)
+
+  const toast = useToast()
+
+  useEffect(() => {
+    if(status === 'resolved') {
+      toast({
+        title: "Account created.",
+        description: "We've created your account for you.",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      })
+    }
+  }, [status])
 
   return (
     <>

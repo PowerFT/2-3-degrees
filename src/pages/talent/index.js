@@ -1,12 +1,12 @@
 import React from "react"
 import { Router } from "@reach/router"
 import { TalentAccountSettings } from "../../components/user/account/talent"
-import MyJobs from "../../components/jobs/MyJobs"
+// import MyJobs from "../../components/jobs/MyJobs"
 import { SignIn } from "../../components/user/sign-in/talent"
 import { SignUp } from "../../components/user/sign-up/talent"
 import PrivateRoute from "../../components/PrivateRoute"
-import { Reset } from "../../components/user/reset/talent/Reset"
-import { ResetPassword } from "../../components/user/reset/talent/ResetPassword"
+// import { Reset } from "../../components/user/reset/talent/Reset"
+// import { ResetPassword } from "../../components/user/reset/talent/ResetPassword"
 
 const NotFound = () => {
   if (typeof window !== 'undefined') {
@@ -22,8 +22,8 @@ const TalentApp = () => {
         {/* <PrivateRoute path="/myjobs" component={ MyJobs } /> */}
         <SignIn path="/sign-in" user="talent" component={SignIn} />
 				<SignUp path="/sign-up" user="talent" component={SignUp}/>
-        <Reset path="/reset" user="talent" component={Reset}/>
-        <ResetPassword path="/reset-password" user="talent" component={ResetPassword}/>
+        {/* <Reset path="/reset" user="talent" component={Reset}/> */}
+        {/* <ResetPassword path="/reset-password" user="talent" component={ResetPassword}/> */}
         <NotFound default />
       </Router>
     </>

@@ -70,6 +70,7 @@ export default function Layout({children}) {
         buttonText="Accept"
         declineButtonText="Decline"
         cookieName="gatsby-gdpr-google-analytics"
+        enableDeclineButton={true}
       >
       This site uses cookies ...
       </CookieConsent>

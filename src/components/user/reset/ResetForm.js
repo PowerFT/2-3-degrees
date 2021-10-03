@@ -9,6 +9,7 @@
   FormLabel,
   Input,
   Stack,
+  Text,
   useColorModeValue as mode,
 } from '@chakra-ui/react'
 import React, {useState} from 'react'
@@ -18,7 +19,7 @@ import React, {useState} from 'react'
 // import { UnderlineLink } from './UnderlineLink'
 import { useResetPassword } from '../../../hooks';
 
-export const ResetForm = ({user}) => {
+export const ResetForm = () => {
   
   const [ email, setEmail ] = useState( '' );
 	const { sendResetPasswordEmail, error, status } = useResetPassword();
@@ -31,7 +32,7 @@ export const ResetForm = ({user}) => {
 
 	if ( status === 'resolved' && ! error ) {
 		return (
-			<p>Instructions have been emailed to you. Check your inbox.</p>
+			<Text>Instructions have been emailed to you. Check your inbox.</Text>
 		)
 	}
 
@@ -73,8 +74,9 @@ export const ResetForm = ({user}) => {
           mt="8"
           w="full"
           bg="dBlue.300"
+          _hover={{bg:"dBlue.200"}}
         >
-          Reset Password
+          Send Reset Password Link
         </Button>
       </form>
     </>
