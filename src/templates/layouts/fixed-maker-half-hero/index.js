@@ -78,7 +78,7 @@ export const FixedMakerHalfHero = ({bgCol, textColour}) => {
         display={{base:"none", md:"block"}}
       >
         <StaticImage 
-          src="../../../images/pattern-1.png" 
+          src="../../../images/fixedHalfHeroPattern.png" 
           alt="shadow"
           // height={400}
           fit="cover"
@@ -93,7 +93,7 @@ export const FixedMakerHalfHero = ({bgCol, textColour}) => {
         display={{base:"block", md:"none"}}
       >
         <StaticImage 
-          src="../../../images/pattern-1.png" 
+          src="../../../images/fixedHalfHeroPattern.png" 
           alt="shadow"
           // height={400}
           fit="cover"

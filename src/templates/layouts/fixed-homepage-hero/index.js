@@ -183,7 +183,7 @@ export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
         >
           <StaticImage
             placeholder="none" 
-            src="../../../images/pattern-1.png" 
+            src="../../../images/fixedHeroPattern.png" 
             alt="shape pattern"
             // height={400}
             fit="cover"
@@ -204,7 +204,7 @@ export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
         >
           <StaticImage
             placeholder="none" 
-            src="../../../images/pattern-1.png" 
+            src="../../../images/fixedHeroPattern.png" 
             alt="shape pattern"
             // height={400}
             fit="cover"
