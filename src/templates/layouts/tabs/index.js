@@ -8,7 +8,7 @@ import { BsLightningFill } from 'react-icons/bs'
 export const TabSection = ( props ) => {
 	console.log(props)
 
-	const {tabs, title} = props
+	const {tabs, title, tabsCol, tabHeaderBgCol, textColour} = props
 
 	// 1. Reuse the styles for the Tab
   const StyledTab = chakra("button", { themeKey: "Tabs.Tab" })
@@ -22,7 +22,7 @@ export const TabSection = ( props ) => {
     const styles = useStyles()
 
     return (
-      <StyledTab __css={styles.tab} {...tabProps} p="10" cursor="pointer" shadow="none" _selected={{ color: "white", bg: "dOrange.300" }}>
+      <StyledTab __css={styles.tab} {...tabProps} p="10" cursor="pointer" shadow="none" _selected={{ color: "white", bg: tabsCol }}>
         {tabProps.children}
       </StyledTab>
     )
@@ -72,10 +72,11 @@ export const TabSection = ( props ) => {
 										}}
 										justify="center"
 									>
-										<Box flex="1 1 50%" p="8" bg="dBlue.300" color="gray.800" order={i%2 === 0 ? 2 : 1}>
+										<Box flex="1 1 50%" p="8" bg={tabHeaderBgCol} color="gray.800" order={i%2 === 0 ? 2 : 1}>
 											<Heading
 												className="tabblock__header--title"
 												size="4xl"
+												color={textColour}
 											> 
 												{parse(tab?.title)}
 											</Heading>
@@ -137,45 +138,3 @@ export const TabSection = ( props ) => {
 		</Box>
 	)
 }
-// {/* <Flex align="center" justify="center" direction={{ base: 'column-reverse', md: 'row' }}>
-// 									<Box flex="1" maxW="440px">
-// 										<Heading
-// 											size="2xl"
-// 											fontWeight="extrabold"
-// 											color='blue.600'
-// 										>
-// 											{tab?.subTitle}
-// 										</Heading>
-// 										<Text
-// 											fontSize="lg"
-// 											fontWeight="medium"
-// 											color='gray.600'
-// 											mt="6"
-// 										>
-// 											{tab?.text}
-// 										</Text>
-
-// 										<Stack mt={{ base: '8', md: '16' }} spacing="4" fontWeight="extrabold">
-// 											{
-// 												tab?.list?.map(item => (
-// 													<HStack spacing="5" color='blue.600'>
-// 														<Box fontSize="3xl" as={MdPermPhoneMsg} />
-// 														<Text fontSize={{ base: 'lg', md: 'xl' }}>{item.text}</Text>
-// 													</HStack>
-// 												))
-// 											}
-// 										</Stack>
-// 									</Box>
-
-// 									<Box aria-hidden className="spacer" flexShrink={0} boxSize={{ base: '10', xl: '20' }} />
-
-// 									<Box flex="1" maxW="560px" h={{ base: '400px', md: '460px' }}>
-// 										<GatsbyImage
-// 											image={imageData}
-// 											alt={'tbc'}
-// 											objectFit="cover"
-// 											height="100%"
-// 											width="100%"
-// 										/>
-// 									</Box>
-// 								</Flex> */}

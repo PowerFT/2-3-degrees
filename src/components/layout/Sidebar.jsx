@@ -23,7 +23,7 @@ export const Sidebar = ({...rest}) => {
   return (
     <Flex
       className="site__sidebar"
-      bg={'dYellow.300'}
+      bg="dOrange.300"
       direction="column"
       borderRightWidth="1px"
       borderColor="black"

@@ -137,7 +137,7 @@ export const UpdateJobPostFormPage = () => {
     }
   }, [loading, data])
 
-  const pageType = "job-form"
+  const pagetype = "job-form"
 
   // if(jobToEditId) {
   if (error) return <MyError error={error} />
@@ -150,12 +150,12 @@ export const UpdateJobPostFormPage = () => {
     <>
       <Header
         title="Update an Opportunity"
-        pageType={pageType}
+        pagetype={pagetype}
       />
       {/* <FileUploadInput /> */}
       <Flex w="100%">
         <InnerSidebar
-          pageType={pageType}
+          pagetype={pagetype}
           formDeets = { formDeets }
         />
         <Content py="12">

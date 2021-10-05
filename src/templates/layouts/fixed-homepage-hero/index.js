@@ -6,7 +6,7 @@ import { StaticImage } from 'gatsby-plugin-image'
 // import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 
-export const FixedHomepageHero = ({ button }) => {
+export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
 
   // const imageData = getImage(image.localFile)
   const buttonTitle = button?.title
@@ -27,7 +27,7 @@ export const FixedHomepageHero = ({ button }) => {
       as="section" 
       h={{base: "unset", md:"100vh" }}
       minH="90vh"
-      bg="dBlue.300" 
+      bg={bgCol}
       direction="column" 
       position="relative" 
       justify={{base:"space-between", md:"flex-start", xl:"center"}} 
@@ -47,7 +47,7 @@ export const FixedHomepageHero = ({ button }) => {
         
         <Heading 
           as="h1" 
-          color="gray.50" 
+          color={textColour} 
           fontSize={{base: '65px', sm: '75px', md:"100px", lg: '120px'}} 
           letterSpacing="tight" 
           textTransform="uppercase"
@@ -90,7 +90,8 @@ export const FixedHomepageHero = ({ button }) => {
         display={{base:"none", md:"block"}}
         // style={{transform: `translateY(-${offsetY * 0.5}px)`}}
       >
-        <StaticImage 
+        <StaticImage
+          placeholder="none" 
           src="../../../images/cutout.png" 
           alt="young person smiling"
           // height={400}
@@ -109,7 +110,8 @@ export const FixedHomepageHero = ({ button }) => {
         display={{base:"none", md:"block"}}
         style={{transform: `translatex(-${offsetY * 0.01}px)`}}
       >
-        <StaticImage 
+        <StaticImage
+          placeholder="none" 
           src="../../../images/cutout-shadow.png" 
           alt="shadow"
           // height={400}
@@ -137,7 +139,8 @@ export const FixedHomepageHero = ({ button }) => {
             zIndex="10"
             // style={{transform: `translateY(-${offsetY * 0.5}px)`}}
           >
-            <StaticImage 
+            <StaticImage
+              placeholder="none" 
               src="../../../images/cutout.png" 
               alt="young person smiling"
               // height={400}
@@ -155,7 +158,8 @@ export const FixedHomepageHero = ({ button }) => {
             zIndex="5"
             style={{transform: `translatex(-${offsetY * 0.01}px)`}}
           >
-            <StaticImage 
+            <StaticImage
+              placeholder="none" 
               src="../../../images/cutout-shadow.png" 
               alt="shadow"
               // height={400}
@@ -182,7 +186,8 @@ export const FixedHomepageHero = ({ button }) => {
           style={{transform: `translateY(${offsetY * .3}px)`}}
           display={{base:"none", md:"block"}}
         >
-          <StaticImage 
+          <StaticImage
+            placeholder="none" 
             src="../../../images/pattern-1.png" 
             alt="shape pattern"
             // height={400}
@@ -202,7 +207,8 @@ export const FixedHomepageHero = ({ button }) => {
           style={{transform: `translateY(-${offsetY * .3}px)`}}
           display={{base:"block", md:"none"}}
         >
-          <StaticImage 
+          <StaticImage
+            placeholder="none" 
             src="../../../images/longPattern.png" 
             alt="shape pattern"
             // height={400}
@@ -225,7 +231,8 @@ export const FixedHomepageHero = ({ button }) => {
         bottom={{sm: 'unset', md: '0'}}
       >
         
-        <StaticImage 
+        <StaticImage
+          placeholder="none" 
           src="../../../images/cutout-shadow.png" 
           alt="young person smiling"
           // height={400}

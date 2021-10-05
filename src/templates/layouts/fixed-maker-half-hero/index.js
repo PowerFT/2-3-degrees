@@ -6,7 +6,7 @@ import { StaticImage } from 'gatsby-plugin-image'
 // import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 
-export const FixedMakerHalfHero = () => {
+export const FixedMakerHalfHero = ({bgCol, textColour}) => {
 
   // const [offsetY, setOffsetY] = useState(0)
   // const handleScroll = () => setOffsetY(window.pageYOffset)
@@ -19,7 +19,7 @@ export const FixedMakerHalfHero = () => {
     <Flex 
       as="section" 
       h={{base: "unset",md:"80vh"}} 
-      bg="dBlue.300" 
+      bg={bgCol} 
       direction="column" 
       position="relative" 
       justify="center" 
@@ -36,7 +36,7 @@ export const FixedMakerHalfHero = () => {
         zIndex={100}
         position="relative"
         alignSelf="flex-start"
-        color='gray.50'
+        color={textColour}
         zIndex="10"
       >
         

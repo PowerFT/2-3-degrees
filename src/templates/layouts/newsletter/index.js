@@ -1,4 +1,6 @@
 import {
+	Alert,
+	AlertIcon,
 	Box,
 	Button,
 	Heading,
@@ -11,35 +13,35 @@ import React, { useState } from 'react'
 import { HiShieldCheck } from 'react-icons/hi'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 
-export const Newsletter = ({ text }) => {
+export const Newsletter = ({ text, bgCol }) => {
 
-	const [submitted, setSubmitted] = useState(false)   
+	const [submitted, setSubmitted] = useState(false)
+	const [error, setError] = useState(null)
+	const [email, setEmail] = useState('') 
 
+  const handleSubmit = (e) => {
+		e.preventDefault()
 
-  function errorHandling(data) {
-    // your error handling
-  }
-  
-  // const handleSubmit = () => {
-  //   addToMailchimp(email)
+    addToMailchimp(email)
 		
-	// 	.then((data) => {
+		.then((data) => {
 
-  //     if (data.result == "error") {
-  //       errorHandling(data)
-  //     } else {
-  //       // trackCustomEvent({
-  //       //   category: "Newsletter",
-  //       //   action: "Click",
-  //       //   label: `Newsletter Click`,
-  //       // })
-  //       setSubmitted(true)
-  //     }
-  //   })
-  // }
+      if (data.result == "error") {
+        setError(data)
+      } else {
+        // trackCustomEvent({
+        //   category: "Newsletter",
+        //   action: "Click",
+        //   label: `Newsletter Click`,
+        // })
+				console.log("submittedd" , data)
+        setSubmitted(true)
+      }
+    })
+  }
 
 	return (
-		<Box as="section" bg="dBlue.300" py="12" px="6">
+		<Box as="section" bg={bgCol} py="12" px="6">
 			<Box
 				textAlign="center"
 				bg={mode('white', 'gray.800')}
@@ -58,31 +60,33 @@ export const Newsletter = ({ text }) => {
 			>
 
 				{submitted ? (
-						<Box maxW="md" mx="auto">Successfully subscribed</Box>
+						<Box maxW="md" mx="auto">
+							<Heading mb="3">Successfully subscribed!</Heading>
+							<Text>Please check your email, to finish the signup</Text>
+						</Box>
 				) : (
 					<Box maxW="md" mx="auto">
-						{/* <Text
-							color={mode('green.600', 'green.400')}
-							fontWeight="bold"
-							fontSize="sm"
-							letterSpacing="wide"
-						>
-							6,000+ PEOPLE ALREADY JOINED ❤️️
-						</Text> */}
 						<Heading mt="4" size="3xl">
 							{text}
 						</Heading>
 						<Box mt="6">
 							<form
-								onSubmit={(e) => {
-									e.preventDefault() // your subscribe logic here
-								}}
+								onSubmit={handleSubmit}
 							>
 								<Stack justify="center" align="center" spacing="6">
+									{ 
+										error &&
+										<Alert status="warning">
+											<AlertIcon />
+											{error}
+										</Alert>
+									}
 									<Input
 										aria-label="Enter your email"
 										placeholder="Enter your email to join"
 										rounded="base"
+										value={email} 
+              			onChange={e=> setEmail(e.target.value)}
 									/>
 									<Button
 										type="submit"

@@ -109,6 +109,8 @@ const getPages = async ({ graphql, reporter }) => {
             layouts {
               ... on WpPage_Pagebuilder_Layouts_FixedHomepageHero {
                 fieldGroupName
+                textColour
+                bgCol
                 button {
                   title
                   url
@@ -116,12 +118,21 @@ const getPages = async ({ graphql, reporter }) => {
               }
               ... on WpPage_Pagebuilder_Layouts_FixedTalentHalfHero {
                 fieldGroupName
+                textColour
+                bgCol
               }
               ... on WpPage_Pagebuilder_Layouts_FixedMakerHalfHero {
                 fieldGroupName
+                textColour
+                bgCol
               }
               ... on WpPage_Pagebuilder_Layouts_FullHero {
                 fieldGroupName
+                bgCol
+                bgPatternCol
+                titleColour
+                subTitleColour
+                buttonColour
                 text
                 title
                 button {
@@ -144,6 +155,11 @@ const getPages = async ({ graphql, reporter }) => {
               }
               ... on WpPage_Pagebuilder_Layouts_HalfHero {
                 fieldGroupName
+                bgCol
+                bgPatternCol
+                titleColour
+                subTitleColour
+                buttonColour
                 text
                 title
                 imageSide
@@ -167,6 +183,9 @@ const getPages = async ({ graphql, reporter }) => {
               }
               ... on WpPage_Pagebuilder_Layouts_Tabs {
                 fieldGroupName
+                tabsCol
+                tabHeaderBgCol
+                textColour
                 title
                 tabs {
                   title
@@ -191,6 +210,9 @@ const getPages = async ({ graphql, reporter }) => {
               }
               ... on WpPage_Pagebuilder_Layouts_Pillars {
                 fieldGroupName
+                bgCol
+                bgPatternCol
+                textColour
                 title
                 pillars {
                   title
@@ -220,9 +242,14 @@ const getPages = async ({ graphql, reporter }) => {
                 fieldGroupName
                 quoteAuthor
                 quoteText
+                bgCol
+                bgPatternCol
+                textColour
               }
               ... on WpPage_Pagebuilder_Layouts_LogoGrid {
                 fieldGroupName
+                bgCol
+                textColour
               }
               ... on WpPage_Pagebuilder_Layouts_Blog {
                 fieldGroupName
@@ -258,11 +285,13 @@ const getPages = async ({ graphql, reporter }) => {
               }
               ... on WpPage_Pagebuilder_Layouts_Newsletter {
                 fieldGroupName
+                bgCol
                 text
               }
               ... on WpPage_Pagebuilder_Layouts_PageBlock {
+                headerBgCol
+                textColour
                 content
-                fieldGroupName
                 subTitle
                 title
                 image {

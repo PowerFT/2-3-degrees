@@ -15,7 +15,7 @@ const BlogIndex = ({
 }) => {
   const posts = data.allWpPost.nodes
 
-  const pageType = "archive"
+  const pagetype = "archive"
 
   if (!posts.length) {
     return (
@@ -38,7 +38,7 @@ const BlogIndex = ({
       <Header
         title="Blog"
         subTitle="Latest posts from the 2-3 Degrees team"
-        pageType={pageType}
+        pagetype={pagetype}
       />
 
       <BlogGrid>

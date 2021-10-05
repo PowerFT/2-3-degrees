@@ -23,7 +23,7 @@ const BlogPostTemplate = ({ data: { post } }) => {
   const imageData = getImage(post.featuredImage?.node?.localFile)
   const ImgAlt = post.featuredImage?.node?.alt || ``
 
-  const pageType = "blog"
+  const pagetype = "blog"
 
   return (
     <Box
@@ -38,7 +38,7 @@ const BlogPostTemplate = ({ data: { post } }) => {
 				subTitle={parse(post.excerpt)}
 				imageData={imageData}
         imageAlt={ImgAlt}
-				pageType={pageType}
+				pagetype={pagetype}
 			/>
 			<Flex w="100%" direction="column" maxW="xl" mx="auto">
 				<Box className="blog__body--content wp-content">

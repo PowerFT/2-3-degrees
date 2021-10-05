@@ -20,7 +20,7 @@ import { Header } from '../../../layout/Header'
 export const TalentAccountSettings = () => {
   // const { FileUploadInput } = useFileUpload()
 
-  const pageType = "admin"
+  const pagetype = "admin"
   const { viewer, loadingViewer } = useAuth()
   const [newEmail, setNewEmail] = useState('');
   const [passwordChanged, setPasswordChanged] = useState(false);
@@ -90,7 +90,7 @@ export const TalentAccountSettings = () => {
       <Header
         title="Control your Account"
         subTitle="Test Sub"
-        pageType={pageType}
+        pagetype={pagetype}
       />
       
       <Flex w="100%">
@@ -98,14 +98,14 @@ export const TalentAccountSettings = () => {
           title="Test"
           primaryLinks={[["Connect Platform", "/connect/platform"], ["Latest Opportunites", "/connect/jobs"]]}
           secondaryLinks={[["Why we ask for account information", "#"], ["Terms and Conditions", "#"]]}
-          pageType={pageType}
+          pagetype={pagetype}
         />
 
       {loadingViewer || !viewer ? (
         <MySpinner />
       ) : (
         <Content
-          pageType={pageType}
+          pagetype={pagetype}
           py="12"
         >
           <form

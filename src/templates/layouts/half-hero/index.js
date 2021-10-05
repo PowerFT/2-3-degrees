@@ -8,15 +8,16 @@ import {
 import * as React from 'react'
 import { Link as GatsbyLink } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { BgImage } from '../../../components/BgImage'
 
-export const HalfHero = ({ image, title, text, button, imageSide }) => {
+export const HalfHero = ({ image, title, text, button, imageSide, bgCol, bgPatternCol, titleColour, subTitleColour, buttonColour }) => {
 	const imageData = getImage(image?.localFile)
   const buttonTitle = button?.title
   const buttonLink = button?.url
   return (
     <Box
       as="section"
-      bg={mode('gray.50', 'gray.800')}
+      bg={bgCol}
       pb={{base:"12",sm:"24"}}
       pos="relative"
       px={{
@@ -25,6 +26,7 @@ export const HalfHero = ({ image, title, text, button, imageSide }) => {
         md: '12',
       }}
     >
+      
       <Box
         w={{base:"100%", md:"50%"}}
         maxW={{
@@ -44,16 +46,17 @@ export const HalfHero = ({ image, title, text, button, imageSide }) => {
           md: '0',
         }}
       >
-        <Heading as="h1" size="3xl" lineHeight="1" fontWeight="extrabold" letterSpacing="tight">
+        <Heading as="h1" size="3xl" lineHeight="1" fontWeight="extrabold" letterSpacing="tight" color={titleColour}>
           {title}
         </Heading>
-        <Text mt={4} fontSize="xl" fontWeight="medium" color={mode('gray.600', 'gray.400')}>
+        <Text mt={4} fontSize="xl" fontWeight="medium" color={subTitleColour}>
           {text}
         </Text>
-        <Button as={GatsbyLink} to={buttonLink} fontWeight="400" cover direction="down" mt="6" size="md" rounded="full" bg="gray.800" color="gray.50">
+        <Button as={GatsbyLink} to={buttonLink} fontWeight="400" cover direction="down" mt="6" size="md" rounded="full" bg="gray.800" color={buttonColour} _hover={{bg:"lighter"}}>
           {buttonTitle}
         </Button>
       </Box>
+
       <Box
         pos={{
           md: 'absolute',
@@ -87,6 +90,9 @@ export const HalfHero = ({ image, title, text, button, imageSide }) => {
 					/>
         )}
       </Box>
+      {bgPatternCol && (
+        <BgImage bgPatternCol={bgPatternCol} />
+      )}
     </Box>
   )
 }

@@ -21,7 +21,7 @@ const MyJobs = () => {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(null)
 
-	const pageType = "myjobs"
+	const pagetype = "myjobs"
 
 	if (loading) return <MySpinner />;
 	if (error) return `Error! ${error}`;
@@ -31,11 +31,11 @@ const MyJobs = () => {
 			<Header
         title="My Opportunities"
         subTitle="Edit, view your opportunity posts"
-        pageType={pageType}
+        pagetype={pagetype}
       />
 			<Flex w="100%">
 				<InnerSidebar
-					pageType={pageType}
+					pagetype={pagetype}
 					setStatusSelected={setStatusSelected}
 				/>	
 				<Content>

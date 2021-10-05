@@ -2,8 +2,9 @@ import React from 'react'
 import { Box, Collapse, Heading, Flex, SimpleGrid, Text, useDisclosure, VStack, Icon, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, AspectRatio } from '@chakra-ui/react'
 import { FaPlay } from 'react-icons/fa'
 import { getImage, GatsbyImage } from 'gatsby-plugin-image'
+import { BgImage } from '../../../components/BgImage'
 
-export const Feature = ({ img, linkUrl, title, children, icon, videoOrImage, videoLink, i, ...rest }) => {
+export const Feature = ({ img, linkUrl, title, children, icon, videoOrImage, videoLink, i, bgCol, bgPatternCol, ...rest }) => {
 
 	const imgData = getImage(img?.localFile)
 
@@ -136,13 +137,14 @@ export const Feature = ({ img, linkUrl, title, children, icon, videoOrImage, vid
 	)
 }
 
-export const Pillars = ({ title, pillars }) => {
+export const Pillars = ({ title, pillars, bgCol, bgPatternCol, textColour }) => {
 	//console.log(pillars)
 	
 	return (
 
-		<Flex as="section" align="center" justify="center" p={{ base: '4', md: '8' }}  direction="column" className="pillars" bg="dOrange.300" minH="75vh">
-			<Heading textAlign="center" size="4xl" mt={{ base: '8', sm: '10' }}>{title}</Heading>
+		<Flex as="section" align="center" justify="center" p={{ base: '4', md: '8' }}  direction="column" className="pillars" bg={bgCol} pos="relative" minH="75vh">
+			
+			<Heading textAlign="center" color={textColour} size="4xl" mt={{ base: '8', sm: '10' }} zIndex="10">{title}</Heading>
 			<SimpleGrid 
 				columns={{ md: 1, lg: 3 }} 
 				spacing={{ base: '8', md: '12', lg: '8' }} 
@@ -151,6 +153,7 @@ export const Pillars = ({ title, pillars }) => {
 				mb={{ base: '16', sm: '20' }}
 				w="100%"
 				justifyItems="center"
+				zIndex="10"
 			>
 				{pillars?.map((pillar, i) => (
 					<Feature 
@@ -171,6 +174,9 @@ export const Pillars = ({ title, pillars }) => {
 					</Feature>
 				))}
 			</SimpleGrid>
+			{bgPatternCol && (
+				<BgImage bgPatternCol={bgPatternCol} />
+			)}
 		</Flex>
 		
 	)

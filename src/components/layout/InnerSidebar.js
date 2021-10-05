@@ -13,7 +13,7 @@ import { JobPreviewCard } from '../jobs/job-post-form/JobPreview'
 export const InnerSidebar = ({
 	primaryLinks, 
 	secondaryLinks, 
-	pageType, 
+	pagetype, 
 	locations, 
 	setLocations, 
 	sectors, 
@@ -33,6 +33,7 @@ export const InnerSidebar = ({
 	closeDate,
 	companyBio,
 	companyName,
+	salaryStructure,
 }) => {
 	
 	// const colour = {
@@ -40,14 +41,14 @@ export const InnerSidebar = ({
 	// 	connectPage: "dOrange.300",
 	// }
 
-	const hidden = pageType === "blog" || pageType === "generic" || pageType === "home" || pageType === "connect-home" || pageType === "login"
+	const hidden = pagetype === "blog" || pagetype === "generic" || pagetype === "home" || pagetype === "connect-home" || pagetype === "login"
 
 
-	console.log(pageType)
+	console.log(pagetype)
 	return (
 		<Box 
 			className="innersidebar sticky"
-			bg={pageType === "myjobs" ? "gray.300" : "dBlue.300"}
+			bg={pagetype === "myjobs" ? "gray.300" : "gray.200"}
 			w="280px"
 			position="sticky"
 			top="0"
@@ -105,7 +106,7 @@ export const InnerSidebar = ({
 					)
 				} */}
 				{
-					pageType === "jobs-board" && (
+					pagetype === "jobs-board" && (
 						<JobsFilter 
 							locations={locations}
 							setLocations={setLocations}
@@ -120,7 +121,7 @@ export const InnerSidebar = ({
 				}
 
 				{
-					pageType === "job-post" && (
+					pagetype === "job-post" && (
 						<JobSidebar
 							jobLocation={jobLocation}
 							sector={sector}
@@ -131,11 +132,12 @@ export const InnerSidebar = ({
 							closeDate={closeDate}
 							companyBio={companyBio}
 							companyName={companyName}
+							salaryStructure={salaryStructure}
 						/>
 					)
 				}
 				{
-					pageType === "myjobs" && (
+					pagetype === "myjobs" && (
 						<>
 							<FormControl id="myJobsSelect">
 							{/* <Select bg="gray.400" onChange={(e) => setStatusSelected(e.target.value)}>
@@ -205,7 +207,7 @@ export const InnerSidebar = ({
 				}
 
 				{
-					pageType === "job-form" && (
+					pagetype === "job-form" && (
 						<JobPreviewCard
               formDeets = { formDeets }
             />

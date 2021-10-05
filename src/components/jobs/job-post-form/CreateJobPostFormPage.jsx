@@ -23,7 +23,7 @@ export const CreateJobPostFormPage = () => {
 
   const { viewer, loadingViewer } = useAuth()
 
-  const pageType = "job-form"
+  const pagetype = "job-form"
 
   useEffect(() => {
     if(viewer && !loadingViewer) {
@@ -35,12 +35,12 @@ export const CreateJobPostFormPage = () => {
     <>
       <Header
         title="Post an Opportunity"
-        pageType={pageType}
+        pagetype={pagetype}
       />
       {/* <FileUploadInput /> */}
       <Flex w="100%">
         <InnerSidebar
-          pageType={pageType}
+          pagetype={pagetype}
           formDeets = { formDeets }
         />
         <Content py="12">

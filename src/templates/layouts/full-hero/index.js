@@ -1,18 +1,21 @@
 import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
 import * as React from 'react'
-// import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Link } from 'gatsby'
+import { BgImage } from '../../../components/BgImage'
 // import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 
-export const FullHero = ({ image, title, text, button }) => {
+export const FullHero = ({ image, title, text, button, bgCol, bgPatternCol, titleColour, subTitleColour, buttonColour }) => {
 
-  // const imageData = getImage(image.localFile)
+  const imageData = getImage(image?.localFile)
   const buttonTitle = button?.title
   const buttonLink = button?.url
 
+  console.log(bgPatternCol)
+
   return (
-    <Flex as="section" h="100vh" bg="dOrange.300" direction="column" position="relative" justify="center" align="center" overflow="hidden">
+    <Flex as="section" h="100vh" bg={bgCol} direction="column" position="relative" justify="center" align="center" overflow="hidden">
       <Box
         maxW="3xl"
         // mx="auto"
@@ -23,36 +26,36 @@ export const FullHero = ({ image, title, text, button }) => {
         position="relative"
         color="white"
       >
-        <Heading as="h1" color="gray.50" fontSize={{base: '50px', sm: '65px', md: '100px'}} fontWeight="900" letterSpacing="tight">
+        <Heading as="h1" color={titleColour}  fontSize={{base: '50px', sm: '65px', md: '100px'}} fontWeight="900" letterSpacing="tight">
           {title}
         </Heading>
         {text && (
-          <Text mt="4" fontSize="lg" color="gray.50">
+          <Text mt="4" fontSize="lg" color={subTitleColour}>
             {text}
           </Text>
         )}
         {button && (
-          <Button as={Link} textDecoration="none" fontWeight="500" cover direction="down" to={buttonLink} mt="8" size="md" rounded="full" bg="gray.50" color="gray.800">
+          <Button 
+            as={Link} 
+            textDecoration="none" 
+            fontWeight="500" 
+            cover 
+            direction="down" 
+            to={buttonLink} 
+            mt="8" 
+            size="md" 
+            rounded="full" 
+            bg={buttonColour} 
+            color="gray.800"
+            _hover={{bg:"lighter"}}
+          >
             {buttonTitle}
           </Button>
         )}
       </Box>
-      {/* <Flex
-        class="image-wrapper"
-        position={{base: "relative", sm: 'absolute'}}
-        w="100%"
-        h="fit-content"
-        overflow="hidden"
-        align="center"
-        bottom={{sm: 'unset', md: '0'}}
-      >
-        <StaticImage 
-          src="../../../images/hero.png" 
-          alt="2-3 Degrees logo pattern"
-        />
-      </Flex> */}
-      
-      {/* <Flex
+
+      {image && (
+        <Flex
         class="image-wrapper"
         position="absolute"
         insetX="0"
@@ -70,7 +73,16 @@ export const FullHero = ({ image, title, text, button }) => {
             loading="eager"
           />
         </Box>
-      </Flex> */}
+      </Flex>
+      )}
+
+      {bgPatternCol && (
+        <BgImage bgPatternCol={bgPatternCol} />
+      )}
+      
+      
+      
+      
     </Flex>
   )
 }

@@ -68,7 +68,7 @@ export const ConnectJobs = () => {
 
 	// console.log(skills, jobTypes, locations)
 
-	const pageType = "jobs-board"
+	const pagetype = "jobs-board"
 
 	return (
 		<>
@@ -176,7 +176,7 @@ export const ConnectJobs = () => {
       
       <Flex w="100%">
         <InnerSidebar
-          pageType={pageType}
+          pagetype={pagetype}
 					locations={locations}
 					setLocations={setLocations}
 					sectors={sectors}
@@ -187,7 +187,7 @@ export const ConnectJobs = () => {
 					setSkills={setSkills}
         />
         <Content
-          pageType={pageType}
+          pagetype={pagetype}
 					
         >
 					<Flex

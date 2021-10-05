@@ -6,7 +6,7 @@ import { StaticImage } from 'gatsby-plugin-image'
 // import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 
-export const FixedTalentHalfHero = ({ image, title, text, button }) => {
+export const FixedTalentHalfHero = ({ bgCol, textColour }) => {
 
   // const imageData = getImage(image.localFile)
   // const buttonTitle = button?.title
@@ -26,7 +26,7 @@ export const FixedTalentHalfHero = ({ image, title, text, button }) => {
     <Flex 
       as="section" 
       h={{base: "unset",md:"80vh"}}
-      bg="dOrange.300" 
+      bg={bgCol}
       direction="column" 
       position="relative" 
       justify="center" 
@@ -84,7 +84,7 @@ export const FixedTalentHalfHero = ({ image, title, text, button }) => {
         zIndex={100}
         position="relative"
         alignSelf="flex-end"
-        color='gray.50'
+        color={textColour}
       >
         
         <Heading 

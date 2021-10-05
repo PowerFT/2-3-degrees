@@ -21,7 +21,7 @@ import { Header } from '../../../layout/Header'
 export const MakerAccountSettings = () => {
 
   // const { FileUploadInput } = useFileUpload()
-  const pageType = "admin"
+  const pagetype = "admin"
   const { viewer, loadingViewer } = useAuth()
   const { updateUser, error, status } = useUpdateUser()
   const [newEmail, setNewEmail] = useState('');
@@ -94,7 +94,7 @@ export const MakerAccountSettings = () => {
       <Header
         title="Control your Account"
         subTitle="Test Sub"
-        pageType={pageType}
+        pagetype={pagetype}
       />
       
       <Flex w="100%">
@@ -102,14 +102,14 @@ export const MakerAccountSettings = () => {
           title="Test"
           primaryLinks={[["Connect Platform", "/connect/platform"], ["Latest Opportunites", "/connect/jobs"]]}
           secondaryLinks={[["Why we ask for account information", "#"], ["Terms and Conditions", "#"]]}
-          pageType={pageType}
+          pagetype={pagetype}
         />
 
         {loadingViewer || !viewer ? (
           <MySpinner />
         ) : (
           <Content
-            pageType={pageType}
+            pagetype={pagetype}
             py="12"
           >
             <form

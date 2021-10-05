@@ -1,10 +1,11 @@
 import { Box, Heading, SimpleGrid } from '@chakra-ui/react'
 import { StaticImage } from 'gatsby-plugin-image'
 import * as React from 'react'
+import { BgImage } from '../../../components/BgImage'
 
-export const LogoGrid = () => {
+export const LogoGrid = ({bgCol, textColour}) => {
 	return (
-		<Box bg="dBlue.300" color="white" as="section" pt="16" pb="24">
+		<Box bg={bgCol} color="white" as="section" pt="16" pb="24" pos="relative" overflow="hidden">
 			<Box
 				maxW={{
 					base: 'xl',
@@ -17,7 +18,7 @@ export const LogoGrid = () => {
 				}}
 			>
 				<Box textAlign="center">
-					<Heading size="3xl" mb="4" color="white">
+					<Heading size="3xl" mb="4" color={textColour}>
 						Get Connected
 					</Heading>
 					{/* <Text maxW="2xl" mx="auto">
