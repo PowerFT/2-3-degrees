@@ -15,7 +15,7 @@ export const JobSidebar = (props) => {
 				<Box fontSize="lg" w="full">
 					<HStack justify="space-between" align="flex-start">
 						<Text fontWeight="700" letterSpacing="widest" pt="1" fontSize="xs">KEY SKILLS:</Text>
-						{skills.length !== 0 && (
+						{jobSkills.length !== 0 && (
 							<VStack  spacing="2" align="flex-end">
 								{
 									skills?.map((skill, i) => (
