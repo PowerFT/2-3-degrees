@@ -3,7 +3,7 @@ import { Text, Button, HStack, Stack, Spacer, VStack, Box, Flex } from "@chakra-
 
 export const JobSidebar = (props) => {
 
-	const {salary, jobLocation, sector, skills, jobSkills, jobType, applicationLink, closeDate, companyBio, companyName, salaryStructure, ...rest} = props
+	const {salary, jobLocation, sector, jobSkills, jobType, applicationLink, closeDate, companyBio, companyName, salaryStructure, ...rest} = props
 	const formattedSalary = parseInt(salary).toLocaleString() 
 	// const skills = [{name: "Approachable"}, {name: "Creativity"}, {name: "Humble"}]
 
@@ -18,7 +18,7 @@ export const JobSidebar = (props) => {
 						{jobSkills.length !== 0 && (
 							<VStack  spacing="2" align="flex-end">
 								{
-									skills?.map((skill, i) => (
+									jobSkills?.map((skill, i) => (
 										<HStack
 											key={i}
 										>
@@ -29,7 +29,7 @@ export const JobSidebar = (props) => {
 							</VStack>
 						)}
 					</HStack>
-					<Stack wrap="wrap" spacing="2" align="flex-start" mt={skills.length !== 0 ? "4" : "0"} w="full">
+					<Stack wrap="wrap" spacing="2" align="flex-start" mt={jobSkills.length !== 0 ? "4" : "0"} w="full">
 						<HStack bg="gray.50" px="1" py="1" spacing="1" rounded="full" w="full">
 							<Flex align="center" bg="dBlue.300" rounded="full" pt="1" pb="0.5" px="2.5"><Text fontWeight="700" letterSpacing="widest" fontSize="xs" color="#e8fffe">SALARY:</Text></Flex>
 							<Text px="1" fontSize="sm">£{formattedSalary}/{salaryStructure}</Text>
