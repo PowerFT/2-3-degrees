@@ -13,7 +13,7 @@ export const BgImage = ({bgPatternCol}) => {
 						alt="shape pattern"
 						// height={400}
 						fit="cover"
-						imgStyle={{height:"100%", objectFit:"cover", objectPosition:"center"}}
+						imgStyle={{height:"100%", objectFit:"cover", objectPosition:"bottom"}}
 						style={{
 							height:"100%", 
 							width:"100%", 
@@ -37,7 +37,7 @@ export const BgImage = ({bgPatternCol}) => {
 						alt="shape pattern"
 						// height={400}
 						fit="cover"
-						imgStyle={{height:"100%", objectFit:"cover", objectPosition:"center"}}
+						imgStyle={{height:"100%", objectFit:"cover", objectPosition:"bottom"}}
 						style={{
 							height:"100%", 
 							width:"100%", 
@@ -61,7 +61,7 @@ export const BgImage = ({bgPatternCol}) => {
 						alt="shape pattern"
 						// height={400}
 						fit="cover"
-						imgStyle={{height:"100%", objectFit:"cover", objectPosition:"center"}}
+						imgStyle={{height:"100%", objectFit:"cover", objectPosition:"bottom"}}
 						style={{
 							height:"100%", 
 							width:"100%", 
@@ -86,7 +86,7 @@ export const BgImage = ({bgPatternCol}) => {
 						alt="shape pattern"
 						// height={400}
 						fit="cover"
-						imgStyle={{height:"100%", objectFit:"cover", objectPosition:"center"}}
+						imgStyle={{height:"100%", objectFit:"cover", objectPosition:"bottom"}}
 						style={{
 							height:"100%", 
 							width:"100%", 

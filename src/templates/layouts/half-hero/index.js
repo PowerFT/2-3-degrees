@@ -10,7 +10,7 @@ import { Link as GatsbyLink } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { BgImage } from '../../../components/BgImage'
 
-export const HalfHero = ({ image, title, text, button, imageSide, bgCol, bgPatternCol, titleColour, subTitleColour, buttonColour }) => {
+export const HalfHero = ({ image, title, text, button, bgCol, bgPatternCol, titleColour, subTitleColour, buttonColour }) => {
 	const imageData = getImage(image?.localFile)
   const buttonTitle = button?.title
   const buttonLink = button?.url
@@ -45,6 +45,7 @@ export const HalfHero = ({ image, title, text, button, imageSide, bgCol, bgPatte
           base: '6',
           md: '0',
         }}
+        zIndex="2"
       >
         <Heading as="h1" size="3xl" lineHeight="1" fontWeight="extrabold" letterSpacing="tight" color={titleColour}>
           {title}
@@ -52,8 +53,19 @@ export const HalfHero = ({ image, title, text, button, imageSide, bgCol, bgPatte
         <Text mt={4} fontSize="xl" fontWeight="medium" color={subTitleColour}>
           {text}
         </Text>
-        <Button as={GatsbyLink} to={buttonLink} fontWeight="400" cover direction="down" mt="6" size="md" rounded="full" bg="gray.800" color={buttonColour} _hover={{bg:"lighter"}}>
-          {buttonTitle}
+        <Button 
+          as={GatsbyLink} 
+          to={buttonLink} 
+          fontWeight="400"
+          direction="down" 
+          mt="6" 
+          size="md" 
+          rounded="full" 
+          bg={buttonColour} 
+          color={buttonColour === "gray.900" ? "gray.50" : "gray.900"} 
+          _hover={{bg:"lighter"}}
+          >
+            {buttonTitle}
         </Button>
       </Box>
 
@@ -81,6 +93,7 @@ export const HalfHero = ({ image, title, text, button, imageSide, bgCol, bgPatte
             md: 'polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%)',
           },
         }}
+        zIndex="2"
       >
         {image && (
 					<GatsbyImage

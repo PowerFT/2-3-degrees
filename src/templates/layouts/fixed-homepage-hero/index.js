@@ -3,7 +3,6 @@ import React, {useEffect, useState} from 'react'
 // import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
 import { Link } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
-// import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 
 export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
@@ -38,7 +37,8 @@ export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
         maxW="3xl"
         // mx="auto"
         // px={{ base: '4', lg: '8' }}
-        py={{ base: '8', sm: '12' }}
+        pb={{ base: '0', md: '12' }}
+        pt={{ base: '8', md: '12' }}
         // textAlign="center"
         zIndex={100}
         position="relative"
@@ -51,7 +51,7 @@ export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
           fontSize={{base: '65px', sm: '75px', md:"100px", lg: '120px'}} 
           letterSpacing="tight" 
           textTransform="uppercase"
-          maxW={{sm:"lg", md:"2xl"}}
+          maxW={{base:"lg", sm:"md", md:"lg", lg:"2xl"}}
           lineHeight="1"
         >
           <Box as="mark" bg="transparent" color="inherit" fontWeight="100">Are </Box> 
@@ -92,7 +92,7 @@ export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
       >
         <StaticImage
           placeholder="none" 
-          src="../../../images/cutout.png" 
+          src="../../../images/cutout2.png" 
           alt="young person smiling"
           // height={400}
           fit="cover"
@@ -112,7 +112,7 @@ export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
       >
         <StaticImage
           placeholder="none" 
-          src="../../../images/cutout-shadow.png" 
+          src="../../../images/cutout-shadow2.png" 
           alt="shadow"
           // height={400}
           fit="cover"
@@ -141,7 +141,7 @@ export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
           >
             <StaticImage
               placeholder="none" 
-              src="../../../images/cutout.png" 
+              src="../../../images/cutout2.png" 
               alt="young person smiling"
               // height={400}
               fit="cover"
@@ -160,7 +160,7 @@ export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
           >
             <StaticImage
               placeholder="none" 
-              src="../../../images/cutout-shadow.png" 
+              src="../../../images/cutout-shadow2.png" 
               alt="shadow"
               // height={400}
               fit="cover"
@@ -170,13 +170,8 @@ export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
           </Box>
         </Box>
 
-
-
-
-
-
       <Box 
-          w="65%"
+          w="45%"
           h="100%"
           pos="absolute"
           bottom="0"
@@ -209,7 +204,7 @@ export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
         >
           <StaticImage
             placeholder="none" 
-            src="../../../images/longPattern.png" 
+            src="../../../images/pattern-1.png" 
             alt="shape pattern"
             // height={400}
             fit="cover"
@@ -233,7 +228,7 @@ export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
         
         <StaticImage
           placeholder="none" 
-          src="../../../images/cutout-shadow.png" 
+          src="../../../images/cutout-shadow2.png" 
           alt="young person smiling"
           // height={400}
           fit="cover"

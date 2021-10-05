@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react'
 // import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
 import { Link } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
+import { BgImage } from '../../../components/BgImage'
 // import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 
@@ -148,6 +149,8 @@ export const FixedTalentHalfHero = ({ bgCol, textColour }) => {
           />
         </Box>
       </Box>
+      
+      <BgImage bgPatternCol="yellow" />
     </Flex>
   )
 }

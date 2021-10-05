@@ -46,7 +46,7 @@ export const FullHero = ({ image, title, text, button, bgCol, bgPatternCol, titl
             size="md" 
             rounded="full" 
             bg={buttonColour} 
-            color="gray.800"
+            color={buttonColour === "gray.900" ? "gray.50" : "gray.900"}
             _hover={{bg:"lighter"}}
           >
             {buttonTitle}
@@ -79,9 +79,6 @@ export const FullHero = ({ image, title, text, button, bgCol, bgPatternCol, titl
       {bgPatternCol && (
         <BgImage bgPatternCol={bgPatternCol} />
       )}
-      
-      
-      
       
     </Flex>
   )
