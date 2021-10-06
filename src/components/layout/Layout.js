@@ -2,7 +2,7 @@
 * External dependencies
 */
 import React from 'react';
-import { Flex } from '@chakra-ui/react'
+import { Flex, Link } from '@chakra-ui/react'
 // import { graphql, useStaticQuery } from 'gatsby';
 import { Box } from "@chakra-ui/react"
 // import { motion } from "framer-motion"
@@ -61,19 +61,23 @@ export default function Layout({children}) {
             <Footer />
           </Box>
         </Flex>
-
-        <MobileBottomBar isLoggedIn={isLoggedIn}/>
+          
+          <MobileBottomBar isLoggedIn={isLoggedIn} zIndex="1300"/>
+          <CookieConsent
+            location="bottom"
+            buttonText="Accept"
+            declineButtonText="Decline"
+            cookieName="gatsby-gdpr-google-analytics"
+            enableDeclineButton={true}
+            style={{ background: "#2B373B", paddingBottom:"8vh", zIndex:"1100" }}
+            buttonStyle={{ marginTop:"0" }}
+            declineButtonStyle={{marginTop:"0"}}
+          >
+            This site uses cookies. Read our <a href="/privacy">Privacy-policy</a>...
+          </CookieConsent>
 
       </Box>
-      <CookieConsent
-        location="bottom"
-        buttonText="Accept"
-        declineButtonText="Decline"
-        cookieName="gatsby-gdpr-google-analytics"
-        enableDeclineButton={true}
-      >
-      This site uses cookies ...
-      </CookieConsent>
+      
     </>
   );
 }

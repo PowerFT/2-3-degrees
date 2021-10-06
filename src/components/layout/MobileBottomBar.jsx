@@ -30,7 +30,7 @@ import { useAuth } from '../../hooks'
 import { NavMenus } from '../menus'
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
 
-export const MobileBottomBar = () => {
+export const MobileBottomBar = ({...rest}) => {
 
   // const { isOpen, onClose, onOpen } = useMobileMenuState()
 
@@ -42,13 +42,14 @@ export const MobileBottomBar = () => {
   return (
     <Stack 
       display={['flex', 'none']} 
-      position="sticky" 
-      bottom="0" 
       id="mobileMenu" 
       h="8vh"
       bg="dYellow.300"
       justify="center"
       zIndex="1000"
+      bottom="0"
+      pos="sticky"
+      {...rest}
     >
         {isLoggedIn ? (
           <HStack py={2} spacing={0} justify="stretch" h="100%">
@@ -76,7 +77,7 @@ export const MobileBottomBar = () => {
           </HStack>
         ) : (
           <HStack bg="dYellow.300" pl={3} justify="space-between" align="center">
-            <LinkBox h="50px" w="50px">
+            <LinkBox h="50px" w="50px" pt="5px" pb="3px">
               <LinkOverlay as={Link} to="/"><Logo iconColor='whitesmoke' /></LinkOverlay>
             </LinkBox>
             <Flex direction="column" justify="center" align="center" ref={btnRef} onClick={onOpen} w="80px" height="40px" p={2} cursor="pointer">
