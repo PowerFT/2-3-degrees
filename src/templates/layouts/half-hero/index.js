@@ -17,12 +17,12 @@ export const HalfHero = ({ image, title, text, button, bgCol, bgPatternCol, titl
   return (
     <Box
       as="section"
+      className="half-hero"
       bg={bgCol}
-      pb={{base:"12",sm:"24"}}
+      pb={{base:"0"}}
       pos="relative"
       px={{
         base: '0',
-        sm: '6',
         md: '12',
       }}
     >
