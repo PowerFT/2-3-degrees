@@ -40,7 +40,7 @@ export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
         pb={{ base: '0', md: '12' }}
         pt={{ base: '8', md: '12' }}
         // textAlign="center"
-        zIndex={100}
+        zIndex={30}
         position="relative"
         color="white"
       >

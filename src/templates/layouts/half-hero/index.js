@@ -46,6 +46,7 @@ export const HalfHero = ({ image, title, text, button, bgCol, bgPatternCol, titl
           md: '0',
         }}
         zIndex="2"
+        position="relative"
       >
         <Heading as="h1" size="3xl" lineHeight="1" fontWeight="extrabold" letterSpacing="tight" color={titleColour}>
           {title}
@@ -94,6 +95,7 @@ export const HalfHero = ({ image, title, text, button, bgCol, bgPatternCol, titl
           },
         }}
         zIndex="2"
+        position="relative"
       >
         {image && (
 					<GatsbyImage

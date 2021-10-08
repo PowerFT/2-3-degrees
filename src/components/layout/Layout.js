@@ -62,14 +62,14 @@ export default function Layout({children}) {
           </Box>
         </Flex>
           
-          <MobileBottomBar isLoggedIn={isLoggedIn} zIndex="1300"/>
+          <MobileBottomBar isLoggedIn={isLoggedIn} zIndex="35"/>
           <CookieConsent
             location="bottom"
             buttonText="Accept"
             declineButtonText="Decline"
             cookieName="gatsby-gdpr-google-analytics"
             enableDeclineButton={true}
-            style={{ background: "#2B373B", paddingBottom:"8vh", zIndex:"1100" }}
+            style={{ background: "#2B373B", paddingBottom:"8vh", zIndex:"32" }}
             buttonStyle={{ marginTop:"0" }}
             declineButtonStyle={{marginTop:"0"}}
           >

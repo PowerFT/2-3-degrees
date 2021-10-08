@@ -46,7 +46,7 @@ export const MobileBottomBar = ({...rest}) => {
       h="8vh"
       bg="dYellow.300"
       justify="center"
-      zIndex="1000"
+      zIndex="4000"
       bottom="0"
       pos="sticky"
       {...rest}
@@ -92,7 +92,7 @@ export const MobileBottomBar = ({...rest}) => {
         onClose={onClose}
         finalFocusRef={btnRef}
         size="full"
-        
+        zIndex="3000"
       >
         <DrawerOverlay />
         <DrawerContent bg="dYellow.300">
