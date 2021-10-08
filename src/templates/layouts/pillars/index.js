@@ -96,8 +96,8 @@ export const Feature = ({ img, linkUrl, title, children, icon, videoOrImage, vid
 						{title}
 					</Text>
 					{children && (
-						<Box textAlign="center" mt="0">
-							<Text p={2} bg="dYellow.300" color="gray.800">
+						<Box textAlign="center" p="2" bg="dYellow.300" mt="0" w="100%">
+							<Text  color="gray.800">
 								{children}
 							</Text>
 						</Box>
