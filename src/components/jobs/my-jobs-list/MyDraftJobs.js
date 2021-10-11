@@ -58,31 +58,37 @@ export const MyDraftJobsList = () => {
 
 	if (error) return <MyError error={`Error: ${error}`} />
 	if (!data && loading) return <MySpinner />
-	if (!data) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
-	if(data.viewer?.jobPosts?.nodes.length === 0) return <MyError error="No Opportunities here, see Verified"/>
+	// if (!data) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
+	// if(data.viewer?.jobPosts?.nodes.length === 0) return <MyError error="No Opportunities here, see Verified"/>
 
 	return (
 		<Box>
 			<Box w="100%" bg="gray.700" color="gray.50" py="3" mt={{base: "12", sm:"12", md:"3"}} mb="3">
 				<Text fontSize="xl" fontWeight="bold" textAlign="center">Awaiting Verification</Text>
 			</Box>
-			<JobsCardContainer >
-				{data.viewer?.jobPosts?.nodes.map(post => (
-					<MyJobCard
-						key={post?.id}
-						title={post?.title}
-						jobLocation={post?.jobLocation?.nodes[0]?.name}
-						jobType={post?.jobType?.nodes[0]?.name}
-						sector={post?.sector?.nodes[0]?.name}
-						salary={post?.salary}
-						companyName={post?.companyName?.nodes[0]?.name}
-						jobPostLink={post?.uri}
-						status={post?.status}
-						content={post?.content}
-						id={post?.id}
-					/>
-				))}
-			</JobsCardContainer>
+			{
+				!data || data.viewer?.jobPosts?.nodes.length === 0 ? (
+					<MyError error="No Opportunities here, see Verified"/>
+				) : (
+					<JobsCardContainer >
+						{data.viewer?.jobPosts?.nodes.map(post => (
+							<MyJobCard
+								key={post?.id}
+								title={post?.title}
+								jobLocation={post?.jobLocation?.nodes[0]?.name}
+								jobType={post?.jobType?.nodes[0]?.name}
+								sector={post?.sector?.nodes[0]?.name}
+								salary={post?.salary}
+								companyName={post?.companyName?.nodes[0]?.name}
+								jobPostLink={post?.uri}
+								status={post?.status}
+								content={post?.content}
+								id={post?.id}
+							/>
+						))}
+					</JobsCardContainer>
+				)
+			}
 		</Box>
 	)
 }

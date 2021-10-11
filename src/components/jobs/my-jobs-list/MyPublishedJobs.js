@@ -58,33 +58,38 @@ export const MyPublishedJobsList = () => {
 
 	if (error) return <MyError error={`Error: ${error}`} />
 	if (!data && loading) return <MySpinner />
-	if (!data) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
-	if(data.viewer?.jobPosts?.nodes.length === 0) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
+	// if (!data) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
+	// if(data.viewer?.jobPosts?.nodes.length === 0) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
 
 	console.log(data)
 	return (
 		<Box>
 			<Box w="100%" bg="gray.700" color="gray.50" py="3" my="3">
 				<Text fontSize="xl" fontWeight="bold" textAlign="center">Verified</Text>
-			</Box>			
-			<JobsCardContainer >
-				{data.viewer?.jobPosts?.nodes.map(post => (
-					<MyJobCard
-						key={post?.id}
-						title={post?.title}
-						jobLocation={post?.jobLocation?.nodes[0]?.name}
-						jobType={post?.jobType?.nodes[0]?.name}
-						sector={post?.sector?.nodes[0]?.name}
-						salary={post?.salary}
-						companyName={post?.companyName?.nodes[0]?.name}
-						jobPostLink={post?.uri}
-						status={post?.status}
-						content={post?.content}
-						id={post?.id}
-					/>
-				))}
-			</JobsCardContainer>
+			</Box>	
+			{
+				!data || data.viewer?.jobPosts?.nodes.length === 0 ? (
+					<MyError error="No Opportunities here, see 'Awaiting Verification'"/>
+				) : (
+					<JobsCardContainer >
+						{data.viewer?.jobPosts?.nodes.map(post => (
+							<MyJobCard
+								key={post?.id}
+								title={post?.title}
+								jobLocation={post?.jobLocation?.nodes[0]?.name}
+								jobType={post?.jobType?.nodes[0]?.name}
+								sector={post?.sector?.nodes[0]?.name}
+								salary={post?.salary}
+								companyName={post?.companyName?.nodes[0]?.name}
+								jobPostLink={post?.uri}
+								status={post?.status}
+								content={post?.content}
+								id={post?.id}
+							/>
+						))}
+					</JobsCardContainer>
+				)
+			}		
 		</Box>
-		
 	)
 }
