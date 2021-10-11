@@ -2,22 +2,15 @@ import {
   Avatar,
   Box,
   HStack,
-  Icon,
   Stack,
   Text,
-  useColorModeValue,
   VStack,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  IconButton,
 } from '@chakra-ui/react'
-import {AiOutlinePlus} from 'react-icons/ai'
+// import {AiOutlinePlus} from 'react-icons/ai'
 import * as React from 'react'
-import { HiCash, HiClock, HiLocationMarker, HiOutlineEye, HiOutlinePencil } from 'react-icons/hi'
+// import { HiCash, HiClock, HiLocationMarker, HiOutlineEye, HiOutlinePencil } from 'react-icons/hi'
 import { Link } from 'gatsby'
-
+import {ButtonGroup, Button} from '@chakra-ui/react'
 
 export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyName, jobPostId, status, id}) => {
 
@@ -28,7 +21,7 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
   
 
   return (
-    <Box position="relative" maxW="xl" minW={{base:"xs",md:"lg"}} overflow="hidden" borderRadius="md" width="100%">
+    <Box position="relative" maxW="xl" minW={{base:"unset",md:"xs",lg:"sm"}} overflow="hidden" borderRadius="md" width="100%">
       <Box position="relative" overflow="hidden" bg="white" px={{base:"3",sm:"6"}} py={{base:"5",sm:"7"}} w="100%">
 
         <Stack
@@ -52,85 +45,61 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
           <Box
           ml="30px"
           >
-          <HStack align="flex-start" justify="space-between" mb="1.5">
-            <VStack align="flex-start" >
-              <Text fontSize="3xl" as="h2" fontWeight="400">
-                {title}
-              </Text>
-              <HStack
-                spacing={{
-                  base: '1',
-                  md: '4',
-                }}
-                
-                direction={{
-                  base: 'column',
-                  md: 'row',
-                }}
-                fontSize={{
-                  base: 'md',
-                  md: 'lg',
-                }}
-              >
-                <Text as="h3" fontSize="2xl" color="gray.600">
-                  {companyName}
+            <HStack align="flex-start" justify="space-between" mb="1.5">
+              <VStack align="flex-start" >
+                <Text fontSize="3xl" as="h2" fontWeight="400">
+                  {title}
                 </Text>
-                <Text as="h3" fontSize="2xl" color="gray.600" fontWeight="light">
-                  {sector}
-                </Text>
-              </HStack>
-            </VStack>
-          </HStack>
-
-            <HStack pt="1.5" spacing="5" align="center">
-              <HStack display={{base: "none", sm: "flex"}}>
-                <Icon as={HiCash} fontSize="xl" color="gray.400" />
-                <Text
-                  fontSize="sm"
-                  fontWeight="medium"
-                  color={useColorModeValue('gray.600', 'gray.300')}
+                <HStack
+                  spacing={{
+                    base: '1',
+                    md: '4',
+                  }}
+                  
+                  direction={{
+                    base: 'column',
+                    md: 'row',
+                  }}
+                  fontSize={{
+                    base: 'md',
+                    md: 'lg',
+                  }}
                 >
-                  <b>£{formattedSalary}</b> /yr
-                </Text>
-              </HStack>
-              <HStack spacing="1" marginInlineStart={{base:"0", sm:"5"}}>
-                <Icon as={HiClock} color="gray.400" />
-                <Text
-                  fontSize="sm"
-                  fontWeight="medium"
-                  color={useColorModeValue('gray.600', 'gray.300')}
-                >
-                  {jobType}
-                </Text>
-              </HStack>
-              <HStack spacing="1">
-                <Icon as={HiLocationMarker} color="gray.400" />
-                <Text
-                  fontSize="sm"
-                  fontWeight="medium"
-                  color={useColorModeValue('gray.600', 'gray.300')}
-                >
-                  {jobLocation}
-                </Text>
-              </HStack>
-              {/* <Badge
-                display="flex"
-                alignItems="center" 
-                borderRadius="full" 
-                px="2" 
-                cursor={pending ? "help" : "default"}
-                colorScheme={pending ? "orange" : "green"}>
-                { pending ? (
-                  <>
-                    Pending <QuestionOutlineIcon ml="1"/>
-                  </>
-                ) : (
-                  "Approved"
-                )}
-              </Badge> */}
+                  <Text as="h3" fontSize="2xl" color="gray.600">
+                    {companyName}
+                  </Text>
+                  <Text as="h3" fontSize="2xl" color="gray.600" fontWeight="light">
+                    {sector}
+                  </Text>
+                </HStack>
+              </VStack>
             </HStack>
           </Box>
         </Stack>
+
+        <ButtonGroup size="sm" isAttached variant="outline" w="100%" mt="4">
+          <Button mr="-px" w="100%" as={Link} to={`/maker/jobs/edit?job=${id}`}>Edit</Button>
+          <Button w="100%" as={Link} display={status === "publish" ? 'flex' : 'none'} to={`/connect/jobs/${id}`}>View</Button>
+        </ButtonGroup>
+        {/* <Box position="absolute" bottom={{base:"unset", sm:"5px"}} top={{base:"5px", sm:"unset"}} right="10px" zIndex={1} id="jobCardMenu">
+          <Menu placement="left-start">
+            <MenuButton
+              as={IconButton}
+              aria-label="Options"
+              icon={<AiOutlinePlus />}
+              variant="outline"
+              size="lg"
+            />
+            <MenuList>
+              <MenuItem as={Link} display={status === "publish" ? 'flex' : 'none'} to={`/connect/jobs/${id}`} icon={<HiOutlineEye />} command="⌘T">
+                  View
+              </MenuItem>
+              <MenuItem as={Link} to={`/maker/jobs/edit?job=${id}`} icon={<HiOutlinePencil />} command="⌘N">
+                Edit
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        </Box> */}
 
         <Box  
           position="absolute"
@@ -142,25 +111,7 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
         />
 
       </Box>
-      <Box position="absolute" bottom={{base:"unset", sm:"5px"}} top={{base:"5px", sm:"unset"}} right="10px" zIndex={1} id="jobCardMenu">
-        <Menu placement="left-start">
-          <MenuButton
-            as={IconButton}
-            aria-label="Options"
-            icon={<AiOutlinePlus />}
-            variant="outline"
-            size="lg"
-          />
-          <MenuList>
-            <MenuItem as={Link} display={status === "publish" ? 'flex' : 'none'} to={`/connect/jobs/${id}`} icon={<HiOutlineEye />} command="⌘T">
-                View
-            </MenuItem>
-            <MenuItem as={Link} to={`/maker/jobs/edit?job=${id}`} icon={<HiOutlinePencil />} command="⌘N">
-              Edit
-            </MenuItem>
-          </MenuList>
-        </Menu>
-      </Box>
+      
       <Box  
         position="absolute"
         bottom="0px"

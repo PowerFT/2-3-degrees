@@ -18,36 +18,30 @@ import { navigate } from 'gatsby-link';
 */
 export const useSubmitJobPost = ( formType ) => {
 	const [ submitLoading, setSubmitLoading ] = useState( false );
+	const [ submitErrors, setSubmitErrors ] = useState( null );
 	const { mutation: createJobPost } = useCreateJobPostMutation();
 	const { mutation: updateJobPost } = useUpdateJobPostMutation();
 
 	const submitJobPost = ( props ) => {
 
-		console.log(props)
 		setSubmitLoading( true );
 
 		const successCreate = ( result ) => {
 			console.log(result, "create")
-			navigate('/maker/jobs')
-			//console.log('update success')
+			// navigate('/maker/jobs')
 			setSubmitLoading( false );
 			return result.data;
 		};
 		const successUpdate = ( result ) => {
 			console.log(result, "update")
-
-			navigate('/maker/jobs')
-			//console.log('update success')
+			// navigate('/maker/jobs')
 			setSubmitLoading( false );
 			return result.data;
 		};
 
 		const fail = ( errors ) => {
-			//console.log('update fail', errors)
 			setSubmitLoading( false );
-			throw new Error(
-				`${ stripHtml( decodeEntities( errors.message ) ).result }`
-			);
+			setSubmitErrors(errors)
 		};
 
 		const {
@@ -123,5 +117,6 @@ export const useSubmitJobPost = ( formType ) => {
 	return {
 		submitJobPost,
 		submitLoading,
+		submitErrors
 	};
 };

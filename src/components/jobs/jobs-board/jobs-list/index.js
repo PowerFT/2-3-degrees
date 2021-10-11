@@ -80,7 +80,7 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes, skills }) => {
 
 	const where = !locations.length && !sectors.length && !jobTypes.length && !skills.length ? null : {
 		taxQuery: {
-			relation: 'OR',
+			relation: 'AND',
 			taxArray: whereArr
 		}
 	}

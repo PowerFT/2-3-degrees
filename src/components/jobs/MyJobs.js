@@ -12,12 +12,14 @@ import { MySpinner } from '../waiting/MySpinner'
 import { InnerSidebar } from '../layout/InnerSidebar'
 import { Header } from '../layout/Header'
 import { Content } from '../layout/Content'
-import { Accordion, AccordionButton, AccordionItem, AccordionPanel, Box, Text } from '@chakra-ui/react'
+import { Accordion, AccordionButton, AccordionItem, AccordionPanel, Box, SimpleGrid, Text } from '@chakra-ui/react'
 import { AddIcon, MinusIcon } from '@chakra-ui/icons'
+import { MyPublishedJobsList } from './my-jobs-list/MyPublishedJobs'
+import { MyDraftJobsList } from './my-jobs-list/MyDraftJobs'
 
 const MyJobs = () => {
  
-	const [statusSelected, setStatusSelected] = useState('PUBLISH')
+	// const [statusSelected, setStatusSelected] = useState('PUBLISH')
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(null)
 
@@ -34,13 +36,30 @@ const MyJobs = () => {
         pagetype={pagetype}
       />
 			<Flex w="100%">
-				<InnerSidebar
+				{/* <InnerSidebar
 					pagetype={pagetype}
-					setStatusSelected={setStatusSelected}
-				/>	
+					// setStatusSelected={setStatusSelected}
+				/>	 */}
 				<Content>
-					<Box w="100%" p="2" bg="gray.300" display={{lg:"none"}}>
-						<Accordion allowMultiple mt="2" maxW={{base:"xs",sm:"sm"}} mx="auto">
+					<SimpleGrid
+						columns={{
+							sm: 1,
+							md: 2,
+							// lg: 3
+						}}
+						spacing={{
+							// sm: 6,
+							md: 6,
+							lg: 12
+						}}
+						p="4"
+					>
+						<MyPublishedJobsList />
+						<MyDraftJobsList />
+					</SimpleGrid>
+
+					{/*<Box w="100%" p="2" bg="gray.300" display={{lg:"none"}}>
+						 <Accordion allowMultiple mt="2" maxW={{base:"xs",sm:"sm"}} mx="auto">
 								<AccordionItem>
 									{({ isExpanded }) => (
 										<>
@@ -94,10 +113,10 @@ const MyJobs = () => {
 									)}
 								</AccordionItem>
 							</Accordion>
-					</Box>
+					</Box> */}
 
-					<Box p="6"><Text fontSize="lg">{statusSelected === "DRAFT" ? "Opportunities: Pending" : "Opportunities: Published"}</Text></Box>
-					<JobsList setError={setError} setLoading={setLoading} statusSelected={statusSelected} />
+					{/* <Box p="6"><Text fontSize="lg">{statusSelected === "DRAFT" ? "Opportunities: Pending" : "Opportunities: Published"}</Text></Box> */}
+					{/* <JobsList setError={setError} setLoading={setLoading} statusSelected={statusSelected} /> */}
 				</Content>
 			</Flex>
 		</>

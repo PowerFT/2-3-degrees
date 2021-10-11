@@ -1,5 +1,4 @@
 import { Button } from '@chakra-ui/button'
-import { Flex } from '@chakra-ui/layout'
 import React from 'react'
 import {Link} from 'gatsby'
 import { Alert, AlertIcon, VStack } from '@chakra-ui/react'

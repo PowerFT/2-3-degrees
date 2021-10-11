@@ -14,14 +14,18 @@ import { useSubmitJobPost } from '../../../hooks'
 import { DangerZone } from './DangerZone'
 import { useAuth } from '../../../hooks'
 import { MySpinner } from '../../waiting/MySpinner'
+import { MyError } from '../../waiting/MyError'
 import { AdminBlob } from '../../AdminBlob'
+import { UnderlineLink } from '../../user/UnderlineLink'
 
 
 export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
   
   const selectedSkills = formDeets?.skills?.map(skill => skill.name)
-  const { submitJobPost, submitLoading } = useSubmitJobPost(formType);
+  const { submitJobPost, submitLoading, submitErrors } = useSubmitJobPost(formType);
   const { viewer, loadingViewer } = useAuth()
+
+  const [submitted, setSubmitted] = useState(true)
 
   const handleSkillClick = (skill) => {
     if(!selectedSkills.includes(skill) && selectedSkills.length < 3) {
@@ -43,8 +47,10 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(formDeets)
     submitJobPost({ clientMutationId: uuidv4(), ...formDeets })
+    .then(() => {
+      setSubmitted(true)
+    })
     .catch(error => {
       console.log(error); //fix
     });
@@ -70,6 +76,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               <FormControl>
                 <FormLabel htmlFor="jobTitleSelect">Opportunity Title</FormLabel>
                 <Input
+                  disabled={submitLoading || submitted}
                   id="jobTitleSelect"
                   type="text"
                   value={formDeets.title}
@@ -85,6 +92,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               <FormControl isRequired>
                 <FormLabel htmlFor="jobLocationSelect">Location</FormLabel>
                 <Select
+                  disabled={submitLoading || submitted}
                   id="jobLocationSelect"
                   placeholder="Select Location"
                   value={formDeets.jobLocation}
@@ -120,6 +128,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               <FormControl isRequired>
                 <FormLabel htmlFor="jobTypeSelect">Contract Type</FormLabel>
                 <Select
+                  disabled={submitLoading || submitted}
                   isRequired
                   id="jobTypeSelect"
                   placeholder="Select Job Type"
@@ -156,6 +165,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               <FormControl isRequired>
                 <FormLabel htmlFor="jobSectorSelect">Sector</FormLabel>
                 <Select
+                  disabled={submitLoading || submitted}
                   isRequired
                   id="jobSectorSelect"
                   placeholder="Select Sector"
@@ -192,6 +202,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               <FormControl isRequired>
                 <FormLabel htmlFor="jobTypeSelect">Salary Structure</FormLabel>
                 <Select
+                  disabled={submitLoading || submitted}
                   isRequired
                   id="salaryStructureSelect"
                   placeholder="Select Salary Structure"
@@ -232,7 +243,8 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                 <InputGroup>
                   <InputLeftAddon children="£" />
                   <Input
-                    id="jobSalarySelect"
+                  disabled={submitLoading || submitted}
+                  id="jobSalarySelect"
                     type="text"
                     value={formDeets.salary}
                     onChange={e =>
@@ -274,6 +286,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                               skills && (
                                 skills.map(skill => (
                                   <Button
+                                    disabled={submitLoading || submitted}
                                     key={skill.id}
                                     as="span"
                                     cursor="pointer"
@@ -314,6 +327,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               <FormControl isRequired>
                 <FormLabel htmlFor="jobSalarySelect">Organisation Name</FormLabel>
                 <Input
+                  disabled={submitLoading || submitted}
                   id="jobSalarySelect"
                   type="text"
                   value={formDeets.companyName}
@@ -329,6 +343,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               <FormControl isRequired>
                 <FormLabel htmlFor="jobContentSelect">Organisation Bio</FormLabel>
                 <Textarea
+                  disabled={submitLoading || submitted}
                   htmlFor="jobContentSelect"
                   rows={5}
                   value={formDeets.companyBio}
@@ -371,6 +386,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
           <AdminBlob title="Opportunity Description">
             <FormControl >
               <Textarea
+                disabled={submitLoading || submitted}
                 id="jobDescription Input"
                 type="text"
                 rows={15}
@@ -393,7 +409,8 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               <FormLabel htmlFor="applicationLink">Application Link</FormLabel>
               <InputGroup>
                   <InputLeftAddon children="https://" />
-                  <Input 
+                  <Input
+                    disabled={submitLoading || submitted}
                     htmlFor="applicationLink" 
                     type="text" 
                     value={formDeets.applicationLink} 
@@ -405,8 +422,9 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
             <FormControl isRequired>
               <FormLabel htmlFor="closeDateInput">Close Date</FormLabel>
               <Input
+                disabled={submitLoading || submitted}
                 value={formDeets.closeDate}
-                placeholder="dd/mm/yyyy"
+                placeholder="Day, dd, mm"
                 onChange={e =>
                   setFormDeets({
                     ...formDeets,
@@ -439,21 +457,6 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
             )
           }
 
-
-          {/* <FieldGroup title="Notifications">
-            <Stack width="full" spacing="4">
-              <Checkbox>Get updates about the latest meetups.</Checkbox>
-              <Checkbox>Get notifications about your account activities</Checkbox>
-            </Stack>
-          </FieldGroup>
-          <FieldGroup title="Connect accounts">
-            <HStack width="full">
-              <Button variant="outline" leftIcon={<FaGithub />}>
-                Delete Account
-              </Button>
-            </HStack>
-          </FieldGroup> */}
-
           {
             formType === 'create' ? (
               <Button
@@ -464,7 +467,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                 color="gray.50"
                 bg={"dBlue.300"}
                 _hover={{bg:"dBlue.200"}}
-                disabled={submitLoading}
+                disabled={submitLoading || submitted}
               >
                 Submit Opportunity
               </Button >
@@ -477,10 +480,32 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                 color="gray.50"
                 bg="dBlue.300"
                 _hover={{bg:"dBlue.200"}}
-                disabled={submitLoading}
+                disabled={submitLoading || submitted}
               >
                 Update Opportunity
               </Button >
+            )
+          }
+          {
+            submitErrors && (
+              <MyError error={submitErrors}/>
+            )
+          }
+          {
+            submitted && (
+              <Box w="100%" bg="dYellow.300" p="1">
+                  <Box p="4">
+                    <Text fontSize="lg" fontWeight="bold">
+                      Yeaaahhh, you've done it!
+                    </Text>
+                    <Text>
+                      Just need to wait for 2-3 Degrees to approve it, then then your post will go live.
+                    </Text>
+                  </Box>
+                  <Box p="2" bg="gray.50" textAlign="end">
+                    <UnderlineLink link={`/maker/jobs`}>Check out your opportunities</UnderlineLink>
+                  </Box>
+              </Box>
             )
           }
         </Stack>

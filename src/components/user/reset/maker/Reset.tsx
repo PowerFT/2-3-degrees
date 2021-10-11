@@ -36,7 +36,7 @@ export const Reset = ({user}) => {
               Need an account? <UnderlineLink link={`/${user}/sign-up`}>Sign up here</UnderlineLink>
             </Text>
           </Box>
-          <ResetForm user="maker" />
+          <ResetForm />
 
           <Box textAlign="center" mt={{ base: '3', md: '2' }}>
             <Text mt="3" color={mode('gray.600', 'gray.400')} fontWeight="medium">

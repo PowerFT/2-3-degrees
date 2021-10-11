@@ -139,66 +139,6 @@ export const InnerSidebar = ({
 				{
 					pagetype === "myjobs" && (
 						<>
-							<FormControl id="myJobsSelect">
-							{/* <Select bg="gray.400" onChange={(e) => setStatusSelected(e.target.value)}>
-									<option value="PUBLISH">Published</option>
-									<option value="DRAFT">Pending</option>
-								</Select> */}
-							<Accordion allowMultiple mt="2">
-								<AccordionItem>
-									{({ isExpanded }) => (
-										<>
-											<h2>
-												<AccordionButton bg="gray.50" px="2" py="3">
-													<Box flex="1" textAlign="left" fontWeight="600">
-														Post Status
-													</Box>
-													{isExpanded ? (
-														<MinusIcon fontSize="12px" color="gray.800"/>
-													) : (
-														<AddIcon fontSize="12px" color="gray.800"/>
-													)}
-												</AccordionButton>
-											</h2>
-											<AccordionPanel bg="whiteAlpha.400" p={0} maxH="200px" overflow="auto">
-												<Box
-													width="100%"
-													py="1"
-													px="1"
-													fontSize="sm"
-													cursor="pointer"
-													_hover={{ bg: "whiteAlpha.600" }}
-													// _active={{
-													// 	bg: "#dddfe2",
-													// 	transform: "scale(0.98)",
-													// 	borderColor: "#bec3c9",
-													// }}
-													onClick={(e) => setStatusSelected("PUBLISH")}
-												>
-													Published
-												</Box>
-												<Box
-													width="100%"
-													py="1"
-													px="1"
-													fontSize="sm"
-													cursor="pointer"
-													_hover={{ bg: "whiteAlpha.600" }}
-													// _active={{
-													// 	bg: "#dddfe2",
-													// 	transform: "scale(0.98)",
-													// 	borderColor: "#bec3c9",
-													// }}
-													onClick={(e) => setStatusSelected("DRAFT")}
-												>
-													Pending
-												</Box>
-											</AccordionPanel>
-										</>
-									)}
-								</AccordionItem>
-							</Accordion>
-							</FormControl>
 							<Button as={Link} variant="outline" to="/maker/jobs/post" w="100%" mt="2" color="gray.50" rounded="full" _hover={{bg:"gray.50", color:"dBlue.300"}}>
 								Post an Opportunity
 							</Button>
