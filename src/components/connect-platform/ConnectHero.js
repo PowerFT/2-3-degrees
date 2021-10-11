@@ -30,7 +30,7 @@ export const ConnectHero = () => {
         // px={{ base: '4', lg: '8' }}
         py={{ base: '8', sm: '20' }}
         // textAlign="center"
-        zIndex={100}
+        zIndex="2"
         position="relative"
         color="white"
 				// style={{transform: `translateY(${offsetY * 0.18}px) `}}

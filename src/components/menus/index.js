@@ -11,8 +11,6 @@ export const NavMenus = ({menuopen, mobile, isLoggedIn, onclose}) => {
 	 
 	return (
 			<Stack spacing="1">
-				<MakerMenu mobile={mobile}  onclose={onclose} menuopen={menuopen} />
-				<TalentMenu mobile={mobile}  onclose={onclose} menuopen={menuopen} />
 				{
 					!isLoggedIn ? (
 						<>
@@ -56,8 +54,10 @@ export const NavMenus = ({menuopen, mobile, isLoggedIn, onclose}) => {
 						</>
 					)
 				}
+				<MakerMenu mobile={mobile}  onclose={onclose} menuopen={menuopen} />
+				<TalentMenu mobile={mobile}  onclose={onclose} menuopen={menuopen} />
 
-				{menuopen && <Divider borderColor="black" />}
+				{menuopen && <Divider borderColor="dOrange.100" />}
 
 				<PublicMenu mobile={mobile}  onclose={onclose} menuopen={menuopen} />
 

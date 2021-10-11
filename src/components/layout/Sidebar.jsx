@@ -26,7 +26,7 @@ export const Sidebar = ({...rest}) => {
       bg="dOrange.300"
       direction="column"
       borderRightWidth="1px"
-      borderColor="black"
+      borderColor="dOrange.100"
       width={isOpen ? "64" : "24"}
       transition="all .2s"
       position="sticky"
@@ -54,7 +54,7 @@ export const Sidebar = ({...rest}) => {
               <Icon as={FiMenu} w={8} h={8} position="absolute" onClick={onToggle} cursor="pointer" />}
           </Flex>
 
-          <LinkBox h="60px" w="60px" mb="5" ml="3">
+          <LinkBox h="60px" w="100%" mb="5" ml="5" alignSelf="flex-start">
             <LinkOverlay as={Link} to="/" onClick={onToggle}><Logo iconColor='whitesmoke' /></LinkOverlay>
           </LinkBox>
 

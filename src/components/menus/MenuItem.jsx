@@ -28,7 +28,7 @@ export const MenuItem = (props) => {
       // fontFamily="Big Shoulders Display"
       userSelect="none"
       aria-current={isActive ? 'page' : undefined}
-      color='gray.900'
+      color='gray.50'
       _hover={{ bg: "whiteAlpha.400" }}
       // _activeLink={{
       //   bg: mode('gray.200', 'gray.700'),
@@ -43,7 +43,7 @@ export const MenuItem = (props) => {
     >
       <HStack spacing="3" w="full">
         {/* <Icon as={BsFillLightningFill} fontSize="2xl" opacity={0.9} /> */}
-        {menuopen && <Heading size={mobile ? "2xl" : "lg"}><LinkOverlay as={Link} to={link}>{label}</LinkOverlay></Heading>}
+        {menuopen && <Heading color="inherit" size={mobile ? "2xl" : "lg"}><LinkOverlay as={Link} to={link}>{label}</LinkOverlay></Heading>}
       </HStack>
     </LinkBox>
   )
