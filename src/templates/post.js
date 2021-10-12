@@ -40,10 +40,10 @@ const BlogPostTemplate = ({ data: { post } }) => {
         imageAlt={ImgAlt}
 				pagetype={pagetype}
 			/>
-			<Flex w="100%" direction="column" maxW="xl" mx="auto">
+			<Flex w="100%" direction="column" maxW="xl" mx="auto" mb="16">
 				<Box className="blog__body--content wp-content">
-          <HStack  align="center" justify="space-between" my="8">
-            <HStack>
+          <HStack spacing="0" align="center" justify="space-between" my="8" wrap="wrap">
+            <HStack mb="2" mr="2">
               {post.categories?.nodes.map(cat => (
                 <Box key={cat.id} borderRadius="full" bg="dBlue.300" color="gray.50" px={6} py={0}>
                   {cat.name}
@@ -51,7 +51,7 @@ const BlogPostTemplate = ({ data: { post } }) => {
                 </Box>
               ))}
             </HStack>
-            <Text as="span" fontSize="sm" m="0 !important" fontWeight="bold" textTransform="uppercase">{post.date}</Text>
+            <Text as="span" mb="2" mr="2" fontSize="sm" m="0 !important" fontWeight="bold" textTransform="uppercase">{post.date}</Text>
           </HStack>
           {parse(post.content)}
 				</Box>

@@ -1,7 +1,7 @@
 /**
 * External dependencies
 */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { gql, useQuery } from '@apollo/client'
 import { Text } from '@chakra-ui/layout'
 import { Box } from '@chakra-ui/react'
@@ -54,7 +54,11 @@ const GET_JOBS_BY_VIEWER = gql`
 
 export const MyDraftJobsList = () => {
 
-	const { loading, error, data} = useQuery(GET_JOBS_BY_VIEWER)
+	useEffect(() => {
+		refetch()
+	}, [])
+
+	const { loading, error, data, refetch} = useQuery(GET_JOBS_BY_VIEWER)
 
 	if (error) return <MyError error={`Error: ${error}`} />
 	if (!data && loading) return <MySpinner />
