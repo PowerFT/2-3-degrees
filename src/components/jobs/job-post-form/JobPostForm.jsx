@@ -25,7 +25,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
   const { submitJobPost, submitLoading, submitErrors } = useSubmitJobPost(formType);
   const { viewer, loadingViewer } = useAuth()
 
-  const [submitted, setSubmitted] = useState(true)
+  const [submitted, setSubmitted] = useState(false)
 
   const handleSkillClick = (skill) => {
     if(!selectedSkills.includes(skill) && selectedSkills.length < 3) {
