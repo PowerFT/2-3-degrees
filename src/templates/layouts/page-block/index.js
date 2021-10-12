@@ -1,10 +1,10 @@
-import { Box, Flex, Heading, Text } from '@chakra-ui/react'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { Box, Flex } from '@chakra-ui/react'
+import { getImage } from 'gatsby-plugin-image'
 import React from 'react'
 import parse from "html-react-parser"
 import { Header } from '../../../components/layout/Header'
 
-export const PageBlock = ({ title, subTitle, content, image, headerBgCol, textColour, ...rest }) => {
+export const PageBlock = ({ title, subTitle, content, image, headerBgCol, textColour }) => {
 
 	const imageData = getImage(image?.localFile)
 	const pagetype="page"

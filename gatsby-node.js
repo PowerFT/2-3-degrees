@@ -189,6 +189,11 @@ const getPages = async ({ graphql, reporter }) => {
                 title
                 tabs {
                   title
+                  subTitle
+                  button {
+                    title
+                    url
+                  }
                   text
                   list {
                     text
@@ -289,6 +294,7 @@ const getPages = async ({ graphql, reporter }) => {
                 text
               }
               ... on WpPage_Pagebuilder_Layouts_PageBlock {
+                fieldGroupName
                 headerBgCol
                 textColour
                 content

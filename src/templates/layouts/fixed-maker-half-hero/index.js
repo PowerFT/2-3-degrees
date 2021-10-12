@@ -28,7 +28,7 @@ export const FixedMakerHalfHero = ({bgCol, textColour}) => {
       py={{ base: '4', sm:"12", md: '12' }}
     >
       <Box
-        maxW="3xl"
+        maxW={{md:'lg', lg:"3xl"}}
         // mx="auto"
         // px={{ base: '4', lg: '8' }}
         py={{ base: '2', sm: '2' }}
@@ -42,7 +42,7 @@ export const FixedMakerHalfHero = ({bgCol, textColour}) => {
         
         <Heading 
           as="h2" 
-          fontSize={{base: '70px', sm: '85px', md: '120px'}}  
+          fontSize={{base: '70px', sm: '85px', md: '80px', lg: '120px'}}  
           lineHeight="1.1"
           letterSpacing="tight"
           color="inherit"
@@ -67,18 +67,19 @@ export const FixedMakerHalfHero = ({bgCol, textColour}) => {
         
       </Box>
       <Box 
-        w="60%"
-        h="95%"
+        w="50%"
+        h="105%"
         pos="absolute"
         bottom="0"
         right="0"
         zIndex="5"
         top="50%"
-        style={{transform: `translateY(-50%`}}
+        style={{transform: `translateY(-50%) rotate(90deg)`}}
         display={{base:"none", md:"block"}}
+        // transform="rotate(90deg)"
       >
         <StaticImage 
-          src="../../../images/fixedHalfHeroPattern.png" 
+          src="../../../images/fixedHalf.png" 
           alt="shadow"
           // height={400}
           fit="cover"
@@ -93,7 +94,7 @@ export const FixedMakerHalfHero = ({bgCol, textColour}) => {
         display={{base:"block", md:"none"}}
       >
         <StaticImage 
-          src="../../../images/fixedHalfHeroPattern.png" 
+          src="../../../images/fixedHalf.png" 
           alt="shadow"
           // height={400}
           fit="cover"

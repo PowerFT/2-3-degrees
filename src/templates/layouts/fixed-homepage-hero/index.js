@@ -183,7 +183,7 @@ export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
         >
           <StaticImage
             placeholder="none" 
-            src="../../../images/fixedHeroPattern.png" 
+            src="../../../images/fixedHero.png" 
             alt="shape pattern"
             // height={400}
             fit="cover"

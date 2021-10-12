@@ -26,7 +26,7 @@ export const FixedTalentHalfHero = ({ bgCol, textColour }) => {
   return (
     <Flex 
       as="section" 
-      h={{base: "unset",md:"80vh"}}
+      h={{base: "unset",lg:"80vh"}}
       bg={bgCol}
       direction="column" 
       position="relative" 
@@ -42,11 +42,11 @@ export const FixedTalentHalfHero = ({ bgCol, textColour }) => {
         bottom="0"
         left="12"
         zIndex="10"
-        display={{base:"none", md:"block"}}
+        display={{base:"none", lg:"block"}}
         // style={{transform: `translateY(-${offsetY * 0.5}px)`}}
       >
         <StaticImage 
-          src="../../../images/cutout2-flipped.png" 
+          src="../../../images/talentCutout.png" 
           alt="young person smiling"
           // height={400}
           fit="cover"
@@ -61,11 +61,11 @@ export const FixedTalentHalfHero = ({ bgCol, textColour }) => {
         bottom="0"
         left="8"
         zIndex="5"
-        display={{base:"none", md:"block"}}
+        display={{base:"none", lg:"block"}}
         // style={{transform: `translatex(-${offsetY * 0.05}px)`}}
       >
         <StaticImage 
-          src="../../../images/cutout2-shadow-flipped.png" 
+          src="../../../images/talentShadow.png" 
           alt="shadow"
           // height={400}
           fit="cover"
@@ -77,7 +77,7 @@ export const FixedTalentHalfHero = ({ bgCol, textColour }) => {
 
       <Box
         maxW="2xl"
-        w={{base:"100%", md:"fit-content"}}
+        w={{base:"100%", lg:"fit-content"}}
         // mx="auto"
         // px={{ base: '4', lg: '8' }}
         py={{ base: '0', sm: '2' }}
@@ -113,7 +113,7 @@ export const FixedTalentHalfHero = ({ bgCol, textColour }) => {
           </Button>
         </LinkBox>
       </Box>
-      <Box pos="relative" display={{base:"block", md:"none"}} w="80%" alignSelf="flex-end">
+      <Box pos="relative" display={{base:"block", lg:"none"}} w="80%" alignSelf="flex-end">
         <Box 
           w="100%"
           h="auto"
@@ -122,7 +122,7 @@ export const FixedTalentHalfHero = ({ bgCol, textColour }) => {
           // style={{transform: `translateY(-${offsetY * 0.5}px)`}}
         >
           <StaticImage 
-            src="../../../images/cutout2-flipped.png" 
+            src="../../../images/talentCutout.png" 
             alt="young person smiling"
             // height={400}
             fit="cover"
@@ -140,7 +140,7 @@ export const FixedTalentHalfHero = ({ bgCol, textColour }) => {
           // style={{transform: `translatex(-${offsetY * 0.05}px)`}}
         >
           <StaticImage 
-            src="../../../images/cutout2-shadow-flipped.png" 
+            src="../../../images/talentShadow.png" 
             alt="shadow"
             // height={400}
             fit="cover"
