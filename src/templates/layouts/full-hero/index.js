@@ -46,7 +46,7 @@ export const FullHero = ({ image, title, text, button, bgCol, bgPatternCol, titl
             size="md" 
             rounded="full" 
             bg={buttonColour} 
-            color={buttonColour === "gray.900" ? "gray.50" : "gray.900"}
+            color={buttonColour === "gray.900" || buttonColour === "gray.600" ? "gray.50" : "gray.900"}
             _hover={{bg:"lighter"}}
           >
             {buttonTitle}

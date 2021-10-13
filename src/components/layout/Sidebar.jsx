@@ -12,6 +12,7 @@ import { NavMenus } from '../menus'
 import { Link } from 'gatsby'
 import { SocialButton } from '../footer/SocialButton'
 import { socialLinks } from '../footer/_data'
+import { StaticImage } from 'gatsby-plugin-image'
 
 
 export const Sidebar = ({...rest}) => {
@@ -54,8 +55,17 @@ export const Sidebar = ({...rest}) => {
               <Icon as={FiMenu} w={8} h={8} position="absolute" onClick={onToggle} cursor="pointer" />}
           </Flex>
 
-          <LinkBox h="60px" w="100%" mb="5" ml="5" alignSelf="flex-start">
-            <LinkOverlay as={Link} to="/" onClick={onToggle}><Logo iconColor='whitesmoke' /></LinkOverlay>
+          <LinkBox h="60px" w="60px" mb="5" ml="5" alignSelf="flex-start">
+            <LinkOverlay as={Link} to="/" onClick={onToggle}>
+            <StaticImage 
+              src="../../images/oldLogo.png" 
+              alt="young person smiling"
+              // height={400}
+              fit="cover"
+              imgStyle={{height:"100%", width:"auto"}}
+              style={{height:"100%", width:"auto"}}
+            />
+            </LinkOverlay>
           </LinkBox>
 
           <Collapse in={isOpen} animateOpacity>

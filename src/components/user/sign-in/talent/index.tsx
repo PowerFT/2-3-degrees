@@ -36,7 +36,7 @@ export const SignIn = () => {
           <Box maxW="sm" mx="auto">
             <Box textAlign="center" mb={{ base: '10', md: '16' }}>
               <Text as="h1" fontSize="3xl" fontWeight="extrabold" letterSpacing="tight">
-                Sign in to your account
+                Login to your account
               </Text>
               <Text mt="3" color={mode('gray.600', 'gray.400')} fontWeight="medium">
                 Need an account? <UnderlineLink link='/talent/sign-up'>Sign up here</UnderlineLink>

@@ -32,13 +32,10 @@ export const ConnectJobsTagsBlock = () => {
 							mx="auto"
 							lineHeight="1.2"
 							letterSpacing="tight"
+							mb="6"
 						>
 							Find opportunities across all levels and experiences
 						</Heading>
-						<Text fontSize="xl" mt="4" maxW="lg" mx="auto">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-							incididunt ut labore
-						</Text>
 					</Box>
 
 					<ConnectMetaTags mt="6"/>

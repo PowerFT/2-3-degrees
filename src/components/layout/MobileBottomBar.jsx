@@ -29,6 +29,7 @@ import { Logo } from './Logo'
 import { useAuth } from '../../hooks'
 import { NavMenus } from '../menus'
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
+import { StaticImage } from 'gatsby-plugin-image'
 
 export const MobileBottomBar = ({...rest}) => {
 
@@ -78,7 +79,16 @@ export const MobileBottomBar = ({...rest}) => {
         ) : (
           <HStack bg="dYellow.300" pl={3} justify="space-between" align="center">
             <LinkBox h="50px" w="50px" pt="5px" pb="3px">
-              <LinkOverlay as={Link} to="/"><Logo iconColor='whitesmoke' /></LinkOverlay>
+              <LinkOverlay as={Link} to="/">
+                <StaticImage 
+                  src="../../images/oldLogo.png" 
+                  alt="young person smiling"
+                  // height={400}
+                  fit="cover"
+                  imgStyle={{height:"100%", width:"auto"}}
+                  style={{height:"100%", width:"auto"}}
+                />
+              </LinkOverlay>
             </LinkBox>
             <Flex direction="column" justify="center" align="center" ref={btnRef} onClick={onOpen} w="80px" height="40px" p={2} cursor="pointer">
               <Icon as={FiMenu} w={8} h={8}/>
@@ -101,7 +111,16 @@ export const MobileBottomBar = ({...rest}) => {
 
           <DrawerBody p="0">
             <LinkBox h="60px" w="60px" mb="5" m="3" onClick={onClose}>
-              <LinkOverlay as={GatsbyLink} to="/"><Logo iconColor='whitesmoke' /></LinkOverlay>
+              <LinkOverlay as={GatsbyLink} to="/">
+                <StaticImage 
+                  src="../../images/oldLogo.png" 
+                  alt="young person smiling"
+                  // height={400}
+                  fit="cover"
+                  imgStyle={{height:"100%", width:"auto"}}
+                  style={{height:"100%", width:"auto"}}
+                />
+              </LinkOverlay>
             </LinkBox>
             <NavMenus menuopen={true} onclose={onClose} mobile={true}/>
           </DrawerBody>

@@ -27,7 +27,6 @@ export const Reset = ({user}) => {
     >
       <Flex align="center" overflowY="auto" flex="1 0 50%" py={{ base: '10', md: '16' }} px={{ base: '6', md: '10' }}>
         <Box maxW="sm" mx="auto">
-          {/* <Logo mb={{ base: '7', md: '16' }} w="auto" h="20" mx="auto" iconColor="#FF6A29" /> */}
           <Box textAlign="center" mb={{ base: '5', md: '8' }}>
             <Text as="h1" fontSize="3xl" fontWeight="extrabold" letterSpacing="tight">
               Sign in to your account

@@ -77,7 +77,6 @@ export const ConnectPlatform = () => {
         completed={completed}
         complete={complete}
         user={userType}
-        
       />
       
       <ConnectHero
@@ -88,6 +87,8 @@ export const ConnectPlatform = () => {
       <Features 
         complete={complete}
         user={userType}
+        limit={limit}
+        completed={completed}
       />
 
       <ConnectJobsTagsBlock />

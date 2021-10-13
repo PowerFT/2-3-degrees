@@ -14,7 +14,7 @@ export const AccountProgress = ({completed, limit, complete, user, ...rest}) => 
       align="center" 
       justify="center" 
       px={{base:"8", sm:"10", md:"24"}} 
-      py="3" 
+      py="6" 
       bg="dOrange.300"
       display={complete ? "none" : "flex"}
       {...rest}
@@ -23,19 +23,22 @@ export const AccountProgress = ({completed, limit, complete, user, ...rest}) => 
       <LinkBox zIndex="100">
         <Box
         rounded="full"
-        border="1px solid"
+        border="2px solid"
         overflow="hidden" 
         position="relative"
-          size="sm" 
-          _hover={{bg:"gray.50", color:"dOrange.300"}} 
-          flex="1 1 50%" 
-          maxW="md" 
-          color="green.50" 
-          rounded="full" 
-          variant="outline"
-          mb={{base: "1", md:"0"}}
+        size="xl" 
+        _hover={{bg:"gray.50", color:"dOrange.300"}} 
+        flex="1 1 50%" 
+        maxW="lg" 
+        color="green.50" 
+        rounded="full" 
+        variant="outline"
+        mb={{base: "1", md:"0"}}
+        
         >
-          <LinkOverlay as={Link} to={`/${user}/account`} my="2" mx="4" fontSize={{base:"xs"}}>For full features, complete your account</LinkOverlay>
+          <LinkOverlay as={Link} to={`/${user}/account`} my="3" mx="6" fontWeight="500" fontSize={{base:"sm"}}>
+            For full features, complete your account
+          </LinkOverlay>
           <Progress
             aria-labelledby="accountCompletedCard"
             value={completed}

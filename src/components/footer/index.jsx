@@ -12,6 +12,7 @@ import {
   WrapItem,
 } from '@chakra-ui/react'
 import { Link } from 'gatsby'
+import { StaticImage } from 'gatsby-plugin-image'
 import * as React from 'react'
 // import { LanguageSwitcher } from './LanguageSwitcher'
 import { Logo } from '../layout/Logo'
@@ -19,7 +20,7 @@ import { SocialButton } from './SocialButton'
 import { footerLinks, links, socialLinks } from './_data'
  
 export const Footer = () => (
-  <Box as="footer" bg="dOrange.400" color="white" py="64px">
+  <Box as="footer" bg="gray.500" color="white" py="64px">
     <Box maxW="7xl" px="8" mx="auto">
       <Flex
         direction={{
@@ -38,8 +39,17 @@ export const Footer = () => (
             lg: 0,
           }}
         > 
-          <LinkBox h="16">
-            <LinkOverlay as={Link} to="/"><Logo iconColor='whitesmoke' /></LinkOverlay>
+          <LinkBox h="16" w="16">
+            <LinkOverlay as={Link} to="/">
+              <StaticImage 
+                src="../../images/oldLogo.png" 
+                alt="young person smiling"
+                // height={400}
+                fit="cover"
+                imgStyle={{height:"100%", width:"auto"}}
+                style={{height:"100%", width:"auto"}}
+              />
+            </LinkOverlay>
           </LinkBox>
           <HStack spacing="4" mt="8" as="ul">
             {socialLinks?.map((link, i) => (
