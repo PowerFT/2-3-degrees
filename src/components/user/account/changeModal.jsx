@@ -21,7 +21,7 @@ export function ChangeModal({ title, type, curInput, accountDeets, setNewEmail, 
 	const [val, setVal] = useState('')
 
 	// const { getViewer } = useViewerQuery()
-	// const { setIsLoggedIn } = useAuthContext()
+	// const { setisloggedin } = useAuthContext()
 	// const emailRegex = /s+@s+.s+/
   // const emailMatchRegEx = email.match(emailRegex)
 

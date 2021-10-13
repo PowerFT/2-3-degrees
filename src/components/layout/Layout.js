@@ -26,7 +26,7 @@ export default function Layout({children}) {
 
   // console.log(children)
 
-  const { isLoggedIn } = useAuth()
+  const { isloggedin } = useAuth()
 
   // const data = useStaticQuery(graphql`
   //     query SiteTitleQuery {
@@ -62,7 +62,7 @@ export default function Layout({children}) {
           </Box>
         </Flex>
           
-          <MobileBottomBar isLoggedIn={isLoggedIn} zIndex="35"/>
+          <MobileBottomBar isloggedin={isloggedin} zIndex="35"/>
           <CookieConsent
             location="bottom"
             buttonText="Accept"

@@ -31,11 +31,11 @@ export const useRegistration = () => {
 	const [ status, setStatus ] = useState( 'idle' );
 	const { registerMutation } = useRegisterMutation();
 	// const { updateRoleMutation } = useUpdateRoleMutation();
-	const { isLoggedIn, setIsLoggedIn } = useAuthContext();
+	const { isloggedin, setisloggedin } = useAuthContext();
 
 	// const register = ( email, password, role ) => {
 	const register = ( email, password, user ) => {
-		//console.log(isLoggedIn)
+		//console.log(isloggedin)
 		setError( null );
 		setStatus( 'resolving' );
 		return registerMutation( email, password )
@@ -46,8 +46,8 @@ export const useRegistration = () => {
 				// return updateRoleMutation( id )
 			// })
 			.then(() => {
-				//console.log('success', isLoggedIn, setIsLoggedIn)
-				// setIsLoggedIn( true );
+				//console.log('success', isloggedin, setisloggedin)
+				// setisloggedin( true );
 				
 				setStatus( 'resolved' );
 				navigate(`/${user}/sign-in`)

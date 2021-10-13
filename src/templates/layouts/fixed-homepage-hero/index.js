@@ -72,7 +72,7 @@ export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
         )} */}
         
         {button && (
-          <Button as={Link} textDecoration="none" fontWeight="500" cover direction="down" to={buttonLink} mt="8" size="lg" rounded="full" bg="dYellow.300" color="gray.800">
+          <Button as={Link} textDecoration="none" fontWeight="500" direction="down" to={buttonLink} mt="8" size="lg" rounded="full" bg="dYellow.300" color="gray.800">
             {buttonTitle}
           </Button>
         )}
@@ -212,59 +212,6 @@ export const FixedHomepageHero = ({ button, bgCol, textColour }) => {
             style={{height:"100%", width:"auto"}}
           />
         </Box>
-      {/* <Flex
-        class="image-wrapper"
-        position={{base: "relative", sm: 'absolute'}}
-        w="auto"
-        h="95%"
-        bottom="0"
-        right="12"
-        overflow="hidden"
-        alignItems="flex-end"
-        zIndex="20"
-        align="center"
-        bottom={{sm: 'unset', md: '0'}}
-      >
-        
-        <StaticImage
-          placeholder="none" 
-          src="../../../images/cutout-shadow2.png" 
-          alt="young person smiling"
-          // height={400}
-          fit="cover"
-          imgStyle={{height:"100%", width:"auto", left:"unset", position:"absolute", right:"20px", zIndex:"10"}}
-          style={{height:"100%", width:"auto"}}
-        />
-      </Flex> */}
-      
-      {/* <Flex
-        class="image-wrapper"
-        position="absolute"
-        insetX="0"
-        insetY="0"
-        w="full"
-        h="full"
-        overflow="hidden"
-        align="center"
-      >
-        <Box position="relative" w="full" h="full">
-          <GatsbyImage
-            image={imageData}
-            alt={image.altText}
-            objectFit="cover"
-            loading="eager"
-          />
-        </Box>
-      </Flex> */}
-
-
-
-
-
-
-
-
-  
     </Flex>
   )
 }

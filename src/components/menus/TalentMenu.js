@@ -4,9 +4,9 @@ import { MenuItem } from './MenuItem'
 import { useAuth } from '../../hooks'
 
 export const TalentMenu = ( {mobile, menuopen, onclose} ) => {
-	const { loadingViewer, viewer, isLoggedIn } = useAuth()
+	const { loadingViewer, viewer, isloggedin } = useAuth()
 	if(loadingViewer || !viewer) return null
-	if(viewer.roles.nodes[0].name !== "talent" || !isLoggedIn) return null
+	if(viewer.roles.nodes[0].name !== "talent" || !isloggedin) return null
 	return (
 		<>
 			{/* <MenuItem link="/talent/jobs" label="My Jobs"  menuopen={menuopen} onclose={onclose} /> */}

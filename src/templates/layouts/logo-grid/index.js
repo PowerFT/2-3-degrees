@@ -41,13 +41,13 @@ export const LogoGrid = ({bgCol, textColour}) => {
 					justifyItems="center"
 					opacity={0.6}
 				>
-					<StaticImage height={80} src="../../../images/client-logos/4.svg"/>
-					<StaticImage height={80} src="../../../images/client-logos/BNPARIB.svg"/>
-					<StaticImage height={80} src="../../../images/client-logos/Coke.svg"/>
-					<StaticImage height={80} src="../../../images/client-logos/Converse.svg"/>
-					<StaticImage height={80} src="../../../images/client-logos/Google.svg"/>
+					<StaticImage alt="client logo" height={80} src="../../../images/client-logos/4.svg"/>
+					<StaticImage alt="client logo" height={80} src="../../../images/client-logos/BNPARIB.svg"/>
+					<StaticImage alt="client logo" height={80} src="../../../images/client-logos/Coke.svg"/>
+					<StaticImage alt="client logo" height={80} src="../../../images/client-logos/Converse.svg"/>
+					<StaticImage alt="client logo" height={80} src="../../../images/client-logos/Google.svg"/>
 					{/* <StaticImage height={80} src="../../../images/client-logos/LANDSEC.svg"/> */}
-					<StaticImage height={80} src="../../../images/client-logos/microsoft.svg"/>
+					<StaticImage alt="client logo" height={80} src="../../../images/client-logos/microsoft.svg"/>
 
 				</SimpleGrid>
 			</Box>

@@ -12,17 +12,17 @@ import { navigate } from "gatsby"
 
 const PrivateRoute = ({ component: Component, location, ...rest }) => {
   
-	const { isLoggedIn } = useAuth()
+	const { isloggedin } = useAuth()
 	
-	if (!isLoggedIn && location.pathname !== `/maker/sign-in`) {
+	if (!isloggedin && location.pathname !== `/maker/sign-in`) {
     navigate("/maker/sign-in")
     return null
   }
-  if (!isLoggedIn && location.pathname !== `/talent/sign-in`) {
+  if (!isloggedin && location.pathname !== `/talent/sign-in`) {
     navigate("/talent/sign-in")
     return null
   }
-  if (!isLoggedIn && location.pathname !== `/connect/*`) {
+  if (!isloggedin && location.pathname !== `/connect/*`) {
     navigate("/")
     return null
   }

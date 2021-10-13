@@ -1,7 +1,6 @@
 import React from 'react'
 import {
 	Flex,
-	Heading,
 	LinkBox,
 	LinkOverlay,
 	Text,
@@ -34,7 +33,7 @@ export const BlogCard = ({ postData }) => {
 			}}
 		>
 			<Flex direction="column">
-				<GatsbyImage alt={altText} image={image} />
+				<GatsbyImage alt={altText || "image"} image={image} />
 				<Flex
 					direction="column"
 					// px={{

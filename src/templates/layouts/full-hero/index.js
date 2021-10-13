@@ -36,8 +36,7 @@ export const FullHero = ({ image, title, text, button, bgCol, bgPatternCol, titl
           <Button 
             as={Link} 
             textDecoration="none" 
-            fontWeight="500" 
-            cover 
+            fontWeight="500"
             direction="down" 
             to={buttonLink} 
             mt="8" 

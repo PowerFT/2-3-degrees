@@ -14,8 +14,8 @@ import { navigate } from 'gatsby'
 
 export const ResetPassword = ({user}) => {
 
-  const { isLoggedIn } = useAuth()
-  if(isLoggedIn) navigate("/connect/platform?user=maker")
+  const { isloggedin } = useAuth()
+  if(isloggedin) navigate("/connect/platform?user=maker")
 
   return (
     <Flex

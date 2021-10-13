@@ -6,13 +6,13 @@ import { PublicMenu } from './PublicMenu'
 import { MakerMenu } from './MakerMenu'
 import { TalentMenu } from './TalentMenu'
 
-export const NavMenus = ({menuopen, mobile, isLoggedIn, onclose}) => {
+export const NavMenus = ({menuopen, mobile, isloggedin, onclose}) => {
 	// console.log('menus', menuopen)
 	 
 	return (
 			<Stack spacing="1">
 				{
-					!isLoggedIn ? (
+					!isloggedin ? (
 						<>
 							<MenuItem 
 								onclose={onclose}

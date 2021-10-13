@@ -13,8 +13,8 @@ import { navigate } from 'gatsby'
 import { useAuthContext } from '../../../../context';
 
 export const SignIn = () => {
-  const { isLoggedIn } = useAuthContext();
-  if(isLoggedIn) navigate("/connect/platform?user=maker")
+  const { isloggedin } = useAuthContext();
+  if(isloggedin) navigate("/connect/platform?user=maker")
 
   return (
     <Flex

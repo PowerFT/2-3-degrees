@@ -4,9 +4,9 @@ import { MenuItem } from './MenuItem'
 import { useAuth } from '../../hooks'
 
 export const MakerMenu = ( {mobile, menuopen, onclose} ) => {
-	const { loadingViewer, viewer, isLoggedIn } = useAuth()
+	const { loadingViewer, viewer, isloggedin } = useAuth()
 	if(loadingViewer || !viewer) return null
-	if(viewer.roles.nodes[0].name !== "maker" || !isLoggedIn) return null
+	if(viewer.roles.nodes[0].name !== "maker" || !isloggedin) return null
 
 	// console.log(viewer)
 	return (

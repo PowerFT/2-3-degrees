@@ -43,7 +43,7 @@ export const Footer = () => (
             <LinkOverlay as={Link} to="/">
               <StaticImage 
                 src="../../images/oldLogo.png" 
-                alt="young person smiling"
+                alt="logo"
                 // height={400}
                 fit="cover"
                 imgStyle={{height:"100%", width:"auto"}}

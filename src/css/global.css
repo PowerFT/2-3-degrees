@@ -57,3 +57,7 @@ img {
 /* div[role='group'][tabindex] {
   width: 100%;
 } */
+
+.blog__body--content p > * {
+  max-width: 100%;
+}

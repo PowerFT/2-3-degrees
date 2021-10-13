@@ -16,7 +16,7 @@ import { StaticImage } from 'gatsby-plugin-image'
 
 
 export const Sidebar = ({...rest}) => {
-  const { isLoggedIn, loadingViewer, viewer } = useAuth()
+  const { isloggedin, loadingViewer, viewer } = useAuth()
   // console.log(viewer)
 
   const { isOpen, onToggle } = useDisclosure()
@@ -59,7 +59,7 @@ export const Sidebar = ({...rest}) => {
             <LinkOverlay as={Link} to="/" onClick={onToggle}>
             <StaticImage 
               src="../../images/oldLogo.png" 
-              alt="young person smiling"
+              alt="logo"
               // height={400}
               fit="cover"
               imgStyle={{height:"100%", width:"auto"}}
@@ -74,7 +74,7 @@ export const Sidebar = ({...rest}) => {
               onclose={onToggle}
               viewer={viewer}
               loadingViewer={loadingViewer}
-              isLoggedIn={isLoggedIn}
+              isloggedin={isloggedin.toString()}
             />
           </Collapse>
 
@@ -95,7 +95,7 @@ export const Sidebar = ({...rest}) => {
               ))}
             </Flex>
 
-            {isLoggedIn && (
+            {isloggedin && (
               <Box px="3" justifySelf="flex-end" alignSelf="stretch">
                 <AccountMenu menuopen={isOpen} />
               </Box>

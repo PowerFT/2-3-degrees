@@ -31,7 +31,7 @@ const errorCodes = {
 
 export const useAuth = () => {
 
-	const { isLoggedIn, setIsLoggedIn } = useAuthContext()
+	const { isloggedin, setisloggedin } = useAuthContext()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(null)
 	const [status, setStatus] = useState('idle')
@@ -44,12 +44,12 @@ export const useAuth = () => {
 	} = useViewerQuery();
 
 	const onLoginSuccess = useSafeDispatch(() => {
-		setIsLoggedIn(true);
+		setisloggedin(true);
 		setStatus('resolved');
 	});
 
 	const onLogoutSuccess = useSafeDispatch(() => {
-		setIsLoggedIn(false);
+		setisloggedin(false);
 		setStatus('resolved');
 		navigate('/')
 	});
@@ -81,7 +81,7 @@ export const useAuth = () => {
 	return {
 		login,
 		logout,
-		isLoggedIn,
+		isloggedin,
 		// refetchViewer,
 		loadingViewer,
 		loading,

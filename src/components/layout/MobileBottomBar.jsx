@@ -35,7 +35,7 @@ export const MobileBottomBar = ({...rest}) => {
 
   // const { isOpen, onClose, onOpen } = useMobileMenuState()
 
-  const { isLoggedIn } = useAuth()
+  const { isloggedin } = useAuth()
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
@@ -52,7 +52,7 @@ export const MobileBottomBar = ({...rest}) => {
       pos="sticky"
       {...rest}
     >
-        {isLoggedIn ? (
+        {isloggedin ? (
           <HStack py={2} spacing={0} justify="stretch" h="100%">
             <Flex direction="column" justify="center" align="center" p={2} flex="1 1">
               <LinkBox textAlign="center">
@@ -82,7 +82,7 @@ export const MobileBottomBar = ({...rest}) => {
               <LinkOverlay as={Link} to="/">
                 <StaticImage 
                   src="../../images/oldLogo.png" 
-                  alt="young person smiling"
+                  alt="logo"
                   // height={400}
                   fit="cover"
                   imgStyle={{height:"100%", width:"auto"}}
@@ -114,7 +114,7 @@ export const MobileBottomBar = ({...rest}) => {
               <LinkOverlay as={GatsbyLink} to="/">
                 <StaticImage 
                   src="../../images/oldLogo.png" 
-                  alt="young person smiling"
+                  alt="logo"
                   // height={400}
                   fit="cover"
                   imgStyle={{height:"100%", width:"auto"}}

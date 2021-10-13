@@ -10,8 +10,8 @@ import React, { useContext, createContext } from 'react'
 import { useLocalStorage } from '../hooks'
 
 const AuthContext = createContext({
-	isLoggedIn: false,
-	setIsLoggedIn: () => null
+	isloggedin: false,
+	setisloggedin: () => null
 })
 
 export const useAuthContext = () => {
@@ -21,11 +21,11 @@ export const useAuthContext = () => {
 export const AuthContextProvider = ({ children }) => {
 
 	//this will store whether we are logged in or not in local storage.
-	const [isLoggedIn, setIsLoggedIn] = useLocalStorage(false)
+	const [isloggedin, setisloggedin] = useLocalStorage(false)
 
 	const contextValue = {
-		isLoggedIn,
-		setIsLoggedIn
+		isloggedin,
+		setisloggedin
 	}
 
 	return(
