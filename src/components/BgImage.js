@@ -3,8 +3,6 @@ import React, { useEffect } from 'react'
 
 export const BgImage = ({bgPatternCol}) => {
 
-	console.log('bg renders', bgPatternCol)
-
 		switch(bgPatternCol) {
 			case 'orange':
 				return (

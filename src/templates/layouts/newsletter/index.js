@@ -34,7 +34,6 @@ export const Newsletter = ({ text, bgCol }) => {
         //   action: "Click",
         //   label: `Newsletter Click`,
         // })
-				console.log("submittedd" , data)
         setSubmitted(true)
       }
     })

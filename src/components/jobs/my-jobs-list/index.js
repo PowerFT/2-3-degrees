@@ -53,11 +53,7 @@ const GET_JOBS_BY_VIEWER = gql`
 
 export const JobsList = (props) => {
 
-
-	// const { viewer, loadingViewer } = useAuth()
 	const { statusSelected, setLoading, setError } = props
-
-	// const status = statusSelected === "PUBLISH" ? null : "DRAFT"
 
 	const { loading, error, data, refetch } = useQuery(GET_JOBS_BY_VIEWER, {
 		variables: {
@@ -66,27 +62,13 @@ export const JobsList = (props) => {
 	})
 
 	useEffect(() => {
-		console.log(statusSelected)
-		console.log("data-pre: ", data)
 		refetch()
-		console.log("data-post: ", data)
 	}, [statusSelected])
-	// console.log(statusSelected)
-
-	// useEffect(() => {
-	// 	if(viewer && !loadingViewer)
-	// 	console.log('effect', statusSelected)
-	// 	refetch({ variables: { status: statusSelected } })
-	// 	.catch(err => 
-	// 		console.log(err)) //fix
-	// }, [statusSelected, refetch])
 
 	if (error) return <MyError error={`Error: ${error}`} />
 	if (!data && loading) return <MySpinner />
 	if (!data) return <p>No posts found.</p>
 	if(data.viewer?.jobPosts?.nodes.length === 0) return <MyError error="No Opportunities found, try a different 'post status'"/>
-
-	// console.log(data.viewer.jobPosts.nodes)
 
 	return (
 		<JobsCardContainer >

@@ -10,10 +10,8 @@ import { ChangeModal } from '../changeModal'
 import { useAuth } from '../../../../hooks'
 import { DangerZone } from '../DangerZone'
 import { MySpinner } from '../../../waiting/MySpinner'
-// import { MyError } from '../../../waiting/MyError'
 import { useUpdateUser } from '../../../../hooks'
 import { AdminBlob } from '../../../AdminBlob'
-import { MyError } from '../../../waiting/MyError'
 import { InnerSidebar } from '../../../layout/InnerSidebar'
 import { Content } from '../../../layout/Content'
 import { Header } from '../../../layout/Header'
@@ -42,7 +40,6 @@ export const MakerAccountSettings = () => {
 
   const handleSubmit = () => {
     updateUser(accountDeets).then(() => {
-      console.log('user updated')
       setProfileUpdated(true)
     })
   }

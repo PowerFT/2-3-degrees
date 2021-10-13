@@ -3,7 +3,7 @@ import { graphql, Link } from "gatsby"
 import parse from "html-react-parser"
 // import { motion } from "framer-motion"
 import { Box } from "@chakra-ui/layout"
-import { Flex, Stack, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Text, VStack, HStack, Icon, Button } from "@chakra-ui/react"
+import { Flex, Stack, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Text, HStack, Icon, Button } from "@chakra-ui/react"
 import { InnerSidebar } from "../components/layout/InnerSidebar"
 import { Header } from "../components/layout/Header"
 import { Content } from "../components/layout/Content"
@@ -11,7 +11,6 @@ import { HiOutlineClock, HiOutlineCurrencyPound, HiOutlineLocationMarker } from 
 import { ChevronRightIcon } from "@chakra-ui/icons"
 
 const JobPostTemplate = ({ data: { jobPost } }) => {
-	console.log(jobPost)
 
 	const title = jobPost?.title
 	const companyName = jobPost?.companyName?.nodes[0]?.name
@@ -25,13 +24,9 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
 	const content = jobPost?.content
 	const salaryStructure = jobPost?.salaryStructure?.nodes[0]?.name
 	const skills = jobPost?.skills?.nodes
-	// const skills = [{name: "Approachable"}, {name: "Creativity"}, {name: "Humble"}]
-	console.log(skills.length)
 
 	const pagetype = "job-post"
-
 	const formattedSalary = parseInt(salary).toLocaleString() 
-
 
 	const BreadCrumb = () => {
 		return (

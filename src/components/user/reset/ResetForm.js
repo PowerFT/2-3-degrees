@@ -23,8 +23,7 @@ export const ResetForm = () => {
   
   const [ email, setEmail ] = useState( '' );
 	const { sendResetPasswordEmail, error, status } = useResetPassword();
-
-  console.log(email, "form")
+  
 	const handleSubmit = ( e ) => {
 		e.preventDefault();
 		sendResetPasswordEmail( email );

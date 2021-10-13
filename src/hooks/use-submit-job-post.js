@@ -2,14 +2,13 @@
  * External dependencies
  */
 import { useState } from 'react';
-import { decodeEntities } from '@wordpress/html-entities';
-import { stripHtml } from 'string-strip-html';
+// import { decodeEntities } from '@wordpress/html-entities';
+// import { stripHtml } from 'string-strip-html';
 
 /**
 * Internal dependencies
 */
 import { useCreateJobPostMutation, useUpdateJobPostMutation } from './mutations';
-import { navigate } from 'gatsby-link';
 
 /**
 * Hook which submits content via the API.
@@ -27,13 +26,11 @@ export const useSubmitJobPost = ( formType ) => {
 		setSubmitLoading( true );
 
 		const successCreate = ( result ) => {
-			console.log(result, "create")
 			// navigate('/maker/jobs')
 			setSubmitLoading( false );
 			return result.data;
 		};
 		const successUpdate = ( result ) => {
-			console.log(result, "update")
 			// navigate('/maker/jobs')
 			setSubmitLoading( false );
 			return result.data;
@@ -61,12 +58,8 @@ export const useSubmitJobPost = ( formType ) => {
 			skills
 		} = props;
 
-		//console.log(id, title)
-		console.log("formType: ", formType)
-
 		switch ( formType ) {
 			case 'create':
-				console.log('create fired: ', title)
 				return createJobPost( {
 					variables: {
 						clientMutationId,
@@ -88,7 +81,6 @@ export const useSubmitJobPost = ( formType ) => {
 					.then( successCreate )
 					.catch( fail );
 			case 'update':
-				console.log('update fired: ', title)
 				return updateJobPost( {
 					variables: {
 						clientMutationId,

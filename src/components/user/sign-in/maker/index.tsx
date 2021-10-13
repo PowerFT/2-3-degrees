@@ -9,14 +9,11 @@ import {
 import * as React from 'react'
 import { SigninForm } from '../SigninForm'
 import { UnderlineLink } from '../../UnderlineLink'
-import { useAuth } from '../../../../hooks'
 import { navigate } from 'gatsby'
 import { useAuthContext } from '../../../../context';
 
 export const SignIn = () => {
   const { isLoggedIn } = useAuthContext();
-  // const { isLoggedIn } = useAuth()
-  console.log(isLoggedIn)
   if(isLoggedIn) navigate("/connect/platform?user=maker")
 
   return (

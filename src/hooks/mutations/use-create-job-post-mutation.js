@@ -50,7 +50,6 @@ const CREATE_JOB_MUTATION = gql`
 `
 
 export const useCreateJobPostMutation = () => {
-  console.log("create")
 	const [ mutation, mutationResults ] = useMutation( CREATE_JOB_MUTATION );
 
 	return { mutation, results: mutationResults };

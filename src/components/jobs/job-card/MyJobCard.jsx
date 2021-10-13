@@ -6,30 +6,18 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
-// import {AiOutlinePlus} from 'react-icons/ai'
 import * as React from 'react'
-// import { HiCash, HiClock, HiLocationMarker, HiOutlineEye, HiOutlinePencil } from 'react-icons/hi'
 import { Link } from 'gatsby'
 import {ButtonGroup, Button} from '@chakra-ui/react'
 
-export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyName, jobPostId, status, id}) => {
-
-  const formattedSalary = parseInt(salary).toLocaleString()
-	// const pending = status !== "publish"
-  console.log(status)
-	// const jobPostLink = `/connect${jobPostId}`
+export const MyJobCard = ({title, salary, sector, companyName, status, id}) => {
   
-
   return (
     <Box position="relative" maxW="xl" minW={{base:"unset",md:"xs",lg:"sm"}} overflow="hidden" borderRadius="md" width="100%">
       <Box position="relative" overflow="hidden" bg="white" px={{base:"3",sm:"6"}} py={{base:"5",sm:"7"}} w="100%">
 
         <Stack
           id="jobCardContainer"
-          // direction={{
-          //   base: 'column',
-          //   md: 'row',
-          // }}
           align="flex-start"
           direction="row"
           // my={1}
@@ -37,10 +25,8 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
           <Avatar
             size="md"
             name={companyName}
-            // alignSelf="center"
             mr={{base:"2",sm:"6"}}
             ml="0"
-            // src="https://images.unsplash.com/photo-1488282396544-0212eea56a21?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
           />
           <Box
           ml="30px"
@@ -81,25 +67,6 @@ export const MyJobCard = ({title, jobLocation, salary, jobType, sector, companyN
           <Button mr="-px" w="100%" as={Link} to={`/maker/jobs/edit?job=${id}`}>Edit</Button>
           <Button w="100%" as={Link} display={status === "publish" ? 'flex' : 'none'} to={`/connect/jobs/${id}`}>View</Button>
         </ButtonGroup>
-        {/* <Box position="absolute" bottom={{base:"unset", sm:"5px"}} top={{base:"5px", sm:"unset"}} right="10px" zIndex={1} id="jobCardMenu">
-          <Menu placement="left-start">
-            <MenuButton
-              as={IconButton}
-              aria-label="Options"
-              icon={<AiOutlinePlus />}
-              variant="outline"
-              size="lg"
-            />
-            <MenuList>
-              <MenuItem as={Link} display={status === "publish" ? 'flex' : 'none'} to={`/connect/jobs/${id}`} icon={<HiOutlineEye />} command="⌘T">
-                  View
-              </MenuItem>
-              <MenuItem as={Link} to={`/maker/jobs/edit?job=${id}`} icon={<HiOutlinePencil />} command="⌘N">
-                Edit
-              </MenuItem>
-            </MenuList>
-          </Menu>
-        </Box> */}
 
         <Box  
           position="absolute"

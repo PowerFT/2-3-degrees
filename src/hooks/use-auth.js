@@ -49,14 +49,12 @@ export const useAuth = () => {
 	});
 
 	const onLogoutSuccess = useSafeDispatch(() => {
-		console.log('unsuccessful login')
 		setIsLoggedIn(false);
 		setStatus('resolved');
 		navigate('/')
 	});
 
 	const onError = useSafeDispatch((errors) => {
-		console.log('ERRRRORRRS: ', errors)
 		setError(
 			errorCodes[errors.message] ||
 			`${stripHtml(decodeEntities(errors.message)).result}`

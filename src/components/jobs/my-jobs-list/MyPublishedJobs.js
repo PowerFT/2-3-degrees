@@ -8,7 +8,6 @@ import { Box } from '@chakra-ui/react'
 /**
 * Internal dependencies
 */
-// import { useUserJobsDataQuery } from '../../../hooks/queries/use-user-jobs-data-query'
 import { MyJobCard } from '../job-card/MyJobCard'
 import { JobsCardContainer } from '../JobsCardContainer'
 import {MySpinner} from '../../waiting/MySpinner'
@@ -65,7 +64,6 @@ export const MyPublishedJobsList = () => {
 	// if (!data) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
 	// if(data.viewer?.jobPosts?.nodes.length === 0) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
 
-	console.log(data)
 	return (
 		<Box>
 			<Box w="100%" bg="gray.700" color="gray.50" py="3" my="3">

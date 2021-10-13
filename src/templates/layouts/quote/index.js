@@ -3,7 +3,6 @@ import React from 'react'
 import { BgImage } from '../../../components/BgImage'
 
 export const Quote = ({ quoteText, quoteAuthor, bgCol="dCream.300", bgPatternCol="null", textColour="gray.800"}) => {
-  console.log(bgPatternCol)
 
 	return (
 

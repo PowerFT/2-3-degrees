@@ -60,9 +60,6 @@ export const ConnectPlatform = () => {
     }
   } //change
 
-  //console.log("users: ",users)
-  //console.log("userType: ",userType)
-
   const limit = users[userType]?.limit
   const completed = users[userType]?.completed
   const complete = Boolean(limit === completed)

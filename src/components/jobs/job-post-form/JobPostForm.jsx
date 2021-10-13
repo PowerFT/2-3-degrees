@@ -29,13 +29,11 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
 
   const handleSkillClick = (skill) => {
     if(!selectedSkills.includes(skill) && selectedSkills.length < 3) {
-      // setActive([...active, skill])
       setFormDeets({
         ...formDeets,
         skills: [...formDeets.skills, {name: skill}],
       })
     } else if(selectedSkills.includes(skill)) {
-      // setActive(active.filter(newskill => newskill !== skill))
       setFormDeets({
         ...formDeets,
         skills: formDeets?.skills.filter(newskill => newskill.name !== skill),
@@ -221,7 +219,6 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                     render={data => {
                       if (data.allWpSalaryStructure) {
                         const salaryStructures = data.allWpSalaryStructure.nodes
-                        console.log('salaryS', data)
                         return (
                           <>
                             {

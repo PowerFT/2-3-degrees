@@ -51,7 +51,6 @@ const UPDATE_JOB_MUTATION = gql`
 `
 
 export const useUpdateJobPostMutation = () => {
-  console.log("update")
 	const [ mutation, mutationResults ] = useMutation( UPDATE_JOB_MUTATION );
 
 	return { mutation, results: mutationResults };

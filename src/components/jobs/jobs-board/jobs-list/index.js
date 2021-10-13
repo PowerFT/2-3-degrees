@@ -76,7 +76,6 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes, skills }) => {
 	for(const x in obj) {
 		if(obj[x].terms.length !== 0) whereArr.push(obj[x])
 	}
-	console.log(locations, sectors, jobTypes, skills)
 
 	const where = !locations.length && !sectors.length && !jobTypes.length && !skills.length ? null : {
 		taxQuery: {
@@ -84,7 +83,6 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes, skills }) => {
 			taxArray: whereArr
 		}
 	}
-	console.log(where)
 
 	const { loading, error, data } = useQuery(GET_JOBS, {
 		variables: {
@@ -107,8 +105,6 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes, skills }) => {
 	if (error) return <Alert status="warning"> <AlertIcon/><p>{`Error: ${error}`}</p></Alert>
 	if (!data && loading) return <MySpinner />
 	// if (!data?.jobPosts.edges.length) return <Flex justify="center" align="center"><Alert status="warning"> <AlertIcon/>Sorry, No Opportunities found.</Alert></Flex>
-	
-	console.log(data) 
 	// const haveMorePosts = Boolean(data.jobPosts?.pageInfo?.hasNextPage)
 
 	const jobPosts = data?.jobPosts?.edges.map(edge => edge.node)

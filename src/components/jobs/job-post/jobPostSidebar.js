@@ -5,14 +5,10 @@ export const JobSidebar = (props) => {
 
 	const {salary, jobLocation, sector, jobSkills, jobType, applicationLink, closeDate, companyBio, companyName, salaryStructure, ...rest} = props
 	const formattedSalary = parseInt(salary).toLocaleString() 
-	// const skills = [{name: "Approachable"}, {name: "Creativity"}, {name: "Humble"}]
 
-	console.log(applicationLink)
-
-	console.log('job sidebar', props)
 	return (
 		<>
-				<Box fontSize="lg" w="full">
+				<Box fontSize="lg" w="full" {...rest}>
 					<HStack justify="space-between" align="flex-start">
 						<Text fontWeight="700" letterSpacing="widest" pt="1" fontSize="xs">KEY SKILLS:</Text>
 						{jobSkills.length !== 0 && (

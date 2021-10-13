@@ -12,8 +12,6 @@ export const FullHero = ({ image, title, text, button, bgCol, bgPatternCol, titl
   const buttonTitle = button?.title
   const buttonLink = button?.url
 
-  console.log(bgPatternCol)
-
   return (
     <Flex as="section" h="100vh" bg={bgCol} direction="column" position="relative" justify="center" align="center" overflow="hidden">
       <Box

@@ -1,18 +1,13 @@
 import { Box, Button, Flex, Heading, Icon, LinkBox, LinkOverlay, Text, VStack, Accordion, AccordionButton, AccordionPanel, AccordionItem } from '@chakra-ui/react'
 import React from 'react'
 import {Link} from 'gatsby'
-import { BsFillLightningFill, BsInfoCircleFill } from 'react-icons/bs'
-// import { motion } from 'framer-motion';
-// const MotionBox = motion(Box)
-import { AddIcon, MinusIcon } from '@chakra-ui/icons'
-import { FormControl } from '@chakra-ui/form-control'
+import { BsFillLightningFill } from 'react-icons/bs'
 import {JobsFilter} from '../jobs/jobs-board/jobs-filter'
 import { JobSidebar } from '../jobs/job-post/jobPostSidebar'
 import { JobPreviewCard } from '../jobs/job-post-form/JobPreview'
 
 export const InnerSidebar = ({
-	primaryLinks, 
-	secondaryLinks, 
+	primaryLinks,
 	pagetype, 
 	locations, 
 	setLocations, 
@@ -27,7 +22,6 @@ export const InnerSidebar = ({
 	jobType,
 	jobSkills,
 	salary,
-	setStatusSelected,
 	formDeets,
 	applicationLink,
 	closeDate,
@@ -43,8 +37,6 @@ export const InnerSidebar = ({
 
 	const hidden = pagetype === "blog" || pagetype === "generic" || pagetype === "home" || pagetype === "connect-home" || pagetype === "login"
 
-
-	console.log(pagetype)
 	return (
 		<Box 
 			className="innersidebar sticky"
