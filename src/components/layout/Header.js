@@ -31,7 +31,7 @@ export const Header = ({title, subTitle, imageData, imgAlt, pagetype, avatar, bl
 			}}
 			w="full"
 			// bg={colour.pagetype}
-			bg={pageHeaderBgCol || "dYellow.300"}
+			bg={pageHeaderBgCol || "gray.600"}
 			minH={{base:"30vh", sm: "40vh"}}
 			maxH={{base:"40vh", sm: "55vh"}}
 			position="relative"

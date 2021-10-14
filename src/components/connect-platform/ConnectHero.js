@@ -53,44 +53,6 @@ export const ConnectHero = () => {
         </Heading>
 
       </Box>
-      
-      
-      {/* <Box 
-        w="65%"
-        h="95%"
-        pos="absolute"
-        bottom="0"
-        right="12"
-        zIndex="10"
-        // style={{transform: `translateY(-${offsetY * 0.5}px)`}}
-      >
-        <StaticImage 
-          src="../../../images/cutout.png" 
-          alt="young person smiling"
-          // height={400}
-          fit="cover"
-          imgStyle={{height:"100%", objectFit:"contain", objectPosition:"bottom right"}}
-          style={{height:"100%", width:"auto"}}
-        />
-      </Box> */}
-      {/* <Box 
-        w="65%"
-        h="95%"
-        pos="absolute"
-        bottom="0"
-        right="16"
-        zIndex="5"
-        style={{transform: `translateX(-${offsetY * 0.01}px)`}}
-      >
-        <StaticImage 
-          src="../../../images/cutout-shadow.png" 
-          alt="shadow"
-          // height={400}
-          fit="cover"
-          imgStyle={{height:"100%", objectFit:"contain", objectPosition:"bottom right"}}
-          style={{height:"100%", width:"auto"}}
-        />
-      </Box> */}
       <Box 
         w={{md:"80%",lg:"65%"}}
         h="120%"
