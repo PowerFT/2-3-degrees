@@ -25,11 +25,13 @@ export const Feature = ({ img, linkUrl, title, children, icon, videoOrImage, vid
 						align="center"
 						justify="center"
 					>
-						<GatsbyImage
-							image={imgData}
-							alt={img?.altText}
-							objectFit="cover"
-						/>
+						{img && (
+							<GatsbyImage
+								image={imgData}
+								alt={img?.altText || "pillar image"}
+								objectFit="cover"
+							/>
+						)}
 					</Flex>
 				) : (
 					<Flex
@@ -70,11 +72,13 @@ export const Feature = ({ img, linkUrl, title, children, icon, videoOrImage, vid
 							</ModalContent>
 						</Modal>
 
-						<GatsbyImage
-							image={imgData}
-							alt={img?.altText}
-							objectFit="cover"
-						/>
+						{img && (
+							<GatsbyImage
+								image={imgData}
+								alt={img?.altText || "pillar image"}
+								objectFit="cover"
+							/>
+						)}
 					</Flex>
 				)
 			}

@@ -142,9 +142,11 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
 
 
 					<Box mt="10" borderRadius="lg" maxW="xl" position="relative" overflow="hidden" bg="white" p="10" mb="12">
-						<Box className="wp-content">
-							{parse(content)}
-						</Box>
+						{content && (
+							<Box className="wp-content">
+								{parse(content)}
+							</Box>
+						)}
 						<Box  
 							position="absolute"
 							bottom="0px"

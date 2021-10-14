@@ -53,7 +53,10 @@ const BlogPostTemplate = ({ data: { post } }) => {
             </HStack>
             <Text as="span" mb="2" mr="2" fontSize="sm" m="0 !important" fontWeight="bold" textTransform="uppercase">{post.date}</Text>
           </HStack>
-          {parse(post.content)}
+          {post.content && (
+            parse(post.content)
+          )}
+          
 				</Box>
 			</Flex>
       

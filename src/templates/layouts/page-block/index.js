@@ -20,11 +20,14 @@ export const PageBlock = ({ title, subTitle, content, image, headerBgCol, textCo
 				pageHeaderBgCol={headerBgCol}
 				pageHeaderTextColour={textColour}
 			/>
-			<Flex w="100%">
-				<Box className="pageblock__body--content wp-content" maxW="2xl" mx="auto" my="12" px="12">
+			{content && (
+				<Flex w="100%">
+					<Box className="pageblock__body--content wp-content" maxW="2xl" mx="auto" my="12" px="12">
 						{parse(content)}
 					</Box>
-			</Flex>
+				</Flex>
+			)}
+			
 		</>
 	)
 }
