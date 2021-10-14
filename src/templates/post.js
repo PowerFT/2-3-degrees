@@ -41,7 +41,7 @@ const BlogPostTemplate = ({ data: { post } }) => {
 				pagetype={pagetype}
 			/>
 			<Flex w="100%" direction="column" maxW="xl" mx="auto" mb="16">
-				<Box className="blog__body--content wp-content">
+				<Box className="blog__body--content wp-content" px="4">
           <HStack spacing="0" align="center" justify="space-between" my="8" wrap="wrap">
             <HStack mb="2" mr="2">
               {post.categories?.nodes.map(cat => (

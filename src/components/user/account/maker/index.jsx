@@ -1,7 +1,7 @@
 /**
 * External dependencies
 */
-import { Alert, AlertIcon, Button, Flex, FormControl, FormHelperText, FormLabel, HStack, Input, InputGroup, InputLeftAddon, Stack, Textarea, VStack, } from '@chakra-ui/react'
+import { Icon, LinkBox, LinkOverlay, Heading, Alert, AlertIcon, Button, Flex, FormControl, FormHelperText, FormLabel, HStack, Input, InputGroup, InputLeftAddon, Stack, Textarea, VStack, } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 /**
 * Internal dependencies
@@ -15,6 +15,8 @@ import { AdminBlob } from '../../../AdminBlob'
 import { InnerSidebar } from '../../../layout/InnerSidebar'
 import { Content } from '../../../layout/Content'
 import { Header } from '../../../layout/Header'
+import { BsFillLightningFill } from 'react-icons/bs'
+import { Link } from 'gatsby'
 
 export const MakerAccountSettings = () => {
 
@@ -74,16 +76,7 @@ export const MakerAccountSettings = () => {
     }
   }, [viewer, loadingViewer])
 
-  // if (loadingViewer || !viewer) {
-  //   return (
-  //     <MySpinner />
-  //   )
-  // }
-  
-  // if (error) return <MyError error={error} />
-
-  //account data complete check
-  
+  const primaryLinks = [["Connect Platform", "/connect/platform"], ["Latest Opportunites", "/connect/jobs"]]
 
   return (
     <>
@@ -97,7 +90,7 @@ export const MakerAccountSettings = () => {
       <Flex w="100%">
         <InnerSidebar
           title="Test"
-          primaryLinks={[["Connect Platform", "/connect/platform"], ["Latest Opportunites", "/connect/jobs"]]}
+          primaryLinks={primaryLinks}
           secondaryLinks={[["Why we ask for account information", "#"], ["Terms and Conditions", "#"]]}
           pagetype={pagetype}
         />
@@ -192,6 +185,36 @@ export const MakerAccountSettings = () => {
                   >
                     {status === 'resolving' ? "Updating" : "Update"}
                   </Button >
+
+                  <VStack spacing="0" border="1px solid" color="gray.900" w="100%" rounded="sm" display={{base:"flex", lg:"none"}}>
+                    <Flex 
+                      align="center" 
+                      bg="gray.900" 
+                      fontSize="xs" 
+                      textAlign="start" 
+                      rounded="sm" 
+                      color="gray.300" 
+                      w="100%" 
+                      py="1" 
+                      pl="2">
+                        <Icon as={BsFillLightningFill} mr="1"/>
+                        Quick Links
+                    </Flex>
+                    {primaryLinks.map((link, i) => (
+                      <LinkBox
+                        key={i} 
+                        _hover={{ bg: 'whiteAlpha.900' }}
+                        borderBottom={i !== primaryLinks.length -1 ? "1px solid" : null}
+                        // borderColor="gray.50"
+                        w="100%"
+                        pt="1"
+                      >
+                        <LinkOverlay as={Link} to={link[1]}>
+                          <Heading size="md" color="inherit" px="2" py="1">{link[0]}</Heading>
+                        </LinkOverlay>
+                      </LinkBox>
+                    ))}
+                  </VStack>
 
               </VStack>
 

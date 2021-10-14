@@ -57,8 +57,20 @@ export const InnerSidebar = ({
 			<VStack spacing="4" h="full">
 				{
 					primaryLinks && (
-						<VStack spacing="0" border="1px solid" color="gray.50" w="100%" rounded="sm">
-							<Flex align="center" bg="gray.50" fontSize="xs" textAlign="start" rounded="sm" color="dBlue.300" w="100%" py="1" pl="2"><Icon as={BsFillLightningFill} mr="1"/>Quick Links</Flex>
+						<VStack spacing="0" border="1px solid" color="gray.900" w="100%" rounded="sm">
+							<Flex 
+								align="center" 
+								bg="gray.900" 
+								fontSize="xs" 
+								textAlign="start" 
+								rounded="sm" 
+								color="gray.300" 
+								w="100%" 
+								py="1" 
+								pl="2">
+									<Icon as={BsFillLightningFill} mr="1"/>
+									Quick Links
+								</Flex>
 							{primaryLinks.map((link, i) => (
 								<LinkBox
 									key={i} 

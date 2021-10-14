@@ -18,7 +18,7 @@ export const MenuItem = (props) => {
       onClick={onclose}
       display="flex"
       w="100%"
-      py="2"
+      py="1"
       px="3"
       transition="all 0.2s"
       fontWeight="700"
@@ -41,9 +41,12 @@ export const MenuItem = (props) => {
       // activeStyle={{color: 'lightgray'}}
       {...rest}
     >
-      <HStack spacing="3" w="full">
+      <HStack w="full">
         {/* <Icon as={BsFillLightningFill} fontSize="2xl" opacity={0.9} /> */}
-        {menuopen && <Heading color="inherit" size={mobile ? "2xl" : "lg"}><LinkOverlay as={Link} to={link}>{label}</LinkOverlay></Heading>}
+        {menuopen && 
+          <Heading color="inherit" size={mobile ? "2xl" : "lg"} fontSize={mobile ? "40px" : "28px"}>
+            <LinkOverlay as={Link} to={link}>{label}</LinkOverlay>
+          </Heading>}
       </HStack>
     </LinkBox>
   )

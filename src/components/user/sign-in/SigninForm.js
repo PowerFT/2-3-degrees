@@ -9,12 +9,9 @@ import {
   FormControl,
   FormLabel,
   Input,
-  LightMode,
   Stack,
-  Text,
   useColorModeValue as mode,
 } from '@chakra-ui/react'
-import { navigate } from 'gatsby';
 import React, {useState} from 'react'
 // import {Link as GatsbyLink} from 'gatsby'
  /**
@@ -22,14 +19,14 @@ import React, {useState} from 'react'
   */
 // import { UnderlineLink } from './UnderlineLink'
 import { useAuth } from '../../../hooks';
-import { UnderlineLink } from '../UnderlineLink';
+// import { UnderlineLink } from '../UnderlineLink';
 import { PasswordField } from './PasswordField';
 
-export const SigninForm = ({user}) => {
+export const SigninForm = () => {
   
   const [ email, setEmail ] = useState( '' );
   const [ password, setPassword ] = useState( '' );
-  const { login, viewer, loadingViewer, error, status } = useAuth();
+  const { login, error, status } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -42,8 +39,7 @@ export const SigninForm = ({user}) => {
         error &&
         <Alert status="warning">
           <AlertIcon />
-          {error}
-          - Please refesh the page.
+          {error} Or reset your password.
         </Alert>
       }
 
