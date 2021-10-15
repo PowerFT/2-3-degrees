@@ -22,7 +22,7 @@ export const MakerAccountSettings = () => {
 
   // const { FileUploadInput } = useFileUpload()
   const pagetype = "admin"
-  const { viewer, loadingViewer } = useAuth()
+  const { viewer, loadingViewer, refetchViewer } = useAuth()
   const { updateUser, error, status } = useUpdateUser()
   const [newEmail, setNewEmail] = useState('');
   const [passwordChanged, setPasswordChanged] = useState(false);
@@ -41,8 +41,11 @@ export const MakerAccountSettings = () => {
   }
 
   const handleSubmit = () => {
-    updateUser(accountDeets).then(() => {
+    updateUser(accountDeets)
+    .then(() => {
+      refetchViewer()
       setProfileUpdated(true)
+      console.log("refetch", viewer)
     })
   }
 

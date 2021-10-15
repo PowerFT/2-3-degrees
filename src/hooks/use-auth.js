@@ -39,7 +39,7 @@ export const useAuth = () => {
 	const { loginMutation } = useLoginMutation()
 	const {
 		data: viewer,
-		// refetch: refetchViewer,
+		refetch: refetchViewer,
 		loading: loadingViewer,
 	} = useViewerQuery();
 
@@ -82,7 +82,7 @@ export const useAuth = () => {
 		login,
 		logout,
 		isloggedin,
-		// refetchViewer,
+		refetchViewer,
 		loadingViewer,
 		loading,
 		viewer,

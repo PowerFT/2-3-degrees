@@ -57,7 +57,7 @@ export const useViewerQuery = () => {
 		}
 	});
 
-	const [ getViewer, { loading, error, data } ] = useLazyQuery( VIEWER, {
+	const [ getViewer, { loading, error, data, refetch } ] = useLazyQuery( VIEWER, {
 		fetchPolicy: 'network-only',
 		onError,
 		onCompleted,
@@ -68,5 +68,6 @@ export const useViewerQuery = () => {
 		error,
 		data: data && data.viewer ? data.viewer : null,
 		getViewer,
+		refetch
 	};
 };

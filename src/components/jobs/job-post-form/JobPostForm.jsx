@@ -44,7 +44,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
   }
 
   function handleSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     submitJobPost({ clientMutationId: uuidv4(), ...formDeets })
     .then(() => {
       setSubmitted(true)
@@ -288,7 +288,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                                     as="span"
                                     cursor="pointer"
                                     user-select="none"
-                                    bg={selectedSkills.includes(skill.name) ? "dBlue.300" : "gray.300"}
+                                    bg={selectedSkills.includes(skill.name) ? "dBlue.200" : "gray.300"}
                                     color="gray.700"
                                     textAlign="center"
                                     mr="1"

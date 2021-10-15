@@ -21,7 +21,7 @@ export const TalentAccountSettings = () => {
   // const { FileUploadInput } = useFileUpload()
 
   const pagetype = "admin"
-  const { viewer, loadingViewer } = useAuth()
+  const { viewer, loadingViewer, refetchViewer } = useAuth()
   const [newEmail, setNewEmail] = useState('');
   const [passwordChanged, setPasswordChanged] = useState(false);
   const [profileUpdated, setProfileUpdated] = useState(false);
@@ -37,7 +37,11 @@ export const TalentAccountSettings = () => {
   const { updateUser, error, status } = useUpdateUser()
 
   const handleSubmit = () => {
-    updateUser(accountDeets).then(() => {setProfileUpdated(true)})
+    updateUser(accountDeets)
+    .then(() => {
+      refetchViewer()
+      setProfileUpdated(true)
+    })
   }
 
   useEffect(() => {
