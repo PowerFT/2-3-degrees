@@ -69,7 +69,7 @@ export default function Layout({children}) {
             declineButtonText="Decline"
             cookieName="gatsby-gdpr-google-analytics"
             enableDeclineButton={true}
-            style={{ background: "#2B373B", paddingBottom:"8vh", zIndex:"32" }}
+            style={{ background: "#2B373B", paddingBottom:"8vh", zIndex:"32", maxWidth:"300px", left:"unset", right: "0", zIndex:"5000"}}
             buttonStyle={{ marginTop:"0" }}
             declineButtonStyle={{marginTop:"0"}}
           >
