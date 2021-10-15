@@ -7,18 +7,20 @@ import { MakerMenu } from './MakerMenu'
 import { TalentMenu } from './TalentMenu'
 
 export const NavMenus = ({menuopen, mobile, isloggedin, onclose}) => {
-	console.log(typeof isloggedin)
+	console.log("loggedin: ", isloggedin,typeof isloggedin)
+
+	const loggedin=isloggedin.toString()
 	 
 	return (
 			<Stack spacing="1">
 				{
-					isloggedin === "false" ? (
+					loggedin === "false" ? (
 						<>
 							<MenuItem 
 								onclose={onclose}
 								menuopen={menuopen}
 								link="/maker/sign-in" 
-								label="Employer" 
+								label="Employer Login" 
 								icon={BsPlug}
 								mobile={mobile} 
 							/>
@@ -26,7 +28,7 @@ export const NavMenus = ({menuopen, mobile, isloggedin, onclose}) => {
 								onclose={onclose}
 								menuopen={menuopen} 
 								link="/talent/sign-in" 
-								label="Young Person" 
+								label="Young Person Login" 
 								icon={BsPlug} 
 								mobile={mobile} 
 							/>

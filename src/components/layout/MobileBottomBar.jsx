@@ -52,24 +52,32 @@ export const MobileBottomBar = ({...rest}) => {
       pos="sticky"
       {...rest}
     >
-        {isloggedin ? (
+        {isloggedin === "true" ? (
           <HStack py={2} spacing={0} justify="stretch" h="100%">
             <Flex direction="column" justify="center" align="center" p={2} flex="1 1">
               <LinkBox textAlign="center">
                 <Icon as={RiCreativeCommonsSaFill} w={5} h={5} mb={1} />
-                <Text fontWeight="bold" fontSize="xs" textTransform="uppercase"><LinkOverlay as={GatsbyLink} to="/connect/platform">Connect</LinkOverlay></Text>
+                <Text fontWeight="bold" fontSize="xs" textTransform="uppercase">
+                  <LinkOverlay as={GatsbyLink} to="/connect/platform">
+                    Connect
+                  </LinkOverlay>
+                </Text>
               </LinkBox>
             </Flex>
             <Flex direction="column" justify="center" align="center" p={2} flex="1 1">
               <LinkBox textAlign="center">
                 <Icon as={RiBriefcase5Fill} w={5} h={5} mb={1} />
-                <Text fontWeight="bold" fontSize="xs" textTransform="uppercase"><LinkOverlay as={GatsbyLink} to="/maker/jobs">Jobs</LinkOverlay></Text>
+                <Text fontWeight="bold" fontSize="xs" textTransform="uppercase">
+                  <LinkOverlay as={GatsbyLink} to="/maker/jobs">Jobs</LinkOverlay>
+                </Text>
               </LinkBox>
             </Flex>
             <Flex direction="column" justify="center" align="center" p={2} flex="1 1">
               <LinkBox textAlign="center">
                 <Icon as={RiAccountPinCircleFill} w={5} h={5} mb={1} />
-                <Text fontWeight="bold" fontSize="xs" textTransform="uppercase"><LinkOverlay as={GatsbyLink} to="/maker/account">Account</LinkOverlay></Text>
+                <Text fontWeight="bold" fontSize="xs" textTransform="uppercase">
+                  <LinkOverlay as={GatsbyLink} to="/maker/account">Account</LinkOverlay>
+                </Text>
               </LinkBox>
             </Flex>
             <Flex direction="column" justify="center" align="center" ref={btnRef} onClick={onOpen} w="80px" height="40px" p={2} cursor="pointer">
@@ -122,7 +130,7 @@ export const MobileBottomBar = ({...rest}) => {
                 />
               </LinkOverlay>
             </LinkBox>
-            <NavMenus menuopen={true} onclose={onClose} mobile={true}/>
+            <NavMenus menuopen={true} onclose={onClose} mobile={true} isloggedin={isloggedin}/>
           </DrawerBody>
 
           <DrawerFooter h="80px" justifyContent="flex-start">
