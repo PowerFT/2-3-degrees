@@ -140,6 +140,9 @@ export const Footer = () => (
             </WrapItem>
           ))}
         </Wrap>
+        <WrapItem>
+          <Box><a href = "mailto: info@2-3degrees.com">info@2-3degrees.com</a></Box>
+        </WrapItem>
         {/* <LanguageSwitcher /> */}
       </Flex>
     </Box>

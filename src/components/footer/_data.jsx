@@ -40,11 +40,15 @@ export const links = [
     links: [
       {
         label: 'Programmes',
-        href: '/services',
+        href: '/programmes',
       },
       {
         label: 'Consultancy',
-        href: '/services',
+        href: '/consultancy',
+      },
+      {
+        label: 'Workshops',
+        href: '/workshops',
       },
     ],
   },
@@ -100,10 +104,10 @@ export const socialLinks = [
 export const footerLinks = [
   {
     label: 'Terms of Service',
-    href: '/terms',
+    href: '#',
   },
   {
     label: 'Privacy Policy',
-    href: '/privacy',
+    href: '#',
   },
 ]
