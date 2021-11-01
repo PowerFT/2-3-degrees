@@ -1,6 +1,12 @@
-import { Badge, LightMode } from '@chakra-ui/react'
-import * as React from 'react'
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa'
+import { Badge, LightMode } from '@chakra-ui/react';
+import * as React from 'react';
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaTwitter,
+  FaYoutube,
+} from 'react-icons/fa';
 
 export const links = [
   {
@@ -78,36 +84,36 @@ export const links = [
       },
     ],
   },
-]
+];
 export const socialLinks = [
   {
     label: 'Facebook',
     icon: <FaFacebook />,
-    href: "https://www.facebook.com/2.3degrees/",
+    href: 'https://www.facebook.com/2.3degrees/',
   },
   {
     label: 'Instagram',
     icon: <FaInstagram />,
-    href: "https://www.instagram.com/2_3degrees/",
+    href: 'https://www.instagram.com/2_3degrees/',
   },
   {
     label: 'Youtube',
     icon: <FaYoutube />,
-    href: "https://www.youtube.com/channel/UC9nxulVkNqGn3XV5UxSEvNQ",
+    href: 'https://www.youtube.com/channel/UC9nxulVkNqGn3XV5UxSEvNQ',
   },
   {
     label: 'Twitter',
     icon: <FaTwitter />,
-    href: "https://twitter.com/2_3degrees?lang=en",
+    href: 'https://twitter.com/2_3degrees?lang=en',
   },
-]
+];
 export const footerLinks = [
-  {
-    label: 'Terms of Service',
-    href: '#',
-  },
+  // {
+  //   label: 'Terms of Service',
+  //   href: '#',
+  // },
   {
     label: 'Privacy Policy',
-    href: '#',
+    href: '/privacy-policy',
   },
-]
+];
