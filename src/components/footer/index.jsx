@@ -10,15 +10,15 @@ import {
   Text,
   Wrap,
   WrapItem,
-} from '@chakra-ui/react'
-import { Link } from 'gatsby'
-import { StaticImage } from 'gatsby-plugin-image'
-import * as React from 'react'
+} from '@chakra-ui/react';
+import { Link } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
+import * as React from 'react';
 // import { LanguageSwitcher } from './LanguageSwitcher'
-import { Logo } from '../layout/Logo'
-import { SocialButton } from './SocialButton'
-import { footerLinks, links, socialLinks } from './_data'
- 
+import { Logo } from '../layout/Logo';
+import { SocialButton } from './SocialButton';
+import { footerLinks, links, socialLinks } from './_data';
+
 export const Footer = () => (
   <Box as="footer" bg="gray.500" color="white" py="64px">
     <Box maxW="7xl" px="8" mx="auto">
@@ -38,22 +38,27 @@ export const Footer = () => (
             base: '10',
             lg: 0,
           }}
-        > 
+        >
           <LinkBox h="16" w="16">
             <LinkOverlay as={Link} to="/">
-              <StaticImage 
-                src="../../images/oldLogo.png" 
+              <StaticImage
+                src="../../images/oldLogo.png"
                 alt="logo"
                 // height={400}
                 fit="cover"
-                imgStyle={{height:"100%", width:"auto"}}
-                style={{height:"100%", width:"auto"}}
+                imgStyle={{ height: '100%', width: 'auto' }}
+                style={{ height: '100%', width: 'auto' }}
               />
             </LinkOverlay>
           </LinkBox>
           <HStack spacing="4" mt="8" as="ul">
             {socialLinks?.map((link, i) => (
-              <SocialButton key={i} target="_blank" rel="noreferrer" href={link.href}>
+              <SocialButton
+                key={i}
+                target="_blank"
+                rel="noreferrer"
+                href={link.href}
+              >
                 <Box srOnly>{link.label}</Box>
                 {link.icon}
               </SocialButton>
@@ -130,7 +135,7 @@ export const Footer = () => (
           }}
         >
           <WrapItem>
-            <Box>&copy; 2-3 Degrees</Box>
+            <Box>&copy; 2---3 Degrees</Box>
           </WrapItem>
           {footerLinks?.map((link, idx) => (
             <WrapItem key={idx}>
@@ -141,10 +146,12 @@ export const Footer = () => (
           ))}
         </Wrap>
         <WrapItem>
-          <Box><a href = "mailto: info@2-3degrees.com">info@2-3degrees.com</a></Box>
+          <Box>
+            <a href="mailto: info@2-3degrees.com">info@2-3degrees.com</a>
+          </Box>
         </WrapItem>
         {/* <LanguageSwitcher /> */}
       </Flex>
     </Box>
   </Box>
-)
+);
