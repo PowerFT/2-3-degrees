@@ -104,15 +104,7 @@ export const Newsletter = ({ text, bgCol }) => {
 								</Stack>
 							</form>
 							<Text color={mode('gray.600', 'gray.400')} fontSize="sm" mt="5">
-								<Box
-									aria-hidden
-									as={HiShieldCheck}
-									display="inline-block"
-									marginEnd="2"
-									fontSize="lg"
-									color={mode('green.600', 'green.400')}
-								/>
-								We&apos;re only send you relevant content
+								We&apos;ll only send you relevant content
 							</Text>
 						</Box>
 					</Box>

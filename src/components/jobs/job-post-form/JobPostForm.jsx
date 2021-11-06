@@ -1,84 +1,154 @@
 /**
-* External dependencies
-*/
-import React, { useState } from 'react'
-import { Text, InputLeftAddon, InputRightAddon, Button, FormControl, FormHelperText, FormLabel, Input, Select, Stack, Textarea, VStack, InputGroup, Flex, Box, } from '@chakra-ui/react'
-import { v4 as uuidv4 } from "uuid"
-import { graphql, StaticQuery, navigate } from 'gatsby'
+ * External dependencies
+ */
+import React, { useEffect, useState } from 'react';
+import {
+  Text,
+  InputLeftAddon,
+  InputRightAddon,
+  Button,
+  FormControl,
+  FormHelperText,
+  FormLabel,
+  Input,
+  Select,
+  Stack,
+  Textarea,
+  VStack,
+  InputGroup,
+  Flex,
+  Box,
+  HStack,
+} from '@chakra-ui/react';
+import { v4 as uuidv4 } from 'uuid';
+import { graphql, StaticQuery } from 'gatsby';
 /**
-* Internal dependencies
-*/
-import { FieldGroup } from './FieldGroup'
-// import DatePicker from '../../DatePicker'
-import { useSubmitJobPost } from '../../../hooks'
-import { DangerZone } from './DangerZone'
-import { useAuth } from '../../../hooks'
-import { MySpinner } from '../../waiting/MySpinner'
-import { MyError } from '../../waiting/MyError'
-import { AdminBlob } from '../../AdminBlob'
-import { UnderlineLink } from '../../user/UnderlineLink'
+ * Internal dependencies
+ */
+import { FieldGroup } from './FieldGroup';
+// import DatePicker from '../../DatePicker';
+import { useSubmitJobPost } from '../../../hooks';
+import { DangerZone } from './DangerZone';
+import { useAuth } from '../../../hooks';
+import { MySpinner } from '../../waiting/MySpinner';
+import { MyError } from '../../waiting/MyError';
+import { AdminBlob } from '../../AdminBlob';
+import { UnderlineLink } from '../../user/UnderlineLink';
+import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md';
 
+export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
+  const { submitJobPost, submitLoading, submitErrors } =
+    useSubmitJobPost(formType);
+  const { viewer, loadingViewer } = useAuth();
 
-export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
-  
-  const selectedSkills = formDeets?.skills?.map(skill => skill.name)
-  const { submitJobPost, submitLoading, submitErrors } = useSubmitJobPost(formType);
-  const { viewer, loadingViewer } = useAuth()
+  const [submitted, setSubmitted] = useState(false);
 
-  const [submitted, setSubmitted] = useState(false)
+  // const { getCheckboxProps } = useCheckboxGroup({
+  //   defaultValue: ['ps5'],
+  // })
+  console.log(formDeets);
+  const selectedSkills = formDeets?.skills?.map((skill) => skill.name);
+  const selectedQuestions = formDeets?.jobApplicationQuestions?.map(
+    (question) => question.slug
+  );
+  console.log(selectedQuestions);
 
   const handleSkillClick = (skill) => {
-    if(!selectedSkills.includes(skill) && selectedSkills.length < 3) {
+    if (!selectedSkills.includes(skill) && selectedSkills.length < 3) {
       setFormDeets({
         ...formDeets,
-        skills: [...formDeets.skills, {name: skill}],
-      })
-    } else if(selectedSkills.includes(skill)) {
+        skills: [...formDeets.skills, { name: skill }],
+      });
+    } else if (selectedSkills.includes(skill)) {
       setFormDeets({
         ...formDeets,
-        skills: formDeets?.skills.filter(newskill => newskill.name !== skill),
-      })
+        skills: formDeets?.skills.filter((newskill) => newskill.name !== skill),
+      });
     } else {
-      return
+      return;
     }
-  }
+  };
+
+  const handleQuestionClick = (questionSlug) => {
+    // console.log(questionSlug)
+    console.log(!selectedQuestions.includes(questionSlug), questionSlug);
+    if (
+      !selectedQuestions.includes(questionSlug) &&
+      selectedQuestions.length < 3
+    ) {
+      console.log('add');
+      setFormDeets({
+        ...formDeets,
+        jobApplicationQuestions: [
+          ...formDeets.jobApplicationQuestions,
+          { slug: questionSlug },
+        ],
+      });
+    } else if (selectedQuestions.includes(questionSlug)) {
+      console.log('filter');
+      setFormDeets({
+        ...formDeets,
+        jobApplicationQuestions: formDeets?.jobApplicationQuestions.filter(
+          (newquestion) => newquestion.slug !== questionSlug
+        ),
+      });
+    } else {
+      return;
+    }
+  };
+
+  // useEffect(() => {
+  //   console.log(formDeets.jobApplicationQuestions)
+  // }, [formDeets])
 
   function handleSubmit(e) {
-    // e.preventDefault();
+    e.preventDefault();
     submitJobPost({ clientMutationId: uuidv4(), ...formDeets })
-    .then(() => {
-      setSubmitted(true)
-    })
-    .catch(error => {
-      console.log(error); //fix
-    });
+      .then((res) => {
+        // console.log(res);
+        setSubmitted(true);
+      })
+      .catch((error) => {
+        // console.log(error); //fix
+      });
   }
 
+  // const getUTCDate = (dateString = Date.now()) => {
+  //   const date = new Date(dateString);
+
+  //   return new Date(
+  //     date.getUTCFullYear(),
+  //     date.getUTCMonth(),
+  //     date.getUTCDate(),
+  //     date.getUTCHours(),
+  //     date.getUTCMinutes(),
+  //     date.getUTCSeconds()
+  //   );
+  // };
+
+  // const utcDate = getUTCDate(formDeets.closeDate);
+  // console.log(utcDate);
+
   if (loadingViewer || !viewer) {
-    return <MySpinner />
+    return <MySpinner />;
   }
 
   return (
     <Flex justify="center" w="100%">
-
-      <form
-        id="settings-form"
-        onSubmit={handleSubmit}
-      >
-        <Stack spacing="6" justify="center" align="center" w={["xs", "md"]}>
-
+      <form id="settings-form" onSubmit={handleSubmit}>
+        <Stack spacing="6" justify="center" align="center" w={['xs', 'md']}>
           <AdminBlob title="Opportunity Information">
-
             <VStack width="full" spacing="6">
-
               <FormControl>
-                <FormLabel htmlFor="jobTitleSelect">Opportunity Title</FormLabel>
+                <FormLabel htmlFor="jobTitleSelect">
+                  Opportunity Title
+                </FormLabel>
                 <Input
                   disabled={submitLoading || submitted}
                   id="jobTitleSelect"
                   type="text"
                   value={formDeets.title}
-                  onChange={e =>
+                  onChange={(e) =>
                     setFormDeets({
                       ...formDeets,
                       title: e.target.value,
@@ -94,7 +164,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                   id="jobLocationSelect"
                   placeholder="Select Location"
                   value={formDeets.jobLocation}
-                  onChange={e =>
+                  onChange={(e) =>
                     setFormDeets({
                       ...formDeets,
                       jobLocation: e.target.value,
@@ -103,20 +173,20 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                 >
                   <StaticQuery
                     query={META_QUERY}
-                    render={data => {
+                    render={(data) => {
                       if (data.allWpJobLocation) {
-                        const locations = data.allWpJobLocation.nodes
+                        const locations = data.allWpJobLocation.nodes;
 
                         return (
                           <>
-                            {
-                              locations &&
+                            {locations &&
                               locations.map((item) => (
-                                <option key={item.id} value={item.name}>{item.name}</option>
-                              ))
-                            }
+                                <option key={item.id} value={item.name}>
+                                  {item.name}
+                                </option>
+                              ))}
                           </>
-                        )
+                        );
                       }
                     }}
                   />
@@ -131,7 +201,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                   id="jobTypeSelect"
                   placeholder="Select Job Type"
                   value={formDeets.jobType}
-                  onChange={e =>
+                  onChange={(e) =>
                     setFormDeets({
                       ...formDeets,
                       jobType: e.target.value,
@@ -140,20 +210,20 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                 >
                   <StaticQuery
                     query={META_QUERY}
-                    render={data => {
+                    render={(data) => {
                       if (data.allWpJobType) {
-                        const jobTypes = data.allWpJobType.nodes
+                        const jobTypes = data.allWpJobType.nodes;
 
                         return (
                           <>
-                            {
-                              jobTypes &&
+                            {jobTypes &&
                               jobTypes.map((item) => (
-                                <option key={item.id} value={item.name}>{item.name}</option>
-                              ))
-                            }
+                                <option key={item.id} value={item.name}>
+                                  {item.name}
+                                </option>
+                              ))}
                           </>
-                        )
+                        );
                       }
                     }}
                   />
@@ -168,7 +238,7 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                   id="jobSectorSelect"
                   placeholder="Select Sector"
                   value={formDeets.sector}
-                  onChange={e =>
+                  onChange={(e) =>
                     setFormDeets({
                       ...formDeets,
                       sector: e.target.value,
@@ -177,20 +247,20 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                 >
                   <StaticQuery
                     query={META_QUERY}
-                    render={data => {
+                    render={(data) => {
                       if (data.allWpSector) {
-                        const sectors = data.allWpSector.nodes
+                        const sectors = data.allWpSector.nodes;
 
                         return (
                           <>
-                            {
-                              sectors &&
+                            {sectors &&
                               sectors.map((item) => (
-                                <option key={item.id} value={item.name}>{item.name}</option>
-                              ))
-                            }
+                                <option key={item.id} value={item.name}>
+                                  {item.name}
+                                </option>
+                              ))}
                           </>
-                        )
+                        );
                       }
                     }}
                   />
@@ -205,30 +275,30 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                   id="salaryStructureSelect"
                   placeholder="Select Salary Structure"
                   value={formDeets.salaryStructures}
-                  onChange={e => {
+                  onChange={(e) => {
                     setFormDeets({
                       ...formDeets,
                       salaryStructures: e.target.value,
-                    })
+                    });
                     // setSalStructure(e.target.value)
-                  }
-                  }
+                  }}
                 >
                   <StaticQuery
                     query={META_QUERY}
-                    render={data => {
+                    render={(data) => {
                       if (data.allWpSalaryStructure) {
-                        const salaryStructures = data.allWpSalaryStructure.nodes
+                        const salaryStructures =
+                          data.allWpSalaryStructure.nodes;
                         return (
                           <>
-                            {
-                              salaryStructures &&
+                            {salaryStructures &&
                               salaryStructures.map((item) => (
-                                <option key={item.id} value={item.name}>{item.name}</option>
-                              ))
-                            }
+                                <option key={item.id} value={item.name}>
+                                  {item.name}
+                                </option>
+                              ))}
                           </>
-                        )
+                        );
                       }
                     }}
                   />
@@ -240,95 +310,101 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                 <InputGroup>
                   <InputLeftAddon children="£" />
                   <Input
-                  disabled={submitLoading || submitted}
-                  id="jobSalarySelect"
-                    type="text"
+                    disabled={submitLoading || submitted}
+                    id="jobSalarySelect"
+                    type="number"
                     value={formDeets.salary}
-                    onChange={e =>
+                    onChange={(e) =>
                       setFormDeets({
                         ...formDeets,
                         salary: e.target.value,
                       })
                     }
                   />
-                  <InputRightAddon children={`/ ${formDeets.salaryStructures?.toLocaleLowerCase() || ''}`} />
+                  <InputRightAddon
+                    children={`/ ${
+                      formDeets.salaryStructures?.toLocaleLowerCase() || ''
+                    }`}
+                  />
                 </InputGroup>
                 <FormHelperText>
                   Please do not use commas (e.g. 2000)
                 </FormHelperText>
               </FormControl>
-
             </VStack>
           </AdminBlob>
 
           <AdminBlob>
-          <Flex
-            justify="flex-start"
-            align="center"
-            wrap="wrap"
-            mt="2"
-            justifyContent="center"
-          >
-            <StaticQuery
-              query={META_QUERY}
-              render={data => {
-                if (data.allWpSkill) {
-                  const skills = data.allWpSkill.nodes
+            <Flex
+              justify="flex-start"
+              align="center"
+              wrap="wrap"
+              mt="2"
+              justifyContent="center"
+            >
+              <StaticQuery
+                query={META_QUERY}
+                render={(data) => {
+                  if (data.allWpSkill) {
+                    const skills = data.allWpSkill.nodes;
                     return (
                       <Box w="100%" align="flex-start">
-                        <Text fontWeight="700" >Skills</Text>
-                        <Text fontSize="xs">Select a maximum of three skills that are required for this opportunity.</Text>
-                          <Flex wrap="wrap" justify="center" mt="6">
-                            {  
-                              skills && (
-                                skills.map(skill => (
-                                  <Button
-                                    disabled={submitLoading || submitted}
-                                    key={skill.id}
-                                    as="span"
-                                    cursor="pointer"
-                                    user-select="none"
-                                    bg={selectedSkills.includes(skill.name) ? "dBlue.200" : "gray.300"}
-                                    color="gray.700"
-                                    textAlign="center"
-                                    mr="1"
-                                    mb="2"
-                                    rounded="full"
-                                    px={3}
-                                    py={2}
-                                    fontSize="xs"
-                                    fontWeight="bold"
-                                    // bg={active ? "red.700" : "gray.50"}
-                                    // _active={active === skill}
-                                    onClick={() => handleSkillClick(skill.name)}
-                                  >
-                                    {skill.name}
-                                  </Button>
-                                ))
-                              )
-                            }
-                          </Flex>
+                        <Text fontWeight="700">Skills</Text>
+                        <Text fontSize="xs">
+                          Select a maximum of three skills that are required for
+                          this opportunity.
+                        </Text>
+                        <Flex wrap="wrap" justify="center" mt="6">
+                          {skills &&
+                            skills.map((skill) => (
+                              <Button
+                                disabled={submitLoading || submitted}
+                                key={skill.id}
+                                as="span"
+                                cursor="pointer"
+                                user-select="none"
+                                bg={
+                                  selectedSkills.includes(skill.name)
+                                    ? 'dBlue.200'
+                                    : 'gray.300'
+                                }
+                                color="gray.700"
+                                textAlign="center"
+                                mr="1"
+                                mb="2"
+                                rounded="full"
+                                px={3}
+                                py={2}
+                                fontSize="xs"
+                                fontWeight="bold"
+                                // bg={active ? "red.700" : "gray.50"}
+                                // _active={active === skill}
+                                onClick={() => handleSkillClick(skill.name)}
+                              >
+                                {skill.name}
+                              </Button>
+                            ))}
+                        </Flex>
                       </Box>
-                      
-                    )
+                    );
                   }
                 }}
               />
-          </Flex>
+            </Flex>
           </AdminBlob>
 
           <AdminBlob title="Company Info">
-
             <VStack width="full" spacing="6">
-
               <FormControl isRequired>
-                <FormLabel htmlFor="jobSalarySelect">Organisation Name</FormLabel>
+                <FormLabel htmlFor="jobSalarySelect">
+                  Organisation Name
+                </FormLabel>
                 <Input
                   disabled={submitLoading || submitted}
                   id="jobSalarySelect"
                   type="text"
                   value={formDeets.companyName}
-                  onChange={e =>
+                  onChange={(e) =>
                     setFormDeets({
                       ...formDeets,
                       companyName: e.target.value,
@@ -338,20 +414,22 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               </FormControl>
 
               <FormControl isRequired>
-                <FormLabel htmlFor="jobContentSelect">Organisation Bio</FormLabel>
+                <FormLabel htmlFor="jobContentSelect">
+                  Organisation Bio
+                </FormLabel>
                 <Textarea
                   disabled={submitLoading || submitted}
                   htmlFor="jobContentSelect"
                   rows={5}
                   value={formDeets.companyBio}
-                  onChange={e =>
+                  onChange={(e) =>
                     setFormDeets({
                       ...formDeets,
                       companyBio: e.target.value,
                     })
                   }
                 />
-                  {/* {formDeets.companyBio} */}
+                {/* {formDeets.companyBio} */}
                 {/* </Textarea> */}
                 <FormHelperText>
                   Brief description for your organisation's account.
@@ -376,19 +454,18 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
                   </Text>
                 </Box>
               </Stack> */}
-
             </VStack>
           </AdminBlob>
 
           <AdminBlob title="Opportunity Description">
-            <FormControl >
+            <FormControl>
               <Textarea
                 disabled={submitLoading || submitted}
                 id="jobDescription Input"
                 type="text"
                 rows={15}
                 value={formDeets.content}
-                onChange={e =>
+                onChange={(e) =>
                   setFormDeets({
                     ...formDeets,
                     content: e.target.value,
@@ -402,27 +479,32 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
               </FormHelperText>
             </FormControl>
 
-            <FormControl isRequired>
+            {/* <FormControl isRequired>
               <FormLabel htmlFor="applicationLink">Application Link</FormLabel>
               <InputGroup>
-                  <InputLeftAddon children="https://" />
-                  <Input
-                    disabled={submitLoading || submitted}
-                    htmlFor="applicationLink" 
-                    type="text" 
-                    value={formDeets.applicationLink} 
-                    onChange={(e) => setFormDeets({ ...formDeets, applicationLink: e.target.value })} 
-                  />
-                </InputGroup>
-            </FormControl>
+                <InputLeftAddon children="https://" />
+                <Input
+                  disabled={submitLoading || submitted}
+                  htmlFor="applicationLink"
+                  type="text"
+                  value={formDeets.applicationLink}
+                  onChange={(e) =>
+                    setFormDeets({
+                      ...formDeets,
+                      applicationLink: e.target.value,
+                    })
+                  }
+                />
+              </InputGroup>
+            </FormControl> */}
 
             <FormControl isRequired>
               <FormLabel htmlFor="closeDateInput">Close Date</FormLabel>
               <Input
                 disabled={submitLoading || submitted}
                 value={formDeets.closeDate}
-                placeholder="Day, dd, mm"
-                onChange={e =>
+                placeholder="dd/mm/yy"
+                onChange={(e) =>
                   setFormDeets({
                     ...formDeets,
                     closeDate: e.target.value,
@@ -433,87 +515,160 @@ export const JobPostForm = ({formType, formDeets, setFormDeets, id}) => {
             {/* <FormControl isRequired>
               <FormLabel htmlFor="closeDateInput">Close Date</FormLabel>
               <DatePicker 
-                selected={closeDate} 
+              showTimeSelect={false}
+                selected={utcDate} 
                 isClearable={true} 
-                value={closeDate}
-                onChange={e =>
+                // value={formDeets.closeDate}
+                onChange={date =>
                   setFormDeets({
                     ...formDeets,
-                    closeDate: e.target.value,
+                    closeDate: date,
                   })
                 }
               />
             </FormControl> */}
           </AdminBlob>
 
-          {
-            formType === 'update' && (
-              <FieldGroup>
-                <DangerZone id={id} />
-              </FieldGroup>
-            )
-          }
+          <AdminBlob title="Select Questions">
+            <Box maxW="xl" mx="auto" width="full" px={{ base: '6', md: '8' }}>
+              <Text fontSize="lg" mb="2" fontWeight="extrabold">
+                Select up to 3 addition questions to ask applicants:
+              </Text>
+              <Text fontSize="sm" mb="8">
+                At 2-3 Degrees we do not ask our young people to upload a CV.
+                Along with the questions you select, you will also recieve the
+                applicants Name, email, education and work experience.
+              </Text>
 
-          {
-            formType === 'create' ? (
-              <Button
-                isLoading={submitLoading}
-                loadingText="Submitting"
-                alignSelf="flex-end"
-                type="submit"
-                color="gray.50"
-                bg={"dBlue.300"}
-                _hover={{bg:"dBlue.200"}}
-                disabled={submitLoading || submitted}
-              >
-                Submit Opportunity
-              </Button >
-            ) : (
-              <Button
-                isLoading={submitLoading}
-                loadingText="Updating"
-                alignSelf="flex-end"
-                type="submit"
-                color="gray.50"
-                bg="dBlue.300"
-                _hover={{bg:"dBlue.200"}}
-                disabled={submitLoading || submitted}
-              >
-                Update Opportunity
-              </Button >
-            )
-          }
-          {
-            submitErrors && (
-              <MyError error={submitErrors}/>
-            )
-          }
-          {
-            submitted && (
-              <Box w="100%" bg="dYellow.300" p="1">
-                  <Box p="4">
-                    <Text fontSize="lg" fontWeight="bold">
-                      Yeaaahhh, you've done it!
-                    </Text>
-                    <Text>
-                      Just need to wait for 2-3 Degrees to approve it, then then your post will go live.
-                    </Text>
-                  </Box>
-                  <Box p="2" bg="gray.50" textAlign="end">
-                    <UnderlineLink link={`/maker/jobs`}>Check out your opportunities</UnderlineLink>
-                  </Box>
+              <StaticQuery
+                query={META_QUERY}
+                render={(data) => {
+                  if (data.allWpJobApplicationQuestion) {
+                    const questions = data.allWpJobApplicationQuestion.nodes;
+                    console.log(selectedQuestions);
+                    console.log(questions);
+                    return (
+                      <Stack spacing="5" justify="flex-start">
+                        {questions &&
+                          questions.map((question) => {
+                            console.log(question.slug);
+                            return (
+                              <>
+                                <HStack
+                                  key={question.slug}
+                                  spacing="4"
+                                  border="2px solid"
+                                  borderColor={
+                                    selectedQuestions.includes(question.slug)
+                                      ? 'blue.500'
+                                      : 'gray.300'
+                                  }
+                                  rounded="md"
+                                  p="4"
+                                  cursor="pointer"
+                                  onClick={() =>
+                                    handleQuestionClick(question.slug)
+                                  }
+                                >
+                                  <Box
+                                    data-checked={
+                                      selectedQuestions.includes(question.slug)
+                                        ? ''
+                                        : undefined
+                                    }
+                                    fontSize="2xl"
+                                    color={
+                                      selectedQuestions.includes(question.slug)
+                                        ? 'blue.500'
+                                        : 'gray.300'
+                                    }
+                                  >
+                                    {selectedQuestions.includes(
+                                      question.slug
+                                    ) ? (
+                                      <MdCheckBox />
+                                    ) : (
+                                      <MdCheckBoxOutlineBlank />
+                                    )}
+                                  </Box>
+                                  <Box flex="1">
+                                    <Text fontWeight="bold">
+                                      {question.name}
+                                    </Text>
+                                  </Box>
+                                </HStack>
+                              </>
+                            );
+                          })}
+                      </Stack>
+                    );
+                  }
+                }}
+              />
+            </Box>
+          </AdminBlob>
+
+          {formType === 'update' && (
+            <FieldGroup>
+              <DangerZone id={id} />
+            </FieldGroup>
+          )}
+
+          {formType === 'create' ? (
+            <Button
+              isLoading={submitLoading}
+              loadingText="Submitting"
+              alignSelf="flex-end"
+              type="submit"
+              color="gray.50"
+              bg={'dBlue.300'}
+              _hover={{ bg: 'dBlue.200' }}
+              disabled={submitLoading || submitted}
+            >
+              Submit Opportunity
+            </Button>
+          ) : (
+            <Button
+              isLoading={submitLoading}
+              loadingText="Updating"
+              alignSelf="flex-end"
+              type="submit"
+              color="gray.50"
+              bg="dBlue.300"
+              _hover={{ bg: 'dBlue.200' }}
+              disabled={submitLoading || submitted}
+            >
+              Update Opportunity
+            </Button>
+          )}
+          {submitErrors && <MyError error={submitErrors} />}
+          {submitted && (
+            <Box w="100%" bg="dYellow.300" p="1">
+              <Box p="4">
+                <Text fontSize="lg" fontWeight="bold">
+                  Yeaaahhh, you've done it!
+                </Text>
+                <Text>
+                  Just need to wait for 2-3 Degrees to approve it, then then
+                  your post will go live.
+                </Text>
               </Box>
-            )
-          }
+              <Box p="2" bg="gray.50" textAlign="end">
+                <UnderlineLink link={`/maker/jobs`}>
+                  Check out your opportunities
+                </UnderlineLink>
+              </Box>
+            </Box>
+          )}
         </Stack>
       </form>
     </Flex>
-  )
-}
+  );
+};
 
 const META_QUERY = graphql`
-	query MetaQuery {
-		allWpJobLocation {
+  query MetaQuery {
+    allWpJobLocation {
       nodes {
         name
         id
@@ -543,6 +698,12 @@ const META_QUERY = graphql`
         id
       }
     }
-	}
-`
-
+    allWpJobApplicationQuestion {
+      nodes {
+        name
+        id
+        slug
+      }
+    }
+  }
+`;

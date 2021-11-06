@@ -1,9 +1,10 @@
-import React from "react"
-import { Router } from "@reach/router"
+import React from 'react';
+import { Router } from '@reach/router';
 
-import { ConnectJobs } from '../../components/connect-platform/ConnectJobsBoard'
-import { ConnectPlatform } from '../../components/connect-platform'
-import PrivateRoute from "../../components/PrivateRoute"
+import { ConnectJobs } from '../../components/connect-platform/ConnectJobsBoard';
+import { ConnectPlatform } from '../../components/connect-platform';
+import PrivateRoute from '../../components/PrivateRoute';
+// import { ConnectResources } from '../../components/connect-platform/resources';
 
 const NotFound = () => {
   if (typeof window !== 'undefined') {
@@ -11,9 +12,8 @@ const NotFound = () => {
   }
 
   return null;
-}
+};
 const ConnectPlatformPage = () => {
-
   // Hello {name}
   // User (maker) Profile Reminder + button
   // Maker: Post job button
@@ -24,12 +24,13 @@ const ConnectPlatformPage = () => {
   return (
     <>
       <Router basepath="/connect">
-        <PrivateRoute path="/platform" component={ ConnectPlatform } />
-        <ConnectJobs path="/jobs" component={ ConnectJobs } />
+        <PrivateRoute path="/platform" component={ConnectPlatform} />
+        <ConnectJobs path="/jobs" component={ConnectJobs} />
+        {/* <ConnectResources path="/resources" component={ConnectResources} /> */}
         <NotFound default />
       </Router>
     </>
-  )
-}
+  );
+};
 
-export default ConnectPlatformPage
+export default ConnectPlatformPage;

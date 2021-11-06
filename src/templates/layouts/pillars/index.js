@@ -148,7 +148,7 @@ export const Pillars = ({ title, pillars, bgCol, bgPatternCol, textColour }) => 
 
 		<Flex as="section" align="center" justify="center" p={{ base: '4', md: '8' }}  direction="column" className="pillars" bg={bgCol} pos="relative" minH="75vh">
 			
-			<Heading textAlign="center" color={textColour} size="4xl" mt={{ base: '8', sm: '10' }} zIndex="10">{title}</Heading>
+			<Heading textAlign="center" color={textColour} size="3xl" mt={{ base: '8', sm: '10' }} zIndex="10">{title}</Heading>
 			<SimpleGrid 
 				columns={{ md: 1, lg: 3 }} 
 				spacing={{ base: '8', md: '12', lg: '8' }} 

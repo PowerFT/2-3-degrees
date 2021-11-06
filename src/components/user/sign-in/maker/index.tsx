@@ -10,10 +10,10 @@ import * as React from 'react'
 import { SigninForm } from '../SigninForm'
 import { UnderlineLink } from '../../UnderlineLink'
 import { navigate } from 'gatsby'
-import { useAuthContext } from '../../../../context';
+import { useAuth } from '../../../../hooks'
 
 export const SignIn = () => {
-  const { isloggedin } = useAuthContext();
+  const { isloggedin } = useAuth();
   if(isloggedin) navigate("/connect/platform?user=maker")
 
   return (
@@ -34,7 +34,7 @@ export const SignIn = () => {
               Need an account? <UnderlineLink link='/maker/sign-up'>Sign up here</UnderlineLink>
             </Text>
           </Box>
-          <SigninForm user="maker" />
+          <SigninForm />
 
           <Box textAlign="center" mt={{ base: '3', md: '2' }}>
             <Text mt="3" color={mode('gray.600', 'gray.400')} fontWeight="medium">

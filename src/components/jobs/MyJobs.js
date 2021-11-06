@@ -1,64 +1,59 @@
 /**
-* External dependencies
-*/
-import React, { useState } from 'react'
-import { Flex } from '@chakra-ui/layout'
+ * External dependencies
+ */
+import React, { useState } from 'react';
+import { Flex } from '@chakra-ui/layout';
 /**
-* External dependencies
-*/
+ * External dependencies
+ */
 // import { useAuth } from '../../hooks'
-import { JobsList } from './my-jobs-list'
-import { MySpinner } from '../waiting/MySpinner'
-import { InnerSidebar } from '../layout/InnerSidebar'
-import { Header } from '../layout/Header'
-import { Content } from '../layout/Content'
-import { Accordion, AccordionButton, AccordionItem, AccordionPanel, Box, SimpleGrid, Text } from '@chakra-ui/react'
-import { AddIcon, MinusIcon } from '@chakra-ui/icons'
-import { MyPublishedJobsList } from './my-jobs-list/MyPublishedJobs'
-import { MyDraftJobsList } from './my-jobs-list/MyDraftJobs'
+import { MySpinner } from '../waiting/MySpinner';
+import { Header } from '../layout/Header';
+import { Content } from '../layout/Content';
+import { SimpleGrid } from '@chakra-ui/react';
+import { MyPublishedJobsList } from './my-jobs-list/MyPublishedJobs';
+import { MyDraftJobsList } from './my-jobs-list/MyDraftJobs';
+import { MyError } from '../waiting/MyError';
 
 const MyJobs = () => {
- 
-	// const [statusSelected, setStatusSelected] = useState('PUBLISH')
-	const [loading, setLoading] = useState(false)
-	const [error, setError] = useState(null)
+  // const [statusSelected, setStatusSelected] = useState('PUBLISH')
+  // const [loading, setLoading] = useState(false)
+  // const [error, setError] = useState(null)
 
-	const pagetype = "myjobs"
+  // if (loading) return <MySpinner />;
+  // if (error) return <MyError error={error}/>;
 
-	if (loading) return <MySpinner />;
-	if (error) return `Error! ${error}`;
- 
-	return (
-		<>
-			<Header
+  return (
+    <>
+      <Header
         title="My Opportunities"
         subTitle="Edit, view your opportunity posts"
-        pagetype={pagetype}
+        pagetype="myjobs"
       />
-			<Flex w="100%">
-				{/* <InnerSidebar
+      <Flex w="100%">
+        {/* <InnerSidebar
 					pagetype={pagetype}
 					// setStatusSelected={setStatusSelected}
 				/>	 */}
-				<Content>
-					<SimpleGrid
-						columns={{
-							sm: 1,
-							md: 2,
-							// lg: 3
-						}}
-						spacing={{
-							// sm: 6,
-							md: 6,
-							lg: 12
-						}}
-						p="4"
-					>
-						<MyPublishedJobsList />
-						<MyDraftJobsList />
-					</SimpleGrid>
+        <Content>
+          <SimpleGrid
+            columns={{
+              sm: 1,
+              md: 2,
+              // lg: 3
+            }}
+            spacing={{
+              // sm: 6,
+              md: 6,
+              lg: 12,
+            }}
+            p="4"
+          >
+            <MyPublishedJobsList />
+            <MyDraftJobsList />
+          </SimpleGrid>
 
-					{/*<Box w="100%" p="2" bg="gray.300" display={{lg:"none"}}>
+          {/*<Box w="100%" p="2" bg="gray.300" display={{lg:"none"}}>
 						 <Accordion allowMultiple mt="2" maxW={{base:"xs",sm:"sm"}} mx="auto">
 								<AccordionItem>
 									{({ isExpanded }) => (
@@ -115,12 +110,12 @@ const MyJobs = () => {
 							</Accordion>
 					</Box> */}
 
-					{/* <Box p="6"><Text fontSize="lg">{statusSelected === "DRAFT" ? "Opportunities: Pending" : "Opportunities: Published"}</Text></Box> */}
-					{/* <JobsList setError={setError} setLoading={setLoading} statusSelected={statusSelected} /> */}
-				</Content>
-			</Flex>
-		</>
-	);
-}
+          {/* <Box p="6"><Text fontSize="lg">{statusSelected === "DRAFT" ? "Opportunities: Pending" : "Opportunities: Published"}</Text></Box> */}
+          {/* <JobsList setError={setError} setLoading={setLoading} statusSelected={statusSelected} /> */}
+        </Content>
+      </Flex>
+    </>
+  );
+};
 
-export default MyJobs
+export default MyJobs;

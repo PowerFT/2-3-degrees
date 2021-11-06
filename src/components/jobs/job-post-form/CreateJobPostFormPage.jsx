@@ -12,14 +12,16 @@ import { useAuth } from '../../../hooks'
 import { Header } from '../../layout/Header'
 import { Content } from '../../layout/Content'
 import { InnerSidebar } from '../../layout/InnerSidebar'
+// import { useFileUpload } from '../../../hooks/use-file-upload'
 // import { MySpinner } from '../../waiting/MySpinner'
 
 export const CreateJobPostFormPage = () => {
+  console.log('create form')
 
   const formType = 'create'
 
-  const [ formDeets, setFormDeets ] = useState({skills: []})
-  const [salStructure, setSalStructure] = useState('Year')
+  const [ formDeets, setFormDeets ] = useState({skills: [], jobApplicationQuestions: []})
+  // const [salStructure, setSalStructure] = useState('Month')
 
   const { viewer, loadingViewer } = useAuth()
 
@@ -30,6 +32,8 @@ export const CreateJobPostFormPage = () => {
       setFormDeets({...formDeets, companyName: viewer.nickname, companyBio: viewer.description, category: "Job Post"})
     }
   }, [viewer, loadingViewer])
+
+  // const { FileUploadInput } = useFileUpload()
 
   return (
     <>

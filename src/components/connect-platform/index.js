@@ -1,15 +1,16 @@
-import * as React from 'react'
-import { Stack } from '@chakra-ui/react'
+import * as React from 'react';
+import { Stack } from '@chakra-ui/react';
 import { navigate, useLocation } from '@reach/router';
 import queryString from 'query-string';
 
-import { MySpinner } from '../waiting/MySpinner'
-import { useAuth } from '../../hooks'
-import { AccountProgress } from './AccountProgress'
-import { ConnectJobsTagsBlock } from './ConnectJobTagsBlock'
-import { ConnectBlogBlock } from './ConnectBlogBlock'
-import { ConnectHero } from './ConnectHero'
-import { Features } from './Features'
+import { MySpinner } from '../waiting/MySpinner';
+import { useAuth } from '../../hooks';
+import { AccountProgress } from './AccountProgress';
+import { ConnectJobsTagsBlock } from './ConnectJobTagsBlock';
+import { ConnectBlogBlock } from './ConnectBlogBlock';
+import { ConnectHero } from './ConnectHero';
+import { Features } from './Features';
+import { ConnectDownloads } from './ConnectDownload';
 
 const getUser = (query) => {
   const fallback = '';
@@ -29,59 +30,69 @@ const getUser = (query) => {
 };
 
 export const ConnectPlatform = () => {
-
   const location = useLocation();
   const user = location.search ? getUser(location.search) : null;
 
   //console.log("user: ", user)
 
-  const { viewer, loadingViewer } = useAuth()
+  const { viewer, loadingViewer } = useAuth();
 
   if (loadingViewer || !viewer) {
-    return (
-      <MySpinner />
-    )
+    return <MySpinner />;
   }
 
-  if(!viewer) (navigate('/'))
+  if (!viewer) navigate('/');
 
-  const userType = user || viewer.roles.nodes[0].name
+  const userType = user || viewer.roles.nodes[0].name;
 
   const users = {
     maker: {
-      inputs: [viewer.firstName, viewer.lastName, viewer.nickname, viewer.description, viewer.url],
+      inputs: [
+        viewer.firstName,
+        viewer.lastName,
+        viewer.nickname,
+        viewer.description,
+        viewer.url,
+      ],
       limit: 5,
-      completed: [viewer.firstName, viewer.lastName, viewer.nickname, viewer.description, viewer.url].filter(input => input).length
+      completed: [
+        viewer.firstName,
+        viewer.lastName,
+        viewer.nickname,
+        viewer.description,
+        viewer.url,
+      ].filter((input) => input).length,
     },
     talent: {
-      inputs: [viewer.firstName, viewer.lastName],
-      limit: 2,
-      completed: [viewer.firstName, viewer.lastName].filter(input => input).length
-    }
-  } //change
+      inputs: [viewer.firstName, viewer.lastName, viewer.dob, viewer.postcode],
+      limit: 4,
+      completed: [
+        viewer.firstName,
+        viewer.lastName,
+        viewer.dob,
+        viewer.postcode,
+      ].filter((input) => input).length,
+    },
+  }; //change
 
-  const limit = users[userType]?.limit
-  const completed = users[userType]?.completed
-  const complete = Boolean(limit === completed)
+  const limit = users[userType]?.limit;
+  const completed = users[userType]?.completed;
+  const complete = Boolean(limit === completed);
 
   //console.log(limit, completed, complete)
 
   return (
     <Stack as="section" h="full" spacing="0" pb="6" align="center">
-
       <AccountProgress
         limit={limit}
         completed={completed}
         complete={complete}
         user={userType}
       />
-      
-      <ConnectHero
-        user={userType}
-        marginTop="0 !important"
-      />
 
-      <Features 
+      <ConnectHero user={userType} marginTop="0 !important" />
+
+      <Features
         complete={complete}
         user={userType}
         limit={limit}
@@ -90,10 +101,9 @@ export const ConnectPlatform = () => {
 
       <ConnectJobsTagsBlock />
 
-      <ConnectBlogBlock
-        user={userType} 
-      />
+      <ConnectDownloads />
 
+      <ConnectBlogBlock user={userType} />
     </Stack>
-  )
-}
+  );
+};

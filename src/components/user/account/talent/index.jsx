@@ -1,206 +1,160 @@
 /**
-* External dependencies
-*/
-import { Alert, AlertIcon, Button, Flex, FormControl, FormHelperText, FormLabel, HStack, Input, InputGroup, InputLeftAddon, Stack, Textarea, VStack, } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+ * External dependencies
+ */
+import { Alert, AlertIcon, Flex, HStack, VStack, Text } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import { useQuery, gql } from '@apollo/client';
 /**
-* Internal dependencies
-*/
-import { ChangeModal } from '../changeModal'
-import { DangerZone } from '../DangerZone'
-import { MySpinner } from '../../../waiting/MySpinner'
-// import { MyError } from '../../waiting/MyError'
-import { useUpdateUser, useAuth } from '../../../../hooks'
-import { AdminBlob } from '../../../AdminBlob'
-import { MyError } from '../../../waiting/MyError'
-import { InnerSidebar } from '../../../layout/InnerSidebar'
-import { Content } from '../../../layout/Content'
-import { Header } from '../../../layout/Header'
+ * Internal dependencies
+ */
+import { ChangeModal } from '../changeModal';
+import { DangerZone } from '../DangerZone';
+import { MySpinner } from '../../../waiting/MySpinner';
+import { AdminBlob } from '../../../AdminBlob';
+import { InnerSidebar } from '../../../layout/InnerSidebar';
+import { Content } from '../../../layout/Content';
+import { Header } from '../../../layout/Header';
+import { AccountDeets } from './AccountDeets';
+import { TalentEducationDeets } from './TalentEducationDeets';
+import { TalentWorkDeets } from './TalentWorkDeets';
+import { useAuth } from '../../../../hooks';
+// import { useTalentViewerQuery } from '../../../../hooks/queries/use-viewer-talent-query';
+
+const CHECK_PROFILE_EXISTS = gql`
+  query CheckProfileId {
+    viewer {
+      talentProfiles {
+        nodes {
+          id
+        }
+      }
+    }
+  }
+`;
 
 export const TalentAccountSettings = () => {
   // const { FileUploadInput } = useFileUpload()
 
-  const pagetype = "admin"
-  const { viewer, loadingViewer, refetchViewer } = useAuth()
+  const pagetype = 'admin';
+
+  const [accountCompleted, setAccountCompleted] = useState(false);
+  const [educationCompleted, setEducationCompleted] = useState(false);
+  const [workCompleted, setWorkCompleted] = useState(false);
+
+  //Change Email or Password
   const [newEmail, setNewEmail] = useState('');
   const [passwordChanged, setPasswordChanged] = useState(false);
-  const [profileUpdated, setProfileUpdated] = useState(false);
-  const [completed, setCompleted] = useState(false)
 
-  const initialTalent = {
-    id: '',
-    firstName: '',
-    lastName: '',
-  }
-  const [accountDeets, setAccountDeets] = useState(initialTalent)
+  //check talent profile exists
+  const [talentProfileId, setTalentProfileId] = useState(false);
+  const { data, loading, error } = useQuery(CHECK_PROFILE_EXISTS);
 
-  const { updateUser, error, status } = useUpdateUser()
-
-  const handleSubmit = () => {
-    updateUser(accountDeets)
-    .then(() => {
-      refetchViewer()
-      setProfileUpdated(true)
-    })
-  }
+  // const {
+  //   data: talentData,
+  //   loading: loadingTalent,
+  //   refetch: refetchTalent,
+  // } = useTalentViewerQuery();
 
   useEffect(() => {
-    if (viewer && !loadingViewer) {
-      const accountInputs = [viewer.firstName, viewer.lastName]
-      const completed = accountInputs.every((input) => input)
-      if(completed) setCompleted(true)
-      if(viewer.roles.nodes[0].name === 'talent') {
-        setAccountDeets({
-          ...accountDeets,
-          id: viewer.id,
-          firstName: viewer.firstName,
-          lastName: viewer.lastName,
-        })
-      } else {
-        setAccountDeets({
-          ...accountDeets,
-          id: viewer.id,
-          firstName: viewer.firstName,
-          lastName: viewer.lastName,
-          roles: ['talent'],
-        })
-      }
+    if (data) {
+      // console.log(data.viewer.talentProfiles.nodes[0]?.id);
+      setTalentProfileId(data.viewer.talentProfiles.nodes[0]?.id);
     }
-  }, [viewer, loadingViewer])
+  }, [data, loading]);
 
   // useEffect(() => {
-  //   let isCancelled = false;
-
-  //   simulateSlowNetworkRequest().then(() => {
-  //     if (!isCancelled) {
-  //       setText("done!");
-  //     }
-  //   });
-
-  //   return () => {
-  //     isCancelled = true;
-  //   };
+  //   refetchTalent();
+  //   console.log(talentData, 'refetchedddddddd');
   // }, []);
 
-  
-  // if (error) return <MyError error={error} />
+  const { viewer, loadingViewer } = useAuth();
 
-  //account data complete check
-  // const accountInputs = [viewer.firstName, viewer.lastName, viewer.nickname, viewer.description, viewer.url]
-  // const completed = accountInputs.every((input) => input)
+  const [accountDeets, setAccountDeets] = useState({ roles: ['talent'] });
 
   return (
     <>
-      <Header
-        title="Control your Account"
-        subTitle="Test Sub"
-        pagetype={pagetype}
-      />
-      
+      <Header title="Your Account" pagetype={pagetype} />
+
       <Flex w="100%">
         <InnerSidebar
           title="Test"
-          primaryLinks={[["Connect Platform", "/connect/platform"], ["Latest Opportunites", "/connect/jobs"]]}
-          secondaryLinks={[["Why we ask for account information", "#"], ["Terms and Conditions", "#"]]}
+          primaryLinks={[
+            ['Connect Platform', '/connect/platform'],
+            ['Latest Opportunites', '/connect/jobs'],
+          ]}
+          secondaryLinks={[
+            ['Why we ask for account information', '#'],
+            ['Terms and Conditions', '#'],
+          ]}
           pagetype={pagetype}
         />
 
-      {loadingViewer || !viewer ? (
-        <MySpinner />
-      ) : (
-        <Content
-          pagetype={pagetype}
-          py="12"
-        >
-          <form
-            id="accountForm"
-            onSubmit={(e) => {
-              e.preventDefault()
-              handleSubmit()
-            }}
-          >
+        <Content pagetype={pagetype} py="12">
+          <VStack spacing="6">
+            <AccountDeets
+              setAccountCompleted={setAccountCompleted}
+              accountDeets={accountDeets}
+              setAccountDeets={setAccountDeets}
+            />
+            {viewer && !loadingViewer ? (
+              <VStack spacing="4" mt="8">
+                <AdminBlob title="Change Login">
+                  <VStack width="full" spacing="6">
+                    {newEmail && (
+                      <Alert status="success">
+                        <AlertIcon />
+                        {`New email set: ${newEmail}`}
+                      </Alert>
+                    )}
+                    {passwordChanged && (
+                      <Alert status="success">
+                        <AlertIcon />
+                        Password successfully changed.
+                      </Alert>
+                    )}
 
-            <VStack spacing="4">
+                    <HStack width="full" spacing="6" justify="center">
+                      <ChangeModal
+                        setNewEmail={setNewEmail}
+                        title="Change Email"
+                        type="Email"
+                        accountDeets={accountDeets}
+                        curInput={viewer.email}
+                      />
+                      <ChangeModal
+                        setPasswordChanged={setPasswordChanged}
+                        title="Change Password"
+                        type="Password"
+                        accountDeets={accountDeets}
+                        curInput="*******"
+                      />
+                    </HStack>
+                  </VStack>
+                </AdminBlob>
 
-              {!completed && (
-                  <Alert status="info" w={["xs", "sm"]}>
-                    <AlertIcon />
-                      Complete your account to use all of the Connect Platforms features.
-                  </Alert>
-                )}
-
-              <AdminBlob title="Personal Info">
-
-                <Stack w="100%">
-                  <FormControl id="name">
-                    <FormLabel>First Name</FormLabel>
-                    <Input type="text" maxLength={100} value={accountDeets.firstName} onChange={(e) => setAccountDeets({ ...accountDeets, firstName: e.target.value })} />
-                  </FormControl>
-                  <FormControl id="name">
-                    <FormLabel>Last Name</FormLabel>
-                    <Input type="text" maxLength={100} value={accountDeets.lastName} onChange={(e) => setAccountDeets({ ...accountDeets, lastName: e.target.value })} />
-                  </FormControl>
-                </Stack>
-
-              </AdminBlob>
-
-              {profileUpdated && (
-                <Alert status="success">
-                  <AlertIcon />
-                  Account updated
-                </Alert>
-              )}
-
-              <Button
-                size="md"
-                w={["xs", "md"]}
-                colorScheme="green"
-                isLoading={status === 'resolving'}
-                loadingText="Updating"
-                type="submit"
-                // colorScheme={ status === 'resolved' ? 'green' : "blue"}
-                disabled={status === 'resolving'}
-              >
-                {status === 'resolving' ? "Updating" : "Update"}
-              </Button >
-
-            </VStack>
-
-          </form>
-          <VStack spacing="4" mt="8">
-            <AdminBlob title="Change Login">
-              <VStack width="full" spacing="6">
-
-                {newEmail && (
-                  <Alert status="success">
-                    <AlertIcon />
-                    {`New email set: ${newEmail}`}
-                  </Alert>
-                )}
-                {passwordChanged && (
-                  <Alert status="success">
-                    <AlertIcon />
-                    Password successfully changed.
-                  </Alert>
-                )}
-
-                <HStack width="full" spacing="6" justify="center">
-                  <ChangeModal setNewEmail={setNewEmail} title="Change Email" type="Email" accountDeets={accountDeets} curInput={viewer.email} />
-                  <ChangeModal setPasswordChanged={setPasswordChanged} title="Change Password" type="Password" accountDeets={accountDeets} curInput='*******' />
-                </HStack>
+                <AdminBlob title="Delete Account">
+                  <DangerZone userId={viewer.id} />
+                </AdminBlob>
               </VStack>
-            </AdminBlob>
+            ) : (
+              <MySpinner />
+            )}
 
-            <AdminBlob title="Delete Account">
-              <DangerZone userId={viewer.id} />
-            </AdminBlob>
+            {data && !loading && (
+              <>
+                <TalentEducationDeets
+                  setEducationCompleted={setEducationCompleted}
+                  talentProfileId={talentProfileId}
+                />
+                <TalentWorkDeets
+                  setWorkCompleted={setWorkCompleted}
+                  talentProfileId={talentProfileId}
+                />
+              </>
+            )}
           </VStack>
-
         </Content>
-      )}
       </Flex>
-
-</>
-
-  )
-}
+    </>
+  );
+};

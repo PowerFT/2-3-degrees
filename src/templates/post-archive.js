@@ -1,9 +1,10 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from 'react';
+import { Link, graphql } from 'gatsby';
 
-import { BlogGrid } from "../components/blog/BlogGrid"
-import { BlogCard } from "../components/blog/BlogCard"
-import { Header } from '../components/layout/Header'
+import { BlogGrid } from '../components/blog/BlogGrid';
+import { BlogCard } from '../components/blog/BlogCard';
+import { Header } from '../components/layout/Header';
+import { Content } from '../components/layout/Content';
 
 // import Bio from "../components/bio"
 // import Layout from "../components/layout"
@@ -13,9 +14,9 @@ const BlogIndex = ({
   data,
   pageContext: { nextPagePath, previousPagePath },
 }) => {
-  const posts = data.allWpPost.nodes
+  const posts = data.allWpPost.nodes;
 
-  const pagetype = "archive"
+  const pagetype = 'archive';
 
   if (!posts.length) {
     return (
@@ -27,7 +28,7 @@ const BlogIndex = ({
           appear here!
         </p>
       </>
-    )
+    );
   }
 
   return (
@@ -38,14 +39,15 @@ const BlogIndex = ({
       <Header
         title="Blog"
         subTitle="Latest posts from the 2-3 Degrees team"
-        pagetype={pagetype}
+        pagetype="admin"
       />
-
-      <BlogGrid>
-			  { posts?.map(post=> (<BlogCard postData={post} />)) }
-		  </BlogGrid>
-
-
+      <Content pb="10">
+        <BlogGrid isarchive>
+          {posts?.map((post, i) => (
+            <BlogCard postData={post} i={i} />
+          ))}
+        </BlogGrid>
+      </Content>
 
       {/* <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
@@ -81,15 +83,15 @@ const BlogIndex = ({
       )}
       {nextPagePath && <Link to={nextPagePath}>Next page</Link>}
     </>
-  )
-}
+  );
+};
 
-export default BlogIndex
+export default BlogIndex;
 
 export const archiveQuery = graphql`
   query WordPressPostArchive($offset: Int!, $postsPerPage: Int!) {
     allWpPost(
-      filter: {terms: {nodes: {elemMatch: {name: {nin: "Locked"}}}}}
+      filter: { terms: { nodes: { elemMatch: { name: { nin: "Connect" } } } } }
       sort: { fields: [date], order: DESC }
       limit: $postsPerPage
       skip: $offset
@@ -117,4 +119,4 @@ export const archiveQuery = graphql`
       }
     }
   }
-`
+`;

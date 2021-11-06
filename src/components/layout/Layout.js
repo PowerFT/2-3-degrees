@@ -62,7 +62,7 @@ export default function Layout({children}) {
           </Box>
         </Flex>
           
-          <MobileBottomBar isloggedin={isloggedin} zIndex="35"/>
+          <MobileBottomBar isloggedin={isloggedin}/>
           <CookieConsent
             location="bottom"
             buttonText="Accept"

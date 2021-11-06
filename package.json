@@ -42,7 +42,7 @@
     "gatsby-plugin-scroll-reveal": "^0.0.7",
     "gatsby-plugin-sharp": "^3.11.0",
     "gatsby-source-filesystem": "^3.11.0",
-    "gatsby-source-wordpress": "^5.14.1",
+    "gatsby-source-wordpress": "^5.14.2",
     "gatsby-transformer-sharp": "^3.11.0",
     "glob": "^7.1.7",
     "gsap": "^3.7.1",
@@ -55,6 +55,7 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
     "react-infinite-scroll-component": "^6.1.0",
+    "react-scroll": "^1.8.4",
     "string-strip-html": "^8.3.0",
     "uuid": "^3.4.0"
   }

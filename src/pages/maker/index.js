@@ -7,8 +7,6 @@ import { UpdateJobPostFormPage } from "../../components/jobs/job-post-form/Updat
 import { SignIn } from "../../components/user/sign-in/maker"
 import { SignUp } from "../../components/user/sign-up/maker"
 import PrivateRoute from "../../components/PrivateRoute"
-// import { Reset } from "../../components/user/reset/maker/Reset"
-// import { ResetPassword } from "../../components/user/reset/maker/ResetPassword"
 
 const NotFound = () => {
   if (typeof window !== 'undefined') {
@@ -24,13 +22,11 @@ const MakerApp = () => {
       <Router basepath="/maker">
         <PrivateRoute path="/account" user="maker" component={MakerAccountSettings} />
         <PrivateRoute path="/jobs" component={MyJobs} />
+        {/* <PrivateRoute path="/jobs/applications" component={Applications} /> */}
         <PrivateRoute path="/jobs/post" component={CreateJobPostFormPage} />
         <PrivateRoute path="/jobs/edit" component={UpdateJobPostFormPage} />
         <SignIn path="/sign-in" user="maker" component={SignIn} />
         <SignUp path="/sign-up" user="maker" component={SignUp} />
-        {/* <Reset path="/reset" user="maker" component={Reset}/> */}
-        {/* <ResetPassword path="/reset-password" user="maker" component={ResetPassword}/> */}
-        {/* <ResetPassword path="/reset-password" user="maker" component={ResetPassword}/> */}
         <NotFound default />
       </Router>
     </>

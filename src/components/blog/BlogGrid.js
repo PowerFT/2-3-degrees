@@ -10,7 +10,7 @@ import {
 import { Link } from 'gatsby'
 import { BsArrowRight } from 'react-icons/bs'
 
-export const BlogGrid = ({ children, archiveLink }) => {
+export const BlogGrid = ({ children, archiveLink, isarchive }) => {
 	return (
 		<Box
 			// bg={mode('gray.50', 'gray.800')}
@@ -45,7 +45,7 @@ export const BlogGrid = ({ children, archiveLink }) => {
 				>
 					{ children }
 				</SimpleGrid>
-				<LinkBox to={archiveLink} fontSize="xl" fontWeight="bold" color="gray.800" ml={{base:"2"}}>
+				<LinkBox to={archiveLink} display={isarchive ? 'none' : 'block'} fontSize="xl" fontWeight="bold" color="gray.800" ml={{base:"2"}}>
 					<LinkOverlay as={Link} to={archiveLink}><span>View all articles</span></LinkOverlay>
 					<Box as={BsArrowRight} display="inline-block" ms="2" />
 				</LinkBox>

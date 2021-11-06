@@ -1,68 +1,138 @@
-import React from 'react'
-import { Divider, Stack } from '@chakra-ui/layout'
-import { BsFillLightningFill, BsPlug } from 'react-icons/bs'
-import { MenuItem } from './MenuItem'
-import { PublicMenu } from './PublicMenu'
-import { MakerMenu } from './MakerMenu'
-import { TalentMenu } from './TalentMenu'
+import React from 'react';
+import { Box, Divider, Stack, Heading, HStack } from '@chakra-ui/layout';
+import { BsFillLightningFill, BsPlug } from 'react-icons/bs';
+import { MenuItem } from './MenuItem';
+import { PublicMenu } from './PublicMenu';
+import { MakerMenu } from './MakerMenu';
+import { TalentMenu } from './TalentMenu';
+import { useAuth } from '../../hooks';
+import Icon from '@chakra-ui/icon';
+import { FaSync, FaUserAlt } from 'react-icons/fa';
 
-export const NavMenus = ({menuopen, mobile, isloggedin, onclose}) => {
-	console.log("loggedin: ", isloggedin,typeof isloggedin)
+export const NavMenus = ({ menuopen, mobile, isloggedin, onclose }) => {
+  console.log('loggedin: ', isloggedin, typeof isloggedin);
 
-	const loggedin=isloggedin.toString()
-	 
-	return (
-			<Stack spacing="1">
-				{
-					loggedin === "false" ? (
-						<>
-							<MenuItem 
-								onclose={onclose}
-								menuopen={menuopen}
-								link="/maker/sign-in" 
-								label="Employer Login" 
-								icon={BsPlug}
-								mobile={mobile} 
-							/>
-							<MenuItem
-								onclose={onclose}
-								menuopen={menuopen} 
-								link="/talent/sign-in" 
-								label="Young Person Login" 
-								icon={BsPlug} 
-								mobile={mobile} 
-							/>
-						</>
-					) : (
-						<>
-							<MenuItem 
-								menuopen={menuopen} 
-								link="/connect/platform" 
-								label="Connect Platform" 
-								icon={BsFillLightningFill} 
-								isActive 
-								onclose={onclose}
-								mobile={mobile} 
-							/>
-							<MenuItem 
-								menuopen={menuopen} 
-								link="/connect/jobs" 
-								label="Opportunity Board" 
-								icon={BsFillLightningFill} 
-								isActive 
-								onclose={onclose}
-								mobile={mobile} 
-							/>
-						</>
-					)
-				}
-				<MakerMenu mobile={mobile}  onclose={onclose} menuopen={menuopen} />
-				<TalentMenu mobile={mobile}  onclose={onclose} menuopen={menuopen} />
+  const loggedin = isloggedin.toString();
 
-				{menuopen && <Divider borderColor="dOrange.100" />}
+  const { logout } = useAuth();
 
-				<PublicMenu mobile={mobile}  onclose={onclose} menuopen={menuopen} />
+  return (
+    <Stack spacing="1">
+      <MenuItem
+        onclose={onclose}
+        menuopen={menuopen}
+        link="/"
+        label="Home"
+        icon={BsPlug}
+        mobile={mobile}
+      />
+      {menuopen && <Divider borderColor="dOrange.100" />}
+      {loggedin === 'false' ? (
+        <>
+          <MenuItem
+            onclose={onclose}
+            menuopen={menuopen}
+            link="/maker/sign-in"
+            label="Employer Login"
+            icon={BsPlug}
+            mobile={mobile}
+          />
+          <MenuItem
+            onclose={onclose}
+            menuopen={menuopen}
+            link="/talent/sign-in"
+            label="Young Person Login"
+            icon={BsPlug}
+            mobile={mobile}
+          />
+        </>
+      ) : (
+        <>
+          <Box pt="2" pl="3" pb="1">
+            <Icon as={FaSync} h="25px" w="25px" color="gray.50" />
+          </Box>
 
-			</Stack>
-	)
-}
+          <MenuItem
+            menuopen={menuopen}
+            link="/connect/platform"
+            label="Connect Platform"
+            icon={BsFillLightningFill}
+            isActive
+            onclose={onclose}
+            mobile={mobile}
+          />
+          <MenuItem
+            menuopen={menuopen}
+            link="/connect/jobs"
+            label="Opportunity Board"
+            icon={BsFillLightningFill}
+            isActive
+            onclose={onclose}
+            mobile={mobile}
+          />
+          <MenuItem
+            menuopen={menuopen}
+            link="/connect/blog"
+            label="Resources"
+            icon={BsFillLightningFill}
+            isActive
+            onclose={onclose}
+            mobile={mobile}
+          />
+        </>
+      )}
+      {loggedin === 'true' && (
+        <>
+          {menuopen && <Divider borderColor="dOrange.100" />}
+
+          <Box pt="2" pl="3" pb="1">
+            <Icon as={FaUserAlt} h="25px" w="25px" color="gray.50" />
+          </Box>
+        </>
+      )}
+
+      <MakerMenu mobile={mobile} onclose={onclose} menuopen={menuopen} />
+      <TalentMenu mobile={mobile} onclose={onclose} menuopen={menuopen} />
+
+      {menuopen && <Divider borderColor="dOrange.100" />}
+
+      {loggedin === 'false' && (
+        <PublicMenu mobile={mobile} onclose={onclose} menuopen={menuopen} />
+      )}
+
+      {loggedin === 'true' && (
+        <Box
+          // onClick={onclose}
+          display="flex"
+          w="100%"
+          py="1"
+          px="3"
+          transition="all 0.2s"
+          fontWeight="700"
+          fontSize="lg"
+          justifyContent={menuopen ? 'flex-start' : 'center'}
+          // textTransform="uppercase"
+          // fontFamily="Big Shoulders Display"
+          userSelect="none"
+          color="gray.50"
+          cursor="pointer"
+          _hover={{ bg: 'whiteAlpha.400' }}
+          onClick={() => logout().then(onclose)}
+        >
+          <HStack w="full">
+            {/* <Icon as={BsFillLightningFill} fontSize="2xl" opacity={0.9} /> */}
+            {menuopen && (
+              <Heading
+                color="inherit"
+                size={mobile ? '2xl' : 'lg'}
+                fontSize={mobile ? '40px' : '28px'}
+              >
+                Logout
+              </Heading>
+            )}
+          </HStack>
+        </Box>
+      )}
+    </Stack>
+  );
+};

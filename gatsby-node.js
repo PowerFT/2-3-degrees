@@ -1,5 +1,5 @@
-const path = require(`path`)
-const chunk = require(`lodash/chunk`)
+const path = require(`path`);
+const chunk = require(`lodash/chunk`);
 
 /**
  * exports.createPages is a built-in Gatsby Node API.
@@ -7,53 +7,84 @@ const chunk = require(`lodash/chunk`)
  *
  * See https://www.gatsbyjs.com/docs/node-apis/#createPages for more info.
  */
-exports.createPages = async gatsbyUtilities => {
-
+exports.createPages = async (gatsbyUtilities) => {
   // const layoutsData = getAllLayoutsData()
 
-  const posts = await getPosts(gatsbyUtilities)
-  const jobPosts = await getJobPosts(gatsbyUtilities)
-  const pages = await getPages(gatsbyUtilities)
+  const posts = await getPosts(gatsbyUtilities);
+  const connectPosts = await getConnectPosts(gatsbyUtilities);
+  const jobPosts = await getJobPosts(gatsbyUtilities);
+  const applications = await getApplications(gatsbyUtilities);
+  const pages = await getPages(gatsbyUtilities);
 
   // if(!posts.length && !jobPosts.length && !pages.length) {
   //   return
   // }
 
   if (posts.length) {
-    await createPostPages({ posts, gatsbyUtilities })
-    await createPostArchive({ posts, gatsbyUtilities })
+    await createPostPages({ posts, gatsbyUtilities });
+    await createPostArchive({ posts, gatsbyUtilities });
+  }
+
+  if (connectPosts.length) {
+    await createConnectPostPages({ connectPosts, gatsbyUtilities });
+    await createConnectPostArchive({ connectPosts, gatsbyUtilities });
   }
 
   if (jobPosts.length) {
-    await createJobPostPages({ jobPosts, gatsbyUtilities })
+    await createJobPostPages({ jobPosts, gatsbyUtilities });
   }
 
-  if (pages?.length) {
-    await createPagePages({ pages, gatsbyUtilities })
+  if (applications.length) {
+    await createApplicationPages({ applications, gatsbyUtilities });
+    await createApplicationsArchive({ applications, gatsbyUtilities });
   }
 
-}
+  if (pages.length) {
+    await createPagePages({ pages, gatsbyUtilities });
+  }
+};
 
 const createPostPages = async ({ posts, gatsbyUtilities }) => {
- return Promise.all(
-   posts?.map(({ previous, post, next }) =>
-     gatsbyUtilities.actions.createPage({
-       path: `/blog${post.uri}`,
-       component: path.resolve(`./src/templates/post.js`),
-       context: {
-         // we need to add the post id here
-         // so our blog post template knows which blog post
-         // the current page is (when you open it in a browser)
-         id: post.id,
+  return Promise.all(
+    posts?.map(({ previous, post, next }) =>
+      gatsbyUtilities.actions.createPage({
+        path: `/blog${post.uri}`,
+        component: path.resolve(`./src/templates/post.js`),
+        context: {
+          // we need to add the post id here
+          // so our blog post template knows which blog post
+          // the current page is (when you open it in a browser)
+          id: post.id,
 
-         // We also use the next and previous id's to query them and add links!
-         previousPostId: previous ? previous.id : null,
-         nextPostId: next ? next.id : null,
-       },
-     })
-   )
- )
-}
+          // We also use the next and previous id's to query them and add links!
+          previousPostId: previous ? previous.id : null,
+          nextPostId: next ? next.id : null,
+        },
+      })
+    )
+  );
+};
+
+const createConnectPostPages = async ({ connectPosts, gatsbyUtilities }) => {
+  return Promise.all(
+    connectPosts?.map(({ previous, post, next }) =>
+      gatsbyUtilities.actions.createPage({
+        path: `/connect/blog${post.uri}`,
+        component: path.resolve(`./src/templates/connect-post.js`),
+        context: {
+          // we need to add the post id here
+          // so our blog post template knows which blog post
+          // the current page is (when you open it in a browser)
+          id: post.id,
+
+          // We also use the next and previous id's to query them and add links!
+          previousPostId: previous ? previous.id : null,
+          nextPostId: next ? next.id : null,
+        },
+      })
+    )
+  );
+};
 
 const createJobPostPages = async ({ jobPosts, gatsbyUtilities }) => {
   return Promise.all(
@@ -66,247 +97,270 @@ const createJobPostPages = async ({ jobPosts, gatsbyUtilities }) => {
         },
       })
     )
-  )
-}
+  );
+};
+
+const createApplicationPages = async ({ applications, gatsbyUtilities }) => {
+  return Promise.all(
+    applications?.map(({ application }) =>
+      gatsbyUtilities.actions.createPage({
+        path: `/maker/jobs/${application.appliedJobs.nodes[0].name}/${application.jobApplicants.nodes[0].name}`,
+        component: path.resolve(`./src/templates/application.js`),
+        context: {
+          jobId: application.appliedJobs.nodes[0].name,
+          applicantId: application.jobApplicants.nodes[0].name,
+        },
+      })
+    )
+  );
+};
+
+const createApplicationsArchive = async ({ applications, gatsbyUtilities }) => {
+  return Promise.all(
+    applications?.map(({ application }) =>
+      gatsbyUtilities.actions.createPage({
+        path: `/maker/jobs/${application.appliedJobs.nodes[0].name}/applications`,
+        component: path.resolve(`./src/templates/applicationsArchive.js`),
+        context: {
+          jobId: application.appliedJobs.nodes[0].name,
+        },
+      })
+    )
+  );
+};
 
 const createPagePages = async ({ pages, gatsbyUtilities }) => {
-
-  const getPagePath = page => {
+  const getPagePath = (page) => {
     // if (page.isFrontPage) {
     //   return '/'
     // }
-    return page.uri
-  }
+    return page.uri;
+  };
 
   return Promise.all(
     pages?.map(({ page }) =>
       gatsbyUtilities.actions.createPage({
         path: getPagePath(page),
-        component: path.resolve("./src/templates/page/index.js"),
+        component: path.resolve('./src/templates/page/index.js'),
         context: {
           id: page.id,
-          page
+          page,
         },
       })
     )
-  )
-}
+  );
+};
 
 const getPages = async ({ graphql, reporter }) => {
-
   const pagesData = await graphql(`
-  query WpPages {
-    allWpPage {
-      edges {
-        page: node {
-          uri
-          title
-          id
-          pageBuilder {
-            layouts {
-              ... on WpPage_Pagebuilder_Layouts_FixedHomepageHero {
-                fieldGroupName
-                textColour
-                bgCol
-                button {
-                  title
-                  url
-                }
-              }
-              ... on WpPage_Pagebuilder_Layouts_FixedTalentHalfHero {
-                fieldGroupName
-                textColour
-                bgCol
-              }
-              ... on WpPage_Pagebuilder_Layouts_FixedMakerHalfHero {
-                fieldGroupName
-                textColour
-                bgCol
-              }
-              ... on WpPage_Pagebuilder_Layouts_FullHero {
-                fieldGroupName
-                bgCol
-                bgPatternCol
-                titleColour
-                subTitleColour
-                buttonColour
-                text
-                title
-                button {
-                  title
-                  url
-                }
-                image {
-                  altText
-                  localFile {
-                    childImageSharp {
-                      fluid(quality: 90) {
-                        src
-                        srcSet
-                        aspectRatio
-                      }
-                      gatsbyImageData
-                    }
-                  }
-                }
-              }
-              ... on WpPage_Pagebuilder_Layouts_HalfHero {
-                fieldGroupName
-                bgCol
-                bgPatternCol
-                titleColour
-                subTitleColour
-                buttonColour
-                text
-                title
-                imageSide
-                button {
-                  title
-                  url
-                }
-                image {
-                  altText
-                  localFile {
-                    childImageSharp {
-                      fluid(fit: COVER, quality: 90) {
-                        src
-                        srcSet
-                        aspectRatio
-                      }
-                      gatsbyImageData
-                    }
-                  }
-                }
-              }
-              ... on WpPage_Pagebuilder_Layouts_Tabs {
-                fieldGroupName
-                tabsCol
-                tabHeaderBgCol
-                textColour
-                title
-                tabs {
-                  title
-                  subTitle
+    query WpPages {
+      allWpPage {
+        edges {
+          page: node {
+            uri
+            title
+            id
+            pageBuilder {
+              layouts {
+                ... on WpPage_Pagebuilder_Layouts_FixedHomepageHero {
+                  fieldGroupName
+                  textColour
+                  bgCol
                   button {
                     title
                     url
                   }
-                  text
-                  list {
-                    text
-                  }
-                  image {
-                    altText
-                    localFile {
-                      childImageSharp {
-                      fluid(quality: 90) {
-                        src
-                        srcSet
-                        aspectRatio
-                      }
-                      gatsbyImageData
-                    }
-                    }
-                  }
                 }
-              }
-              ... on WpPage_Pagebuilder_Layouts_Pillars {
-                fieldGroupName
-                bgCol
-                bgPatternCol
-                textColour
-                title
-                pillars {
-                  title
+                ... on WpPage_Pagebuilder_Layouts_FixedTalentHalfHero {
+                  fieldGroupName
+                  textColour
+                  bgCol
+                }
+                ... on WpPage_Pagebuilder_Layouts_FixedMakerHalfHero {
+                  fieldGroupName
+                  textColour
+                  bgCol
+                }
+                ... on WpPage_Pagebuilder_Layouts_FullHero {
+                  fieldGroupName
+                  bgCol
+                  bgPatternCol
+                  titleColour
+                  subTitleColour
+                  buttonColour
                   text
-                  videoimage
-                  video
-                  link {
-                    url
+                  title
+                  button {
                     title
+                    url
                   }
                   image {
                     altText
                     localFile {
                       childImageSharp {
-                        fluid(quality: 90, cropFocus: CENTER) {
+                        fluid(quality: 90) {
                           src
                           srcSet
                           aspectRatio
                         }
-                        gatsbyImageData(aspectRatio: 1)
+                        gatsbyImageData
                       }
                     }
                   }
                 }
-              }
-              ... on WpPage_Pagebuilder_Layouts_Quote {
-                fieldGroupName
-                quoteAuthor
-                quoteText
-                bgCol
-                bgPatternCol
-                textColour
-              }
-              ... on WpPage_Pagebuilder_Layouts_LogoGrid {
-                fieldGroupName
-                bgCol
-                textColour
-              }
-              ... on WpPage_Pagebuilder_Layouts_Blog {
-                fieldGroupName
-                blogPosts {
-                  ... on WpPost {
-                    id
-                    uri
+                ... on WpPage_Pagebuilder_Layouts_HalfHero {
+                  fieldGroupName
+                  bgCol
+                  bgPatternCol
+                  titleColour
+                  subTitleColour
+                  buttonColour
+                  text
+                  title
+                  imageSide
+                  button {
                     title
-                    date(fromNow: true)
-                    content
-                    categories {
-                      nodes {
-                        name
-                        uri
-                      }
-                    }
-                    featuredImage {
-                      node {
-                        localFile {
-                          childImageSharp {
-                            fluid(quality: 90) {
-                              src
-                              srcSet
-                            }
-                            gatsbyImageData(aspectRatio: 1.1)
-                          }
+                    url
+                  }
+                  image {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        fluid(fit: COVER, quality: 90) {
+                          src
+                          srcSet
+                          aspectRatio
                         }
-                        altText
+                        gatsbyImageData
                       }
                     }
                   }
                 }
-              }
-              ... on WpPage_Pagebuilder_Layouts_Newsletter {
-                fieldGroupName
-                bgCol
-                text
-              }
-              ... on WpPage_Pagebuilder_Layouts_PageBlock {
-                fieldGroupName
-                headerBgCol
-                textColour
-                content
-                subTitle
-                title
-                image {
-                  altText
-                  localFile {
-                    childImageSharp {
-                      fluid(quality: 90) {
-                        src
-                        srcSet
-                        aspectRatio
+                ... on WpPage_Pagebuilder_Layouts_Tabs {
+                  fieldGroupName
+                  tabsCol
+                  tabHeaderBgCol
+                  textColour
+                  title
+                  tabs {
+                    title
+                    subTitle
+                    button {
+                      title
+                      url
+                    }
+                    text
+                    list {
+                      text
+                    }
+                    image {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          fluid(quality: 90) {
+                            src
+                            srcSet
+                            aspectRatio
+                          }
+                          gatsbyImageData
+                        }
                       }
-                      gatsbyImageData
+                    }
+                  }
+                }
+                ... on WpPage_Pagebuilder_Layouts_Pillars {
+                  fieldGroupName
+                  bgCol
+                  bgPatternCol
+                  textColour
+                  title
+                  pillars {
+                    title
+                    text
+                    videoimage
+                    video
+                    link {
+                      url
+                      title
+                    }
+                    image {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          fluid(quality: 90, cropFocus: CENTER) {
+                            src
+                            srcSet
+                            aspectRatio
+                          }
+                          gatsbyImageData(aspectRatio: 1)
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on WpPage_Pagebuilder_Layouts_Quote {
+                  fieldGroupName
+                  quoteAuthor
+                  quoteText
+                  bgCol
+                  bgPatternCol
+                  textColour
+                }
+                ... on WpPage_Pagebuilder_Layouts_LogoGrid {
+                  fieldGroupName
+                  bgCol
+                  textColour
+                }
+                ... on WpPage_Pagebuilder_Layouts_BlogBlock {
+                  fieldGroupName
+                  subTitle
+                  title
+                  posts {
+                    ... on WpPost {
+                      id
+                      uri
+                      title
+                      date
+                      featuredImage {
+                        node {
+                          localFile {
+                            childImageSharp {
+                              fluid(quality: 90) {
+                                src
+                                srcSet
+                              }
+                              gatsbyImageData(aspectRatio: 1.1)
+                            }
+                          }
+                          altText
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on WpPage_Pagebuilder_Layouts_Newsletter {
+                  fieldGroupName
+                  bgCol
+                  text
+                }
+                ... on WpPage_Pagebuilder_Layouts_PageBlock {
+                  fieldGroupName
+                  headerBgCol
+                  textColour
+                  content
+                  subTitle
+                  title
+                  image {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        fluid(quality: 90) {
+                          src
+                          srcSet
+                          aspectRatio
+                        }
+                        gatsbyImageData
+                      }
                     }
                   }
                 }
@@ -316,22 +370,18 @@ const getPages = async ({ graphql, reporter }) => {
         }
       }
     }
-  }
-  
-    
-  `)
+  `);
 
   if (pagesData.errors) {
     reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
+      `There was an error loading your page posts...`,
       pagesData.errors
-    )
-    return
+    );
+    return;
   }
 
-  return pagesData.data.allWpPage.edges
-}
-
+  return pagesData.data.allWpPage.edges;
+};
 
 const createPostArchive = async ({ posts, gatsbyUtilities }) => {
   const graphqlResult = await gatsbyUtilities.graphql(/* GraphQL */ `
@@ -342,28 +392,28 @@ const createPostArchive = async ({ posts, gatsbyUtilities }) => {
         }
       }
     }
-  `)
+  `);
 
-  const { postsPerPage } = graphqlResult.data.wp.readingSettings
+  const { postsPerPage } = graphqlResult.data.wp.readingSettings;
 
-  const postsChunkedIntoArchivePages = chunk(posts, postsPerPage)
-  const totalPages = postsChunkedIntoArchivePages.length
+  const postsChunkedIntoArchivePages = chunk(posts, postsPerPage);
+  const totalPages = postsChunkedIntoArchivePages.length;
 
   return Promise.all(
     postsChunkedIntoArchivePages.map(async (_posts, index) => {
-      const pageNumber = index + 1
+      const pageNumber = index + 1;
 
-      const getPagePath = page => {
+      const getPagePath = (page) => {
         if (page > 0 && page <= totalPages) {
           // Since our homepage is our blog page
           // we want the first page to be "/" and any additional pages
           // to be numbered.
           // "/blog/2" for example
-          return page === 1 ? `/blog` : `/blog/${page}`
+          return page === 1 ? `/blog` : `/blog/${page}`;
         }
 
-        return null
-      }
+        return null;
+      };
 
       // createPage is an action passed to createPages
       // See https://www.gatsbyjs.com/docs/actions#createPage for more info
@@ -387,15 +437,73 @@ const createPostArchive = async ({ posts, gatsbyUtilities }) => {
           nextPagePath: getPagePath(pageNumber + 1),
           previousPagePath: getPagePath(pageNumber - 1),
         },
-      })
+      });
     })
-  )
-}
+  );
+};
+
+const createConnectPostArchive = async ({ connectPosts, gatsbyUtilities }) => {
+  const graphqlResult = await gatsbyUtilities.graphql(/* GraphQL */ `
+    {
+      wp {
+        readingSettings {
+          postsPerPage
+        }
+      }
+    }
+  `);
+
+  const { postsPerPage } = graphqlResult.data.wp.readingSettings;
+
+  const postsChunkedIntoArchivePages = chunk(connectPosts, postsPerPage);
+  const totalPages = postsChunkedIntoArchivePages.length;
+
+  return Promise.all(
+    postsChunkedIntoArchivePages.map(async (_connectPosts, index) => {
+      const pageNumber = index + 1;
+
+      const getPagePath = (page) => {
+        if (page > 0 && page <= totalPages) {
+          // Since our homepage is our blog page
+          // we want the first page to be "/" and any additional pages
+          // to be numbered.
+          // "/blog/2" for example
+          return page === 1 ? `/connect/blog` : `/connect/blog/${page}`;
+        }
+        return null;
+      };
+
+      // createPage is an action passed to createPages
+      // See https://www.gatsbyjs.com/docs/actions#createPage for more info
+      await gatsbyUtilities.actions.createPage({
+        path: getPagePath(pageNumber),
+
+        // use the blog post archive template as the page component
+        component: path.resolve(`./src/templates/connect-post-archive.js`),
+
+        // `context` is available in the template as a prop and
+        // as a variable in GraphQL.
+        context: {
+          // the index of our loop is the offset of which posts we want to display
+          // so for page 1, 0 * 10 = 0 offset, for page 2, 1 * 10 = 10 posts offset,
+          // etc
+          offset: index * postsPerPage,
+
+          // We need to tell the template how many posts to display too
+          postsPerPage,
+
+          nextPagePath: getPagePath(pageNumber + 1),
+          previousPagePath: getPagePath(pageNumber - 1),
+        },
+      });
+    })
+  );
+};
 
 const getJobPosts = async ({ graphql, reporter }) => {
   const graphqlResult = await graphql(`
     query WpJobPosts {
-      allWpJobPost(sort: {order: ASC, fields: date}) {
+      allWpJobPost(sort: { order: ASC, fields: date }) {
         edges {
           jobPost: node {
             uri
@@ -404,23 +512,28 @@ const getJobPosts = async ({ graphql, reporter }) => {
         }
       }
     }
-  `)
+  `);
 
   if (graphqlResult.errors) {
     reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
+      `There was an error loading your job posts`,
       graphqlResult.errors
-    )
-    return
+    );
+    return;
   }
 
-  return graphqlResult.data.allWpJobPost.edges
-}
+  return graphqlResult.data.allWpJobPost.edges;
+};
 
 const getPosts = async ({ graphql, reporter }) => {
   const graphqlResult = await graphql(`
     query WpPosts {
-      allWpPost(sort: {order: ASC, fields: date}) {
+      allWpPost(
+        sort: { order: ASC, fields: date }
+        filter: {
+          categories: { nodes: { elemMatch: { slug: { ne: "connect" } } } }
+        }
+      ) {
         edges {
           previous {
             databaseId
@@ -440,38 +553,117 @@ const getPosts = async ({ graphql, reporter }) => {
         }
       }
     }
-  `)
+  `);
 
   if (graphqlResult.errors) {
     reporter.panicOnBuild(
       `There was an error loading your blog posts`,
       graphqlResult.errors
-    )
-    return
+    );
+    return;
   }
 
-  return graphqlResult.data.allWpPost.edges
-}
+  return graphqlResult.data.allWpPost.edges;
+};
+
+const getConnectPosts = async ({ graphql, reporter }) => {
+  const graphqlResult = await graphql(`
+    query WpConnectPosts {
+      allWpPost(
+        sort: { order: ASC, fields: date }
+        filter: {
+          categories: { nodes: { elemMatch: { slug: { eq: "connect" } } } }
+        }
+      ) {
+        edges {
+          previous {
+            databaseId
+            id
+            uri
+          }
+          post: node {
+            uri
+            databaseId
+            id
+          }
+          next {
+            databaseId
+            uri
+            id
+          }
+        }
+      }
+    }
+  `);
+
+  if (graphqlResult.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your blog posts`,
+      graphqlResult.errors
+    );
+    return;
+  }
+
+  return graphqlResult.data.allWpPost.edges;
+};
+
+const getApplications = async ({ graphql, reporter }) => {
+  const graphqlResult = await graphql(`
+    query ApplicationsQuery {
+      allWpApplication {
+        edges {
+          application: node {
+            id
+            appliedJobs {
+              nodes {
+                name
+              }
+            }
+            jobApplicants {
+              nodes {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (graphqlResult.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your application posts`,
+      graphqlResult.errors
+    );
+    return;
+  }
+
+  return graphqlResult.data.allWpApplication.edges;
+};
 
 // Create pages for all Talent / Maker URLs
 
 exports.onCreatePage = async ({ page, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
   // page.matchPath is a special key that's used for matching pages
   // only on the client.
-  if (page.path.match(/^\/talent/) || page.path.match(/^\/maker/) || page.path.match(/^\/connect/)) {
+  if (
+    page.path.match(/^\/talent/) ||
+    page.path.match(/^\/maker/) ||
+    page.path.match(/^\/connect/)
+  ) {
     if (page.path.match(/^\/talent/)) {
-      page.matchPath = `/talent/*`
+      page.matchPath = `/talent/*`;
     }
     if (page.path.match(/^\/maker/)) {
-      page.matchPath = `/maker/*`
+      page.matchPath = `/maker/*`;
     }
     if (page.path.match(/^\/connect/)) {
-      page.matchPath = `/connect/*`
+      page.matchPath = `/connect/*`;
     }
 
     // Update the page.
-    createPage(page)
+    createPage(page);
   }
-}
+};

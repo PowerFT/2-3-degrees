@@ -18,8 +18,7 @@ function DatePicker(props) {
     // set className to "light-theme-original" ↓↓↓↓
     <div className={isLight ? "light-theme" : "dark-theme"}>
       <ReactDatePicker
-        showTimeSelect
-        dateFormat="dd/MM/yy h:mm aa"
+        dateFormat="dd/MM/yy"
         isClearable={isClearable}
         showPopperArrow={showPopperArrow}
         className="react-datapicker__input-text"//input is white by default and there is no already defined class for it so I created a new one

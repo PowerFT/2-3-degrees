@@ -19,15 +19,16 @@ export const useFileUpload = () => {
 	const FileUploadInput = (multiple, hidden, accept) => {
 
 		const handleClick = () => {
+			// console.log(selectedFile.current)
 			return fileUploadMutation( selectedFile.current )
 
 			.then( (res) => {
-				//console.log(res)
+				console.log(res)
 				setStatus( 'resolved' );
 				// navigate('/maker/jobs')
 			} )
 			.catch( ( errors ) => {
-				//console.log(errors)
+				console.log(errors)
 				setError(errors);
 				setStatus( 'resolved' );
 			} );
@@ -35,19 +36,21 @@ export const useFileUpload = () => {
 
 		const onFileSelectSuccess = (file) => {
 			selectedFile.current = file
-			//console.log(selectedFile.current)
+			// console.log(selectedFile.current)
 		}
 	
 		const handleInputValidation = (e) => {
+			// console.log(e.target)
 			setError( null );
 			setStatus( 'resolving' );
 			// handle validations
 			const file = e.target.files[0];
 			const fileLimit = 1024*500
 			
-			if (file.size > fileLimit)
+			if (file.size > fileLimit) {
+			console.log('fail')
 				setError(`File size cannot exceed more than ${fileLimit}`);
-	
+			}
 			else onFileSelectSuccess(file);
 		};
 	

@@ -21,46 +21,47 @@ import { useUpdateUserMutation } from './mutations/use-update-user-mutation';
 // };
 
 export const useUpdateUser = () => {
-	const [ error, setError ] = useState( null );
-	const [ status, setStatus ] = useState( 'idle' );
-	const { updateUserMutation } = useUpdateUserMutation();
-	// console.log(userId)
-	const updateUser = ( accountDeets, email, password ) => {
-		//console.log(accountDeets)
-		setError( null );
-		setStatus( 'resolving' );
-		return updateUserMutation( accountDeets, email, password )
-			.then( () => {
-				//console.log('successfully updated account')
-				setStatus( 'resolved' );
-				// navigate('/connect/platform')
-			} )
-			.catch( ( errors ) => {
-				//console.log(errors)
-				setError( errors );
-				setStatus( 'resolved' );
-			} );
-	};
+  const [error, setError] = useState(null);
+  const [status, setStatus] = useState('idle');
+  const { updateUserMutation } = useUpdateUserMutation();
+  // console.log(userId)
+  const updateUser = (accountDeets = {}) => {
+    // const {accountDeets, likedDeets} = props
+    console.log(accountDeets);
+    setError(null);
+    setStatus('resolving');
+    return updateUserMutation(accountDeets)
+      .then(() => {
+        console.log('successfully updated account');
+        setStatus('resolved');
+        // navigate('/connect/platform')
+      })
+      .catch((errors) => {
+        console.log(errors);
+        setError(errors);
+        setStatus('resolved');
+      });
+  };
 
-	const updateUserLogin = ( accountDeets ) => {
-		setError( null );
-		setStatus( 'resolving' );
-		return updateUserMutation( accountDeets)
-			.then( () => {
-				//console.log('successfully updated account')
-				setStatus( 'resolved' );
-			} )
-			.catch( ( errors ) => {
-				//console.log(errors)
-				setError( errors );
-				setStatus( 'resolved' );
-			} );
-	};
+  const updateUserLogin = (accountDeets) => {
+    setError(null);
+    setStatus('resolving');
+    return updateUserMutation(accountDeets)
+      .then(() => {
+        //console.log('successfully updated account')
+        setStatus('resolved');
+      })
+      .catch((errors) => {
+        //console.log(errors)
+        setError(errors);
+        setStatus('resolved');
+      });
+  };
 
-	return {
-		updateUserLogin,
-		updateUser,
-		error,
-		status,
-	};
+  return {
+    updateUserLogin,
+    updateUser,
+    error,
+    status,
+  };
 };
