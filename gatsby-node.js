@@ -130,20 +130,12 @@ const createApplicationsArchive = async ({ applications, gatsbyUtilities }) => {
 };
 
 const createPagePages = async ({ pages, gatsbyUtilities }) => {
-  const getPagePath = (page) => {
-    // if (page.isFrontPage) {
-    //   return '/'
-    // }
-    return page.uri;
-  };
-
   return Promise.all(
     pages?.map(({ page }) =>
       gatsbyUtilities.actions.createPage({
-        path: getPagePath(page),
+        path: page.uri,
         component: path.resolve('./src/templates/page/index.js'),
         context: {
-          id: page.id,
           page,
         },
       })
@@ -157,7 +149,6 @@ const getPages = async ({ graphql, reporter }) => {
       allWpPage {
         edges {
           page: node {
-            id
             uri
             title
             pageBuilder {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { getImage } from 'gatsby-plugin-image';
+import { graphql } from 'gatsby';
 import parse from 'html-react-parser';
 
 import { Box, Text, HStack, Flex } from '@chakra-ui/react';

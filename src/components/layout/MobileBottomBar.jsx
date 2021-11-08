@@ -2,7 +2,6 @@
  * External dependencies
  */
 import {
-  Box,
   Drawer,
   DrawerBody,
   DrawerContent,
@@ -29,7 +28,6 @@ import { Link as GatsbyLink, Link } from 'gatsby';
 /**
  * Internal dependencies
  */
-import { Logo } from './Logo';
 import { useAuth } from '../../hooks';
 import { NavMenus } from '../menus';
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
