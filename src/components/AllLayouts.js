@@ -42,7 +42,6 @@ const AllLayouts = ({ layoutData }) => {
     Page_Pagebuilder_Layouts_FixedHomepageHero: FixedHomepageHero,
     Page_Pagebuilder_Layouts_FixedMakerHalfHero: FixedMakerHalfHero,
     Page_Pagebuilder_Layouts_FixedTalentHalfHero: FixedTalentHalfHero,
-    // Page_Pagebuilder_Layouts_TabsBlock: TabsBlock,
     page_default: Default,
   };
 

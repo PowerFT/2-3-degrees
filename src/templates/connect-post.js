@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link as GatsbyLink, graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { getImage } from 'gatsby-plugin-image';
 import parse from 'html-react-parser';
 
-import { Box, Heading, Text, Link, HStack, Flex } from '@chakra-ui/react';
+import { Box, Text, HStack, Flex } from '@chakra-ui/react';
 
 // We're using Gutenberg so we need the block styles
 // these are copied into this project due to a conflict in the postCSS

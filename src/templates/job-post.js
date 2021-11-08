@@ -90,7 +90,7 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
   const skills = jobPost?.skills?.nodes;
   const id = jobPost?.id;
   const jobDatabaseId = jobPost?.databaseId;
-  const dbIdString = jobPost?.databaseId.toLocaleString();
+  const dbIdString = jobPost?.databaseId.toLocaleString().replace(/,/g, '');
   // const id = jobPost?.slug;
 
   const { viewer, refetchViewer, loadingViewer } = useAuth();

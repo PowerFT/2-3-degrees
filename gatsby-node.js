@@ -157,42 +157,44 @@ const getPages = async ({ graphql, reporter }) => {
       allWpPage {
         edges {
           page: node {
+            id
             uri
             title
-            id
             pageBuilder {
+              fieldGroupName
               layouts {
                 ... on WpPage_Pagebuilder_Layouts_FixedHomepageHero {
+                  bgCol
                   fieldGroupName
                   textColour
-                  bgCol
                   button {
+                    target
                     title
                     url
                   }
                 }
                 ... on WpPage_Pagebuilder_Layouts_FixedTalentHalfHero {
+                  bgCol
                   fieldGroupName
                   textColour
-                  bgCol
                 }
                 ... on WpPage_Pagebuilder_Layouts_FixedMakerHalfHero {
+                  bgCol
                   fieldGroupName
                   textColour
-                  bgCol
                 }
                 ... on WpPage_Pagebuilder_Layouts_FullHero {
-                  fieldGroupName
                   bgCol
                   bgPatternCol
+                  title
                   titleColour
+                  text
                   subTitleColour
                   buttonColour
-                  text
-                  title
                   button {
-                    title
+                    target
                     url
+                    title
                   }
                   image {
                     altText
@@ -207,26 +209,23 @@ const getPages = async ({ graphql, reporter }) => {
                       }
                     }
                   }
+                  fieldGroupName
                 }
                 ... on WpPage_Pagebuilder_Layouts_HalfHero {
-                  fieldGroupName
                   bgCol
                   bgPatternCol
-                  titleColour
-                  subTitleColour
                   buttonColour
+                  fieldGroupName
+                  imageSide
+                  subTitleColour
                   text
                   title
-                  imageSide
-                  button {
-                    title
-                    url
-                  }
+                  titleColour
                   image {
                     altText
                     localFile {
                       childImageSharp {
-                        fluid(fit: COVER, quality: 90) {
+                        fluid(quality: 90) {
                           src
                           srcSet
                           aspectRatio
@@ -236,21 +235,89 @@ const getPages = async ({ graphql, reporter }) => {
                     }
                   }
                 }
-                ... on WpPage_Pagebuilder_Layouts_Tabs {
+                ... on WpPage_Pagebuilder_Layouts_Pillars {
+                  bgCol
+                  bgPatternCol
                   fieldGroupName
-                  tabsCol
-                  tabHeaderBgCol
-                  textColour
-                  title
-                  tabs {
-                    title
-                    subTitle
-                    button {
+                  pillars {
+                    fieldGroupName
+                    image {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          fluid(quality: 90) {
+                            src
+                            srcSet
+                            aspectRatio
+                          }
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                    link {
                       title
+                      target
                       url
                     }
                     text
+                    video
+                    title
+                    videoimage
+                  }
+                  textColour
+                  title
+                }
+                ... on WpPage_Pagebuilder_Layouts_Quote {
+                  bgCol
+                  bgPatternCol
+                  fieldGroupName
+                  quoteAuthor
+                  quoteText
+                  textColour
+                }
+                ... on WpPage_Pagebuilder_Layouts_LogoGrid {
+                  bgCol
+                  fieldGroupName
+                  textColour
+                }
+                ... on WpPage_Pagebuilder_Layouts_Newsletter {
+                  bgCol
+                  fieldGroupName
+                  text
+                }
+                ... on WpPage_Pagebuilder_Layouts_PageBlock {
+                  content
+                  fieldGroupName
+                  headerBgCol
+                  image {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        fluid(quality: 90) {
+                          src
+                          srcSet
+                          aspectRatio
+                        }
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  subTitle
+                  title
+                  textColour
+                }
+                ... on WpPage_Pagebuilder_Layouts_Tabs {
+                  fieldGroupName
+                  tabHeaderBgCol
+                  tabs {
+                    button {
+                      target
+                      title
+                      url
+                    }
+                    fieldGroupName
                     list {
+                      fieldGroupName
                       text
                     }
                     image {
@@ -266,103 +333,13 @@ const getPages = async ({ graphql, reporter }) => {
                         }
                       }
                     }
-                  }
-                }
-                ... on WpPage_Pagebuilder_Layouts_Pillars {
-                  fieldGroupName
-                  bgCol
-                  bgPatternCol
-                  textColour
-                  title
-                  pillars {
-                    title
+                    subTitle
                     text
-                    videoimage
-                    video
-                    link {
-                      url
-                      title
-                    }
-                    image {
-                      altText
-                      localFile {
-                        childImageSharp {
-                          fluid(quality: 90, cropFocus: CENTER) {
-                            src
-                            srcSet
-                            aspectRatio
-                          }
-                          gatsbyImageData(aspectRatio: 1)
-                        }
-                      }
-                    }
+                    title
                   }
-                }
-                ... on WpPage_Pagebuilder_Layouts_Quote {
-                  fieldGroupName
-                  quoteAuthor
-                  quoteText
-                  bgCol
-                  bgPatternCol
+                  tabsCol
                   textColour
-                }
-                ... on WpPage_Pagebuilder_Layouts_LogoGrid {
-                  fieldGroupName
-                  bgCol
-                  textColour
-                }
-                ... on WpPage_Pagebuilder_Layouts_BlogBlock {
-                  fieldGroupName
-                  subTitle
                   title
-                  posts {
-                    ... on WpPost {
-                      id
-                      uri
-                      title
-                      date
-                      featuredImage {
-                        node {
-                          localFile {
-                            childImageSharp {
-                              fluid(quality: 90) {
-                                src
-                                srcSet
-                              }
-                              gatsbyImageData(aspectRatio: 1.1)
-                            }
-                          }
-                          altText
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on WpPage_Pagebuilder_Layouts_Newsletter {
-                  fieldGroupName
-                  bgCol
-                  text
-                }
-                ... on WpPage_Pagebuilder_Layouts_PageBlock {
-                  fieldGroupName
-                  headerBgCol
-                  textColour
-                  content
-                  subTitle
-                  title
-                  image {
-                    altText
-                    localFile {
-                      childImageSharp {
-                        fluid(quality: 90) {
-                          src
-                          srcSet
-                          aspectRatio
-                        }
-                        gatsbyImageData
-                      }
-                    }
-                  }
                 }
               }
             }
@@ -374,7 +351,7 @@ const getPages = async ({ graphql, reporter }) => {
 
   if (pagesData.errors) {
     reporter.panicOnBuild(
-      `There was an error loading your page posts...`,
+      `There was an error loading your pages...`,
       pagesData.errors
     );
     return;

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link as GatsbyLink, graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { graphql } from 'gatsby';
+import { getImage } from 'gatsby-plugin-image';
 import parse from 'html-react-parser';
 
-import { Box, Heading, Text, Link, HStack, Flex } from '@chakra-ui/react';
+import { Box, Text, HStack, Flex } from '@chakra-ui/react';
 
 // We're using Gutenberg so we need the block styles
 // these are copied into this project due to a conflict in the postCSS
@@ -18,8 +18,6 @@ import Seo from '../components/seo';
 import { Header } from '../components/layout/Header';
 
 const BlogPostTemplate = ({ data: { post } }) => {
-  //console.log(post)
-
   const imageData = getImage(post.featuredImage?.node?.localFile);
   const ImgAlt = post.featuredImage?.node?.alt || ``;
 
@@ -50,7 +48,7 @@ const BlogPostTemplate = ({ data: { post } }) => {
             wrap="wrap"
           >
             <HStack mb="2" mr="2">
-              {post.categories?.nodes.map((cat) => (
+              {post?.categories?.nodes?.map((cat) => (
                 <Box
                   key={cat?.id}
                   borderRadius="full"
@@ -59,8 +57,7 @@ const BlogPostTemplate = ({ data: { post } }) => {
                   px={6}
                   py={0}
                 >
-                  {cat.name}
-                  {/* <Link as={GatsbyLink} to={cat.uri}></Link>  */}
+                  {cat?.name}
                 </Box>
               ))}
             </HStack>
@@ -73,10 +70,10 @@ const BlogPostTemplate = ({ data: { post } }) => {
               fontWeight="bold"
               textTransform="uppercase"
             >
-              {post.date}
+              {post?.date}
             </Text>
           </HStack>
-          {post.content && parse(post.content)}
+          {post?.content && parse(post?.content)}
         </Box>
       </Flex>
 
