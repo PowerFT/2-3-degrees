@@ -42,7 +42,7 @@
     "gatsby-plugin-scroll-reveal": "^0.0.7",
     "gatsby-plugin-sharp": "^3.11.0",
     "gatsby-source-filesystem": "^3.11.0",
-    "gatsby-source-wordpress": "^5.14.2",
+    "gatsby-source-wordpress": "^6.1.0",
     "gatsby-transformer-sharp": "^3.11.0",
     "glob": "^7.1.7",
     "gsap": "^3.7.1",
