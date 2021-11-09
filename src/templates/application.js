@@ -111,21 +111,21 @@ export const applicationQuery = graphql`
           mastersSubjects
           mastersEndDate
         }
-        # btec {
-        #   btecInstitution
-        #   btecSubjects
-        #   btecEndDate
-        # }
-        # vocational {
-        #   vocationalInstitution
-        #   vocationalSubjects
-        #   vocationalEndDate
-        # }
-        # tlevel {
-        #   tlevelInstitution
-        #   tlevelSubjects
-        #   tlevelEndDate
-        # }
+        btec {
+          btecInstitution
+          btecSubjects
+          btecEndDate
+        }
+        vocational {
+          vocationalInstitution
+          vocationalSubjects
+          vocationalEndDate
+        }
+        tlevel {
+          tlevelInstitution
+          tlevelSubjects
+          tlevelEndDate
+        }
         workExperienceOne {
           we1Company
           we1Role
@@ -144,18 +144,18 @@ export const applicationQuery = graphql`
           we3Start
           we3End
         }
-        # workExperienceFour {
-        #   we4Company
-        #   we4Role
-        #   we4Start
-        #   we4End
-        # }
-        # workExperienceFive {
-        #   we5Company
-        #   we5Role
-        #   we5Start
-        #   we5End
-        # }
+        workExperienceFour {
+          we4Company
+          we4Role
+          we4Start
+          we4End
+        }
+        workExperienceFive {
+          we5Company
+          we5Role
+          we5Start
+          we5End
+        }
       }
     }
   }
