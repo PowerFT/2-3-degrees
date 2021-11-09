@@ -201,7 +201,6 @@ export const MobileBottomBar = ({ ...rest }) => {
                 <StaticImage
                   src="../../images/oldLogo.png"
                   alt="logo"
-                  // height={400}
                   fit="cover"
                   imgStyle={{ height: '100%', width: 'auto' }}
                   style={{ height: '100%', width: 'auto' }}

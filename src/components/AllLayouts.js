@@ -14,12 +14,9 @@ import { FixedMakerHalfHero } from '../templates/layouts/fixed-maker-half-hero';
 // import { TabsBlock } from "../templates/layouts/services"
 
 const AllLayouts = ({ layoutData }) => {
-  // console.log(layoutData)
   const layoutType = layoutData.fieldGroupName;
 
-  /**
-   * Default component
-   */
+  //Default component
   const Default = () => (
     <div>
       In AllLayouts the mapping of this component is missing: {layoutType}
