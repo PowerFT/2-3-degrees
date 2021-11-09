@@ -35,7 +35,7 @@
     "gatsby-plugin-gatsby-cloud": "^3.0.0",
     "gatsby-plugin-gdpr-cookies": "^2.0.6",
     "gatsby-plugin-google-gtag": "^3.14.0",
-    "gatsby-plugin-image": "^1.11.0",
+    "gatsby-plugin-image": "^1.14.2",
     "gatsby-plugin-layout": "^2.13.0",
     "gatsby-plugin-mailchimp": "^5.2.2",
     "gatsby-plugin-react-helmet": "^4.12.0",

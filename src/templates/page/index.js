@@ -5,7 +5,7 @@ import Seo from '../../components/seo';
 import AllLayouts from '../../components/AllLayouts';
 
 const Page = ({ pageContext }) => {
-  const pageBuilder = pageContext.page?.pageBuilder;
+  const pageBuilder = pageContext.page.pageBuilder;
 
   const layouts = pageBuilder.layouts || [];
 
@@ -14,7 +14,7 @@ const Page = ({ pageContext }) => {
       <VStack id="page" h="fit-content" spacing="-1px" w="100%" align="stretch">
         <Seo title={pageContext.page?.title} />
 
-        {layouts?.map((layout, i) => {
+        {layouts.map((layout, i) => {
           return <AllLayouts key={i} layoutData={layout} id="pageLayout" />;
         })}
       </VStack>

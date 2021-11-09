@@ -73,18 +73,18 @@ const TALENT_VIEWER = gql`
               we3Start
               we3End
             }
-            workExperienceFour {
-              we4Company
-              we4Role
-              we4Start
-              we4End
-            }
-            workExperienceFive {
-              we5Company
-              we5Role
-              we5Start
-              we5End
-            }
+            # workExperienceFour {
+            #   we4Company
+            #   we4Role
+            #   we4Start
+            #   we4End
+            # }
+            # workExperienceFive {
+            #   we5Company
+            #   we5Role
+            #   we5Start
+            #   we5End
+            # }
           }
         }
       }
