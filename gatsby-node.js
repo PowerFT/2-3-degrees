@@ -16,10 +16,6 @@ exports.createPages = async (gatsbyUtilities) => {
   const applications = await getApplications(gatsbyUtilities);
   const pages = await getPages(gatsbyUtilities);
 
-  // if(!posts.length && !jobPosts.length && !pages.length) {
-  //   return
-  // }
-
   if (posts.length) {
     await createPostPages({ posts, gatsbyUtilities });
     await createPostArchive({ posts, gatsbyUtilities });
@@ -151,6 +147,189 @@ const getPages = async ({ graphql, reporter }) => {
           page: node {
             uri
             title
+            pageBuilder {
+              fieldGroupName
+              layouts {
+                ... on WpPage_Pagebuilder_Layouts_FixedHomepageHero {
+                  bgCol
+                  fieldGroupName
+                  textColour
+                  button {
+                    target
+                    title
+                    url
+                  }
+                }
+                ... on WpPage_Pagebuilder_Layouts_FixedTalentHalfHero {
+                  bgCol
+                  fieldGroupName
+                  textColour
+                }
+                ... on WpPage_Pagebuilder_Layouts_FixedMakerHalfHero {
+                  bgCol
+                  fieldGroupName
+                  textColour
+                }
+                ... on WpPage_Pagebuilder_Layouts_FullHero {
+                  bgCol
+                  bgPatternCol
+                  title
+                  titleColour
+                  text
+                  subTitleColour
+                  buttonColour
+                  button {
+                    target
+                    url
+                    title
+                  }
+                  image {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        fluid(quality: 90) {
+                          src
+                          srcSet
+                          aspectRatio
+                        }
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  fieldGroupName
+                }
+                ... on WpPage_Pagebuilder_Layouts_HalfHero {
+                  bgCol
+                  bgPatternCol
+                  buttonColour
+                  fieldGroupName
+                  imageSide
+                  subTitleColour
+                  text
+                  title
+                  titleColour
+                  image {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        fluid(quality: 90) {
+                          src
+                          srcSet
+                          aspectRatio
+                        }
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                }
+                ... on WpPage_Pagebuilder_Layouts_Pillars {
+                  bgCol
+                  bgPatternCol
+                  fieldGroupName
+                  pillars {
+                    fieldGroupName
+                    image {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          fluid(quality: 90) {
+                            src
+                            srcSet
+                            aspectRatio
+                          }
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                    link {
+                      title
+                      target
+                      url
+                    }
+                    text
+                    video
+                    title
+                    videoimage
+                  }
+                  textColour
+                  title
+                }
+                ... on WpPage_Pagebuilder_Layouts_Quote {
+                  bgCol
+                  bgPatternCol
+                  fieldGroupName
+                  quoteAuthor
+                  quoteText
+                  textColour
+                }
+                ... on WpPage_Pagebuilder_Layouts_LogoGrid {
+                  bgCol
+                  fieldGroupName
+                  textColour
+                }
+                ... on WpPage_Pagebuilder_Layouts_Newsletter {
+                  bgCol
+                  fieldGroupName
+                  text
+                }
+                ... on WpPage_Pagebuilder_Layouts_PageBlock {
+                  content
+                  fieldGroupName
+                  headerBgCol
+                  image {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        fluid(quality: 90) {
+                          src
+                          srcSet
+                          aspectRatio
+                        }
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  subTitle
+                  title
+                  textColour
+                }
+                ... on WpPage_Pagebuilder_Layouts_Tabs {
+                  fieldGroupName
+                  tabHeaderBgCol
+                  tabs {
+                    button {
+                      target
+                      title
+                      url
+                    }
+                    fieldGroupName
+                    list {
+                      fieldGroupName
+                      text
+                    }
+                    image {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          fluid(quality: 90) {
+                            src
+                            srcSet
+                            aspectRatio
+                          }
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                    subTitle
+                    text
+                    title
+                  }
+                  tabsCol
+                  textColour
+                  title
+                }
+              }
+            }
           }
         }
       }
