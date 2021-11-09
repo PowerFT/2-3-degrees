@@ -16,10 +16,6 @@ exports.createPages = async (gatsbyUtilities) => {
   const applications = await getApplications(gatsbyUtilities);
   const pages = await getPages(gatsbyUtilities);
 
-  // if(!posts.length && !jobPosts.length && !pages.length) {
-  //   return
-  // }
-
   if (posts.length) {
     await createPostPages({ posts, gatsbyUtilities });
     await createPostArchive({ posts, gatsbyUtilities });
