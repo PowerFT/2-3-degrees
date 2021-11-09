@@ -5,7 +5,7 @@ import Seo from '../../components/seo';
 import AllLayouts from '../../components/AllLayouts';
 
 const Page = ({ pageContext }) => {
-  const pageBuilder = pageContext.page.pageBuilder;
+  const pageBuilder = pageContext.page?.pageBuilder;
 
   const layouts = pageBuilder.layouts || [];
 
