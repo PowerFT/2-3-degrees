@@ -14,8 +14,8 @@ const Page = ({ pageContext }) => {
       <VStack id="page" h="fit-content" spacing="-1px" w="100%" align="stretch">
         <Seo title={pageContext.page?.title} />
 
-        {layouts.map((layout, i) => {
-          return <AllLayouts key={i} layoutData={layout} id="pageLayout" />;
+        {layouts.map((layout, idx) => {
+          return <AllLayouts key={idx} layoutData={layout} id="pageLayout" />;
         })}
       </VStack>
     </>
