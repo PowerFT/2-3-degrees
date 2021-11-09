@@ -19,7 +19,7 @@ export const ConnectDownloads = () => (
     >
       <a href={downloadFile} download>
         <Text fontSize="xl" fontWeight="500">
-          Download our E-Guide
+          Download the E-Guide
         </Text>
       </a>
       {` `}
