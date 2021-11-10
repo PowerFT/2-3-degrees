@@ -1,17 +1,53 @@
 import { Avatar, Box, HStack, Stack, Text, VStack } from '@chakra-ui/react';
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import { ButtonGroup, Button } from '@chakra-ui/react';
+import { useQuery, gql } from '@apollo/client';
 
-export const MyJobCard = ({
-  title,
-  salary,
-  sector,
-  companyName,
-  status,
-  id,
-}) => {
-  console.log(id);
+const GET_APPLICATIONS = gql`
+  query MyQuery($id: [String]) {
+    applications(
+      where: {
+        taxQuery: {
+          taxArray: {
+            taxonomy: APPLIEDJOB
+            terms: $id
+            field: NAME
+            operator: AND
+          }
+        }
+      }
+    ) {
+      nodes {
+        id
+      }
+    }
+  }
+`;
+
+export const MyJobCard = ({ title, sector, companyName, status, id }) => {
+  const [applications, setApplications] = useState([]);
+
+  const {
+    data: appData,
+    error: appError,
+    loading: appLoading,
+  } = useQuery(GET_APPLICATIONS, {
+    variables: {
+      id,
+    },
+  });
+
+  useEffect(() => {
+    if (appData && !appLoading) setApplications(appData.applications.nodes);
+    // console.log(appError);
+    // console.log(appData);
+  }, [appData]);
+
+  useEffect(() => {
+    console.log(title, id, applications);
+  }, [applications]);
+
   return (
     <Box
       position="relative"
@@ -91,17 +127,35 @@ export const MyJobCard = ({
             View
           </Button>
         </ButtonGroup>
-        <Button
-          mt="2"
-          w="100%"
-          size="sm"
-          variant="outline"
-          as={Link}
-          display={status === 'publish' ? 'flex' : 'none'}
-          to={`/maker/jobs/${id}/applications`}
-        >
-          Applications (5)
-        </Button>
+
+        {applications.length !== 0 ? (
+          <Button
+            loading={appLoading}
+            disabled={appLoading}
+            mt="2"
+            w="100%"
+            size="sm"
+            variant="outline"
+            as={Link}
+            display={status === 'publish' ? 'flex' : 'none'}
+            to={`/maker/jobs/${id}/applications`}
+          >
+            {`Applications (${applications.length})`}
+          </Button>
+        ) : (
+          <Button
+            loading={appLoading}
+            disabled={appLoading}
+            mt="2"
+            w="100%"
+            size="sm"
+            variant="outline"
+            as={Link}
+            display={status === 'publish' ? 'flex' : 'none'}
+          >
+            No applications yet
+          </Button>
+        )}
 
         <Box
           position="absolute"

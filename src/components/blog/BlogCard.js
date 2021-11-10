@@ -11,7 +11,7 @@ import { Link } from 'gatsby';
 
 export const BlogCard = ({ postData, i, connectBlog }) => {
   const { title, uri, featuredImage, date } = postData;
-  console.log(i);
+  // console.log(i);
 
   const image = getImage(featuredImage?.node?.localFile);
   const altText = featuredImage?.node?.localFile?.altText;

@@ -30,7 +30,7 @@ export const useSubmitApplication = () => {
     };
 
     const fail = (errors) => {
-      console.log(errors);
+      // console.log(errors);
       setSubmitLoading(false);
       setSubmitErrors(errors);
     };
@@ -46,7 +46,7 @@ export const useSubmitApplication = () => {
       name,
     } = props;
 
-    console.log(props);
+    // console.log(props);
 
     createApplication({
       variables: {

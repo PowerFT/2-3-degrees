@@ -47,6 +47,7 @@ export const InnerSidebar = ({
   applicantEmail,
   previewPageLink,
   applyPageLink,
+  likeStatus,
   ...rest
 }) => {
   // const colour = {
@@ -172,6 +173,7 @@ export const InnerSidebar = ({
             handleClick={handleClick}
             toBeLiked={toBeLiked}
             thisJobAppliedFor={thisJobAppliedFor}
+            likeStatus={likeStatus}
           />
         )}
         {pagetype === 'myjobs' && (

@@ -4,7 +4,7 @@ import { BlogCard } from '../../../components/blog/BlogCard';
 import { Box, Heading } from '@chakra-ui/react';
 
 export const LatestBlog = ({ title, subTitle, posts }) => {
-  console.log(title, subTitle, posts);
+  // console.log(title, subTitle, posts);
 
   return (
     <Box px={{ base: '0', sm: '4' }} pb={{ base: '8', sm: '12' }}>

@@ -27,18 +27,18 @@ export const useSubmitJobPost = (formType) => {
     setSubmitLoading(true);
 
     const successCreate = (result) => {
-      console.log(result);
+      // console.log(result);
       setSubmitLoading(false);
       return result.data;
     };
     const successUpdate = (result) => {
-      console.log(result);
+      // console.log(result);
       setSubmitLoading(false);
       return result.data;
     };
 
     const fail = (errors) => {
-      console.log(errors);
+      // console.log(errors);
       setSubmitLoading(false);
       setSubmitErrors(errors);
     };
@@ -61,7 +61,7 @@ export const useSubmitJobPost = (formType) => {
       viewerId,
     } = props;
 
-    console.log(props);
+    // console.log(props);
 
     switch (formType) {
       case 'create':

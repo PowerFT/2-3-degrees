@@ -22,15 +22,12 @@ const ApplicationTemplate = ({
   pageContext,
   data: { application, talentProfile },
 }) => {
-  console.log(pageContext);
-  console.log(application);
-  console.log(talentProfile);
+  // console.log(pageContext);
+  // console.log(application);
+  // console.log(talentProfile);
   // console.log(applicantProfile)
   const applicantId = pageContext.applicantId;
   const jobId = pageContext.jobId;
-
-  console.log(applicantId, jobId);
-
   const tp = talentProfile?.talentProfile;
   const q = application;
 

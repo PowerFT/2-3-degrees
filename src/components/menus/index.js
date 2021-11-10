@@ -70,7 +70,7 @@ export const NavMenus = ({ menuopen, mobile, isloggedin, onclose }) => {
             onclose={onclose}
             mobile={mobile}
           />
-          <MenuItem
+          {/* <MenuItem
             menuopen={menuopen}
             link="/connect/blog"
             label="Resources"
@@ -78,7 +78,7 @@ export const NavMenus = ({ menuopen, mobile, isloggedin, onclose }) => {
             isActive
             onclose={onclose}
             mobile={mobile}
-          />
+          /> */}
         </>
       )}
       {loggedin === 'true' && (

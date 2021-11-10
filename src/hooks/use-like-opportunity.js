@@ -29,18 +29,18 @@ export const useLikeOpportunity = () => {
   const { mutation: LikeOpportunityMutation } = useLikeOpportunityMutation();
 
   const likeOpportunity = ({ opportunityIds, profileId }) => {
-    console.log(opportunityIds, profileId);
+    // console.log(opportunityIds, profileId);
+    setStatus('resolving');
     setError(null);
-    // setStatus('resolved');
 
     const success = (result) => {
-      console.log(result);
-      setStatus('resolving');
+      // console.log(result);
+      setStatus('resolved');
       return result.data;
     };
 
     const fail = (errors) => {
-      console.log(errors);
+      // console.log(errors);
       setStatus('resolved');
       setError(errors);
     };

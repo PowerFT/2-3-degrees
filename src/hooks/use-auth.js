@@ -24,6 +24,8 @@ const errorCodes = {
     'Incorrect password. Please try again, or reset your password.',
   empty_username: 'Please provide your username.',
   empty_password: 'Please provide your password.',
+  Internal_server_error:
+    'Invalid username or email address. Please check it and try again.',
 };
 
 /**
@@ -57,6 +59,7 @@ export const useAuth = () => {
   });
 
   const onError = useSafeDispatch((errors) => {
+    console.log(errors);
     setError(
       errorCodes[errors.message] ||
         `${stripHtml(decodeEntities(errors.message)).result}`

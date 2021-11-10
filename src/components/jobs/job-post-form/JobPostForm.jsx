@@ -46,12 +46,12 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
   // const { getCheckboxProps } = useCheckboxGroup({
   //   defaultValue: ['ps5'],
   // })
-  console.log(formDeets);
+  // console.log(formDeets);
   const selectedSkills = formDeets?.skills?.map((skill) => skill.name);
   const selectedQuestions = formDeets?.jobApplicationQuestions?.map(
     (question) => question.slug
   );
-  console.log(selectedQuestions);
+  // console.log(selectedQuestions);
 
   const handleSkillClick = (skill) => {
     if (!selectedSkills.includes(skill) && selectedSkills.length < 3) {
@@ -71,12 +71,11 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
 
   const handleQuestionClick = (questionSlug) => {
     // console.log(questionSlug)
-    console.log(!selectedQuestions.includes(questionSlug), questionSlug);
+    // console.log(!selectedQuestions.includes(questionSlug), questionSlug);
     if (
       !selectedQuestions.includes(questionSlug) &&
       selectedQuestions.length < 3
     ) {
-      console.log('add');
       setFormDeets({
         ...formDeets,
         jobApplicationQuestions: [
@@ -85,7 +84,6 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
         ],
       });
     } else if (selectedQuestions.includes(questionSlug)) {
-      console.log('filter');
       setFormDeets({
         ...formDeets,
         jobApplicationQuestions: formDeets?.jobApplicationQuestions.filter(
@@ -545,13 +543,13 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
                 render={(data) => {
                   if (data.allWpJobApplicationQuestion) {
                     const questions = data.allWpJobApplicationQuestion.nodes;
-                    console.log(selectedQuestions);
-                    console.log(questions);
+                    // console.log(selectedQuestions);
+                    // console.log(questions);
                     return (
                       <Stack spacing="5" justify="flex-start">
                         {questions &&
                           questions.map((question) => {
-                            console.log(question.slug);
+                            // console.log(question.slug);
                             return (
                               <>
                                 <HStack

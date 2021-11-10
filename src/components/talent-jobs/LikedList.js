@@ -53,12 +53,12 @@ export const LikedList = () => {
 
   useEffect(() => {
     if (viewer && !loadingViewer) {
-      console.log(viewer);
+      // console.log(viewer);
       let likedOppIds =
         viewer.talentProfiles.nodes[0].likedOpportunities.nodes.map((node) =>
           parseFloat(node.name.replace(/,/g, ''))
         );
-      console.log(likedOppIds.length);
+      // console.log(likedOppIds.length);
       setLikedIds(likedOppIds.length !== 0 ? likedOppIds : ['']);
     }
   }, [viewer]);
@@ -74,7 +74,7 @@ export const LikedList = () => {
   // if (!data) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
   // if(data.viewer?.jobPosts?.nodes.length === 0) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
 
-  console.log(data);
+  // console.log(data);
   // console.log(
   //   viewer.talentProfiles.nodes[0].likedOpportunities.nodes.map(
   //     (node) => node.name

@@ -67,7 +67,7 @@ export const useViewerQuery = () => {
   }, [isloggedin]);
 
   const onError = useSafeDispatch((error) => {
-    console.log(error, 'erorrrrrr');
+    // console.log(error, 'erorrrrrr');
     setisloggedin(false);
   });
 

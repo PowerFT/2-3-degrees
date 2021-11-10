@@ -62,7 +62,7 @@ export const MakerAccountSettings = () => {
     updateUser(accountDeets).then(() => {
       refetchViewer();
       setProfileUpdated(true);
-      console.log('refetch', viewer);
+      // console.log('refetch', viewer);
     });
   };
 

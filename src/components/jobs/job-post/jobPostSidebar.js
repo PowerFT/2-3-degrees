@@ -32,6 +32,7 @@ export const JobSidebar = (props) => {
     handleClick,
     toBeLiked,
     thisJobAppliedFor,
+    likeStatus,
     ...rest
   } = props;
   const formattedSalary = parseInt(salary).toLocaleString();
@@ -39,7 +40,7 @@ export const JobSidebar = (props) => {
   // const parsedDate = new Date(closeDate);
   const { viewer, loadingViewer } = useAuth();
 
-  console.log(thisJobAppliedFor);
+  // console.log(thisJobAppliedFor);
 
   return (
     <>
@@ -209,7 +210,8 @@ export const JobSidebar = (props) => {
           viewer.talentProfiles.nodes.length !== 0 && (
             <>
               <Button
-                // disabled={toBeLiked}
+                isLoading={likeStatus === 'resolving'}
+                disabled={likeStatus === 'resolving'}
                 leftIcon={
                   toBeLiked ? (
                     <Icon as={AiOutlineHeart} h="6" w="6" />

@@ -9,7 +9,7 @@ export const AccountProgress = ({
   user,
   ...rest
 }) => {
-  console.log(complete);
+  // console.log(complete);
 
   return (
     <Stack

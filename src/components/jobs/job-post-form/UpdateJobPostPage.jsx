@@ -139,7 +139,7 @@ export const UpdateJobPostFormPage = () => {
 
   useEffect(() => {
     if (!loading && data) {
-      console.log('use effect fired', data);
+      // console.log('use effect fired', data);
       const jobPost = data.jobPost;
       const questions = jobPost?.jobApplicationQuestions?.nodes.map((node) => {
         return { name: node.name, slug: node.slug };
@@ -170,7 +170,7 @@ export const UpdateJobPostFormPage = () => {
 
   // if(jobToEditId) {
   if (error) {
-    console.log(error);
+    // console.log(error);
     return <MyError error={error} />;
   }
   if (loading) return <MySpinner />;

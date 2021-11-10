@@ -6,7 +6,7 @@ import { useAuth } from '../../hooks';
 export const TalentMenu = ({ mobile, menuopen, onclose }) => {
   const { loadingViewer, viewer, isloggedin } = useAuth();
   if (loadingViewer || !viewer || !isloggedin) return null;
-  console.log(viewer.roles.nodes[0].name);
+  // console.log(viewer.roles.nodes[0].name);
   return (
     <>
       {viewer.roles.nodes[0].name === 'talent' && (

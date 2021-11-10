@@ -29,7 +29,7 @@ export const TalentEducationDeets = ({
   setEducationCompleted,
   talentProfileId,
 }) => {
-  console.log(talentProfileId);
+  // console.log(talentProfileId);
 
   const [profileUpdated, setProfileUpdated] = useState(false);
   const [talentDeets, setTalentDeets] = useState({});
@@ -79,11 +79,11 @@ export const TalentEducationDeets = ({
   useEffect(() => {
     if (viewer && !loadingViewer) {
       if (talentData && !loadingTalentData) {
-        console.log(talentData);
+        // console.log(talentData);
         const talent =
           talentData?.viewer?.talentProfiles?.nodes[0]?.talentProfile;
 
-        console.log(talent);
+        // console.log(talent);
 
         setTalentDeets({
           profileId: talentData?.viewer?.talentProfiles?.nodes[0]?.databaseId,
@@ -137,7 +137,7 @@ export const TalentEducationDeets = ({
   }, [viewer, loadingViewer, talentData, !loadingTalentData]);
 
   useEffect(() => {
-    console.log(talentDeets);
+    // console.log(talentDeets);
     if (talentDeets) {
       if (talentDeets.gcse) {
         if (Object.values(talentDeets?.gcse).some((element) => element)) {
@@ -188,20 +188,20 @@ export const TalentEducationDeets = ({
         refetch();
         refetchViewer();
         setProfileUpdated(true);
-        console.log('changedProfile', viewer);
+        // console.log('changedProfile', viewer);
       });
     } else {
       makeTalentProfile(talentDeets).then(() => {
         refetch();
         refetchViewer();
         setProfileUpdated(true);
-        console.log('madeProfile', viewer);
+        // console.log('madeProfile', viewer);
       });
     }
   };
 
   useEffect(() => {
-    console.log(changeStatus);
+    // console.log(changeStatus);
   }, [changeStatus]);
 
   if (!viewer || loadingViewer || loadingTalentData) return <MySpinner />;

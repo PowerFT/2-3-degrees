@@ -28,7 +28,7 @@ import { MySpinner } from '../../../waiting/MySpinner';
 import { MyError } from '../../../waiting/MyError';
 
 export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
-  console.log(talentProfileId);
+  // console.log(talentProfileId);
   const [profileUpdated, setProfileUpdated] = useState(false);
   const [talentDeets, setTalentDeets] = useState({});
   const [completed, setCompleted] = useState(false);
@@ -123,7 +123,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
   }, [viewer, loadingViewer, talentData, !loadingTalentData]);
 
   useEffect(() => {
-    console.log(talentDeets);
+    // console.log(talentDeets);
     if (talentDeets) {
       if (talentDeets?.workExperienceOne) {
         if (

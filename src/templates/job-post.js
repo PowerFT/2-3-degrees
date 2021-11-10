@@ -128,7 +128,7 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
       }
 
       setProfileId(viewer.talentProfiles.nodes[0]?.id);
-      console.log(viewer);
+      // console.log(viewer);
 
       //Has this job been applied for before?
 
@@ -167,7 +167,11 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
   //   }
   // }
 
-  const { likeOpportunity, error, status } = useLikeOpportunity();
+  const {
+    likeOpportunity,
+    error: likeError,
+    status: likeStatus,
+  } = useLikeOpportunity();
 
   const handleLikeClick = () => {
     const likedDeets = {
@@ -181,6 +185,8 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
       })
       .catch((err) => console.log(err));
   };
+
+  // console.log(likeStatus);
 
   return (
     <>
@@ -207,6 +213,7 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
           handleClick={handleLikeClick}
           toBeLiked={toBeLiked}
           thisJobAppliedFor={thisJobAppliedFor}
+          likeStatus={likeStatus}
         />
 
         <Content mt="5" p="4">
@@ -439,7 +446,8 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
                     )}
 
                     <Button
-                      // disabled={likePressed}
+                      isLoading={likeStatus === 'resolving'}
+                      disabled={likeStatus === 'resolving'}
                       leftIcon={
                         likes?.map((like) => like.name).includes(dbIdString) ? (
                           <Icon as={AiOutlineHeart} h="6" w="6" />

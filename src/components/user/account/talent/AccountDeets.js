@@ -25,7 +25,7 @@ export const AccountDeets = ({
 
   useEffect(() => {
     if (viewer && !loadingViewer) {
-      console.log(viewer);
+      // console.log(viewer);
       const accountInputs = [
         viewer.firstName,
         viewer.lastName,
@@ -59,7 +59,7 @@ export const AccountDeets = ({
   }, [viewer, loadingViewer]);
 
   const handleSubmit = () => {
-    console.log(accountDeets);
+    // console.log(accountDeets);
     updateUser(accountDeets).then(() => {
       refetchViewer();
       setProfileUpdated(true);
@@ -163,16 +163,18 @@ export const AccountDeets = ({
           )}
 
           <Button
-            size="md"
-            w={['xs', 'md']}
             colorScheme="green"
             isLoading={status === 'resolving'}
             loadingText="Updating"
             form="updateAccountForm"
             type="submit"
             disabled={status === 'resolving'}
+            size="md"
+            w="100%"
           >
-            {status === 'resolving' ? 'Updating' : 'Update'}
+            {status === 'resolving'
+              ? 'Updating Basic Info'
+              : 'Update Basic Info'}
           </Button>
 
           {error && (

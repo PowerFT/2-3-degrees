@@ -54,7 +54,7 @@ export const AppliedList = () => {
 
   useEffect(() => {
     if (viewer && !loadingViewer) {
-      console.log(viewer);
+      // console.log(viewer);
       let appliedOppDatabaseIds = viewer.applications?.nodes?.map(
         (node) => node.appliedJobs.nodes[0].description
       );
@@ -75,7 +75,7 @@ export const AppliedList = () => {
   // if (!data) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
   // if(data.viewer?.jobPosts?.nodes.length === 0) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
 
-  console.log(data);
+  // console.log(data);
   // console.log(
   //   viewer.talentProfiles.nodes[0].likedOpportunities.nodes.map(
   //     (node) => node.name

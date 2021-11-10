@@ -1,10 +1,13 @@
 import React from 'react';
 import { Table, Thead, Tr, Th, Td, Tbody, Box } from '@chakra-ui/react';
+// import { useAuth } from '../../../hooks';
 
 export const ApplicationTable = ({ tp, q, ...rest }) => {
-  console.log(q);
+  // const { viewer, loadingViewer } = useAuth();
+
   return (
     <Box {...rest} padding="4">
+      {/* {viewer && loadingViewer && ( */}
       <Table size="sm" maxW="2xl" bg="gray.50">
         <Thead>
           <Tr>
@@ -28,6 +31,7 @@ export const ApplicationTable = ({ tp, q, ...rest }) => {
           </Tr>
         </Tbody>
       </Table>
+      {/* )} */}
 
       <Table size="sm" maxW="2xl" bg="gray.50" borderColor="gray.900">
         <Thead>

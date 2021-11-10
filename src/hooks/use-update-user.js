@@ -27,17 +27,17 @@ export const useUpdateUser = () => {
   // console.log(userId)
   const updateUser = (accountDeets = {}) => {
     // const {accountDeets, likedDeets} = props
-    console.log(accountDeets);
+    // console.log(accountDeets);
     setError(null);
     setStatus('resolving');
     return updateUserMutation(accountDeets)
       .then(() => {
-        console.log('successfully updated account');
+        // console.log('successfully updated account');
         setStatus('resolved');
         // navigate('/connect/platform')
       })
       .catch((errors) => {
-        console.log(errors);
+        // console.log(errors);
         setError(errors);
         setStatus('resolved');
       });

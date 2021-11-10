@@ -29,18 +29,18 @@ export const useMakeTalentProfile = () => {
     useMakeTalentProfileMutation();
 
   const makeTalentProfile = (talentDeets) => {
-    console.log(talentDeets);
+    // console.log(talentDeets);
     setError(null);
     // setStatus('resolved');
 
     const success = (result) => {
-      console.log(result);
+      // console.log(result);
       setStatus('resolving');
       return result.data;
     };
 
     const fail = (errors) => {
-      console.log(errors);
+      // console.log(errors);
       setStatus('resolved');
       setError(errors);
     };
@@ -88,14 +88,14 @@ export const useMakeTalentProfile = () => {
         we3_end: talentDeets?.workExperienceThree?.we3End,
         we3_role: talentDeets?.workExperienceThree?.we3Role,
         we3_start: talentDeets?.workExperienceThree?.we3Start,
-        // we4_company: talentDeets?.workExperienceFour?.we4Company,
-        // we4_end: talentDeets?.workExperienceFour?.we4End,
-        // we4_role: talentDeets?.workExperienceFour?.we4Role,
-        // we4_start: talentDeets?.workExperienceFour?.we4Start,
-        // we5_company: talentDeets?.workExperienceFive?.we5Company,
-        // we5_end: talentDeets?.workExperienceFive?.we5End,
-        // we5_role: talentDeets?.workExperienceFive?.we5Role,
-        // we5_start: talentDeets?.workExperienceFive?.we5Start,
+        we4_company: talentDeets?.workExperienceFour?.we4Company,
+        we4_end: talentDeets?.workExperienceFour?.we4End,
+        we4_role: talentDeets?.workExperienceFour?.we4Role,
+        we4_start: talentDeets?.workExperienceFour?.we4Start,
+        we5_company: talentDeets?.workExperienceFive?.we5Company,
+        we5_end: talentDeets?.workExperienceFive?.we5End,
+        we5_role: talentDeets?.workExperienceFive?.we5Role,
+        we5_start: talentDeets?.workExperienceFive?.we5Start,
       },
     })
       .then(success)

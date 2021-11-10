@@ -60,14 +60,12 @@ export function ChangeModal({
         typeSlug === 'email' ? setNewEmail(val) : setPasswordChanged(true)
       )
       .then(() => {
-        console.log('close');
         onClose();
       })
       .then(() => {
         logout();
-        console.log('logginout');
-      })
-      .catch((err) => console.log(err));
+      });
+    // .catch((err) => console.log(err));
   };
 
   return (

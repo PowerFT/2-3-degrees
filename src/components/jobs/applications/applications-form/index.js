@@ -112,7 +112,7 @@ export const ApplicationForm = () => {
     }
   }, [talentData]);
 
-  console.log(formDeets);
+  // console.log(formDeets);
 
   if (loadingViewer || !viewer || loading || loadingTalent) {
     return <MySpinner />;
