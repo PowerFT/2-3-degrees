@@ -58,8 +58,8 @@ export const LikedList = () => {
         viewer.talentProfiles.nodes[0].likedOpportunities.nodes.map((node) =>
           parseFloat(node.name.replace(/,/g, ''))
         );
-      console.log(likedOppIds);
-      setLikedIds(likedOppIds);
+      console.log(likedOppIds.length);
+      setLikedIds(likedOppIds.length !== 0 ? likedOppIds : ['']);
     }
   }, [viewer]);
 

@@ -58,8 +58,9 @@ export const AppliedList = () => {
       let appliedOppDatabaseIds = viewer.applications?.nodes?.map(
         (node) => node.appliedJobs.nodes[0].description
       );
-      console.log(appliedOppDatabaseIds);
-      setAppliedDatabaseIds(appliedOppDatabaseIds);
+      setAppliedDatabaseIds(
+        appliedOppDatabaseIds !== 0 ? appliedOppDatabaseIds : ['']
+      );
     }
   }, [viewer]);
 
