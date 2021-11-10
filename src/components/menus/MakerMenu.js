@@ -26,16 +26,15 @@ export const MakerMenu = ({ mobile, menuopen, onclose }) => {
             menuopen={menuopen}
             onclose={onclose}
           />
+          <MenuItem
+            mobile={mobile}
+            link="/maker/account"
+            label="Account"
+            menuopen={menuopen}
+            onclose={onclose}
+          />
         </>
       )}
-
-      <MenuItem
-        mobile={mobile}
-        link="/maker/account"
-        label="Account"
-        menuopen={menuopen}
-        onclose={onclose}
-      />
     </>
   );
 };

@@ -180,6 +180,74 @@ export const ApplicationTable = ({ tp, q, ...rest }) => {
               </Tbody>
             </>
           )}
+
+        {tp?.workExperienceFour?.we4Company &&
+          tp?.workExperienceFour?.we4Role &&
+          tp?.workExperienceFour?.we4Start &&
+          tp?.workExperienceFour?.we4End && (
+            <>
+              <Thead>
+                <Tr>
+                  <Td></Td>
+                </Tr>
+                <Tr>
+                  <Th>Work Experience</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr>
+                  <Td>Company</Td>
+                  <Td>{tp?.workExperienceFour?.we4Company}</Td>
+                </Tr>
+                <Tr>
+                  <Td>Role</Td>
+                  <Td>{tp?.workExperienceFour?.we4Role}</Td>
+                </Tr>
+                <Tr>
+                  <Td>Start Date</Td>
+                  <Td>{tp?.workExperienceFour?.we4Start}</Td>
+                </Tr>
+                <Tr>
+                  <Td>End Date</Td>
+                  <Td>{tp?.workExperienceFour?.we4End}</Td>
+                </Tr>
+              </Tbody>
+            </>
+          )}
+
+        {tp?.workExperienceFive?.we5Company &&
+          tp?.workExperienceFive?.we5Role &&
+          tp?.workExperienceFive?.we5Start &&
+          tp?.workExperienceFive?.we5End && (
+            <>
+              <Thead>
+                <Tr>
+                  <Td></Td>
+                </Tr>
+                <Tr>
+                  <Th>Work Experience</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr>
+                  <Td>Company</Td>
+                  <Td>{tp?.workExperienceFive?.we5Company}</Td>
+                </Tr>
+                <Tr>
+                  <Td>Role</Td>
+                  <Td>{tp?.workExperienceFive?.we5Role}</Td>
+                </Tr>
+                <Tr>
+                  <Td>Start Date</Td>
+                  <Td>{tp?.workExperienceFive?.we5Start}</Td>
+                </Tr>
+                <Tr>
+                  <Td>End Date</Td>
+                  <Td>{tp?.workExperienceFive?.we5End}</Td>
+                </Tr>
+              </Tbody>
+            </>
+          )}
       </Table>
 
       <Table size="sm" maxW="2xl" bg="gray.50">
@@ -192,7 +260,6 @@ export const ApplicationTable = ({ tp, q, ...rest }) => {
         </Thead>
         {tp?.gcse?.gcseInstitution &&
           tp?.gcse?.gcseSubjects &&
-          tp?.gcse?.gcseGrades &&
           tp?.gcse?.gcseEndDate && (
             <>
               <Thead>
@@ -210,10 +277,6 @@ export const ApplicationTable = ({ tp, q, ...rest }) => {
                   <Td>{tp?.gcse?.gcseSubjects}</Td>
                 </Tr>
                 <Tr>
-                  <Td>Grades</Td>
-                  <Td>{tp?.gcse?.gcseGrades}</Td>
-                </Tr>
-                <Tr>
                   <Td>End Date</Td>
                   <Td>{tp?.gcse?.gcseEndDate}</Td>
                 </Tr>
@@ -222,13 +285,11 @@ export const ApplicationTable = ({ tp, q, ...rest }) => {
           )}
         {tp?.alevels?.alevelsInstitution &&
           tp?.alevels?.alevelsSubjects &&
-          tp?.alevels?.alevelsGrades &&
           tp?.alevels?.alevelsEndDate && (
             <>
               <Thead>
                 {tp?.gcse?.gcseInstitution &&
                   tp?.gcse?.gcseSubjects &&
-                  tp?.gcse?.gcseGrades &&
                   tp?.gcse?.gcseEndDate && (
                     <Tr>
                       <Td></Td>
@@ -248,10 +309,6 @@ export const ApplicationTable = ({ tp, q, ...rest }) => {
                   <Td>{tp?.alevels?.alevelsSubjects}</Td>
                 </Tr>
                 <Tr>
-                  <Td>Grades</Td>
-                  <Td>{tp?.alevels?.alevelsGrades}</Td>
-                </Tr>
-                <Tr>
                   <Td>End Date</Td>
                   <Td>{tp?.alevels?.alevelsEndDate}</Td>
                 </Tr>
@@ -261,13 +318,11 @@ export const ApplicationTable = ({ tp, q, ...rest }) => {
 
         {tp?.alevels?.alevelsInstitution &&
           tp?.alevels?.alevelsSubjects &&
-          tp?.alevels?.alevelsGrades &&
           tp?.alevels?.alevelsEndDate && (
             <>
               <Thead>
                 {tp?.alevels?.alevelsInstitution &&
                   tp?.alevels?.alevelsSubjects &&
-                  tp?.alevels?.alevelsGrades &&
                   tp?.alevels?.alevelsEndDate && (
                     <Tr>
                       <Td></Td>
@@ -287,10 +342,6 @@ export const ApplicationTable = ({ tp, q, ...rest }) => {
                   <Td>{tp?.undergraduate?.undergraduateSubjects}</Td>
                 </Tr>
                 <Tr>
-                  <Td>Grades</Td>
-                  <Td>{tp?.undergraduate?.undergraduateGrades}</Td>
-                </Tr>
-                <Tr>
                   <Td>End Date</Td>
                   <Td>{tp?.undergraduate?.undergraduateEndDate}</Td>
                 </Tr>
@@ -298,15 +349,13 @@ export const ApplicationTable = ({ tp, q, ...rest }) => {
             </>
           )}
 
-        {tp?.alevels?.alevelsInstitution &&
-          tp?.alevels?.alevelsSubjects &&
-          tp?.alevels?.alevelsGrades &&
-          tp?.alevels?.alevelsEndDate && (
+        {tp?.masters?.mastersInstitution &&
+          tp?.masters?.mastersSubjects &&
+          tp?.masters?.mastersEndDate && (
             <>
               <Thead>
                 {tp?.alevels?.alevelsInstitution &&
                   tp?.alevels?.alevelsSubjects &&
-                  tp?.alevels?.alevelsGrades &&
                   tp?.alevels?.alevelsEndDate && (
                     <Tr>
                       <Td></Td>
@@ -326,12 +375,107 @@ export const ApplicationTable = ({ tp, q, ...rest }) => {
                   <Td>{tp?.masters.mastersSubjects}</Td>
                 </Tr>
                 <Tr>
-                  <Td>Grades</Td>
-                  <Td>{tp?.masters.mastersGrades}</Td>
+                  <Td>End Date</Td>
+                  <Td>{tp?.masters.mastersEndDate}</Td>
+                </Tr>
+              </Tbody>
+            </>
+          )}
+
+        {tp?.btec?.btecInstitution &&
+          tp?.btec?.btecSubjects &&
+          tp?.btec?.btecEndDate && (
+            <>
+              <Thead>
+                {tp?.masters?.mastersInstitution &&
+                  tp?.masters?.mastersSubjects &&
+                  tp?.masters?.mastersEndDate && (
+                    <Tr>
+                      <Td></Td>
+                    </Tr>
+                  )}
+                <Tr>
+                  <Th>BTEC</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr>
+                  <Td>Institution</Td>
+                  <Td>{tp?.btec.btecInstitution}</Td>
+                </Tr>
+                <Tr>
+                  <Td>Subjects</Td>
+                  <Td>{tp?.btec.btecSubjects}</Td>
                 </Tr>
                 <Tr>
                   <Td>End Date</Td>
-                  <Td>{tp?.masters.mastersEndDate}</Td>
+                  <Td>{tp?.btec.btecEndDate}</Td>
+                </Tr>
+              </Tbody>
+            </>
+          )}
+
+        {tp?.vocational?.vocationalInstitution &&
+          tp?.vocational?.vocationalSubjects &&
+          tp?.vocational?.vocationalEndDate && (
+            <>
+              <Thead>
+                {tp?.btec?.btecInstitution &&
+                  tp?.btec?.btecSubjects &&
+                  tp?.btec?.btecEndDate && (
+                    <Tr>
+                      <Td></Td>
+                    </Tr>
+                  )}
+                <Tr>
+                  <Th>Vocational Course</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr>
+                  <Td>Institution</Td>
+                  <Td>{tp?.vocational.vocationalInstitution}</Td>
+                </Tr>
+                <Tr>
+                  <Td>Subjects</Td>
+                  <Td>{tp?.vocational.vocationalSubjects}</Td>
+                </Tr>
+                <Tr>
+                  <Td>End Date</Td>
+                  <Td>{tp?.vocational.vocationalEndDate}</Td>
+                </Tr>
+              </Tbody>
+            </>
+          )}
+
+        {tp?.tlevel?.tlevelInstitution &&
+          tp?.tlevel?.tlevelSubjects &&
+          tp?.tlevel?.tlevelEndDate && (
+            <>
+              <Thead>
+                {tp?.vocational?.vocationalInstitution &&
+                  tp?.vocational?.vocationalSubjects &&
+                  tp?.vocational?.vocationalEndDate && (
+                    <Tr>
+                      <Td></Td>
+                    </Tr>
+                  )}
+                <Tr>
+                  <Th>T-levels</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr>
+                  <Td>Institution</Td>
+                  <Td>{tp?.tlevel.tlevelInstitution}</Td>
+                </Tr>
+                <Tr>
+                  <Td>Subjects</Td>
+                  <Td>{tp?.tlevel.tlevelSubjects}</Td>
+                </Tr>
+                <Tr>
+                  <Td>End Date</Td>
+                  <Td>{tp?.tlevel.tlevelEndDate}</Td>
                 </Tr>
               </Tbody>
             </>
