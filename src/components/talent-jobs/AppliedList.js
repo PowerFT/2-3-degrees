@@ -56,7 +56,7 @@ export const AppliedList = () => {
     if (viewer && !loadingViewer) {
       // console.log(viewer);
       let appliedOppDatabaseIds = viewer.applications?.nodes?.map(
-        (node) => node.appliedJobs.nodes[0].description
+        (node) => node.appliedJobs?.nodes[0].description
       );
       setAppliedDatabaseIds(
         appliedOppDatabaseIds !== 0 ? appliedOppDatabaseIds : ['']

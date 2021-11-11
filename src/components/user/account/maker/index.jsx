@@ -117,15 +117,17 @@ export const MakerAccountSettings = () => {
 
       <Flex w="100%">
         <InnerSidebar
-          display={
-            viewer?.roles?.nodes[0].name === 'waiting' ? 'none' : 'block'
-          }
+          display={{
+            base: 'none',
+            sm: 'none',
+            md: viewer?.roles?.nodes[0].name === 'waiting' ? 'none' : 'block',
+          }}
           title="Test"
           primaryLinks={primaryLinks}
-          secondaryLinks={[
-            ['Why we ask for account information', '#'],
-            ['Terms and Conditions', '#'],
-          ]}
+          // secondaryLinks={[
+          //   ['Why we ask for account information', '#'],
+          //   ['Terms and Conditions', '#'],
+          // ]}
           pagetype={pagetype}
         />
 

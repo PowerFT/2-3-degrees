@@ -55,7 +55,7 @@ export const LikedList = () => {
     if (viewer && !loadingViewer) {
       // console.log(viewer);
       let likedOppIds =
-        viewer.talentProfiles.nodes[0].likedOpportunities.nodes.map((node) =>
+        viewer.talentProfiles?.nodes[0].likedOpportunities?.nodes.map((node) =>
           parseFloat(node.name.replace(/,/g, ''))
         );
       // console.log(likedOppIds.length);

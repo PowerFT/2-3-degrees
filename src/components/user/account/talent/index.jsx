@@ -93,18 +93,20 @@ export const TalentAccountSettings = () => {
       <Flex w="100%">
         {viewer && loadingViewer && (
           <InnerSidebar
-            display={
-              viewer?.roles?.nodes[0].name === 'waiting' ? 'none' : 'block'
-            }
+            display={{
+              base: 'none',
+              sm: 'none',
+              md: viewer?.roles?.nodes[0].name === 'waiting' ? 'none' : 'block',
+            }}
             title="Test"
             primaryLinks={[
               ['Connect Platform', '/connect/platform'],
               ['Latest Opportunites', '/connect/jobs'],
             ]}
-            secondaryLinks={[
-              ['Why we ask for account information', '#'],
-              ['Terms and Conditions', '#'],
-            ]}
+            // secondaryLinks={[
+            //   ['Why we ask for account information', '#'],
+            //   ['Terms and Conditions', '#'],
+            // ]}
             pagetype={pagetype}
           />
         )}
@@ -113,12 +115,15 @@ export const TalentAccountSettings = () => {
           <VStack spacing="6">
             <VStack
               p="3"
-              bg={!accountCompleted && 'dOrange.300'}
+              bg="transparent"
+              bg={accountCompleted ? 'transparent' : 'dOrange.300'}
               align="center"
               direction="column"
               spacing="6"
             >
-              {!accountCompleted && (
+              {accountCompleted ? (
+                <></>
+              ) : (
                 <Box
                   color="gray.900"
                   border="3px solid"

@@ -46,8 +46,10 @@ export const MobileBottomBar = ({ ...rest }) => {
 
   React.useEffect(() => {
     if (viewer) setUser(viewer.roles.nodes[0].name);
-    setUserJobsLink(user === 'talent' ? '/talent/jobs' : 'maker/jobs');
-    setUserAccountLink(user === 'talent' ? '/talent/account' : 'maker/account');
+    if (user === 'talent') setUserJobsLink('/talent/jobs');
+    if (user === 'maker') setUserJobsLink('/maker/jobs');
+    if (user === 'talent') setUserAccountLink('/talent/account');
+    if (user === 'maker') setUserAccountLink('/maker/account');
 
     console.log(user, userJobsLink, userAccountLink);
   }, [viewer]);
@@ -64,7 +66,7 @@ export const MobileBottomBar = ({ ...rest }) => {
       pos="sticky"
       {...rest}
     >
-      {(isloggedin === true && user === 'maker') || user === 'talent' ? (
+      {isloggedin === true && user !== 'waiting' ? (
         <HStack py={2} spacing={0} justify="stretch" h="100%">
           <Flex
             direction="column"
