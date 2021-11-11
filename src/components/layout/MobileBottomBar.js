@@ -75,7 +75,7 @@ export const MobileBottomBar = ({ ...rest }) => {
             p={2}
             flex="1 0"
           >
-            <LinkBox textAlign="center">
+            <LinkBox textAlign="center" minW="max-content">
               <Icon as={RiCreativeCommonsSaFill} w={5} h={5} mb={1} />
               <Text fontWeight="bold" fontSize="xs" textTransform="uppercase">
                 <LinkOverlay as={GatsbyLink} to={'/connect/platform'}>

@@ -4,31 +4,42 @@ import {
   Button,
   Heading,
   Text,
-} from '@chakra-ui/react'
-import * as React from 'react'
-import { Link as GatsbyLink } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import { BgImage } from '../../../components/BgImage'
+} from '@chakra-ui/react';
+import * as React from 'react';
+import { Link as GatsbyLink } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { BgImage } from '../../../components/BgImage';
 
-export const HalfHero = ({ image, title, text, button, bgCol, bgPatternCol, titleColour, subTitleColour, buttonColour }) => {
-	const imageData = getImage(image?.localFile)
-  const buttonTitle = button?.title
-  const buttonLink = button?.url
+export const HalfHero = ({
+  image,
+  title,
+  text,
+  button,
+  bgCol,
+  bgPatternCol,
+  titleColour,
+  subTitleColour,
+  buttonColour,
+}) => {
+  const imageData = getImage(image?.localFile);
+  const buttonTitle = button?.title;
+  const buttonLink = button?.url;
+
+  console.log(title, button);
   return (
     <Box
       as="section"
       className="half-hero"
       bg={bgCol}
-      pb={{base:"0"}}
+      pb={{ base: '0' }}
       pos="relative"
       px={{
         base: '0',
         md: '12',
       }}
     >
-      
       <Box
-        w={{base:"100%", md:"50%"}}
+        w={{ base: '100%', md: '50%' }}
         maxW={{
           md: 'md',
           xl: 'xl',
@@ -48,25 +59,36 @@ export const HalfHero = ({ image, title, text, button, bgCol, bgPatternCol, titl
         zIndex="2"
         position="relative"
       >
-        <Heading as="h1" size="3xl" lineHeight="1" fontWeight="extrabold" letterSpacing="tight" color={titleColour}>
+        <Heading
+          as="h1"
+          size="3xl"
+          lineHeight="1"
+          fontWeight="extrabold"
+          letterSpacing="tight"
+          color={titleColour}
+        >
           {title}
         </Heading>
         <Text mt={4} fontSize="xl" fontWeight="medium" color={subTitleColour}>
           {text}
         </Text>
-        <Button 
-          as={GatsbyLink} 
-          to={buttonLink} 
+        <Button
+          as={GatsbyLink}
+          to={buttonLink}
           fontWeight="400"
-          direction="down" 
-          mt="6" 
-          size="md" 
-          rounded="full" 
-          bg={buttonColour} 
-          color={buttonColour === "gray.900" || buttonColour === "gray.600" ? "gray.50" : "gray.900"} 
-          _hover={{bg:"lighter"}}
-          >
-            {buttonTitle}
+          direction="down"
+          mt="6"
+          size="md"
+          rounded="full"
+          bg={buttonColour}
+          color={
+            buttonColour === 'gray.900' || buttonColour === 'gray.600'
+              ? 'gray.50'
+              : 'gray.900'
+          }
+          _hover={{ bg: 'lighter' }}
+        >
+          {buttonTitle}
         </Button>
       </Box>
 
@@ -98,16 +120,14 @@ export const HalfHero = ({ image, title, text, button, bgCol, bgPatternCol, titl
         position="relative"
       >
         {image && (
-					<GatsbyImage
-						className="image"
-						image={imageData}
-						alt={image?.altText}
-					/>
+          <GatsbyImage
+            className="image"
+            image={imageData}
+            alt={image?.altText}
+          />
         )}
       </Box>
-      {bgPatternCol && (
-        <BgImage bgPatternCol={bgPatternCol} />
-      )}
+      {bgPatternCol && <BgImage bgPatternCol={bgPatternCol} />}
     </Box>
-  )
-}
+  );
+};

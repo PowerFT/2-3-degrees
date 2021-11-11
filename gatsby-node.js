@@ -208,6 +208,11 @@ const getPages = async ({ graphql, reporter }) => {
                   text
                   title
                   titleColour
+                  button {
+                    target
+                    title
+                    url
+                  }
                   image {
                     altText
                     localFile {
