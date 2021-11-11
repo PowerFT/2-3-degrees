@@ -51,6 +51,8 @@ export const TalentAccountSettings = () => {
   const [accountCompleted, setAccountCompleted] = useState(false);
   const [educationCompleted, setEducationCompleted] = useState(false);
   const [workCompleted, setWorkCompleted] = useState(false);
+  const [talentProfileUpdateLoading, setTalentProfileUpdateLoading] =
+    useState(false);
 
   //Change Email or Password
   const [newEmail, setNewEmail] = useState('');
@@ -218,10 +220,14 @@ export const TalentAccountSettings = () => {
                 <TalentEducationDeets
                   setEducationCompleted={setEducationCompleted}
                   talentProfileId={talentProfileId}
+                  setTalentProfileUpdateLoading={setTalentProfileUpdateLoading}
+                  talentProfileUpdateLoading={talentProfileUpdateLoading}
                 />
                 <TalentWorkDeets
                   setWorkCompleted={setWorkCompleted}
                   talentProfileId={talentProfileId}
+                  setTalentProfileUpdateLoading={setTalentProfileUpdateLoading}
+                  talentProfileUpdateLoading={talentProfileUpdateLoading}
                 />
               </Box>
             )}

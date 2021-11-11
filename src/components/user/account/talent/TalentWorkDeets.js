@@ -27,11 +27,16 @@ import { useChangeTalentProfile } from '../../../../hooks/use-change-talent-prof
 import { MySpinner } from '../../../waiting/MySpinner';
 import { MyError } from '../../../waiting/MyError';
 
-export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
+export const TalentWorkDeets = ({
+  setWorkCompleted,
+  talentProfileId,
+  setTalentProfileUpdateLoading,
+  talentProfileUpdateLoading,
+}) => {
   // console.log(talentProfileId);
   const [profileUpdated, setProfileUpdated] = useState(false);
   const [talentDeets, setTalentDeets] = useState({});
-  const [completed, setCompleted] = useState(false);
+  // const [completed, setCompleted] = useState(false);
   const [we1Selected, setWe1Selected] = useState(false);
   const [we2Selected, setWe2Selected] = useState(false);
   const [we3Selected, setWe3Selected] = useState(false);
@@ -39,16 +44,16 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
   const [we5Selected, setWe5Selected] = useState(false);
 
   //Select Educations buttons
-  const works = ['we1', 'we2', 'we3'];
+  // const works = ['we1', 'we2', 'we3'];
   const [selectedWorks, setSelectedWorks] = useState([]);
-  const handleEdClick = (works) => {
-    if (!selectedWorks.includes(works)) {
-      setSelectedWorks([...selectedWorks, works]);
-    } else {
-      const newList = selectedWorks.filter((work) => work !== work);
-      setSelectedWorks(newList);
-    }
-  };
+  // const handleEdClick = (works) => {
+  //   if (!selectedWorks.includes(works)) {
+  //     setSelectedWorks([...selectedWorks, works]);
+  //   } else {
+  //     const newList = selectedWorks.filter((work) => work !== work);
+  //     setSelectedWorks(newList);
+  //   }
+  // };
 
   //QUERIES
   const { viewer, loadingViewer, refetchViewer } = useAuth();
@@ -174,32 +179,12 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
           setWe5Selected(true);
         }
       }
-      // if (talentDeets.workExperienceOne) {
-      //   if (
-      //     Object.values(talentDeets?.workExperienceOne).some(
-      //       (element) => element
-      //     )
-      //   )
-      //     setSelectedWorks([...selectedWorks, 'we1']);
-      // }
-      // if (talentDeets.workExperienceTwo) {
-      //   if (
-      //     Object.values(talentDeets?.workExperienceTwo).some(
-      //       (element) => element
-      //     )
-      //   )
-      //     setSelectedWorks([...selectedWorks, 'we2']);
-      // }
-      // if (talentDeets.workExperienceThree) {
-      //   if (
-      //     Object.values(talentDeets?.workExperienceThree).some(
-      //       (element) => element
-      //     )
-      //   )
-      //     setSelectedWorks([...selectedWorks, 'we3']);
-      // }
     }
   }, [talentDeets]);
+
+  useEffect(() => {
+    setTalentProfileUpdateLoading(changeStatus || makeStatus);
+  }, [changeStatus, makeStatus]);
 
   //HANDLE SUBMITS
 
@@ -766,9 +751,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               type="submit"
               form="updateTalentExperience"
               // colorScheme={ status === 'resolved' ? 'green' : "blue"}
-              disabled={
-                changeStatus === 'resolving' || makeStatus === 'resolving'
-              }
+              disabled={talentProfileUpdateLoading === 'resolving'}
             >
               {changeStatus === 'resolving' || makeStatus === 'resolving'
                 ? 'Updating Experience'

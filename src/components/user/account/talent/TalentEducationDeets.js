@@ -28,16 +28,18 @@ import { MyError } from '../../../waiting/MyError';
 export const TalentEducationDeets = ({
   setEducationCompleted,
   talentProfileId,
+  setTalentProfileUpdateLoading,
+  talentProfileUpdateLoading,
 }) => {
   // console.log(talentProfileId);
 
   const [profileUpdated, setProfileUpdated] = useState(false);
   const [talentDeets, setTalentDeets] = useState({});
-  const [completed, setCompleted] = useState(false);
+  // const [completed, setCompleted] = useState(false);
 
   //Select Educations buttons
-  const eds = ['gcse', 'alevels', 'undergraduate', 'masters'];
-  const [selectedEds, setSelectedEds] = useState([]);
+  // const eds = ['gcse', 'alevels', 'undergraduate', 'masters'];
+  // const [selectedEds, setSelectedEds] = useState([]);
   const [gcseSelected, setGcseSelected] = useState(false);
   const [alevelsSelected, setAlevelsSelected] = useState(false);
   const [undergraduateSelected, setUndergraduateSelected] = useState(false);
@@ -201,8 +203,8 @@ export const TalentEducationDeets = ({
   };
 
   useEffect(() => {
-    // console.log(changeStatus);
-  }, [changeStatus]);
+    setTalentProfileUpdateLoading(changeStatus || makeStatus);
+  }, [changeStatus, makeStatus]);
 
   if (!viewer || loadingViewer || loadingTalentData) return <MySpinner />;
   if (talentDataError) return <MyError error={talentDataError} />;
@@ -796,7 +798,7 @@ export const TalentEducationDeets = ({
           type="submit"
           form="updateTalentEducation"
           // colorScheme={ status === 'resolved' ? 'green' : "blue"}
-          disabled={changeStatus === 'resolving' || makeStatus === 'resolving'}
+          disabled={talentProfileUpdateLoading === 'resolving'}
         >
           {changeStatus === 'resolving' || makeStatus === 'resolving'
             ? 'Updating Education'
