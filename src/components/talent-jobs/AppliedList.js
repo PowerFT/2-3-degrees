@@ -54,13 +54,19 @@ export const AppliedList = () => {
 
   useEffect(() => {
     if (viewer && !loadingViewer) {
-      // console.log(viewer);
-      let appliedOppDatabaseIds = viewer.applications?.nodes?.map(
-        (node) => node.appliedJobs?.nodes[0].description
-      );
-      setAppliedDatabaseIds(
-        appliedOppDatabaseIds !== 0 ? appliedOppDatabaseIds : ['']
-      );
+      console.log(viewer);
+      let apps = viewer.applications?.nodes;
+      if (apps.length !== 0) {
+        let appliedOppDatabaseIds = apps?.map(
+          (node) => node.appliedJobs?.nodes[0].description
+        );
+        setAppliedDatabaseIds(
+          appliedOppDatabaseIds !== 0 ? appliedOppDatabaseIds : ['']
+        );
+      } else {
+        console.log('none');
+        setAppliedDatabaseIds(['']);
+      }
     }
   }, [viewer]);
 

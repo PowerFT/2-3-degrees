@@ -53,13 +53,19 @@ export const LikedList = () => {
 
   useEffect(() => {
     if (viewer && !loadingViewer) {
-      // console.log(viewer);
-      let likedOppIds =
-        viewer.talentProfiles?.nodes[0].likedOpportunities?.nodes.map((node) =>
+      console.log(viewer);
+      let talentPs = viewer.talentProfiles?.nodes[0];
+      if (talentPs) {
+        let likedOppIds = talentPs?.likedOpportunities?.nodes?.map((node) =>
           parseFloat(node.name.replace(/,/g, ''))
         );
+        setLikedIds(likedOppIds.length !== 0 ? likedOppIds : ['']);
+      } else {
+        setLikedIds(['']);
+      }
+
       // console.log(likedOppIds.length);
-      setLikedIds(likedOppIds.length !== 0 ? likedOppIds : ['']);
+      // setLikedIds(likedOppIds.length !== 0 ? likedOppIds : ['']);
     }
   }, [viewer]);
 
