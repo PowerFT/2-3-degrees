@@ -23,7 +23,7 @@ import {
   RiAccountPinCircleFill,
   RiBriefcase5Fill,
 } from 'react-icons/ri';
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Link as GatsbyLink, Link } from 'gatsby';
 /**
  * Internal dependencies
@@ -32,21 +32,26 @@ import { useAuth } from '../../hooks';
 import { NavMenus } from '../menus';
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { StaticImage } from 'gatsby-plugin-image';
-import { MenuItem } from '../menus/MenuItem';
 
 export const MobileBottomBar = ({ ...rest }) => {
   // const { isOpen, onClose, onOpen } = useMobileMenuState()
 
-  const { isloggedin, logout } = useAuth();
+  const { isloggedin, logout, viewer } = useAuth();
+  const [user, setUser] = useState('');
+  const [userJobsLink, setUserJobsLink] = useState('');
+  const [userAccountLink, setUserAccountLink] = useState('');
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
 
-  const handleLogout = () => {
-    logout();
-  };
+  React.useEffect(() => {
+    if (viewer) setUser(viewer.roles.nodes[0].name);
+    setUserJobsLink(user === 'talent' ? '/talent/jobs' : 'maker/jobs');
+    setUserAccountLink(user === 'talent' ? '/talent/account' : 'maker/account');
 
-  // console.log(isloggedin, isOpen)
+    console.log(user, userJobsLink, userAccountLink);
+  }, [viewer]);
+
   return (
     <Stack
       display={['flex', 'none']}
@@ -59,19 +64,19 @@ export const MobileBottomBar = ({ ...rest }) => {
       pos="sticky"
       {...rest}
     >
-      {isloggedin === true ? (
+      {(isloggedin === true && user === 'maker') || user === 'talent' ? (
         <HStack py={2} spacing={0} justify="stretch" h="100%">
           <Flex
             direction="column"
             justify="center"
             align="center"
             p={2}
-            flex="1 1"
+            flex="1 0"
           >
             <LinkBox textAlign="center">
               <Icon as={RiCreativeCommonsSaFill} w={5} h={5} mb={1} />
               <Text fontWeight="bold" fontSize="xs" textTransform="uppercase">
-                <LinkOverlay as={GatsbyLink} to="/connect/platform">
+                <LinkOverlay as={GatsbyLink} to={'/connect/platform'}>
                   Connect
                 </LinkOverlay>
               </Text>
@@ -82,12 +87,12 @@ export const MobileBottomBar = ({ ...rest }) => {
             justify="center"
             align="center"
             p={2}
-            flex="1 1"
+            flex="1 0"
           >
             <LinkBox textAlign="center">
               <Icon as={RiBriefcase5Fill} w={5} h={5} mb={1} />
               <Text fontWeight="bold" fontSize="xs" textTransform="uppercase">
-                <LinkOverlay as={GatsbyLink} to="/maker/jobs">
+                <LinkOverlay as={GatsbyLink} to={userJobsLink}>
                   Jobs
                 </LinkOverlay>
               </Text>
@@ -98,12 +103,12 @@ export const MobileBottomBar = ({ ...rest }) => {
             justify="center"
             align="center"
             p={2}
-            flex="1 1"
+            flex="1 0"
           >
             <LinkBox textAlign="center">
               <Icon as={RiAccountPinCircleFill} w={5} h={5} mb={1} />
               <Text fontWeight="bold" fontSize="xs" textTransform="uppercase">
-                <LinkOverlay as={GatsbyLink} to="/maker/account">
+                <LinkOverlay as={GatsbyLink} to={userAccountLink}>
                   Account
                 </LinkOverlay>
               </Text>

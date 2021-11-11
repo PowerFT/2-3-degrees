@@ -551,9 +551,8 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
                           questions.map((question) => {
                             // console.log(question.slug);
                             return (
-                              <>
+                              <Box key={question.slug}>
                                 <HStack
-                                  key={question.slug}
                                   spacing="4"
                                   border="2px solid"
                                   borderColor={
@@ -595,7 +594,7 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
                                     </Text>
                                   </Box>
                                 </HStack>
-                              </>
+                              </Box>
                             );
                           })}
                       </Stack>

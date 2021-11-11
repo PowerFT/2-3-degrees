@@ -33,7 +33,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Box className="site" w="100vw" minH="100vh" position="relative">
-        <Flex className="site__container" width="100%" bg="gray.50">
+        <Flex className="site__container" width="100%" bg="gray.100">
           <Sidebar
             display={{
               base: 'none',

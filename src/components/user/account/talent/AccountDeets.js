@@ -171,6 +171,7 @@ export const AccountDeets = ({
             type="submit"
             disabled={status === 'resolving'}
             size="md"
+            mt="6"
             w="100%"
           >
             {status === 'resolving'

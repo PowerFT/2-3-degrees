@@ -7,11 +7,12 @@ export const AdminBlob = (props) => {
     <VStack
       bg="white"
       rounded="md"
-      borderWidth="1px"
-      borderColor="gray.800"
+      // borderWidth="1px"
+      // borderColor="gray.800"
       w={{ base: 'xs', sm: 'md', md: 'sm', lg: 'lg' }}
       spacing="3"
-      p="6"
+      px={{ base: '3', sm: '6' }}
+      py={{ base: '6', sm: '8' }}
       align="flex-start"
       position="relative"
       overflow="hidden"

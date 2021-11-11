@@ -359,7 +359,9 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>Organisation</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
+                  _focus={{ bg: 'white' }}
                   maxLength={100}
                   value={talentDeets?.workExperienceOne?.we1Company}
                   onChange={(e) =>
@@ -377,6 +379,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>Role / Title</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceOne?.we1Role}
@@ -395,6 +398,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>Start Date</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceOne?.we1Start}
@@ -412,6 +416,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>End Date</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceOne?.we1End}
@@ -435,6 +440,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>Organisation</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceTwo?.we2Company}
@@ -452,6 +458,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>Role / Title</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceTwo?.we2Role}
@@ -469,6 +476,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>Start Date</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceTwo?.we2Start}
@@ -486,6 +494,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>End Date</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceTwo?.we2End}
@@ -509,6 +518,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>Organisation</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceThree.we3Company}
@@ -526,6 +536,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>Role / Title</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceThree.we3Role}
@@ -543,6 +554,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>Start Date</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceThree.we3Start}
@@ -560,6 +572,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>End Date</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceThree.we3End}
@@ -583,6 +596,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>Organisation</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceFour?.we4Company}
@@ -600,6 +614,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>Role / Title</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceFour?.we4Role}
@@ -617,6 +632,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>Start Date</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceFour?.we4Start}
@@ -634,6 +650,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>End Date</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceFour?.we4End}
@@ -657,6 +674,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>Organisation</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceFive?.we5Company}
@@ -674,6 +692,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>Role / Title</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceFive?.we5Role}
@@ -691,6 +710,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>Start Date</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceFive?.we5Start}
@@ -708,6 +728,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
               <FormControl isRequired>
                 <FormLabel>End Date</FormLabel>
                 <Input
+                  _focus={{ bg: 'white' }}
                   type="text"
                   maxLength={100}
                   value={talentDeets?.workExperienceFive?.we5End}
