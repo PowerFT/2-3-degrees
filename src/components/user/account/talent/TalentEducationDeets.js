@@ -789,7 +789,8 @@ export const TalentEducationDeets = ({
         <Button
           size="md"
           w="100%"
-          colorScheme="green"
+          bg="dYellow.300"
+          _hover={{ bg: 'dYellow.200' }}
           isLoading={changeStatus === 'resolving' || makeStatus === 'resolving'}
           // loadingText="Updating"
           type="submit"

@@ -6,19 +6,13 @@ import {
   LinkBox,
   LinkOverlay,
   Spacer,
-  Stack,
   useDisclosure,
 } from '@chakra-ui/react';
 import React from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
-import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
-import { Logo } from './Logo';
-// import { SearchField } from './SearchField'
 import { AccountMenu } from '../menus/AccountMenu';
 import { useAuth } from '../../hooks';
 import { NavMenus } from '../menus';
-// import AniLink from "gatsby-plugin-transition-link/AniLink";
-// import InternalProvider from 'gatsby-plugin-transition-link/context/InternalProvider';
 import { Link } from 'gatsby';
 import { SocialButton } from '../footer/SocialButton';
 import { socialLinks } from '../footer/_data';
@@ -26,9 +20,8 @@ import { StaticImage } from 'gatsby-plugin-image';
 
 export const Sidebar = ({ ...rest }) => {
   const { isloggedin, loadingViewer, viewer } = useAuth();
-  // console.log(viewer)
-
   const { isOpen, onToggle } = useDisclosure();
+  if (loadingViewer) return null;
 
   return (
     <Flex
@@ -55,6 +48,11 @@ export const Sidebar = ({ ...rest }) => {
         pt="5"
         pb="4"
         maxH="100%"
+        display={
+          viewer?.roles?.nodes[0].name === 'waiting' && isloggedin
+            ? 'none'
+            : 'flex'
+        }
       >
         <Flex
           id="menuButtons"
@@ -112,13 +110,6 @@ export const Sidebar = ({ ...rest }) => {
         </Collapse>
 
         <Spacer />
-
-        {/* <Box> */}
-        {/* <Flex spacing={4} w={isOpen ? "max-content" : "min-content"} h={isOpen ? "min-content" : "max-content"} alignSelf="center" mb="5" px="3" justifySelf="flex-end" transition="all 2s" flexWrap="wrap">
-              <Icon as={FaFacebook} w={6} h={6} mr={isOpen ? "4" : "0"} mb={isOpen ? "0" : "4"}/>
-              <Icon as={FaInstagram} w={6} h={6} mr={isOpen ? "4" : "0"} mb={isOpen ? "0" : "4"}/>
-              <Icon as={FaTwitter} w={6} h={6} />
-            </Flex> */}
         <Flex
           w={isOpen ? 'max-content' : 'min-content'}
           h={isOpen ? 'min-content' : 'max-content'}
@@ -150,7 +141,6 @@ export const Sidebar = ({ ...rest }) => {
             <AccountMenu menuopen={isOpen} />
           </Box>
         )}
-        {/* </Box> */}
       </Flex>
     </Flex>
   );

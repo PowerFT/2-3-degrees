@@ -232,7 +232,7 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
         handleSubmit();
       }}
     >
-      <VStack>
+      <VStack mt="6">
         <AdminBlob title="Experience">
           <Flex wrap="wrap" justify="center" w="100%">
             <Button
@@ -736,7 +736,8 @@ export const TalentWorkDeets = ({ setWorkCompleted, talentProfileId }) => {
             <Button
               size="md"
               w="100%"
-              colorScheme="green"
+              bg="dYellow.300"
+              _hover={{ bg: 'dYellow.200' }}
               isLoading={
                 changeStatus === 'resolving' || makeStatus === 'resolving'
               }

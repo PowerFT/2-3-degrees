@@ -163,7 +163,8 @@ export const AccountDeets = ({
           )}
 
           <Button
-            colorScheme="green"
+            bg="dYellow.300"
+            _hover={{ bg: 'dYellow.200' }}
             isLoading={status === 'resolving'}
             loadingText="Updating"
             form="updateAccountForm"

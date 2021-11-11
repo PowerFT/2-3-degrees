@@ -10,10 +10,7 @@ import Icon from '@chakra-ui/icon';
 import { FaSync, FaUserAlt } from 'react-icons/fa';
 
 export const NavMenus = ({ menuopen, mobile, isloggedin, onclose }) => {
-  console.log('loggedin: ', isloggedin, typeof isloggedin);
-
   const loggedin = isloggedin.toString();
-
   const { logout } = useAuth();
 
   return (

@@ -5,16 +5,17 @@ import {
   Heading,
   Text,
   useColorModeValue as mode,
-} from '@chakra-ui/react'
-import * as React from 'react'
-import { SigninForm } from '../SigninForm'
-import { UnderlineLink } from '../../UnderlineLink'
-import { navigate } from 'gatsby'
-import { useAuth } from '../../../../hooks'
+} from '@chakra-ui/react';
+import * as React from 'react';
+import { SigninForm } from '../SigninForm';
+import { UnderlineLink } from '../../UnderlineLink';
+import { navigate } from 'gatsby';
+import { useAuth } from '../../../../hooks';
 
 export const SignIn = () => {
   const { isloggedin } = useAuth();
-  if(isloggedin) navigate("/connect/platform?user=maker")
+  // if (isloggedin) navigate('/connect/platform?user=maker');
+  if (isloggedin) navigate('/maker/account');
 
   return (
     <Flex
@@ -24,21 +25,42 @@ export const SignIn = () => {
       height="100%"
       bg={mode('gray.50', 'inherit')}
     >
-      <Flex align="center" overflowY="auto" flex="1 0 50%" py={{ base: '10', md: '16' }} px={{ base: '6', md: '10' }}>
+      <Flex
+        align="center"
+        overflowY="auto"
+        flex="1 0 50%"
+        py={{ base: '10', md: '16' }}
+        px={{ base: '6', md: '10' }}
+      >
         <Box maxW="sm" mx="auto">
           <Box textAlign="center" mb={{ base: '5', md: '8' }}>
-            <Text as="h1" fontSize="3xl" fontWeight="extrabold" letterSpacing="tight">
+            <Text
+              as="h1"
+              fontSize="3xl"
+              fontWeight="extrabold"
+              letterSpacing="tight"
+            >
               Login to your account
             </Text>
-            <Text mt="3" color={mode('gray.600', 'gray.400')} fontWeight="medium">
-              Need an account? <UnderlineLink link='/maker/sign-up'>Sign up here</UnderlineLink>
+            <Text
+              mt="3"
+              color={mode('gray.600', 'gray.400')}
+              fontWeight="medium"
+            >
+              Need an account?{' '}
+              <UnderlineLink link="/maker/sign-up">Sign up here</UnderlineLink>
             </Text>
           </Box>
-          <SigninForm />
+          <SigninForm user="maker" />
 
           <Box textAlign="center" mt={{ base: '3', md: '2' }}>
-            <Text mt="3" color={mode('gray.600', 'gray.400')} fontWeight="medium">
-              Need to reset? <UnderlineLink link="/reset">Reset Password</UnderlineLink>
+            <Text
+              mt="3"
+              color={mode('gray.600', 'gray.400')}
+              fontWeight="medium"
+            >
+              Need to reset?{' '}
+              <UnderlineLink link="/reset">Reset Password</UnderlineLink>
             </Text>
           </Box>
         </Box>
@@ -92,5 +114,5 @@ export const SignIn = () => {
         </Badge>
       </Flex>
     </Flex>
-  )
-}
+  );
+};

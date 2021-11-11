@@ -79,6 +79,7 @@ export const InnerSidebar = ({
         sm: 'none',
         md: 'block',
       }}
+      {...rest}
     >
       <VStack spacing="4" h="full" {...rest}>
         {primaryLinks && (

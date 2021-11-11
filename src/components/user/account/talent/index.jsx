@@ -1,9 +1,19 @@
 /**
  * External dependencies
  */
-import { Alert, AlertIcon, Flex, HStack, VStack, Text } from '@chakra-ui/react';
+import {
+  Alert,
+  AlertIcon,
+  Flex,
+  HStack,
+  VStack,
+  Box,
+  Text,
+  Button,
+} from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
+import { navigate } from 'gatsby';
 /**
  * Internal dependencies
  */
@@ -18,6 +28,7 @@ import { AccountDeets } from './AccountDeets';
 import { TalentEducationDeets } from './TalentEducationDeets';
 import { TalentWorkDeets } from './TalentWorkDeets';
 import { useAuth } from '../../../../hooks';
+
 // import { useTalentViewerQuery } from '../../../../hooks/queries/use-viewer-talent-query';
 
 const CHECK_PROFILE_EXISTS = gql`
@@ -49,12 +60,6 @@ export const TalentAccountSettings = () => {
   const [talentProfileId, setTalentProfileId] = useState(false);
   const { data, loading, error } = useQuery(CHECK_PROFILE_EXISTS);
 
-  // const {
-  //   data: talentData,
-  //   loading: loadingTalent,
-  //   refetch: refetchTalent,
-  // } = useTalentViewerQuery();
-
   useEffect(() => {
     if (data) {
       // console.log(data.viewer.talentProfiles.nodes[0]?.id);
@@ -62,42 +67,101 @@ export const TalentAccountSettings = () => {
     }
   }, [data, loading]);
 
-  // useEffect(() => {
-  //   refetchTalent();
-  //   console.log(talentData, 'refetchedddddddd');
-  // }, []);
-
-  const { viewer, loadingViewer } = useAuth();
+  const { viewer, loadingViewer, logout } = useAuth();
 
   const [accountDeets, setAccountDeets] = useState({ roles: ['talent'] });
+
+  useEffect(() => {
+    if (viewer && !loadingViewer) {
+      if (viewer?.roles?.nodes[0].name === 'maker') navigate('/maker/account');
+      const accountInputs = [
+        viewer.firstName,
+        viewer.lastName,
+        viewer.dob,
+        viewer.postcode,
+      ];
+      const completed = accountInputs.every((input) => input);
+      if (completed) setAccountCompleted(true);
+      // console.log(viewer.roles);
+    }
+  }, [viewer, loadingViewer]);
 
   return (
     <>
       <Header title="Your Account" pagetype={pagetype} />
 
       <Flex w="100%">
-        <InnerSidebar
-          title="Test"
-          primaryLinks={[
-            ['Connect Platform', '/connect/platform'],
-            ['Latest Opportunites', '/connect/jobs'],
-          ]}
-          secondaryLinks={[
-            ['Why we ask for account information', '#'],
-            ['Terms and Conditions', '#'],
-          ]}
-          pagetype={pagetype}
-        />
+        {viewer && loadingViewer && (
+          <InnerSidebar
+            display={
+              viewer?.roles?.nodes[0].name === 'waiting' ? 'none' : 'block'
+            }
+            title="Test"
+            primaryLinks={[
+              ['Connect Platform', '/connect/platform'],
+              ['Latest Opportunites', '/connect/jobs'],
+            ]}
+            secondaryLinks={[
+              ['Why we ask for account information', '#'],
+              ['Terms and Conditions', '#'],
+            ]}
+            pagetype={pagetype}
+          />
+        )}
 
         <Content pagetype={pagetype} py="12">
           <VStack spacing="6">
-            <AccountDeets
-              setAccountCompleted={setAccountCompleted}
-              accountDeets={accountDeets}
-              setAccountDeets={setAccountDeets}
-            />
+            <VStack
+              p="3"
+              bg={!accountCompleted && 'dOrange.300'}
+              align="center"
+              direction="column"
+              spacing="6"
+            >
+              {!accountCompleted && (
+                <Box
+                  color="gray.900"
+                  border="3px solid"
+                  rounded="lg"
+                  w={['xs', 'sm']}
+                  m="2"
+                  p="2"
+                  textAlign="center"
+                  bg="dYellow.300"
+                >
+                  <Text fontWeight="500" fontSize="md" color="gray.900">
+                    Complete your account to use the Connect Platform.
+                  </Text>
+                </Box>
+              )}
+              <AccountDeets
+                setAccountCompleted={setAccountCompleted}
+                accountDeets={accountDeets}
+                setAccountDeets={setAccountDeets}
+              />
+
+              <Button
+                display={
+                  viewer?.roles?.nodes[0].name === 'talent' ? 'none' : 'block'
+                }
+                variant="outline"
+                w={['xs', 'md']}
+                mt="6"
+                colorScheme="gray"
+                onClick={() => logout()}
+              >
+                Logout and finish later
+              </Button>
+            </VStack>
+
             {viewer && !loadingViewer ? (
-              <VStack spacing="4" mt="8">
+              <VStack
+                spacing="4"
+                mt="8"
+                display={
+                  viewer?.roles?.nodes[0].name === 'waiting' ? 'none' : 'flex'
+                }
+              >
                 <AdminBlob title="Change Login">
                   <VStack width="full" spacing="6">
                     {newEmail && (
@@ -141,7 +205,11 @@ export const TalentAccountSettings = () => {
             )}
 
             {data && !loading && (
-              <>
+              <Box
+                display={
+                  viewer?.roles?.nodes[0].name === 'waiting' ? 'none' : 'block'
+                }
+              >
                 <TalentEducationDeets
                   setEducationCompleted={setEducationCompleted}
                   talentProfileId={talentProfileId}
@@ -150,7 +218,7 @@ export const TalentAccountSettings = () => {
                   setWorkCompleted={setWorkCompleted}
                   talentProfileId={talentProfileId}
                 />
-              </>
+              </Box>
             )}
           </VStack>
         </Content>
