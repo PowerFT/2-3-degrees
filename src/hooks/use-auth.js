@@ -17,17 +17,16 @@ import { navigate } from 'gatsby-link';
 // import { useTalentViewerQuery } from './queries/use-viewer-talent-query';
 
 const errorCodes = {
-  invalid_username:
-    'Invalid username or email address. Please check it and try again.',
+  invalid_username: 'Invalid email address. Please check it and try again.',
   invalid_email: 'Invalid email address. Please check it and try again.',
   incorrect_password:
     'Incorrect password. Please try again, or reset your password.',
   empty_username: 'Please provide your username.',
   empty_password: 'Please provide your password.',
   Internal_server_error:
-    'Invalid username or email address. Try again or reset your password.',
+    'Invalid email address or password. Please try again or reset your password.',
   'Internal server error':
-    'Invalid username or email address. Try again or reset your password.',
+    'Invalid email address or password. Please try again or reset your password.',
 };
 
 /**
@@ -63,7 +62,7 @@ export const useAuth = () => {
   const onError = useSafeDispatch((errors) => {
     let errs = { errors };
     let errorMessages = errs.errors.graphQLErrors.map((error) => error.message);
-    console.log(errorMessages);
+    console.log(errs);
     setError(
       errorCodes[errorMessages[0]] ||
         `${stripHtml(decodeEntities(errorMessages[0])).result}`
