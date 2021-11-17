@@ -26,6 +26,8 @@ const errorCodes = {
   empty_password: 'Please provide your password.',
   Internal_server_error:
     'Invalid username or email address. Please check it and try again.',
+  'Internal server error':
+    'Invalid username or email address. Please check it and try again.',
 };
 
 /**
@@ -61,8 +63,8 @@ export const useAuth = () => {
   const onError = useSafeDispatch((errors) => {
     console.log(errors);
     setError(
-      errorCodes[errors.message] ||
-        `${stripHtml(decodeEntities(errors.message)).result}`
+      errorCodes[errors.message] || 'error with email or password'
+      // `${stripHtml(decodeEntities(errors.message)).result}`
     );
     setStatus('resolved');
   });

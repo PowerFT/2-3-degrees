@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { gql, useQuery } from '@apollo/client';
-import { Flex } from '@chakra-ui/react';
+import { Flex, Button } from '@chakra-ui/react';
 import { Content } from '../components/layout/Content';
 import { MyError } from '../components/waiting/MyError';
 import { MySpinner } from '../components/waiting/MySpinner';
@@ -61,6 +61,14 @@ const ApplicationTemplate = ({
           origin={{ name: 'My Opportunities', link: '/maker/jobs' }}
         />
         <ApplicationTable tp={tp} q={q} />
+        <Button
+          bg="dYellow.300"
+          _hover={{ bg: 'yellow.200' }}
+          w="100%"
+          maxW="sm"
+        >
+          Email Applicant
+        </Button>
       </Content>
     </Flex>
   );
