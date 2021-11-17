@@ -25,9 +25,9 @@ const errorCodes = {
   empty_username: 'Please provide your username.',
   empty_password: 'Please provide your password.',
   Internal_server_error:
-    'Invalid username or email address. Please check it and try again.',
+    'Invalid username or email address. Try again or reset your password.',
   'Internal server error':
-    'Invalid username or email address. Please check it and try again.',
+    'Invalid username or email address. Try again or reset your password.',
 };
 
 /**
@@ -61,10 +61,12 @@ export const useAuth = () => {
   });
 
   const onError = useSafeDispatch((errors) => {
-    console.log(errors);
+    let errs = { errors };
+    let errorMessages = errs.errors.graphQLErrors.map((error) => error.message);
+    console.log(errorMessages);
     setError(
-      errorCodes[errors.message] || 'error with email or password'
-      // `${stripHtml(decodeEntities(errors.message)).result}`
+      errorCodes[errorMessages[0]] ||
+        `${stripHtml(decodeEntities(errorMessages[0])).result}`
     );
     setStatus('resolved');
   });
