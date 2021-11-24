@@ -14,7 +14,7 @@ export const NavMenus = ({ menuopen, mobile, isloggedin, onclose }) => {
   const { logout } = useAuth();
 
   return (
-    <Stack spacing="1">
+    <Stack spacing="0">
       <MenuItem
         onclose={onclose}
         menuopen={menuopen}
