@@ -32,7 +32,7 @@ export const MenuItem = (props) => {
   } else {
     return (
       <LinkBox
-        onClick={onclose}
+        onClick={subItems ? null : onclose}
         display="flex"
         w="100%"
         py="1"
@@ -47,6 +47,7 @@ export const MenuItem = (props) => {
         userSelect="none"
         aria-current={isActive ? 'page' : undefined}
         color="gray.50"
+        cursor="pointer"
         _hover={{ bg: 'whiteAlpha.400' }}
         onMouseEnter={() => setMenuItemHovered(true)}
         onMouseLeave={() => setMenuItemHovered(false)}
@@ -64,15 +65,15 @@ export const MenuItem = (props) => {
         <Box w="full">
           {/* <Icon as={BsFillLightningFill} fontSize="2xl" opacity={0.9} /> */}
           {menuopen && (
-            <Heading
-              color="inherit"
-              size={mobile ? '2xl' : 'lg'}
-              fontSize={mobile ? '40px' : '28px'}
-            >
-              <LinkOverlay as={Link} to={link}>
+            <LinkOverlay as={subItems ? 'div' : Link} to={subItems ? '' : link}>
+              <Heading
+                color="inherit"
+                size={mobile ? '2xl' : 'lg'}
+                fontSize={mobile ? '40px' : '28px'}
+              >
                 {label}
-              </LinkOverlay>
-            </Heading>
+              </Heading>
+            </LinkOverlay>
           )}
         </Box>
 
