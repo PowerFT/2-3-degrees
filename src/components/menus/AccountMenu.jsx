@@ -13,7 +13,7 @@ import { Link as GatsbyLink } from 'gatsby';
 
 import { useAuth } from '../../hooks';
 
-export const AccountMenu = ({ menuopen }) => {
+export const AccountMenu = ({ menuopen, ontoggle }) => {
   const { viewer, loadingViewer, logout } = useAuth();
 
   const [accountLink, setAccountLink] = useState('');
@@ -40,7 +40,7 @@ export const AccountMenu = ({ menuopen }) => {
           {viewer.email}
         </Text>
         <MenuDivider />
-        <LinkBox>
+        <LinkBox onClick={menuopen ? ontoggle : null}>
           <MenuItem rounded="md">
             <LinkOverlay as={GatsbyLink} to={accountLink}>
               Account Setting

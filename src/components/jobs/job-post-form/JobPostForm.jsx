@@ -646,8 +646,8 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
                   Yeaaahhh, you've done it!
                 </Text>
                 <Text>
-                  Just need to wait for 2-3 Degrees to approve it, then then
-                  your post will go live.
+                  Just need to wait for 2-3 Degrees to approve it, then your
+                  post will go live.
                 </Text>
               </Box>
               <Box p="2" bg="gray.50" textAlign="end">

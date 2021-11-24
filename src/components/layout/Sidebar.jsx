@@ -138,7 +138,7 @@ export const Sidebar = ({ ...rest }) => {
 
         {isloggedin && (
           <Box px="3" justifySelf="flex-end" alignSelf="stretch">
-            <AccountMenu menuopen={isOpen} />
+            <AccountMenu menuopen={isOpen} ontoggle={onToggle} />
           </Box>
         )}
       </Flex>
