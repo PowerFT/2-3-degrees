@@ -1,90 +1,61 @@
-import { Badge, LightMode } from '@chakra-ui/react';
+// import { Badge, LightMode } from '@chakra-ui/react';
 import * as React from 'react';
-import {
-  FaFacebook,
-  FaInstagram,
-  FaLinkedin,
-  FaTwitter,
-  FaYoutube,
-} from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 
-export const links = [
-  {
-    title: 'Organisation',
-    links: [
-      // {
-      //   label: 'Why Envelope',
-      //   href: '#',
-      // },
-      {
-        label: 'Our story',
-        href: '/about',
-      },
-      // {
-      //   label: 'Careers',
-      //   href: '#',
-      //   badge: (
-      //     <LightMode>
-      //       <Badge colorScheme="blue" fontSize="0.625rem">
-      //         Hiring
-      //       </Badge>
-      //     </LightMode>
-      //   ),
-      // },
-      // {
-      //   label: 'Press',
-      //   href: '#',
-      // },
-      // {
-      //   label: 'FAQ',
-      //   href: '#',
-      // },
-    ],
-  },
-  {
-    title: 'Services',
-    links: [
-      {
-        label: 'Programmes',
-        href: '/programmes',
-      },
-      {
-        label: 'Consultancy',
-        href: '/consultancy',
-      },
-      {
-        label: 'Workshops',
-        href: '/workshops',
-      },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      {
-        label: 'Blog',
-        href: '/blog',
-      },
-    ],
-  },
-  {
-    title: 'Contact',
-    links: [
-      {
-        label: 'Contact Info',
-        href: '/contact',
-      },
-      {
-        label: 'Young Person Login',
-        href: '/talent/sign-in',
-      },
-      {
-        label: 'Employer Login',
-        href: '/maker/sign-in',
-      },
-    ],
-  },
-];
+// export const links = [
+//   {
+//     title: 'Organisation',
+//     links: [
+//       {
+//         label: 'Our story',
+//         href: '/about',
+//       },
+//     ],
+//   },
+//   {
+//     title: 'Services',
+//     links: [
+//       {
+//         label: 'Programmes',
+//         href: '/programmes',
+//       },
+//       {
+//         label: 'Consultancy',
+//         href: '/consultancy',
+//       },
+//       {
+//         label: 'Workshops',
+//         href: '/workshops',
+//       },
+//     ],
+//   },
+//   {
+//     title: 'Resources',
+//     links: [
+//       {
+//         label: 'Blog',
+//         href: '/blog',
+//       },
+//     ],
+//   },
+//   {
+//     title: 'Contact',
+//     links: [
+//       {
+//         label: 'Contact Info',
+//         href: '/contact',
+//       },
+//       {
+//         label: 'Young Person Login',
+//         href: '/talent/sign-in',
+//       },
+//       {
+//         label: 'Employer Login',
+//         href: '/maker/sign-in',
+//       },
+//     ],
+//   },
+// ];
 export const socialLinks = [
   {
     label: 'Facebook',

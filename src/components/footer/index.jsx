@@ -6,19 +6,18 @@ import {
   LinkBox,
   LinkOverlay,
   SimpleGrid,
-  Stack,
-  Text,
   Wrap,
   WrapItem,
-} from '@chakra-ui/react'
-import { Link } from 'gatsby'
-import { StaticImage } from 'gatsby-plugin-image'
-import * as React from 'react'
+} from '@chakra-ui/react';
+import { Link } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
+import * as React from 'react';
 // import { LanguageSwitcher } from './LanguageSwitcher'
-import { Logo } from '../layout/Logo'
-import { SocialButton } from './SocialButton'
-import { footerLinks, links, socialLinks } from './_data'
- 
+import { Logo } from '../layout/Logo';
+import { SocialButton } from './SocialButton';
+import { footerLinks, links, socialLinks } from './_data';
+import { FooterMenuColumn } from '../menus/FooterMenuColumn';
+
 export const Footer = () => (
   <Box as="footer" bg="gray.500" color="white" py="64px">
     <Box maxW="7xl" px="8" mx="auto">
@@ -38,28 +37,34 @@ export const Footer = () => (
             base: '10',
             lg: 0,
           }}
-        > 
+        >
           <LinkBox h="16" w="16">
             <LinkOverlay as={Link} to="/">
-              <StaticImage 
-                src="../../images/oldLogo.png" 
+              <StaticImage
+                src="../../images/oldLogo.png"
                 alt="logo"
                 // height={400}
                 fit="cover"
-                imgStyle={{height:"100%", width:"auto"}}
-                style={{height:"100%", width:"auto"}}
+                imgStyle={{ height: '100%', width: 'auto' }}
+                style={{ height: '100%', width: 'auto' }}
               />
             </LinkOverlay>
           </LinkBox>
           <HStack spacing="4" mt="8" as="ul">
             {socialLinks?.map((link, i) => (
-              <SocialButton key={i} target="_blank" rel="noreferrer" href={link.href}>
+              <SocialButton
+                key={i}
+                target="_blank"
+                rel="noreferrer"
+                href={link.href}
+              >
                 <Box srOnly>{link.label}</Box>
                 {link.icon}
               </SocialButton>
             ))}
           </HStack>
         </Box>
+
         <SimpleGrid
           w="full"
           maxW={{
@@ -76,12 +81,21 @@ export const Footer = () => (
           }}
           fontSize="sm"
         >
-          {links?.map((group, idx) => (
+          <FooterMenuColumn id={'dGVybTo2NDY='} />
+          <FooterMenuColumn id={'dGVybTo2NDg='} />
+          <FooterMenuColumn id={'dGVybTo2NDc='} />
+          <FooterMenuColumn id={'dGVybTo2NDk='} />
+
+          {/* {links?.map((group, idx) => (
             <Box key={idx}>
               <Text fontWeight="bold" mb="4">
                 {group.title}
               </Text>
+
+
               <Stack as="ul" listStyleType="none">
+
+
                 {group.links?.map((link, idx) => (
                   <Box as="li" key={idx} mt="1" mb="0">
                     <Box
@@ -100,9 +114,13 @@ export const Footer = () => (
                     </Box>
                   </Box>
                 ))}
+
+
               </Stack>
+
+
             </Box>
-          ))}
+          ))} */}
         </SimpleGrid>
       </Flex>
       <Divider my="10" borderColor="dYellow.300" />
@@ -141,10 +159,12 @@ export const Footer = () => (
           ))}
         </Wrap>
         <WrapItem>
-          <Box><a href = "mailto: info@2-3degrees.com">info@2-3degrees.com</a></Box>
+          <Box>
+            <a href="mailto: info@2-3degrees.com">info@2-3degrees.com</a>
+          </Box>
         </WrapItem>
         {/* <LanguageSwitcher /> */}
       </Flex>
     </Box>
   </Box>
-)
+);
