@@ -33,12 +33,15 @@ export const MenuItem = (props) => {
     ...rest
   } = props;
 
+  const isParent = Boolean(subItems?.length);
+  console.log(label, isParent);
+
   const [menuItemHovered, setMenuItemHovered] = useState(false);
 
   console.log(label, subItems);
 
   const handleClick = () => {
-    if (!subItems) onclose();
+    if (!isParent) onclose();
     setMenuItemHovered(!menuItemHovered);
   };
 
@@ -80,8 +83,8 @@ export const MenuItem = (props) => {
             {/* <Icon as={BsFillLightningFill} fontSize="2xl" opacity={0.9} /> */}
             {menuopen && (
               <LinkOverlay
-                as={subItems ? 'div' : Link}
-                to={subItems ? '' : link}
+                as={isParent ? 'div' : Link}
+                to={isParent ? '' : link}
               >
                 <HStack justify="space-between">
                   <Heading
@@ -91,14 +94,19 @@ export const MenuItem = (props) => {
                   >
                     {label}
                   </Heading>
-                  {subItems ? (
-                    menuItemHovered ? (
-                      <Icon as={AiOutlineDown} />
+
+                  {mobile ? (
+                    isParent ? (
+                      menuItemHovered ? (
+                        <Icon as={AiOutlineDown} />
+                      ) : (
+                        <Icon as={AiOutlineRight} />
+                      )
                     ) : (
-                      <Icon as={AiOutlineRight} />
+                      ''
                     )
                   ) : (
-                    ''
+                    isParent && <Icon as={AiOutlineRight} />
                   )}
                 </HStack>
               </LinkOverlay>
@@ -115,7 +123,7 @@ export const MenuItem = (props) => {
             bg="dOrange.300"
             w={mobile ? '100%' : 'unset'}
             color="gray.50"
-            bg="whiteAlpha.300"
+            bg={mobile ? 'whiteAlpha.300' : 'dOrange.300'}
             onMouseEnter={() => setMenuItemHovered(true)}
             onMouseLeave={() => setMenuItemHovered(false)}
           >
@@ -129,8 +137,8 @@ export const MenuItem = (props) => {
                   py="1"
                   px="3"
                   w="100%"
-                  _hover={{ bg: 'whiteAlpha.400' }}
                   onClick={onclose}
+                  _hover={{ bg: 'whiteAlpha.400' }}
                 >
                   {/* <Icon as={BsFillLightningFill} fontSize="2xl" opacity={0.9} /> */}
                   {menuopen && (
