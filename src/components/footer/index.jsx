@@ -81,7 +81,7 @@ export const Footer = () => (
           }}
           fontSize="sm"
         >
-          <FooterMenuColumn id={'dGVybTo2NDY='} />
+          <FooterMenuColumn id={'dGVybTo4Mjc='} />
           <FooterMenuColumn id={'dGVybTo2NDg='} />
           <FooterMenuColumn id={'dGVybTo2NDc='} />
           <FooterMenuColumn id={'dGVybTo2NDk='} />
