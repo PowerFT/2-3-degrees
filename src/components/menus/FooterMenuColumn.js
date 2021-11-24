@@ -24,7 +24,9 @@ export const FooterMenuColumn = ({ id }) => {
       id,
     },
   });
+  console.log(id);
 
+  if (error) console.log(error);
   if (!data) return null;
 
   console.log(data);
