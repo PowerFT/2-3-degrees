@@ -237,12 +237,12 @@ const getPages = async ({ graphql, reporter }) => {
                       altText
                       localFile {
                         childImageSharp {
-                          fluid(quality: 90) {
+                          fluid(quality: 90, cropFocus: CENTER) {
                             src
                             srcSet
                             aspectRatio
                           }
-                          gatsbyImageData
+                          gatsbyImageData(aspectRatio: 1.5)
                         }
                       }
                     }

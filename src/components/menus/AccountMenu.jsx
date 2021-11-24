@@ -47,9 +47,6 @@ export const AccountMenu = ({ menuopen, ontoggle }) => {
             </LinkOverlay>
           </MenuItem>
         </LinkBox>
-
-        {/* <MenuItem rounded="md">Terms & Conditions</MenuItem> */}
-        {/* <MenuItem rounded="md">Account Setting</MenuItem> */}
         <MenuDivider />
         <MenuItem rounded="md" onClick={handleLogout}>
           Logout
