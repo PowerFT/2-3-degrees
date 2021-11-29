@@ -1,9 +1,8 @@
 import { VStack } from '@chakra-ui/react';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Seo from '../../components/seo';
 import AllLayouts from '../../components/AllLayouts';
-import { useAuth } from '../../hooks';
 
 const Page = ({ pageContext }) => {
   const pageBuilder = pageContext.page?.pageBuilder;

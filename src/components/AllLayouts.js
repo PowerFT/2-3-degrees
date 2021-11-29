@@ -3,6 +3,7 @@ import { FullHero } from '../templates/layouts/full-hero';
 import { HalfHero } from '../templates/layouts/half-hero';
 import { TabSection } from '../templates/layouts/tabs';
 import { Pillars } from '../templates/layouts/pillars';
+import { TextList } from '../templates/layouts/text-list';
 import { Quote } from '../templates/layouts/quote';
 import { LogoGrid } from '../templates/layouts/logo-grid';
 import { LatestBlog } from '../templates/layouts/blog';
@@ -31,6 +32,7 @@ const AllLayouts = ({ layoutData }) => {
     Page_Pagebuilder_Layouts_HalfHero: HalfHero,
     Page_Pagebuilder_Layouts_Tabs: TabSection,
     Page_Pagebuilder_Layouts_Pillars: Pillars,
+    Page_Pagebuilder_Layouts_TextList: TextList,
     Page_Pagebuilder_Layouts_Quote: Quote,
     Page_Pagebuilder_Layouts_LogoGrid: LogoGrid,
     Page_Pagebuilder_Layouts_BlogBlock: LatestBlog,

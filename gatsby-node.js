@@ -230,6 +230,7 @@ const getPages = async ({ graphql, reporter }) => {
                 ... on WpPage_Pagebuilder_Layouts_Pillars {
                   bgCol
                   bgPatternCol
+                  showText
                   fieldGroupName
                   pillars {
                     fieldGroupName
@@ -242,7 +243,7 @@ const getPages = async ({ graphql, reporter }) => {
                             srcSet
                             aspectRatio
                           }
-                          gatsbyImageData(aspectRatio: 1.5)
+                          gatsbyImageData(aspectRatio: 1.3)
                         }
                       }
                     }
@@ -258,6 +259,25 @@ const getPages = async ({ graphql, reporter }) => {
                   }
                   textColour
                   title
+                }
+                ... on WpPage_Pagebuilder_Layouts_TextList {
+                  bgCol
+                  bgPatternCol
+                  titleCol
+                  title
+                  listItemCol
+                  listTextCol
+                  fieldGroupName
+                  list {
+                    fieldGroupName
+                    link {
+                      title
+                      target
+                      url
+                    }
+                    text
+                    title
+                  }
                 }
                 ... on WpPage_Pagebuilder_Layouts_Quote {
                   bgCol
