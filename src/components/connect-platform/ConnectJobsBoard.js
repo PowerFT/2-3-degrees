@@ -84,7 +84,7 @@ export const ConnectJobs = () => {
         overflow="hidden"
         px={{ base: '4', md: '12' }}
       >
-        <Box
+        {/* <Box
           w="65%"
           h="95%"
           pos="absolute"
@@ -131,7 +131,7 @@ export const ConnectJobs = () => {
             }}
             style={{ height: '100%', width: 'auto' }}
           />
-        </Box>
+        </Box> */}
         <Box
           w="auto"
           h="90%"
