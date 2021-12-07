@@ -19,7 +19,7 @@ import { socialLinks } from '../footer/_data';
 import { StaticImage } from 'gatsby-plugin-image';
 
 export const Sidebar = ({ ...rest }) => {
-  const { isloggedin, loadingViewer, viewer } = useAuth();
+  const { isLoggedIn, loadingViewer, viewer } = useAuth();
   const { isOpen, onToggle } = useDisclosure();
   if (loadingViewer) return null;
 
@@ -49,7 +49,7 @@ export const Sidebar = ({ ...rest }) => {
         pb="4"
         maxH="100%"
         display={
-          viewer?.roles?.nodes[0].name === 'waiting' && isloggedin
+          viewer?.roles?.nodes[0].name === 'waiting' && isLoggedIn
             ? 'none'
             : 'flex'
         }
@@ -105,7 +105,7 @@ export const Sidebar = ({ ...rest }) => {
             onclose={onToggle}
             viewer={viewer}
             loadingViewer={loadingViewer}
-            isloggedin={isloggedin.toString()}
+            isLoggedIn={isLoggedIn}
           />
         </Collapse>
 
@@ -136,7 +136,7 @@ export const Sidebar = ({ ...rest }) => {
           ))}
         </Flex>
 
-        {isloggedin && (
+        {isLoggedIn && (
           <Box px="3" justifySelf="flex-end" alignSelf="stretch">
             <AccountMenu menuopen={isOpen} ontoggle={onToggle} />
           </Box>

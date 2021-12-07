@@ -12,9 +12,6 @@ export const PublicMenu = ({ mobile, menuopen, onclose }) => {
         if (data.wpMenu?.menuItems) {
           const menuItems = data.wpMenu?.menuItems?.nodes;
 
-          console.log(menuItems);
-          // console.log(subItems);
-
           return (
             <>
               {menuItems &&

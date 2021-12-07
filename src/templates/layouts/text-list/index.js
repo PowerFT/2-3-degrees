@@ -51,9 +51,9 @@ export const TextList = ({
         zIndex="10"
       >
         {list?.map((item, i) => (
-          <LinkBox>
+          <LinkBox key={i}>
             <Flex
-              key={i}
+              // key={i}
               bg={listItemCol}
               w="100%"
               h="100%"
@@ -66,7 +66,7 @@ export const TextList = ({
               _hover={item.link && { border: '1px solid' }}
             >
               <Heading color="inherit">
-                <LinkOverlay as={Link} to={item?.link?.url}>
+                <LinkOverlay as={Link} to={item?.link?.url || '#'}>
                   {item.title}
                 </LinkOverlay>
               </Heading>

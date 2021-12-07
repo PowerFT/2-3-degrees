@@ -41,7 +41,7 @@ export const Feature = ({
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  console.log(showText);
+  // console.log(showText);
 
   return (
     <Box alignItems="center" {...rest}>
@@ -169,6 +169,7 @@ export const Feature = ({
                   textAlign="center"
                   mt="0"
                   w="100%"
+                  style={{ width: '100%' }}
                 >
                   <Text
                     p={2}

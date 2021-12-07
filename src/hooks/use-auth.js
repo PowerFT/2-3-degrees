@@ -34,7 +34,7 @@ const errorCodes = {
  */
 
 export const useAuth = () => {
-  const { isloggedin, setisloggedin } = useAuthContext();
+  const { isLoggedIn, setIsLoggedIn } = useAuthContext();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
   const [status, setStatus] = useState('idle');
@@ -48,13 +48,13 @@ export const useAuth = () => {
 
   const onLoginSuccess = useSafeDispatch(() => {
     // console.log('succcessss');
-    setisloggedin(true);
+    setIsLoggedIn(true);
     setStatus('resolved');
   });
 
   const onLogoutSuccess = useSafeDispatch(() => {
     // console.log('ouutt');
-    setisloggedin(false);
+    setIsLoggedIn(false);
     setStatus('resolved');
     navigate('/');
   });
@@ -62,7 +62,7 @@ export const useAuth = () => {
   const onError = useSafeDispatch((errors) => {
     let errs = { errors };
     let errorMessages = errs.errors.graphQLErrors.map((error) => error.message);
-    console.log(errs);
+    // console.log(errs);
     setError(
       errorCodes[errorMessages[0]] ||
         `${stripHtml(decodeEntities(errorMessages[0])).result}`
@@ -86,7 +86,7 @@ export const useAuth = () => {
   return {
     login,
     logout,
-    isloggedin,
+    isLoggedIn,
     refetchViewer,
     loadingViewer,
     loading,

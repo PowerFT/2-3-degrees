@@ -13,9 +13,9 @@ import { navigate } from 'gatsby';
 import { useAuth } from '../../../../hooks';
 
 export const SignIn = () => {
-  const { isloggedin } = useAuth();
-  // if (isloggedin) navigate('/connect/platform?user=maker');
-  if (isloggedin) navigate('/maker/account');
+  const { isLoggedIn } = useAuth();
+  // if (isLoggedIn) navigate('/connect/platform?user=maker');
+  if (isLoggedIn) navigate('/maker/account');
 
   return (
     <Flex

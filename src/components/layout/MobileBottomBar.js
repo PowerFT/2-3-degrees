@@ -36,7 +36,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 export const MobileBottomBar = ({ ...rest }) => {
   // const { isOpen, onClose, onOpen } = useMobileMenuState()
 
-  const { isloggedin, logout, viewer } = useAuth();
+  const { isLoggedIn, viewer } = useAuth();
   const [user, setUser] = useState('');
   const [userJobsLink, setUserJobsLink] = useState('');
   const [userAccountLink, setUserAccountLink] = useState('');
@@ -51,7 +51,7 @@ export const MobileBottomBar = ({ ...rest }) => {
     if (user === 'talent') setUserAccountLink('/talent/account');
     if (user === 'maker') setUserAccountLink('/maker/account');
 
-    console.log(user, userJobsLink, userAccountLink);
+    // console.log(user, userJobsLink, userAccountLink);
   }, [viewer]);
 
   return (
@@ -66,7 +66,7 @@ export const MobileBottomBar = ({ ...rest }) => {
       pos="sticky"
       {...rest}
     >
-      {isloggedin === true && user !== 'waiting' ? (
+      {isLoggedIn && user !== 'waiting' ? (
         <HStack py={2} spacing={0} justify="stretch" h="100%">
           <Flex
             direction="column"
@@ -214,12 +214,7 @@ export const MobileBottomBar = ({ ...rest }) => {
                 />
               </LinkOverlay>
             </LinkBox>
-            <NavMenus
-              menuopen={true}
-              onclose={onClose}
-              mobile={true}
-              isloggedin={isloggedin}
-            />
+            <NavMenus menuopen={true} onclose={onClose} mobile={true} />
           </DrawerBody>
 
           <DrawerFooter h="80px" justifyContent="flex-start">

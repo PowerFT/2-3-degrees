@@ -44,11 +44,6 @@ export const useUpdateUserMutation = () => {
   const [mutation, mutationResults] = useMutation(UPDATEUSER);
 
   const updateUserMutation = (accountDeets) => {
-    // console.log(props)
-    // const { accountDeets, likedDeets } = props
-    console.log(accountDeets, 'account');
-    // console.log(likedDeets, 'liked');
-
     return mutation({
       variables: {
         clientMutationId: uuidv4(),

@@ -9,9 +9,8 @@ import { useAuth } from '../../hooks';
 import Icon from '@chakra-ui/icon';
 import { FaSync, FaUserAlt } from 'react-icons/fa';
 
-export const NavMenus = ({ menuopen, mobile, isloggedin, onclose }) => {
-  const loggedin = isloggedin.toString();
-  const { logout } = useAuth();
+export const NavMenus = ({ menuopen, mobile, onclose }) => {
+  const { logout, isLoggedIn } = useAuth();
 
   return (
     <Stack spacing="0">
@@ -24,7 +23,7 @@ export const NavMenus = ({ menuopen, mobile, isloggedin, onclose }) => {
         mobile={mobile}
       />
       {menuopen && <Divider borderColor="dOrange.100" />}
-      {loggedin === 'false' ? (
+      {!isLoggedIn ? (
         <>
           <MenuItem
             onclose={onclose}
@@ -78,7 +77,7 @@ export const NavMenus = ({ menuopen, mobile, isloggedin, onclose }) => {
           /> */}
         </>
       )}
-      {loggedin === 'true' && (
+      {isLoggedIn && (
         <>
           {menuopen && <Divider borderColor="dOrange.100" />}
 
@@ -93,11 +92,11 @@ export const NavMenus = ({ menuopen, mobile, isloggedin, onclose }) => {
 
       {menuopen && <Divider borderColor="dOrange.100" />}
 
-      {loggedin === 'false' && (
+      {!isLoggedIn && (
         <PublicMenu mobile={mobile} onclose={onclose} menuopen={menuopen} />
       )}
 
-      {loggedin === 'true' && (
+      {isLoggedIn && (
         <Box
           // onClick={onclose}
           display="flex"

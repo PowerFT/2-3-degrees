@@ -1,13 +1,19 @@
-import { Box, Button, Flex, Heading, LinkBox, LinkOverlay, Text } from '@chakra-ui/react'
-import React, {useEffect, useState} from 'react'
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  LinkBox,
+  LinkOverlay,
+  Text,
+} from '@chakra-ui/react';
+import React from 'react';
 // import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
-import { Link } from 'gatsby'
-import { StaticImage } from 'gatsby-plugin-image'
+import { Link } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
 // import AniLink from "gatsby-plugin-transition-link/AniLink"
 
-
-export const FixedMakerHalfHero = ({bgCol, textColour}) => {
-
+export const FixedMakerHalfHero = ({ bgCol, textColour }) => {
   // const [offsetY, setOffsetY] = useState(0)
   // const handleScroll = () => setOffsetY(window.pageYOffset)
   // useEffect(() => {
@@ -16,19 +22,19 @@ export const FixedMakerHalfHero = ({bgCol, textColour}) => {
   // }, [])
 
   return (
-    <Flex 
-      as="section" 
-      h={{base: "unset",md:"80vh"}} 
-      bg={bgCol} 
-      direction="column" 
-      position="relative" 
-      justify="center" 
+    <Flex
+      as="section"
+      h={{ base: 'unset', md: '80vh' }}
+      bg={bgCol}
+      direction="column"
+      position="relative"
+      justify="center"
       overflow="hidden"
-      px={{ base: '4', sm:"12", md: '12' }}
-      py={{ base: '4', sm:"12", md: '12' }}
+      px={{ base: '4', sm: '12', md: '12' }}
+      py={{ base: '4', sm: '12', md: '12' }}
     >
       <Box
-        maxW={{md:'lg', lg:"3xl"}}
+        maxW={{ md: 'lg', lg: '3xl' }}
         // mx="auto"
         // px={{ base: '4', lg: '8' }}
         py={{ base: '2', sm: '2' }}
@@ -39,10 +45,9 @@ export const FixedMakerHalfHero = ({bgCol, textColour}) => {
         color={textColour}
         zIndex="10"
       >
-        
-        <Heading 
-          as="h2" 
-          fontSize={{base: '70px', sm: '85px', md: '80px', lg: '120px'}}  
+        <Heading
+          as="h2"
+          fontSize={{ base: '70px', sm: '85px', md: '80px', lg: '120px' }}
           lineHeight="1.1"
           letterSpacing="tight"
           color="inherit"
@@ -53,54 +58,58 @@ export const FixedMakerHalfHero = ({bgCol, textColour}) => {
           Hire Diverse Young Talent
         </Text>
         <LinkBox mt="4">
-          <Button 
-            size="md" 
-            fontWeight="700" 
-            rounded="full" 
+          <Button
+            size="md"
+            fontWeight="700"
+            rounded="full"
             bg="dYellow.300"
-            color="gray.50" 
-            _hover={{bg:"dYellow.200", color:"gray.800"}}
+            color="gray.50"
+            _hover={{ bg: 'dYellow.200', color: 'gray.800' }}
           >
-            <LinkOverlay as={Link} to="/maker/sign-in">Share Your Opportunities</LinkOverlay>
+            <LinkOverlay as={Link} to="/maker/sign-in">
+              Share Your Opportunities
+            </LinkOverlay>
           </Button>
         </LinkBox>
-        
       </Box>
-      <Box 
+      <Box
         w="50%"
-        h="105%"
+        h="100%"
         pos="absolute"
         bottom="0"
         right="0"
         zIndex="5"
-        top="50%"
-        style={{transform: `translateY(-50%) rotate(90deg)`}}
-        display={{base:"none", md:"block"}}
+        // top="50%"
+        // style={{ transform: `translateY(-50%) rotate(90deg)` }}
+        display={{ base: 'none', md: 'block' }}
         // transform="rotate(90deg)"
       >
-        <StaticImage 
-          src="../../../images/fixedHalf.png" 
+        <StaticImage
+          src="../../../images/newHalfImg.jpg"
           alt="young person"
           fit="cover"
-          imgStyle={{height:"100%", objectFit:"contain", objectPosition:"right"}}
-          style={{height:"100%", width:"auto"}}
+          imgStyle={{
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center',
+          }}
+          style={{ height: '100%', width: 'auto' }}
         />
       </Box>
-      <Box 
-        w="100%"
-        h="auto"
-        zIndex="5"
-        display={{base:"block", md:"none"}}
-      >
-        <StaticImage 
-          src="../../../images/fixedHalf.png" 
+      <Box w="100%" h="auto" zIndex="5" display={{ base: 'block', md: 'none' }}>
+        <StaticImage
+          src="../../../images/newHalfImg.jpg"
           alt="young person"
           // height={400}
           fit="cover"
-          imgStyle={{height:"100%", objectFit:"contain", objectPosition:"right"}}
-          style={{height:"100%", width:"auto"}}
+          imgStyle={{
+            height: '100%',
+            objectFit: 'contain',
+            objectPosition: 'right',
+          }}
+          style={{ height: '100%', width: 'auto' }}
         />
       </Box>
     </Flex>
-  )
-}
+  );
+};

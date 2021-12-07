@@ -12,13 +12,10 @@ import CookieConsent from 'react-cookie-consent';
 // import SiteMenu from "./SiteMenu";
 import { MobileBottomBar } from './MobileBottomBar';
 import { Sidebar } from './Sidebar';
-import { useAuth } from '../../hooks';
 import { Footer } from '../footer';
 // import "@wordpress/block-library/build-style/style.css"
 
 export default function Layout({ children }) {
-  const { isloggedin } = useAuth();
-
   // const data = useStaticQuery(graphql`
   //     query SiteTitleQuery {
   //       site {
@@ -48,7 +45,7 @@ export default function Layout({ children }) {
           </Box>
         </Flex>
 
-        <MobileBottomBar isloggedin={isloggedin} />
+        <MobileBottomBar />
         <CookieConsent
           location="bottom"
           buttonText="Accept"

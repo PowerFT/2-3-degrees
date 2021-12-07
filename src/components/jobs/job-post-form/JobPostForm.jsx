@@ -303,7 +303,7 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
                 </Select>
               </FormControl>
 
-              <FormControl>
+              <FormControl isRequired>
                 <FormLabel htmlFor="jobSalarySelect">Salary</FormLabel>
                 <InputGroup>
                   <InputLeftAddon children="£" />

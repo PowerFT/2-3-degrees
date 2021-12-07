@@ -34,11 +34,11 @@ export const MenuItem = (props) => {
   } = props;
 
   const isParent = Boolean(subItems?.length);
-  console.log(label, isParent);
+  // console.log(label, isParent);
 
   const [menuItemHovered, setMenuItemHovered] = useState(false);
 
-  console.log(label, subItems);
+  // console.log(label, subItems);
 
   const handleClick = () => {
     if (!isParent) onclose();

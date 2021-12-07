@@ -56,26 +56,26 @@ const VIEWER = gql`
  * Hook which gets details about the logged in user.
  */
 export const useViewerQuery = () => {
-  const { setisloggedin, isloggedin } = useAuthContext();
+  const { setIsLoggedIn, isLoggedIn } = useAuthContext();
 
   useEffect(() => {
-    if (isloggedin) {
+    if (isLoggedIn) {
       // console.log('getting viewer...')
       getViewer();
       // console.log(data)
     }
-  }, [isloggedin]);
+  }, [isLoggedIn]);
 
   const onError = useSafeDispatch((error) => {
     // console.log(error, 'erorrrrrr');
-    setisloggedin(false);
+    setIsLoggedIn(false);
   });
 
   const onCompleted = useSafeDispatch((theData) => {
     // console.log('onComplete', theData);
     if (!theData.viewer) {
       // console.log('onComplete failed, no data, logging out');
-      setisloggedin(false);
+      setIsLoggedIn(false);
     }
   });
 

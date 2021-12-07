@@ -53,7 +53,7 @@ export const LikedList = () => {
 
   useEffect(() => {
     if (viewer && !loadingViewer) {
-      console.log(viewer);
+      // console.log(viewer);
       let talentPs = viewer.talentProfiles?.nodes[0];
       if (talentPs) {
         let likedOppIds = talentPs?.likedOpportunities?.nodes?.map((node) =>

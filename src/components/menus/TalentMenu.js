@@ -4,8 +4,8 @@ import { MenuItem } from './MenuItem';
 import { useAuth } from '../../hooks';
 
 export const TalentMenu = ({ mobile, menuopen, onclose }) => {
-  const { loadingViewer, viewer, isloggedin } = useAuth();
-  if (loadingViewer || !viewer || !isloggedin) return null;
+  const { loadingViewer, viewer, isLoggedIn } = useAuth();
+  if (loadingViewer || !viewer || !isLoggedIn) return null;
   // console.log(viewer.roles.nodes[0].name);
   return (
     <>

@@ -45,7 +45,7 @@ export const MyJobCard = ({ title, sector, companyName, status, id }) => {
   }, [appData]);
 
   useEffect(() => {
-    console.log(title, id, applications);
+    // console.log(title, id, applications);
   }, [applications]);
 
   return (
