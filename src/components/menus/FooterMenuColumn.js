@@ -28,6 +28,7 @@ export const FooterMenuColumn = ({ id, ...rest }) => {
 
   if (error) console.log(error);
   if (!data || loading) return null;
+  if (data) console.log(data, id);
 
   console.log(data, id);
   // if (data.menu?.menuItems) {
