@@ -18,24 +18,24 @@ const FOOTER_MENU_QUERY = gql`
   }
 `;
 
-export const FooterMenuColumn = ({ id }) => {
+export const FooterMenuColumn = ({ id, ...rest }) => {
   const { data, loading, error } = useQuery(FOOTER_MENU_QUERY, {
     variables: {
       id,
     },
   });
-  // console.log(id);
+  console.log(id);
 
   if (error) console.log(error);
   if (!data) return null;
 
-  console.log(data);
+  console.log(data, id);
   // if (data.menu?.menuItems) {
   //   console.log(data.menu?.menuItems);
   const menuItems = data.menu?.menuItems?.nodes;
 
   return menuItems ? (
-    <Box key={data.menu.id}>
+    <Box key={data.menu.id} {...rest}>
       <Text fontWeight="bold" mb="4">
         {data.menu.name}
       </Text>

@@ -81,10 +81,22 @@ export const Footer = () => (
           }}
           fontSize="sm"
         >
-          <FooterMenuColumn id={'dGVybTo2NDY='} />
-          <FooterMenuColumn id={'dGVybTo2NDg='} />
-          <FooterMenuColumn id={'dGVybTo2NDc='} />
-          <FooterMenuColumn id={'dGVybTo2NDk='} />
+          <FooterMenuColumn
+            id={process.env.GATSBY_WORDPRESS_FOOTER_ORGANISATION_ID}
+            className="organisation-footer-menu"
+          />
+          <FooterMenuColumn
+            id={process.env.GATSBY_WORDPRESS_FOOTER_RESOURCES_ID}
+            className="resources-footer-menu"
+          />
+          <FooterMenuColumn
+            id={process.env.GATSBY_WORDPRESS_FOOTER_SERVICES_ID}
+            className="services-footer-menu"
+          />
+          <FooterMenuColumn
+            id={process.env.GATSBY_WORDPRESS_FOOTER_CONTACT_ID}
+            className="contact-footer-menu"
+          />
 
           {/* {links?.map((group, idx) => (
             <Box key={idx}>

@@ -84,7 +84,7 @@ export const ConnectJobs = () => {
         overflow="hidden"
         px={{ base: '4', md: '12' }}
       >
-        {/* <Box
+        <Box
           w="65%"
           h="95%"
           pos="absolute"
@@ -96,7 +96,7 @@ export const ConnectJobs = () => {
           // style={{transform: `translateY(-${offsetY * 0.5}px)`}}
         >
           <StaticImage
-            src="../../images/cutout3.png"
+            src="../../images/opp-board-img.jpg"
             alt="young person smiling"
             // height={400}
             fit="cover"
@@ -120,7 +120,7 @@ export const ConnectJobs = () => {
           // style={{transform: `translatex(-${offsetY * 0.05}px)`}}
         >
           <StaticImage
-            src="../../images/cutout3-shadow.png"
+            src="../../images/opp-board-shadow.jpg"
             alt="shadow"
             // height={400}
             fit="cover"
@@ -131,7 +131,7 @@ export const ConnectJobs = () => {
             }}
             style={{ height: '100%', width: 'auto' }}
           />
-        </Box> */}
+        </Box>
         <Box
           w="auto"
           h="90%"
