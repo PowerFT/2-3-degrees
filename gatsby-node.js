@@ -292,6 +292,13 @@ const getPages = async ({ graphql, reporter }) => {
                   fieldGroupName
                   textColour
                 }
+                ... on WpPage_Pagebuilder_Layouts_RichTextBlock {
+                  fieldGroupName
+                  richText
+                  bgCol
+                  textCol
+                  bgPatternCol
+                }
                 ... on WpPage_Pagebuilder_Layouts_Newsletter {
                   bgCol
                   fieldGroupName

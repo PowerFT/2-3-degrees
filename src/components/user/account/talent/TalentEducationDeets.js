@@ -26,10 +26,10 @@ import { MySpinner } from '../../../waiting/MySpinner';
 import { MyError } from '../../../waiting/MyError';
 
 export const TalentEducationDeets = ({
-  setEducationCompleted,
   talentProfileId,
   setTalentProfileUpdateLoading,
   talentProfileUpdateLoading,
+  setEducationUpdated,
 }) => {
   // console.log(talentProfileId);
 
@@ -186,19 +186,23 @@ export const TalentEducationDeets = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (talentProfileId) {
-      changeTalentProfile(talentDeets).then(() => {
-        refetch();
-        refetchViewer();
-        setProfileUpdated(true);
-        // console.log('changedProfile', viewer);
-      });
+      changeTalentProfile(talentDeets)
+        .then(() => {
+          refetch();
+          refetchViewer();
+          setProfileUpdated(true);
+          // console.log('changedProfile', viewer);
+        })
+        .then(() => setEducationUpdated(true));
     } else {
-      makeTalentProfile(talentDeets).then(() => {
-        refetch();
-        refetchViewer();
-        setProfileUpdated(true);
-        // console.log('madeProfile', viewer);
-      });
+      makeTalentProfile(talentDeets)
+        .then(() => {
+          refetch();
+          refetchViewer();
+          setProfileUpdated(true);
+          // console.log('madeProfile', viewer);
+        })
+        .then(() => setEducationUpdated(true));
     }
   };
 

@@ -28,10 +28,10 @@ import { MySpinner } from '../../../waiting/MySpinner';
 import { MyError } from '../../../waiting/MyError';
 
 export const TalentWorkDeets = ({
-  setWorkCompleted,
   talentProfileId,
   setTalentProfileUpdateLoading,
   talentProfileUpdateLoading,
+  setExperienceUpdated,
 }) => {
   // console.log(talentProfileId);
   const [profileUpdated, setProfileUpdated] = useState(false);
@@ -190,19 +190,21 @@ export const TalentWorkDeets = ({
 
   const handleSubmit = () => {
     if (talentProfileId) {
-      changeTalentProfile(talentDeets).then(() => {
-        refetch();
-        refetchViewer();
-        setProfileUpdated(true);
-        // console.log('changed', viewer);
-      });
+      changeTalentProfile(talentDeets)
+        .then(() => {
+          refetch();
+          refetchViewer();
+          setProfileUpdated(true);
+        })
+        .then(() => setExperienceUpdated(true));
     } else {
-      makeTalentProfile(talentDeets).then(() => {
-        refetch();
-        refetchViewer();
-        setProfileUpdated(true);
-        // console.log('made', viewer);
-      });
+      makeTalentProfile(talentDeets)
+        .then(() => {
+          refetch();
+          refetchViewer();
+          setProfileUpdated(true);
+        })
+        .then(() => setExperienceUpdated(true));
     }
   };
 

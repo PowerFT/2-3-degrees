@@ -66,15 +66,6 @@ export const NavMenus = ({ menuopen, mobile, onclose }) => {
             onclose={onclose}
             mobile={mobile}
           />
-          {/* <MenuItem
-            menuopen={menuopen}
-            link="/connect/blog"
-            label="Resources"
-            icon={BsFillLightningFill}
-            isActive
-            onclose={onclose}
-            mobile={mobile}
-          /> */}
         </>
       )}
       {isLoggedIn && (

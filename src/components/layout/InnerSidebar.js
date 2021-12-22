@@ -192,23 +192,26 @@ export const InnerSidebar = ({
           </Button>
         )}
         {pagetype === 'application' && (
-          <Flex
-            px="2"
-            py="4"
-            justify="center"
-            align="center"
-            w="100%"
-            mt="8"
-            color="gray.900"
-            rounded="full"
-            bg="dYellow.300"
-            _hover={{ bg: 'dYellow.200' }}
-            cursor="pointer"
-          >
-            <a href={`mailto: ${applicantEmail}`}>
-              <Text fontWeight="500">Email Applicant</Text>
-            </a>
-          </Flex>
+          <>
+            <Flex
+              px="2"
+              py="4"
+              justify="center"
+              align="center"
+              w="100%"
+              mt="8"
+              color="gray.900"
+              rounded="full"
+              bg="dYellow.300"
+              _hover={{ bg: 'dYellow.200' }}
+              cursor="pointer"
+            >
+              <a href={`mailto: ${applicantEmail}`}>
+                <Text fontWeight="500">Email Applicant</Text>
+              </a>
+            </Flex>
+            <Text>{`Email: ${applicantEmail}`}</Text>
+          </>
         )}
 
         {pagetype === 'application-form' && (

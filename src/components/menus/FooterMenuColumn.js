@@ -21,7 +21,7 @@ const FOOTER_MENU_QUERY = gql`
 export const FooterMenuColumn = ({ id, ...rest }) => {
   const { data, loading, error } = useQuery(FOOTER_MENU_QUERY, {
     variables: {
-      id,
+      id: id,
     },
   });
   console.log(id);

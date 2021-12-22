@@ -25,7 +25,7 @@ export const HalfHero = ({
   const buttonTitle = button?.title;
   const buttonLink = button?.url;
 
-  console.log(title, button);
+  // console.log(title, button);
   return (
     <Box
       as="section"
@@ -72,24 +72,26 @@ export const HalfHero = ({
         <Text mt={4} fontSize="xl" fontWeight="medium" color={subTitleColour}>
           {text}
         </Text>
-        <Button
-          as={GatsbyLink}
-          to={buttonLink}
-          fontWeight="400"
-          direction="down"
-          mt="6"
-          size="md"
-          rounded="full"
-          bg={buttonColour}
-          color={
-            buttonColour === 'gray.900' || buttonColour === 'gray.600'
-              ? 'gray.50'
-              : 'gray.900'
-          }
-          _hover={{ bg: 'lighter' }}
-        >
-          {buttonTitle}
-        </Button>
+        {button && (
+          <Button
+            as={GatsbyLink}
+            to={buttonLink}
+            fontWeight="400"
+            direction="down"
+            mt="6"
+            size="md"
+            rounded="full"
+            bg={buttonColour}
+            color={
+              buttonColour === 'gray.900' || buttonColour === 'gray.600'
+                ? 'gray.50'
+                : 'gray.900'
+            }
+            _hover={{ bg: 'lighter' }}
+          >
+            {buttonTitle}
+          </Button>
+        )}
       </Box>
 
       <Box

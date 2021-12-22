@@ -130,7 +130,12 @@ export const ApplicationForm = () => {
         justify="center"
       />
 
-      <Content justify="center" w="100%" mt="6" padding="8">
+      <Content
+        justify="center"
+        w="100%"
+        mt="6"
+        padding={{ base: '4', sm: '8' }}
+      >
         <Box maxW="lg">
           <Heading mb="3">Opportunity Application Form</Heading>
           <Text mb="1">
@@ -149,8 +154,21 @@ export const ApplicationForm = () => {
             formDeets={formDeets}
             setFormDeets={setFormDeets}
           />
-          <ApplicationTable id="preview" tp={tp} q={formDeets} bg="gray.300" />
+          <ApplicationTable
+            id="preview"
+            tp={tp}
+            q={formDeets}
+            bg="gray.300"
+            w={{ base: 'unset', sm: 'md', md: '100%', lg: 'lg' }}
+            spacing="3"
+            px={{ base: '3', sm: '6' }}
+            py={{ base: '6', sm: '8' }}
+          />
           <Flex w="100%" justify="center">
+            <Text fontSize="sm" mb="2">
+              Please check your spelling and grammar. You will not be able to
+              edit this application once it is submitted
+            </Text>
             <Button
               id="applyBtn"
               isLoading={submitLoading}

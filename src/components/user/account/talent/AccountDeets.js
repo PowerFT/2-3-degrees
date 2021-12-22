@@ -25,7 +25,7 @@ export const AccountDeets = ({
 
   useEffect(() => {
     if (viewer && !loadingViewer) {
-      // console.log(viewer);
+      console.log(viewer);
       const accountInputs = [
         viewer.firstName,
         viewer.lastName,
@@ -125,20 +125,22 @@ export const AccountDeets = ({
               }
             />
           </FormControl>
-          <FormControl isRequired id="postcode">
-            <FormLabel>Email</FormLabel>
-            <Input
-              type="text"
-              maxLength={100}
-              value={accountDeets?.email || ''}
-              onChange={(e) =>
-                setAccountDeets({
-                  ...accountDeets,
-                  email: e.target.value,
-                })
-              }
-            />
-          </FormControl>
+          {viewer?.roles?.nodes[0].name !== 'waiting' && (
+            <FormControl isRequired id="email">
+              <FormLabel>Email</FormLabel>
+              <Input
+                type="text"
+                maxLength={100}
+                value={accountDeets?.email || ''}
+                onChange={(e) =>
+                  setAccountDeets({
+                    ...accountDeets,
+                    email: e.target.value,
+                  })
+                }
+              />
+            </FormControl>
+          )}
           <FormControl isRequired id="postcode">
             <FormLabel>Postcode</FormLabel>
             <Input

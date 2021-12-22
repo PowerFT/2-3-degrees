@@ -9,10 +9,10 @@ import { LogoGrid } from '../templates/layouts/logo-grid';
 import { LatestBlog } from '../templates/layouts/blog';
 import { Newsletter } from '../templates/layouts/newsletter';
 import { PageBlock } from '../templates/layouts/page-block';
+import { RichTextBlock } from '../templates/layouts/rich-text-block';
 import { FixedHomepageHero } from '../templates/layouts/fixed-homepage-hero';
 import { FixedTalentHalfHero } from '../templates/layouts/fixed-talent-half-hero';
 import { FixedMakerHalfHero } from '../templates/layouts/fixed-maker-half-hero';
-// import { TabsBlock } from "../templates/layouts/services"
 
 const AllLayouts = ({ layoutData }) => {
   const layoutType = layoutData.fieldGroupName;
@@ -38,6 +38,7 @@ const AllLayouts = ({ layoutData }) => {
     Page_Pagebuilder_Layouts_BlogBlock: LatestBlog,
     Page_Pagebuilder_Layouts_Newsletter: Newsletter,
     Page_Pagebuilder_Layouts_PageBlock: PageBlock,
+    Page_Pagebuilder_Layouts_RichTextBlock: RichTextBlock,
     Page_Pagebuilder_Layouts_FixedHomepageHero: FixedHomepageHero,
     Page_Pagebuilder_Layouts_FixedMakerHalfHero: FixedMakerHalfHero,
     Page_Pagebuilder_Layouts_FixedTalentHalfHero: FixedTalentHalfHero,

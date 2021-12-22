@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { gql, useQuery } from '@apollo/client';
-import { Flex, Button } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import { Content } from '../components/layout/Content';
 import { MyError } from '../components/waiting/MyError';
 import { MySpinner } from '../components/waiting/MySpinner';
@@ -60,15 +60,25 @@ const ApplicationTemplate = ({
           }}
           origin={{ name: 'My Opportunities', link: '/maker/jobs' }}
         />
-        <ApplicationTable tp={tp} q={q} />
-        <Button
+        <ApplicationTable tp={tp} q={q} maxW="xl" />
+        <Text>{`Email: ${tp?.email}`}</Text>
+        <Flex
+          px="1"
+          py="3"
+          justify="center"
+          align="center"
+          w={{ base: '100%', sm: 'sm' }}
+          mt="2"
+          color="gray.900"
+          rounded="full"
           bg="dYellow.300"
-          _hover={{ bg: 'yellow.200' }}
-          w="100%"
-          maxW="sm"
+          _hover={{ bg: 'dYellow.200' }}
+          cursor="pointer"
         >
-          Email Applicant
-        </Button>
+          <a href={`mailto: ${tp?.email}`}>
+            <Text fontWeight="500">Email Applicant</Text>
+          </a>
+        </Flex>
       </Content>
     </Flex>
   );

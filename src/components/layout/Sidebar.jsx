@@ -48,11 +48,6 @@ export const Sidebar = ({ ...rest }) => {
         pt="5"
         pb="4"
         maxH="100%"
-        display={
-          viewer?.roles?.nodes[0].name === 'waiting' && isLoggedIn
-            ? 'none'
-            : 'flex'
-        }
       >
         <Flex
           id="menuButtons"
@@ -63,6 +58,11 @@ export const Sidebar = ({ ...rest }) => {
           align="center"
           justifyContent={isOpen ? 'flex-end' : 'center'}
           mb="5"
+          display={
+            viewer?.roles?.nodes[0].name === 'waiting' && isLoggedIn
+              ? 'none'
+              : 'flex'
+          }
         >
           {isOpen ? (
             <Icon
@@ -99,7 +99,15 @@ export const Sidebar = ({ ...rest }) => {
           </LinkOverlay>
         </LinkBox>
 
-        <Collapse in={isOpen} animateOpacity>
+        <Collapse
+          in={isOpen}
+          animateOpacity
+          display={
+            viewer?.roles?.nodes[0].name === 'waiting' && isLoggedIn
+              ? 'none'
+              : 'flex'
+          }
+        >
           <NavMenus
             menuopen={isOpen}
             onclose={onToggle}
@@ -135,9 +143,8 @@ export const Sidebar = ({ ...rest }) => {
             </SocialButton>
           ))}
         </Flex>
-
         {isLoggedIn && (
-          <Box px="3" justifySelf="flex-end" alignSelf="stretch">
+          <Box px="3" justifySelf="flex-end" alignSelf="stretch" mb="2">
             <AccountMenu menuopen={isOpen} ontoggle={onToggle} />
           </Box>
         )}

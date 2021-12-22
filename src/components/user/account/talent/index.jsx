@@ -10,10 +10,13 @@ import {
   Box,
   Text,
   Button,
+  Heading,
+  LinkBox,
+  LinkOverlay,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
-import { navigate } from 'gatsby';
+import { navigate, Link } from 'gatsby';
 /**
  * Internal dependencies
  */
@@ -49,8 +52,8 @@ export const TalentAccountSettings = () => {
   const pagetype = 'admin';
 
   const [accountCompleted, setAccountCompleted] = useState(false);
-  const [educationCompleted, setEducationCompleted] = useState(false);
-  const [workCompleted, setWorkCompleted] = useState(false);
+  const [educationUpdated, setEducationUpdated] = useState(false);
+  const [experienceUpdated, setExperienceUpdated] = useState(false);
   const [talentProfileUpdateLoading, setTalentProfileUpdateLoading] =
     useState(false);
 
@@ -212,24 +215,103 @@ export const TalentAccountSettings = () => {
             )}
 
             {data && !loading && (
-              <Box
+              <Flex
+                direction="column"
+                justify="center"
                 display={
-                  viewer?.roles?.nodes[0].name === 'waiting' ? 'none' : 'block'
+                  viewer?.roles?.nodes[0].name === 'waiting' ? 'none' : 'flex'
                 }
               >
+                <Heading textAlign="center" mb="2">
+                  Build your CV
+                </Heading>
                 <TalentEducationDeets
-                  setEducationCompleted={setEducationCompleted}
+                  // setEducationCompleted={setEducationCompleted}
                   talentProfileId={talentProfileId}
                   setTalentProfileUpdateLoading={setTalentProfileUpdateLoading}
                   talentProfileUpdateLoading={talentProfileUpdateLoading}
+                  setEducationUpdated={setEducationUpdated}
                 />
+                {educationUpdated && (
+                  <VStack spacing="3" mt="3" bgColor="dYellow.300" p="3">
+                    <LinkBox>
+                      <Button
+                        size="md"
+                        w="sm"
+                        color="gray.200"
+                        bg="gray.700"
+                        rounded="full"
+                        variant="solid"
+                        w="full"
+                        _hover={{ bg: 'gray.600' }}
+                      >
+                        <LinkOverlay as={Link} to={`/connect/platform`}>
+                          Checkout the Connect Platform
+                        </LinkOverlay>
+                      </Button>
+                    </LinkBox>
+                    <LinkBox>
+                      <Button
+                        size="md"
+                        w="sm"
+                        color="gray.200"
+                        bg="gray.700"
+                        rounded="full"
+                        variant="solid"
+                        w="full"
+                        _hover={{ bg: 'gray.600' }}
+                      >
+                        <LinkOverlay as={Link} to={`/connect/jobs`}>
+                          Look up the Opportunities
+                        </LinkOverlay>
+                      </Button>
+                    </LinkBox>
+                  </VStack>
+                )}
                 <TalentWorkDeets
-                  setWorkCompleted={setWorkCompleted}
+                  // setWorkCompleted={setWorkCompleted}
                   talentProfileId={talentProfileId}
                   setTalentProfileUpdateLoading={setTalentProfileUpdateLoading}
                   talentProfileUpdateLoading={talentProfileUpdateLoading}
+                  setExperienceUpdated={setExperienceUpdated}
                 />
-              </Box>
+                {experienceUpdated && (
+                  <VStack spacing="3" mt="3" bgColor="dYellow.300" p="3">
+                    <LinkBox>
+                      <Button
+                        size="md"
+                        w="sm"
+                        color="gray.200"
+                        bg="gray.700"
+                        rounded="full"
+                        variant="solid"
+                        w="full"
+                        _hover={{ bg: 'gray.600' }}
+                      >
+                        <LinkOverlay as={Link} to={`/connect/platform`}>
+                          Checkout the Connect Platform
+                        </LinkOverlay>
+                      </Button>
+                    </LinkBox>
+                    <LinkBox>
+                      <Button
+                        size="md"
+                        w="sm"
+                        color="gray.200"
+                        bg="gray.700"
+                        rounded="full"
+                        variant="solid"
+                        w="full"
+                        _hover={{ bg: 'gray.600' }}
+                      >
+                        <LinkOverlay as={Link} to={`/connect/jobs`}>
+                          Look up the Opportunities
+                        </LinkOverlay>
+                      </Button>
+                    </LinkBox>
+                  </VStack>
+                )}
+              </Flex>
             )}
           </VStack>
         </Content>

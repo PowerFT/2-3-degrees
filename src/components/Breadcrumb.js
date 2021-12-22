@@ -17,14 +17,16 @@ export const BreadCrumb = ({ current, previous, origin }) => {
       mb="6"
       p="4"
       separator={<ChevronRightIcon color="gray.300" />}
+      bg="red"
+      size="xl"
     >
       {origin && (
         <BreadcrumbItem m="0">
           <BreadcrumbLink
             as={Link}
-            bg="gray.300"
+            bg="red"
             rounded="full"
-            fontSize="sm"
+            fontSize="md"
             py=".5"
             px="3"
             to={origin.link}
@@ -38,8 +40,8 @@ export const BreadCrumb = ({ current, previous, origin }) => {
           <BreadcrumbLink
             as={Link}
             to={previous.link}
-            fontSize="sm"
-            bg="gray.300"
+            fontSize="md"
+            bg="dOrange.300"
             rounded="full"
             py=".5"
             px="3"
@@ -52,12 +54,12 @@ export const BreadCrumb = ({ current, previous, origin }) => {
         <BreadcrumbItem
           m="0"
           isCurrentPage
-          bg="gray.300"
+          bg="gray.600"
           rounded="full"
           py=".5"
           px="3"
         >
-          <Text maxW="120px" fontSize="sm" isTruncated>
+          <Text maxW="120px" fontSize="md" isTruncated>
             {current.name}
           </Text>
         </BreadcrumbItem>

@@ -205,51 +205,80 @@ export const JobSidebar = (props) => {
         </Flex>
 
         {viewer &&
-          !loadingViewer &&
-          viewer.roles.nodes[0].name === 'talent' &&
-          viewer.talentProfiles.nodes.length !== 0 && (
-            <>
+        !loadingViewer &&
+        viewer.roles.nodes[0].name === 'talent' &&
+        viewer.talentProfiles.nodes.length !== 0 ? (
+          <>
+            <Button
+              isLoading={likeStatus === 'resolving'}
+              disabled={likeStatus === 'resolving'}
+              leftIcon={
+                toBeLiked ? (
+                  <Icon as={AiOutlineHeart} h="6" w="6" />
+                ) : (
+                  <Icon as={AiFillHeart} h="6" w="6" />
+                )
+              }
+              size="md"
+              w="sm"
+              color={toBeLiked ? 'gray.700' : 'gray.400'}
+              bg={toBeLiked ? 'dYellow.300' : 'gray.300'}
+              rounded="full"
+              variant="solid"
+              w="full"
+              _hover={toBeLiked ? { bg: 'dYellow.200' } : { bg: 'gray.300' }}
+              onClick={handleClick}
+            >
+              {toBeLiked ? 'Like' : 'Liked'}
+            </Button>
+
+            {}
+
+            {thisJobAppliedFor ? (
               <Button
-                isLoading={likeStatus === 'resolving'}
-                disabled={likeStatus === 'resolving'}
-                leftIcon={
-                  toBeLiked ? (
-                    <Icon as={AiOutlineHeart} h="6" w="6" />
-                  ) : (
-                    <Icon as={AiFillHeart} h="6" w="6" />
-                  )
-                }
                 size="md"
+                disabled
                 w="sm"
-                color={toBeLiked ? 'gray.700' : 'gray.400'}
-                bg={toBeLiked ? 'dYellow.300' : 'gray.300'}
+                color="gray.200"
+                bg="gray.700"
                 rounded="full"
                 variant="solid"
                 w="full"
-                _hover={toBeLiked ? { bg: 'dYellow.200' } : { bg: 'gray.300' }}
-                onClick={handleClick}
               >
-                {toBeLiked ? 'Like' : 'Liked'}
+                Applied
               </Button>
-
-              {}
-
-              {thisJobAppliedFor ? (
+            ) : (
+              <LinkBox>
                 <Button
                   size="md"
-                  disabled
                   w="sm"
                   color="gray.200"
                   bg="gray.700"
                   rounded="full"
                   variant="solid"
                   w="full"
+                  _hover={{ bg: 'gray.600' }}
                 >
-                  Applied
+                  <LinkOverlay
+                    as={Link}
+                    to={`/talent/jobs/apply/?job=${jobId}`}
+                  >
+                    Apply
+                  </LinkOverlay>
                 </Button>
-              ) : (
-                <LinkBox>
+              </LinkBox>
+            )}
+          </>
+        ) : (
+          <>
+            {viewer?.roles?.nodes[0].name === 'talent' && (
+              <>
+                <Text fontSize="sm" textAlign="center">
+                  You need to Build a CV before applying for jobs
+                </Text>
+                <LinkBox mt="0 !important">
                   <Button
+                    mt="1"
                     size="md"
                     w="sm"
                     color="gray.200"
@@ -259,17 +288,15 @@ export const JobSidebar = (props) => {
                     w="full"
                     _hover={{ bg: 'gray.600' }}
                   >
-                    <LinkOverlay
-                      as={Link}
-                      to={`/talent/jobs/apply/?job=${jobId}`}
-                    >
-                      Apply
+                    <LinkOverlay as={Link} to={`/talent/account`}>
+                      Build you CV
                     </LinkOverlay>
                   </Button>
                 </LinkBox>
-              )}
-            </>
-          )}
+              </>
+            )}
+          </>
+        )}
       </Stack>
 
       <Spacer />

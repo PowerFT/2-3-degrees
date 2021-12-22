@@ -16,13 +16,19 @@
 .wp-content h6 {
   font-size: var(--fontSize-2) !important;
 }
+.wp-content a {
+  text-decoration: underline;
+}
+.wp-content a:hover {
+  color: blue;
+}
 .wp-content h2,
 .wp-content h3,
 .wp-content h4,
 .wp-content h5,
 .wp-content h6 {
   font-weight: var(--fontWeight-bold) !important;
-  color: var(--color-heading) !important;
+  /* color: var(--color-heading) !important; */
 }
 .wp-content h1,
 .wp-content h2,

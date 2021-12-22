@@ -106,7 +106,7 @@ h6 {
   margin-bottom: var(--spacing-6);
   line-height: var(--lineHeight-tight);
   letter-spacing: -0.025em;
-  color: navy;
+  /* color: navy; */
 }
 
 h2,
@@ -115,13 +115,13 @@ h4,
 h5,
 h6 {
   font-weight: var(--fontWeight-bold);
-  color: var(--color-heading);
+  /* color: var(--color-heading); */
 }
 
 h1 {
   font-weight: var(--fontWeight-black);
   font-size: var(--fontSize-6);
-  color: var(--color-heading-black);
+  /* color: var(--color-heading-black); */
 }
 
 h2 {
