@@ -11,7 +11,7 @@ const FOOTER_MENU_QUERY = gql`
       menuItems {
         nodes {
           label
-          url
+          path
         }
       }
     }
@@ -24,13 +24,13 @@ export const FooterMenuColumn = ({ id, ...rest }) => {
       id: id,
     },
   });
-  console.log(id);
+  // console.log(id);
 
   if (error) console.log(error);
   if (!data || loading) return null;
-  if (data) console.log(data, id);
+  // if (data) console.log(data, id);
 
-  console.log(data, id);
+  // console.log(data, id);
   // if (data.menu?.menuItems) {
   //   console.log(data.menu?.menuItems);
   const menuItems = data.menu?.menuItems?.nodes;
@@ -45,7 +45,7 @@ export const FooterMenuColumn = ({ id, ...rest }) => {
           <Box as="li" key={idx} mt="1" mb="0">
             <Box
               as={Link}
-              to={link.url}
+              to={link.path}
               _hover={{
                 textDecor: 'underline',
               }}
