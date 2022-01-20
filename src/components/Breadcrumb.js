@@ -12,12 +12,10 @@ export const BreadCrumb = ({ current, previous, origin }) => {
   return (
     <Breadcrumb
       spacing="1"
-      // w="fit-content"
       w="100%"
       mb="6"
       p="4"
       separator={<ChevronRightIcon color="gray.300" />}
-      bg="red"
       size="xl"
     >
       {origin && (

@@ -5,8 +5,6 @@ import { BlogCard } from '../blog/BlogCard';
 import { Box, Heading } from '@chakra-ui/react';
 
 export const ConnectBlogBlock = ({ data }) => {
-  // console.log("data" , data)
-
   return (
     <StaticQuery
       query={connectBlogQuery}

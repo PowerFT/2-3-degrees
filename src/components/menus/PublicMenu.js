@@ -16,7 +16,6 @@ export const PublicMenu = ({ mobile, menuopen, onclose }) => {
             <>
               {menuItems &&
                 menuItems.map((item) => {
-                  // const subItems =
                   return (
                     <MenuItem
                       parentId={item.parentId}
