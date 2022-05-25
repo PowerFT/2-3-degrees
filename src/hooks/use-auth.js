@@ -47,13 +47,11 @@ export const useAuth = () => {
   } = useViewerQuery();
 
   const onLoginSuccess = useSafeDispatch(() => {
-    // console.log('succcessss');
     setIsLoggedIn(true);
     setStatus('resolved');
   });
 
   const onLogoutSuccess = useSafeDispatch(() => {
-    // console.log('ouutt');
     setIsLoggedIn(false);
     setStatus('resolved');
     navigate('/');
@@ -62,7 +60,6 @@ export const useAuth = () => {
   const onError = useSafeDispatch((errors) => {
     let errs = { errors };
     let errorMessages = errs.errors.graphQLErrors.map((error) => error.message);
-    // console.log(errs);
     setError(
       errorCodes[errorMessages[0]] ||
         `${stripHtml(decodeEntities(errorMessages[0])).result}`
@@ -71,7 +68,6 @@ export const useAuth = () => {
   });
 
   const login = (email, password) => {
-    // console.log('log,', email, password);
     setError(null);
     setStatus('resolving');
     return loginMutation(email, password).then(onLoginSuccess).catch(onError);

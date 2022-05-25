@@ -2,7 +2,7 @@
  * External dependencies
  */
 import React, { useEffect, useState } from 'react';
-import { gql, useLazyQuery, useQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 import { Text } from '@chakra-ui/layout';
 import { Box } from '@chakra-ui/react';
 /**
@@ -53,7 +53,6 @@ export const LikedList = () => {
 
   useEffect(() => {
     if (viewer && !loadingViewer) {
-      // console.log(viewer);
       let talentPs = viewer.talentProfiles?.nodes[0];
       if (talentPs) {
         let likedOppIds = talentPs?.likedOpportunities?.nodes?.map((node) =>
@@ -63,9 +62,6 @@ export const LikedList = () => {
       } else {
         setLikedIds(['']);
       }
-
-      // console.log(likedOppIds.length);
-      // setLikedIds(likedOppIds.length !== 0 ? likedOppIds : ['']);
     }
   }, [viewer]);
 
@@ -77,15 +73,7 @@ export const LikedList = () => {
 
   if (error) return <MyError error={`Error: ${error}`} />;
   if (!data && loading && !viewer) return <MySpinner />;
-  // if (!data) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
-  // if(data.viewer?.jobPosts?.nodes.length === 0) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
 
-  // console.log(data);
-  // console.log(
-  //   viewer.talentProfiles.nodes[0].likedOpportunities.nodes.map(
-  //     (node) => node.name
-  //   )
-  // );
   return (
     <Box>
       <Box w="100%" bg="gray.700" color="gray.50" py="3" my="3">

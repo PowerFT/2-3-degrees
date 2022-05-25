@@ -25,13 +25,10 @@ const getJobPostId = (query) => {
 
     // Ensure a valid expected value is passed
     if (job) {
-      //console.log('link query returned')
       return job;
     }
-    //console.log('parsing didnt work')
     return fallback;
   }
-  //console.log('location.search doesnt exsit')
   return fallback;
 };
 
@@ -84,34 +81,11 @@ const GET_JOB_POST_BY_ID = gql`
   }
 `;
 
-// const test = [
-//   {
-//     __typename: 'JobApplicationQuestion',
-//     name: 'Tell us about one of your key skills and how it is relevant to this opportunity?',
-//     id: 'dGVybTo1NzI=',
-//     slug: 'question-2',
-//   },
-//   {
-//     __typename: 'JobApplicationQuestion',
-//     name: 'Tell us how this opportunity will contribute to your future plans?',
-//     id: 'dGVybTo1Njk=',
-//     slug: 'question-3',
-//   },
-//   {
-//     __typename: 'JobApplicationQuestion',
-//     name: 'What experience do you have that is relevant to this opportunity?',
-//     id: 'dGVybTo2NDM=',
-//     slug: 'question-4',
-//   },
-// ];
-
 export const UpdateJobPostFormPage = () => {
   // url query
   const location = useLocation();
   const jobToEditId = location.search ? getJobPostId(location.search) : '';
   const formType = jobToEditId ? 'update' : 'create';
-
-  //console.log(jobToEditId)
 
   const initialState = {
     id: '',
@@ -131,7 +105,6 @@ export const UpdateJobPostFormPage = () => {
   };
 
   const [formDeets, setFormDeets] = useState(initialState);
-  // const [salStructure, setSalStructure] = useState('Year')
 
   const { loading, error, data } = useQuery(GET_JOB_POST_BY_ID, {
     variables: { id: jobToEditId },
@@ -139,7 +112,6 @@ export const UpdateJobPostFormPage = () => {
 
   useEffect(() => {
     if (!loading && data) {
-      // console.log('use effect fired', data);
       const jobPost = data.jobPost;
       const questions = jobPost?.jobApplicationQuestions?.nodes.map((node) => {
         return { name: node.name, slug: node.slug };
@@ -168,19 +140,15 @@ export const UpdateJobPostFormPage = () => {
 
   const pagetype = 'job-form';
 
-  // if(jobToEditId) {
   if (error) {
-    // console.log(error);
     return <MyError error={error} />;
   }
   if (loading) return <MySpinner />;
   if (!data) return <MyError error="Opportunity not found" />;
-  // }
 
   return (
     <>
       <Header title="Update an Opportunity" pagetype={pagetype} />
-      {/* <FileUploadInput /> */}
       <Flex w="100%">
         <InnerSidebar pagetype={pagetype} formDeets={formDeets} />
         <Content py="12">

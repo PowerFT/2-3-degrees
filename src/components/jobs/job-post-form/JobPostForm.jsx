@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   InputLeftAddon,
@@ -26,7 +26,6 @@ import { graphql, StaticQuery } from 'gatsby';
  * Internal dependencies
  */
 import { FieldGroup } from './FieldGroup';
-// import DatePicker from '../../DatePicker';
 import { useSubmitJobPost } from '../../../hooks';
 import { DangerZone } from './DangerZone';
 import { useAuth } from '../../../hooks';
@@ -43,15 +42,10 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
 
   const [submitted, setSubmitted] = useState(false);
 
-  // const { getCheckboxProps } = useCheckboxGroup({
-  //   defaultValue: ['ps5'],
-  // })
-  // console.log(formDeets);
   const selectedSkills = formDeets?.skills?.map((skill) => skill.name);
   const selectedQuestions = formDeets?.jobApplicationQuestions?.map(
     (question) => question.slug
   );
-  // console.log(selectedQuestions);
 
   const handleSkillClick = (skill) => {
     if (!selectedSkills.includes(skill) && selectedSkills.length < 3) {
@@ -70,8 +64,6 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
   };
 
   const handleQuestionClick = (questionSlug) => {
-    // console.log(questionSlug)
-    // console.log(!selectedQuestions.includes(questionSlug), questionSlug);
     if (
       !selectedQuestions.includes(questionSlug) &&
       selectedQuestions.length < 3
@@ -95,37 +87,14 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
     }
   };
 
-  // useEffect(() => {
-  //   console.log(formDeets.jobApplicationQuestions)
-  // }, [formDeets])
-
   function handleSubmit(e) {
     e.preventDefault();
     submitJobPost({ clientMutationId: uuidv4(), ...formDeets })
       .then((res) => {
-        // console.log(res);
         setSubmitted(true);
       })
-      .catch((error) => {
-        // console.log(error); //fix
-      });
+      .catch((error) => {});
   }
-
-  // const getUTCDate = (dateString = Date.now()) => {
-  //   const date = new Date(dateString);
-
-  //   return new Date(
-  //     date.getUTCFullYear(),
-  //     date.getUTCMonth(),
-  //     date.getUTCDate(),
-  //     date.getUTCHours(),
-  //     date.getUTCMinutes(),
-  //     date.getUTCSeconds()
-  //   );
-  // };
-
-  // const utcDate = getUTCDate(formDeets.closeDate);
-  // console.log(utcDate);
 
   if (loadingViewer || !viewer) {
     return <MySpinner />;
@@ -375,8 +344,6 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
                                 py={2}
                                 fontSize="xs"
                                 fontWeight="bold"
-                                // bg={active ? "red.700" : "gray.50"}
-                                // _active={active === skill}
                                 onClick={() => handleSkillClick(skill.name)}
                               >
                                 {skill.name}
@@ -427,31 +394,10 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
                     })
                   }
                 />
-                {/* {formDeets.companyBio} */}
-                {/* </Textarea> */}
                 <FormHelperText>
                   Brief description for your organisation's account.
                 </FormHelperText>
               </FormControl>
-
-              {/* <Stack direction="row" spacing="6" align="center" width="full">
-                <Avatar
-                  size="xl"
-                  name="Alyssa Mall"
-                  src="https://images.unsplash.com/photo-1488282396544-0212eea56a21?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
-                />
-                <Box>
-                  <HStack spacing="5">
-                    <Button leftIcon={<HiCloudUpload />}>Change logo</Button>
-                    <Button variant="ghost" colorScheme="red">
-                      Delete
-                    </Button>
-                  </HStack>
-                  <Text fontSize="sm" mt="3">
-                    .jpg, .gif, or .png. Max file size 700K.
-                  </Text>
-                </Box>
-              </Stack> */}
             </VStack>
           </AdminBlob>
 
@@ -469,33 +415,11 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
                     content: e.target.value,
                   })
                 }
-              >
-                {/* {formDeets.content} */}
-              </Textarea>
+              ></Textarea>
               <FormHelperText>
                 Tell us more about the opportunity: expectations, outputs.
               </FormHelperText>
             </FormControl>
-
-            {/* <FormControl isRequired>
-              <FormLabel htmlFor="applicationLink">Application Link</FormLabel>
-              <InputGroup>
-                <InputLeftAddon children="https://" />
-                <Input
-                  disabled={submitLoading || submitted}
-                  htmlFor="applicationLink"
-                  type="text"
-                  value={formDeets.applicationLink}
-                  onChange={(e) =>
-                    setFormDeets({
-                      ...formDeets,
-                      applicationLink: e.target.value,
-                    })
-                  }
-                />
-              </InputGroup>
-            </FormControl> */}
-
             <FormControl isRequired>
               <FormLabel htmlFor="closeDateInput">Close Date</FormLabel>
               <Input
@@ -510,21 +434,6 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
                 }
               />
             </FormControl>
-            {/* <FormControl isRequired>
-              <FormLabel htmlFor="closeDateInput">Close Date</FormLabel>
-              <DatePicker 
-              showTimeSelect={false}
-                selected={utcDate} 
-                isClearable={true} 
-                // value={formDeets.closeDate}
-                onChange={date =>
-                  setFormDeets({
-                    ...formDeets,
-                    closeDate: date,
-                  })
-                }
-              />
-            </FormControl> */}
           </AdminBlob>
 
           <AdminBlob title="Select Questions">
@@ -543,13 +452,10 @@ export const JobPostForm = ({ formType, formDeets, setFormDeets, id }) => {
                 render={(data) => {
                   if (data.allWpJobApplicationQuestion) {
                     const questions = data.allWpJobApplicationQuestion.nodes;
-                    // console.log(selectedQuestions);
-                    // console.log(questions);
                     return (
                       <Stack spacing="5" justify="flex-start">
                         {questions &&
                           questions.map((question) => {
-                            // console.log(question.slug);
                             return (
                               <Box key={question.slug}>
                                 <HStack

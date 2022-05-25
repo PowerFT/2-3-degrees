@@ -10,7 +10,6 @@ import {
   FormLabel,
   Input,
   Stack,
-  VStack,
   Text,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
@@ -31,15 +30,10 @@ export const TalentEducationDeets = ({
   talentProfileUpdateLoading,
   setEducationUpdated,
 }) => {
-  // console.log(talentProfileId);
-
   const [profileUpdated, setProfileUpdated] = useState(false);
   const [talentDeets, setTalentDeets] = useState({});
-  // const [completed, setCompleted] = useState(false);
 
   //Select Educations buttons
-  // const eds = ['gcse', 'alevels', 'undergraduate', 'masters'];
-  // const [selectedEds, setSelectedEds] = useState([]);
   const [gcseSelected, setGcseSelected] = useState(false);
   const [alevelsSelected, setAlevelsSelected] = useState(false);
   const [undergraduateSelected, setUndergraduateSelected] = useState(false);
@@ -47,15 +41,6 @@ export const TalentEducationDeets = ({
   const [btecSelected, setBtecSelected] = useState(false);
   const [vocationalSelected, setVocationalSelected] = useState(false);
   const [tlevelSelected, setTlevelSelected] = useState(false);
-
-  // const handleEdClick = (ed) => {
-  //   if (!selectedEds.includes(ed)) {
-  //     setSelectedEds([...selectedEds, ed]);
-  //   } else {
-  //     const newList = selectedEds.filter((edu) => edu !== ed);
-  //     setSelectedEds(newList);
-  //   }
-  // };
 
   //QUERIES
   const { viewer, loadingViewer, refetchViewer } = useAuth();
@@ -81,11 +66,8 @@ export const TalentEducationDeets = ({
   useEffect(() => {
     if (viewer && !loadingViewer) {
       if (talentData && !loadingTalentData) {
-        // console.log(talentData);
         const talent =
           talentData?.viewer?.talentProfiles?.nodes[0]?.talentProfile;
-
-        // console.log(talent);
 
         setTalentDeets({
           profileId: talentData?.viewer?.talentProfiles?.nodes[0]?.databaseId,
@@ -132,14 +114,10 @@ export const TalentEducationDeets = ({
           },
         });
       }
-
-      // const accountInputs = [];
-      // if (accountInputs.every((input) => input)) setCompleted(true);
     }
   }, [viewer, loadingViewer, talentData, !loadingTalentData]);
 
   useEffect(() => {
-    // console.log(talentDeets);
     if (talentDeets) {
       if (talentDeets.gcse) {
         if (Object.values(talentDeets?.gcse).some((element) => element)) {
@@ -191,7 +169,6 @@ export const TalentEducationDeets = ({
           refetch();
           refetchViewer();
           setProfileUpdated(true);
-          // console.log('changedProfile', viewer);
         })
         .then(() => setEducationUpdated(true));
     } else {
@@ -200,7 +177,6 @@ export const TalentEducationDeets = ({
           refetch();
           refetchViewer();
           setProfileUpdated(true);
-          // console.log('madeProfile', viewer);
         })
         .then(() => setEducationUpdated(true));
     }
@@ -218,7 +194,6 @@ export const TalentEducationDeets = ({
       <AdminBlob title="Education">
         <Flex wrap="wrap" justify="center" w="100%">
           <Button
-            // disabled={submitLoading || submitted}
             key="gcsebtn"
             as="span"
             cursor="pointer"
@@ -233,15 +208,11 @@ export const TalentEducationDeets = ({
             px={3}
             py={1}
             fontSize="xs"
-            // fontWeight=""
-            // bg={active ? "red.700" : "gray.50"}
-            // _active={active === skill}
             onClick={() => setGcseSelected(!gcseSelected)}
           >
             {gcseSelected ? `- GCSE` : `+ GCSE`}
           </Button>
           <Button
-            // disabled={submitLoading || submitted}
             key="alevelsbtn"
             as="span"
             cursor="pointer"
@@ -256,15 +227,11 @@ export const TalentEducationDeets = ({
             px={3}
             py={1}
             fontSize="xs"
-            // fontWeight=""
-            // bg={active ? "red.700" : "gray.50"}
-            // _active={active === skill}
             onClick={() => setAlevelsSelected(!alevelsSelected)}
           >
             {alevelsSelected ? `- A-levels` : `+ A-levels`}
           </Button>
           <Button
-            // disabled={submitLoading || submitted}
             key="undergraduatebtn"
             as="span"
             cursor="pointer"
@@ -281,15 +248,11 @@ export const TalentEducationDeets = ({
             px={3}
             py={1}
             fontSize="xs"
-            // fontWeight=""
-            // bg={active ? "red.700" : "gray.50"}
-            // _active={active === skill}
             onClick={() => setUndergraduateSelected(!undergraduateSelected)}
           >
             {undergraduateSelected ? `- Undergraduate` : `+ Undergraduate`}
           </Button>
           <Button
-            // disabled={submitLoading || submitted}
             key="mastersbtn"
             as="span"
             cursor="pointer"
@@ -304,15 +267,11 @@ export const TalentEducationDeets = ({
             px={3}
             py={1}
             fontSize="xs"
-            // fontWeight=""
-            // bg={active ? "red.700" : "gray.50"}
-            // _active={active === skill}
             onClick={() => setMastersSelected(!mastersSelected)}
           >
             {mastersSelected ? `- Masters` : `+ Masters`}
           </Button>
           <Button
-            // disabled={submitLoading || submitted}
             key="btecbtn"
             as="span"
             cursor="pointer"
@@ -327,15 +286,11 @@ export const TalentEducationDeets = ({
             px={3}
             py={1}
             fontSize="xs"
-            // fontWeight=""
-            // bg={active ? "red.700" : "gray.50"}
-            // _active={active === skill}
             onClick={() => setBtecSelected(!btecSelected)}
           >
             {btecSelected ? `- BTEC` : `+ BTEC`}
           </Button>
           <Button
-            // disabled={submitLoading || submitted}
             key="vocationalbtn"
             as="span"
             cursor="pointer"
@@ -352,15 +307,11 @@ export const TalentEducationDeets = ({
             px={3}
             py={1}
             fontSize="xs"
-            // fontWeight=""
-            // bg={active ? "red.700" : "gray.50"}
-            // _active={active === skill}
             onClick={() => setVocationalSelected(!vocationalSelected)}
           >
             {vocationalSelected ? `- Vocational` : `+ Vocational`}
           </Button>
           <Button
-            // disabled={submitLoading || submitted}
             key="tlevelbtn"
             as="span"
             cursor="pointer"
@@ -375,9 +326,6 @@ export const TalentEducationDeets = ({
             px={3}
             py={1}
             fontSize="xs"
-            // fontWeight=""
-            // bg={active ? "red.700" : "gray.50"}
-            // _active={active === skill}
             onClick={() => setTlevelSelected(!tlevelSelected)}
           >
             {tlevelSelected ? `- T-level` : `+ T-level`}
@@ -798,10 +746,8 @@ export const TalentEducationDeets = ({
           bg="dYellow.300"
           _hover={{ bg: 'dYellow.200' }}
           isLoading={changeStatus === 'resolving' || makeStatus === 'resolving'}
-          // loadingText="Updating"
           type="submit"
           form="updateTalentEducation"
-          // colorScheme={ status === 'resolved' ? 'green' : "blue"}
           disabled={talentProfileUpdateLoading === 'resolving'}
         >
           {changeStatus === 'resolving' || makeStatus === 'resolving'

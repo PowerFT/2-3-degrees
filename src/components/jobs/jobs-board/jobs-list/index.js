@@ -3,7 +3,6 @@
  */
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
-// import InfiniteScroll from 'react-infinite-scroll-component'
 /**
  * Internal dependencies
  */
@@ -117,15 +116,6 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes, skills }) => {
     },
   });
 
-  // function fetchMorePosts () {
-  // 	fetchMore( {variables: {
-  // 			after: data.jobPosts.pageInfo.endCursor,
-  // 			jobLocation: locations && locations,
-  // 			jobType: sectors && sectors,
-  // 			sector: jobTypes && jobTypes,
-  // 		}} )
-  // }
-
   if (error)
     return (
       <Alert status="warning">
@@ -135,20 +125,10 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes, skills }) => {
       </Alert>
     );
   if (!data && loading) return <MySpinner />;
-  // if (!data?.jobPosts.edges.length) return <Flex justify="center" align="center"><Alert status="warning"> <AlertIcon/>Sorry, No Opportunities found.</Alert></Flex>
-  // const haveMorePosts = Boolean(data.jobPosts?.pageInfo?.hasNextPage)
-
   const jobPosts = data?.jobPosts?.edges.map((edge) => edge.node);
 
   return (
     <JobsCardContainer>
-      {/* <InfiniteScroll
-					dataLength={jobPosts.length}
-					next={fetchMorePosts()}
-					hasMore={haveMorePosts}
-					loader={<p>loading jobs...</p>}
-					endMessage={<p>All jobs loaded.</p>}
-				> */}
       {jobPosts.map((post) => (
         <JobCard
           key={post?.id}
@@ -166,29 +146,6 @@ export const JobsBoardJobList = ({ locations, sectors, jobTypes, skills }) => {
           uri={post?.uri}
         />
       ))}
-      {/* </InfiniteScroll> */}
-
-      {/* {haveMorePosts ? (
-				<form
-					method="post"
-					onSubmit={(event) => {
-						//console.log('submitting!')
-						event.preventDefault();
-						fetchMore({
-							variables: {
-								after: data.jobPosts.pageInfo.endCursor,
-							}
-						})
-					}}
-				>
-					<Button type="submit" disabled={loading}>
-						{loading ? "Loading..." : "Load more"}
-					</Button>
-				</form>
-			) : (
-				// <p>✅ All posts loaded.</p>
-				<></>
-			)} */}
     </JobsCardContainer>
   );
 };

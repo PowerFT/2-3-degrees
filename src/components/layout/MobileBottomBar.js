@@ -9,7 +9,6 @@ import {
   DrawerOverlay,
   Flex,
   Icon,
-  // useColorModeValue as mode,
   useDisclosure,
   Text,
   HStack,
@@ -34,8 +33,6 @@ import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { StaticImage } from 'gatsby-plugin-image';
 
 export const MobileBottomBar = ({ ...rest }) => {
-  // const { isOpen, onClose, onOpen } = useMobileMenuState()
-
   const { isLoggedIn, viewer } = useAuth();
   const [user, setUser] = useState('');
   const [userJobsLink, setUserJobsLink] = useState('');
@@ -50,8 +47,6 @@ export const MobileBottomBar = ({ ...rest }) => {
     if (user === 'maker') setUserJobsLink('/maker/jobs');
     if (user === 'talent') setUserAccountLink('/talent/account');
     if (user === 'maker') setUserAccountLink('/maker/account');
-
-    // console.log(user, userJobsLink, userAccountLink);
   }, [viewer]);
 
   return (

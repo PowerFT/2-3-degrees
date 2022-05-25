@@ -13,7 +13,6 @@ import {
   HStack,
 } from '@chakra-ui/react';
 import { AiOutlineDown, AiOutlineRight } from 'react-icons/ai';
-// import AniLink from "gatsby-plugin-transition-link/AniLink";
 import { Link } from 'gatsby';
 /**
  * Internal dependencies
@@ -34,11 +33,7 @@ export const MenuItem = (props) => {
   } = props;
 
   const isParent = Boolean(subItems?.length);
-  // console.log(label, isParent);
-
   const [menuItemHovered, setMenuItemHovered] = useState(false);
-
-  // console.log(label, subItems);
 
   const handleClick = () => {
     if (!isParent) onclose();
@@ -59,8 +54,6 @@ export const MenuItem = (props) => {
           fontWeight="700"
           fontSize="lg"
           justifyContent={menuopen ? 'flex-start' : 'center'}
-          // textTransform="uppercase"
-          // fontFamily="Big Shoulders Display"
           userSelect="none"
           aria-current={isActive ? 'page' : undefined}
           color="gray.50"
@@ -68,19 +61,9 @@ export const MenuItem = (props) => {
           _hover={{ bg: 'whiteAlpha.400' }}
           onMouseEnter={() => setMenuItemHovered(true)}
           onMouseLeave={() => setMenuItemHovered(false)}
-          // _activeLink={{
-          //   bg: mode('gray.200', 'gray.700'),
-          //   color: 'inherit',
-          // }}
-          // activeStyle={{
-          //   bg: mode('gray.200', 'gray.700'),
-          //   color: 'inherit',
-          // }}
-          // activeStyle={{color: 'lightgray'}}
           {...rest}
         >
           <Box w="full" py="1" px="3">
-            {/* <Icon as={BsFillLightningFill} fontSize="2xl" opacity={0.9} /> */}
             {menuopen && (
               <LinkOverlay
                 as={isParent ? 'div' : Link}
@@ -132,15 +115,12 @@ export const MenuItem = (props) => {
                 <LinkBox
                   key={item.label}
                   w="full"
-                  // bg="dOrange.300"
-                  // border="1px solid black"
                   py="1"
                   px="3"
                   w="100%"
                   onClick={onclose}
                   _hover={{ bg: 'whiteAlpha.400' }}
                 >
-                  {/* <Icon as={BsFillLightningFill} fontSize="2xl" opacity={0.9} /> */}
                   {menuopen && (
                     <LinkOverlay as={Link} to={item.url}>
                       <Heading

@@ -12,15 +12,11 @@ import {
   Stack,
   useColorModeValue as mode,
 } from '@chakra-ui/react';
-import { navigate } from 'gatsby';
 import React, { useState } from 'react';
-// import {Link as GatsbyLink} from 'gatsby'
 /**
  * Internal dependencies
  */
-// import { UnderlineLink } from './UnderlineLink'
 import { useAuth } from '../../../hooks';
-// import { UnderlineLink } from '../UnderlineLink';
 import { PasswordField } from './PasswordField';
 
 export const SigninForm = ({ user }) => {
@@ -30,9 +26,7 @@ export const SigninForm = ({ user }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(email, password);
-    // .then(navigate(user === 'talent' ? `/talent/account` : `/maker/account`))
-    // .catch((err) => console.log(err));
+    login(email, password).catch((err) => console.log(err));
   };
 
   return (

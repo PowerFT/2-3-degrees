@@ -50,19 +50,6 @@ export const InnerSidebar = ({
   likeStatus,
   ...rest
 }) => {
-  // const colour = {
-  // 	admin: "dBlue.200",
-  // 	connectPage: "dOrange.300",
-  // }
-  // console.log(jobDatabaseId)
-
-  // const hidden =
-  //   pagetype === 'blog' ||
-  //   pagetype === 'generic' ||
-  //   pagetype === 'home' ||
-  //   pagetype === 'connect-home' ||
-  //   pagetype === 'login';
-
   return (
     <Box
       className="innersidebar sticky"
@@ -124,27 +111,6 @@ export const InnerSidebar = ({
             ))}
           </VStack>
         )}
-        {/* {
-					secondaryLinks && (
-						<VStack spacing="0" border="1px solid" color="gray.50" w="100%" rounded="sm">
-							<Flex align="center" bg="gray.50" fontSize="xs" textAlign="start" rounded="sm" color="dBlue.300" w="100%" py="1" pl="2"><Icon as={BsInfoCircleFill} mr="1"/>Useful Links</Flex>
-							{secondaryLinks.map((link, i) => (
-								<LinkBox 
-								key={i} 
-									_hover={{ bg: 'whiteAlpha.400' }}
-									borderBottom={i !== secondaryLinks.length -1 ? "1px solid" : null}
-									// borderColor="gray.50"
-									w="100%"
-									pt="1"
-								>
-									<LinkOverlay as={Link} to={link[1]}>
-										<Text fontSize="sm" color="inherit" px="2" py="1">{link[0]}</Text>
-									</LinkOverlay>
-								</LinkBox>
-							))}
-						</VStack>
-					)
-				} */}
         {pagetype === 'jobs-board' && (
           <JobsFilter
             locations={locations}
@@ -257,8 +223,6 @@ export const InnerSidebar = ({
         )}
 
         {pagetype === 'job-form' && <JobPreviewCard formDeets={formDeets} />}
-
-        {/* <Button variant="outline" color="gray.50" w="full" disabled={!completed}> Post an Opportunity</Button> */}
       </VStack>
     </Box>
   );

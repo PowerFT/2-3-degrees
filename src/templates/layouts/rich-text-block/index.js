@@ -4,12 +4,6 @@ import parse from 'html-react-parser';
 import { BgImage } from '../../../components/BgImage';
 
 export const RichTextBlock = ({ richText, bgCol, textCol, bgPatternCol }) => {
-  // const imageData = getImage(image?.localFile);
-  // const pagetype = 'page';
-  //console.log("page",image)
-  //console.log("page image data",imageData)
-  console.log(bgCol, textCol);
-  console.log(bgCol, textCol);
   return (
     <>
       {richText && (

@@ -27,16 +27,13 @@ const getTagName = (query) => {
 
     // Ensure a valid expected value is passed
     if (skill || type) {
-      //console.log('link query returned', skill, type)
       return {
         skill: skill,
         type: type,
       };
     }
-    //console.log('parsing didnt work')
     return fallback;
   }
-  //console.log('location.search doesnt exsit')
   return fallback;
 };
 
@@ -44,7 +41,7 @@ export const ConnectJobs = () => {
   // url query
   const location = useLocation();
   const tagName = location.search ? getTagName(location.search) : '';
-  // console.log(tagName.type)
+  const pagetype = 'jobs-board';
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -63,11 +60,6 @@ export const ConnectJobs = () => {
 
   if (error) return <p>{`Error: ${error}`}</p>;
   if (loading) return <MySpinner />;
-  // if(!data) return <p>No posts found.</p>
-
-  // console.log(skills, jobTypes, locations)
-
-  const pagetype = 'jobs-board';
 
   return (
     <>
@@ -116,13 +108,10 @@ export const ConnectJobs = () => {
           left="1"
           zIndex="5"
           display={{ base: 'none', md: 'block' }}
-
-          // style={{transform: `translatex(-${offsetY * 0.05}px)`}}
         >
           <StaticImage
             src="../../images/opp-board-shadow.jpg"
             alt="shadow"
-            // height={400}
             fit="cover"
             imgStyle={{
               height: '100%',
@@ -145,7 +134,6 @@ export const ConnectJobs = () => {
           <StaticImage
             src="../../images/adminBg.svg"
             alt="shape pattern"
-            // height={400}
             fit="cover"
             imgStyle={{
               height: '100%',
@@ -157,10 +145,7 @@ export const ConnectJobs = () => {
         </Box>
 
         <Box
-          // mx="auto"
-          // px={{ base: '4', lg: '8' }}
           py={{ base: '8', sm: '12', lg: '16' }}
-          // textAlign="center"
           zIndex={11}
           position="relative"
           alignSelf="flex-end"

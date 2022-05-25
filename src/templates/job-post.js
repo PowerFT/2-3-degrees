@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { graphql, Link } from 'gatsby';
 import parse from 'html-react-parser';
-// import { motion } from "framer-motion"
 import { Box, LinkBox, LinkOverlay } from '@chakra-ui/layout';
 import {
   Flex,
@@ -91,7 +90,6 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
   const id = jobPost?.id;
   const jobDatabaseId = jobPost?.databaseId;
   const dbIdString = jobPost?.databaseId.toLocaleString().replace(/,/g, '');
-  // const id = jobPost?.slug;
 
   const { viewer, refetchViewer, loadingViewer } = useAuth();
   const pagetype = 'job-post';
@@ -101,16 +99,12 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
   const [toBeLiked, setToBeLiked] = useState(true);
   const [profileId, setProfileId] = useState('');
   const [thisJobAppliedFor, setThisJobAppliedFor] = useState(false);
-  // const [likePressed, setLikePressed] = useState(false);
 
   useEffect(() => {
     if (viewer && !loadingViewer) {
       const likedOpportunities =
         viewer.talentProfiles.nodes[0]?.likedOpportunities.nodes;
       const likedOpps = likedOpportunities?.map((opp) => opp.name) || [];
-      // setLikes(likedOpps)
-      // console.log(likedOpportunities);
-      // console.log(likedOpps);
       if (likedOpps?.includes(dbIdString)) {
         let newArr = likedOpps.filter((opp) => opp !== dbIdString);
         let toSend = newArr.map((item) => {
@@ -128,8 +122,6 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
       }
 
       setProfileId(viewer.talentProfiles.nodes[0]?.id);
-      // console.log(viewer);
-
       //Has this job been applied for before?
 
       const jobsApplied = viewer.applications.nodes.map(
@@ -141,31 +133,12 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
       if (thisJobAppliedFor) {
         setThisJobAppliedFor(true);
       }
-      // console.log(jobsApplied);
-      // console.log(jobsAppliedId);
-      // console.log(thisJobAppliedFor);
     }
   }, [viewer]);
 
   useEffect(() => {
     setToBeLiked(likes?.map((like) => like.name).includes(dbIdString));
   }, [likes]);
-
-  // const handleSkillClick = (skill) => {
-  //   if(!selectedSkills.includes(skill)) {
-  //     setFormDeets({
-  //       ...formDeets,
-  //       skills: [...formDeets.skills, {name: skill}],
-  //     })
-  //   } else if(selectedSkills.includes(skill)) {
-  //     setFormDeets({
-  //       ...formDeets,
-  //       skills: formDeets?.skills.filter(newskill => newskill.name !== skill),
-  //     })
-  //   } else {
-  //     return
-  //   }
-  // }
 
   const {
     likeOpportunity,
@@ -185,8 +158,6 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
       })
       .catch((err) => console.log(err));
   };
-
-  // console.log(likeStatus);
 
   return (
     <>
@@ -262,8 +233,6 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
                             {skill.name.toLocaleUpperCase()}
                           </Text>
                         </Box>
-                        {/* <Icon as={HiOutlineHand} w={8} h={8}/> */}
-                        {/* <Text>{skill.name}</Text> */}
                       </HStack>
                     ))}
                   </HStack>
@@ -381,7 +350,6 @@ const JobPostTemplate = ({ data: { jobPost } }) => {
                 p="0"
                 w="100%"
                 bg="gray.50"
-                // border="2px solid"
                 rounded="md"
                 borderColor="gray.700"
               >

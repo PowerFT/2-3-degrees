@@ -1,5 +1,4 @@
 import React from 'react';
-// import { BsFilePost, BsFillPersonFill } from 'react-icons/bs'
 import { MenuItem } from './MenuItem';
 import { useAuth } from '../../hooks';
 
@@ -7,7 +6,6 @@ export const MakerMenu = ({ mobile, menuopen, onclose }) => {
   const { loadingViewer, viewer, isLoggedIn } = useAuth();
   if (loadingViewer || !viewer || !isLoggedIn) return null;
 
-  // console.log(viewer)
   return (
     <>
       {viewer.roles.nodes[0].name === 'maker' && (

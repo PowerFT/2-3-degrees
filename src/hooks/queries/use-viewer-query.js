@@ -60,21 +60,16 @@ export const useViewerQuery = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      // console.log('getting viewer...')
       getViewer();
-      // console.log(data)
     }
   }, [isLoggedIn]);
 
   const onError = useSafeDispatch((error) => {
-    // console.log(error, 'erorrrrrr');
     setIsLoggedIn(false);
   });
 
   const onCompleted = useSafeDispatch((theData) => {
-    // console.log('onComplete', theData);
     if (!theData.viewer) {
-      // console.log('onComplete failed, no data, logging out');
       setIsLoggedIn(false);
     }
   });

@@ -1,33 +1,25 @@
 /**
  * External dependencies
  */
-import { Flex, Spinner } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 /**
  * Internal dependencies
  */
-// import { JobPreviewCard } from './JobPreview'
 import { JobPostForm } from './JobPostForm';
 import { useAuth } from '../../../hooks';
 import { Header } from '../../layout/Header';
 import { Content } from '../../layout/Content';
 import { InnerSidebar } from '../../layout/InnerSidebar';
-// import { useFileUpload } from '../../../hooks/use-file-upload'
-// import { MySpinner } from '../../waiting/MySpinner'
 
 export const CreateJobPostFormPage = () => {
-  // console.log('create form')
-
   const formType = 'create';
 
   const [formDeets, setFormDeets] = useState({
     skills: [],
     jobApplicationQuestions: [],
   });
-  // const [salStructure, setSalStructure] = useState('Month')
-
   const { viewer, loadingViewer } = useAuth();
-
   const pagetype = 'job-form';
 
   useEffect(() => {

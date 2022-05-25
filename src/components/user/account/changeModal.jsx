@@ -23,12 +23,6 @@ import {
 * Internal dependencies
 // */
 import { useAuth, useUpdateUser } from '../../../hooks';
-import { HiLogout } from 'react-icons/hi';
-// import { navigate } from 'gatsby-link';
-// import { useViewerQuery } from '../../../hooks/queries/use-viewer-query'
-// import { useAuthContext } from '../../../context';
-// import { useAuth } from '../../hooks';
-// import UpdateProfileForm from './UpdateProfileForm';
 
 export function ChangeModal({
   title,
@@ -39,22 +33,14 @@ export function ChangeModal({
   setPasswordChanged,
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   const [val, setVal] = useState('');
-
   const { logout } = useAuth();
-  // const emailRegex = /s+@s+.s+/
-  // const emailMatchRegEx = email.match(emailRegex)
-
   const { updateUserLogin, error, status } = useUpdateUser();
-
   const typeSlug = type.toLowerCase();
-  //console.log(typeSlug)
 
   const handleSubmit = (e) => {
     e.preventDefault();
     accountDeets[typeSlug] = val;
-    //console.log(accountDeets)
     updateUserLogin(accountDeets)
       .then(() =>
         typeSlug === 'email' ? setNewEmail(val) : setPasswordChanged(true)
@@ -64,8 +50,8 @@ export function ChangeModal({
       })
       .then(() => {
         logout();
-      });
-    // .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

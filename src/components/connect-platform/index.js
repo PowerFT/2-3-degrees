@@ -19,21 +19,16 @@ const getUser = (query) => {
     const { user } = queryString.parse(query);
     // Ensure a valid expected value is passed
     if (user) {
-      //console.log('link query returned')
       return user;
     }
-    //console.log('parsing didnt work')
     return fallback;
   }
-  //console.log('location.search doesnt exsit')
   return fallback;
 };
 
 export const ConnectPlatform = () => {
   const location = useLocation();
   const user = location.search ? getUser(location.search) : null;
-
-  //console.log("user: ", user)
 
   const { viewer, loadingViewer } = useAuth();
 
@@ -73,13 +68,11 @@ export const ConnectPlatform = () => {
         viewer.postcode,
       ].filter((input) => input).length,
     },
-  }; //change
+  };
 
   const limit = users[userType]?.limit;
   const completed = users[userType]?.completed;
   const complete = Boolean(limit === completed);
-
-  //console.log(limit, completed, complete)
 
   return (
     <Stack as="section" h="full" spacing="0" pb="6" align="center">
@@ -98,11 +91,8 @@ export const ConnectPlatform = () => {
         limit={limit}
         completed={completed}
       />
-
       <ConnectJobsTagsBlock />
-
       <ConnectDownloads />
-
       <ConnectBlogBlock user={userType} />
     </Stack>
   );

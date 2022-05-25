@@ -40,13 +40,9 @@ export const MyJobCard = ({ title, sector, companyName, status, id }) => {
 
   useEffect(() => {
     if (appData && !appLoading) setApplications(appData.applications.nodes);
-    // console.log(appError);
-    // console.log(appData);
   }, [appData]);
 
-  useEffect(() => {
-    // console.log(title, id, applications);
-  }, [applications]);
+  useEffect(() => {}, [applications]);
 
   return (
     <Box
@@ -65,12 +61,7 @@ export const MyJobCard = ({ title, sector, companyName, status, id }) => {
         py={{ base: '5', sm: '7' }}
         w="100%"
       >
-        <Stack
-          id="jobCardContainer"
-          align="flex-start"
-          direction="row"
-          // my={1}
-        >
+        <Stack id="jobCardContainer" align="flex-start" direction="row">
           <Avatar
             size="md"
             name={companyName}

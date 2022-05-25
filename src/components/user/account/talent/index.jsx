@@ -32,8 +32,6 @@ import { TalentEducationDeets } from './TalentEducationDeets';
 import { TalentWorkDeets } from './TalentWorkDeets';
 import { useAuth } from '../../../../hooks';
 
-// import { useTalentViewerQuery } from '../../../../hooks/queries/use-viewer-talent-query';
-
 const CHECK_PROFILE_EXISTS = gql`
   query CheckProfileId {
     viewer {
@@ -47,8 +45,6 @@ const CHECK_PROFILE_EXISTS = gql`
 `;
 
 export const TalentAccountSettings = () => {
-  // const { FileUploadInput } = useFileUpload()
-
   const pagetype = 'admin';
 
   const [accountCompleted, setAccountCompleted] = useState(false);
@@ -67,7 +63,6 @@ export const TalentAccountSettings = () => {
 
   useEffect(() => {
     if (data) {
-      // console.log(data.viewer.talentProfiles.nodes[0]?.id);
       setTalentProfileId(data.viewer.talentProfiles.nodes[0]?.id);
     }
   }, [data, loading]);
@@ -87,7 +82,6 @@ export const TalentAccountSettings = () => {
       ];
       const completed = accountInputs.every((input) => input);
       if (completed) setAccountCompleted(true);
-      // console.log(viewer.roles);
     }
   }, [viewer, loadingViewer]);
 
@@ -108,10 +102,6 @@ export const TalentAccountSettings = () => {
               ['Connect Platform', '/connect/platform'],
               ['Latest Opportunites', '/connect/jobs'],
             ]}
-            // secondaryLinks={[
-            //   ['Why we ask for account information', '#'],
-            //   ['Terms and Conditions', '#'],
-            // ]}
             pagetype={pagetype}
           />
         )}
@@ -226,7 +216,6 @@ export const TalentAccountSettings = () => {
                   Build your CV
                 </Heading>
                 <TalentEducationDeets
-                  // setEducationCompleted={setEducationCompleted}
                   talentProfileId={talentProfileId}
                   setTalentProfileUpdateLoading={setTalentProfileUpdateLoading}
                   talentProfileUpdateLoading={talentProfileUpdateLoading}
@@ -269,7 +258,6 @@ export const TalentAccountSettings = () => {
                   </VStack>
                 )}
                 <TalentWorkDeets
-                  // setWorkCompleted={setWorkCompleted}
                   talentProfileId={talentProfileId}
                   setTalentProfileUpdateLoading={setTalentProfileUpdateLoading}
                   talentProfileUpdateLoading={talentProfileUpdateLoading}

@@ -6,7 +6,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Stack,
   VStack,
 } from '@chakra-ui/react';
 
@@ -25,7 +24,6 @@ export const AccountDeets = ({
 
   useEffect(() => {
     if (viewer && !loadingViewer) {
-      console.log(viewer);
       const accountInputs = [
         viewer.firstName,
         viewer.lastName,
@@ -59,7 +57,6 @@ export const AccountDeets = ({
   }, [viewer, loadingViewer]);
 
   const handleSubmit = () => {
-    // console.log(accountDeets);
     updateUser(accountDeets).then(() => {
       refetchViewer();
       setProfileUpdated(true);
@@ -68,12 +65,6 @@ export const AccountDeets = ({
 
   return (
     <VStack spacing="4">
-      {/* {!completed && (
-        <Alert status="info" w={['xs', 'sm']}>
-          <AlertIcon />
-          Complete your account before you start using the Connect Platform.
-        </Alert>
-      )} */}
       <form
         id="updateAccountForm"
         onSubmit={(e) => {

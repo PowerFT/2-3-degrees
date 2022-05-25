@@ -17,7 +17,6 @@ export const useFileUploadMutation = () => {
   const [mutation, mutationResults] = useMutation(UPLOAD_FILE);
 
   const fileUploadMutation = async (file) => {
-    // console.log(file)
     return mutation({
       variables: {
         file,

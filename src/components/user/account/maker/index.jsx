@@ -40,7 +40,6 @@ import { BsFillLightningFill } from 'react-icons/bs';
 import { Link, navigate } from 'gatsby';
 
 export const MakerAccountSettings = () => {
-  // const { FileUploadInput } = useFileUpload()
   const pagetype = 'admin';
   const { viewer, loadingViewer, refetchViewer, logout } = useAuth();
   const { updateUser, error, status } = useUpdateUser();
@@ -64,7 +63,6 @@ export const MakerAccountSettings = () => {
     updateUser(accountDeets).then(() => {
       refetchViewer();
       setProfileUpdated(true);
-      // console.log('refetch', viewer);
     });
   };
 
@@ -124,10 +122,6 @@ export const MakerAccountSettings = () => {
           }}
           title="Test"
           primaryLinks={primaryLinks}
-          // secondaryLinks={[
-          //   ['Why we ask for account information', '#'],
-          //   ['Terms and Conditions', '#'],
-          // ]}
           pagetype={pagetype}
         />
 
@@ -324,7 +318,6 @@ export const MakerAccountSettings = () => {
                       borderBottom={
                         i !== primaryLinks.length - 1 ? '1px solid' : null
                       }
-                      // borderColor="gray.50"
                       w="100%"
                       pt="1"
                     >

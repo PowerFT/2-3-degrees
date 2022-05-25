@@ -107,19 +107,14 @@ export const ApplicationForm = () => {
 
   useEffect(() => {
     if (talentData) {
-      // console.log(talentData.viewer.talentProfiles.nodes[0].talentProfile);
       setTp(talentData.viewer.talentProfiles.nodes[0].talentProfile);
     }
   }, [talentData]);
-
-  // console.log(formDeets);
 
   if (loadingViewer || !viewer || loading || loadingTalent) {
     return <MySpinner />;
   }
   if (talentError || error) return <MyError error={talentError || error} />;
-
-  // console.log(data.jobPost.databaseId);
 
   return (
     <Flex>

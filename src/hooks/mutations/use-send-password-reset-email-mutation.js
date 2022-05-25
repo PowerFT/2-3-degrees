@@ -4,24 +4,23 @@
 import { gql, useMutation } from '@apollo/client';
 
 const QUERY = gql`
-	mutation SendPasswordResetEmail($username: String!) {
-		sendPasswordResetEmail(input: { username: $username }) {
-			clientMutationId
-		}
-	}
+  mutation SendPasswordResetEmail($username: String!) {
+    sendPasswordResetEmail(input: { username: $username }) {
+      clientMutationId
+    }
+  }
 `;
 
 export const useSendPasswordResetEmailMutation = () => {
-	const [ mutation, mutationResults ] = useMutation( QUERY );
+  const [mutation, mutationResults] = useMutation(QUERY);
 
-	const sendPasswordResetEmail = ( username ) => {
-		// console.log("EEMMMMMAIL ", typeof email)
-		return mutation( {
-			variables: {
-				username,
-			},
-		} );
-	};
+  const sendPasswordResetEmail = (username) => {
+    return mutation({
+      variables: {
+        username,
+      },
+    });
+  };
 
-	return { sendPasswordResetEmail, results: mutationResults };
+  return { sendPasswordResetEmail, results: mutationResults };
 };

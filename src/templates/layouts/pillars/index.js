@@ -36,12 +36,7 @@ export const Feature = ({
 }) => {
   const imgData = getImage(img?.localFile);
 
-  // const [isShown, setIsShown] = useState(false);
-  // console.log(title, "....entered")
-
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  // console.log(showText);
 
   return (
     <Box alignItems="center" {...rest}>
@@ -109,8 +104,6 @@ export const Feature = ({
           align="center"
           justify="center"
           bg="gray.50"
-          // insetX="0"
-          // insetY="0"
           zIndex={1}
           transition="all 2s"
           w="100%"
@@ -139,8 +132,6 @@ export const Feature = ({
           onMouseEnter={onOpen}
           onMouseLeave={onClose}
           position={showText === 'true' ? 'relative' : 'absolute'}
-          // insetX="0"
-          // insetY="0"
           bottom="0"
           transition="all 2s"
           w="100%"
@@ -196,8 +187,6 @@ export const Pillars = ({
   textColour,
   showText,
 }) => {
-  //console.log(pillars)
-
   return (
     <Flex
       as="section"
@@ -222,7 +211,6 @@ export const Pillars = ({
       <SimpleGrid
         columns={{ md: 1, lg: 3 }}
         spacing={{ base: '8', md: '12', lg: '8' }}
-        // px={{ base: '6', lg: '8' }}
         mt={{ base: '8', sm: '10' }}
         mb={{ base: '16', sm: '20' }}
         w="100%"
@@ -240,10 +228,6 @@ export const Pillars = ({
             i={i}
             videoLink={pillar.video}
             showText={showText}
-            // data-sal="slide-up"
-            // data-sal-delay={400*i}
-            // data-sal-easing="ease"
-            // data-sal-duration="600"
           >
             {pillar.text}
           </Feature>

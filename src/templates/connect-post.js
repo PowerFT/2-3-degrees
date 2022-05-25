@@ -18,8 +18,6 @@ import Seo from '../components/seo';
 import { Header } from '../components/layout/Header';
 
 const BlogPostTemplate = ({ data: { post } }) => {
-  //console.log(post)
-
   const imageData = getImage(post.featuredImage?.node?.localFile);
   const ImgAlt = post.featuredImage?.node?.alt || ``;
 
@@ -79,75 +77,6 @@ const BlogPostTemplate = ({ data: { post } }) => {
           {post.content && parse(post.content)}
         </Box>
       </Flex>
-
-      {/* <Box
-				as="article"
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <Box as="header">
-
-            <GatsbyImage
-              image={imageData}
-              alt={ImgAlt}
-            />
-
-
-					<Box  w="2xl" mx="auto" mt="-50px" zIndex={1} bg="white" position="relative" p={10}>
-						<Text as="p" fontSize="xs" textTransform="uppercase">{post.date}</Text>
-						<Heading as="h1" size="2xl" itemProp="headline">{parse(post.title)}</Heading>
-          	<Text as="p">{post.author.node.name}</Text>
-						<Text fontSize="lg">{parse(post.excerpt)}</Text>
-					</Box>
-
-        </Box>
-
-        <Box w="2xl" mx="auto" px={10}>
-          {!!post.content && (
-            <Box as="section" mt="2em" className="post__content wp-content"  itemProp="articleBody">{parse(post.content)}</Box>
-          )}
-
-          <Box>
-            {post.categories.nodes.map(cat => (
-              <Box key={cat.id} as="button" borderRadius="md" bg="tomato" color="white" px={4} h={8}>
-                <Link as={GatsbyLink} to={cat.uri}>{cat.name}</Link> 
-              </Box>
-            ))}
-          </Box>
-        </Box>
-
-        
-
-      </Box> */}
-
-      {/* <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.uri} rel="prev">
-                ← {parse(previous.title)}
-              </Link>
-            )}
-          </li>
-
-          <li>
-            {next && (
-              <Link to={next.uri} rel="next">
-                {parse(next.title)} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav> */}
     </Box>
   );
 };

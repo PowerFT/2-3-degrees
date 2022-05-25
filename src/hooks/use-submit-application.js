@@ -4,12 +4,6 @@
 import { navigate } from 'gatsby-link';
 import { useState } from 'react';
 import { useSubmitApplicationMutation } from './mutations/use-submit-application-mutation';
-// import { decodeEntities } from '@wordpress/html-entities';
-// import { stripHtml } from 'string-strip-html';
-
-/**
- * Internal dependencies
- */
 
 /**
  * Hook which submits content via the API.
@@ -24,13 +18,11 @@ export const useSubmitApplication = () => {
     setSubmitLoading(true);
 
     const success = (result) => {
-      // console.log(result);
       setSubmitLoading(false);
       navigate('/talent/jobs');
     };
 
     const fail = (errors) => {
-      // console.log(errors);
       setSubmitLoading(false);
       setSubmitErrors(errors);
     };
@@ -45,8 +37,6 @@ export const useSubmitApplication = () => {
       jobDatabaseId,
       name,
     } = props;
-
-    // console.log(props);
 
     createApplication({
       variables: {

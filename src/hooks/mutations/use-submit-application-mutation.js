@@ -32,7 +32,6 @@ const SUBMIT_APPLICATION_MUTATION = gql`
 `;
 
 export const useSubmitApplicationMutation = () => {
-  // console.log('mutation APPLICATION')
   const [mutation, mutationResults] = useMutation(SUBMIT_APPLICATION_MUTATION);
 
   return { mutation, results: mutationResults };

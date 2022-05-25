@@ -3,23 +3,11 @@
  */
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-// import { decodeEntities } from '@wordpress/html-entities';
-// import { stripHtml } from 'string-strip-html';
 
 /**
  * Internal dependencies
  */
 import { useMakeTalentProfileMutation } from './mutations/use-make-talent-profile-mutation';
-
-// const errorCodes = {
-// 	invalid_username:
-// 		'Invalid username or email address. Please check it and try again.',
-// 	invalid_email: 'Invalid email address. Please check it and try again.',
-// 	incorrect_password:
-// 		'Incorrect password. Please try again, or reset your password.',
-// 	empty_username: 'Please provide your username.',
-// 	empty_password: 'Please provide your password.',
-// };
 
 export const useMakeTalentProfile = () => {
   const [error, setError] = useState(null);
@@ -29,18 +17,14 @@ export const useMakeTalentProfile = () => {
     useMakeTalentProfileMutation();
 
   const makeTalentProfile = (talentDeets) => {
-    // console.log(talentDeets);
     setError(null);
-    // setStatus('resolved');
 
     const success = (result) => {
-      // console.log(result);
       setStatus('resolving');
       return result.data;
     };
 
     const fail = (errors) => {
-      // console.log(errors);
       setStatus('resolved');
       setError(errors);
     };

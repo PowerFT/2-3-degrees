@@ -33,10 +33,8 @@ export const TalentWorkDeets = ({
   talentProfileUpdateLoading,
   setExperienceUpdated,
 }) => {
-  // console.log(talentProfileId);
   const [profileUpdated, setProfileUpdated] = useState(false);
   const [talentDeets, setTalentDeets] = useState({});
-  // const [completed, setCompleted] = useState(false);
   const [we1Selected, setWe1Selected] = useState(false);
   const [we2Selected, setWe2Selected] = useState(false);
   const [we3Selected, setWe3Selected] = useState(false);
@@ -44,16 +42,7 @@ export const TalentWorkDeets = ({
   const [we5Selected, setWe5Selected] = useState(false);
 
   //Select Educations buttons
-  // const works = ['we1', 'we2', 'we3'];
   const [selectedWorks, setSelectedWorks] = useState([]);
-  // const handleEdClick = (works) => {
-  //   if (!selectedWorks.includes(works)) {
-  //     setSelectedWorks([...selectedWorks, works]);
-  //   } else {
-  //     const newList = selectedWorks.filter((work) => work !== work);
-  //     setSelectedWorks(newList);
-  //   }
-  // };
 
   //QUERIES
   const { viewer, loadingViewer, refetchViewer } = useAuth();
@@ -120,15 +109,10 @@ export const TalentWorkDeets = ({
           },
         });
       }
-
-      // const accountInputs = [
-      // ];
-      // if (accountInputs.every((input) => input)) setCompleted(true);
     }
   }, [viewer, loadingViewer, talentData, !loadingTalentData]);
 
   useEffect(() => {
-    // console.log(talentDeets);
     if (talentDeets) {
       if (talentDeets?.workExperienceOne) {
         if (
@@ -223,7 +207,6 @@ export const TalentWorkDeets = ({
         <AdminBlob title="Experience">
           <Flex wrap="wrap" justify="center" w="100%">
             <Button
-              // disabled={submitLoading || submitted}
               key="workexp1"
               as="span"
               cursor="pointer"
@@ -238,15 +221,11 @@ export const TalentWorkDeets = ({
               px={3}
               py={1}
               fontSize="xs"
-              // fontWeight=""
-              // bg={active ? "red.700" : "gray.50"}
-              // _active={active === skill}
               onClick={() => setWe1Selected(!we1Selected)}
             >
               {we1Selected ? `- Latest Experience` : `+ Latest Experience`}
             </Button>
             <Button
-              // disabled={submitLoading || submitted}
               key="workexp2"
               as="span"
               cursor="pointer"
@@ -261,15 +240,11 @@ export const TalentWorkDeets = ({
               px={3}
               py={1}
               fontSize="xs"
-              // fontWeight=""
-              // bg={active ? "red.700" : "gray.50"}
-              // _active={active === skill}
               onClick={() => setWe2Selected(!we2Selected)}
             >
               {we2Selected ? `- Experience 2` : `+ Experience 2`}
             </Button>
             <Button
-              // disabled={submitLoading || submitted}
               key="workexp3"
               as="span"
               cursor="pointer"
@@ -284,15 +259,11 @@ export const TalentWorkDeets = ({
               px={3}
               py={1}
               fontSize="xs"
-              // fontWeight=""
-              // bg={active ? "red.700" : "gray.50"}
-              // _active={active === skill}
               onClick={() => setWe3Selected(!we3Selected)}
             >
               {we3Selected ? `- Experience 3` : `+ Experience 3`}
             </Button>
             <Button
-              // disabled={submitLoading || submitted}
               key="workexp4"
               as="span"
               cursor="pointer"
@@ -307,15 +278,11 @@ export const TalentWorkDeets = ({
               px={3}
               py={1}
               fontSize="xs"
-              // fontWeight=""
-              // bg={active ? "red.700" : "gray.50"}
-              // _active={active === skill}
               onClick={() => setWe4Selected(!we4Selected)}
             >
               {we4Selected ? `- Experience 4` : `+ Experience 4`}
             </Button>
             <Button
-              // disabled={submitLoading || submitted}
               key="workexp5"
               as="span"
               cursor="pointer"
@@ -330,9 +297,6 @@ export const TalentWorkDeets = ({
               px={3}
               py={1}
               fontSize="xs"
-              // fontWeight=""
-              // bg={active ? "red.700" : "gray.50"}
-              // _active={active === skill}
               onClick={() => setWe5Selected(!we5Selected)}
             >
               {we5Selected ? `- Experience 5` : `+ Experience 5`}
@@ -749,10 +713,8 @@ export const TalentWorkDeets = ({
               isLoading={
                 changeStatus === 'resolving' || makeStatus === 'resolving'
               }
-              // loadingText="Updating"
               type="submit"
               form="updateTalentExperience"
-              // colorScheme={ status === 'resolved' ? 'green' : "blue"}
               disabled={talentProfileUpdateLoading === 'resolving'}
             >
               {changeStatus === 'resolving' || makeStatus === 'resolving'

@@ -76,15 +76,7 @@ export const AppliedList = () => {
 
   if (error) return <MyError error={`Error: ${error}`} />;
   if (!data && loading && !viewer) return <MySpinner />;
-  // if (!data) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
-  // if(data.viewer?.jobPosts?.nodes.length === 0) return <MyError error="No Opportunities here, see 'Awaiting Verification'"/>
 
-  // console.log(data);
-  // console.log(
-  //   viewer.talentProfiles.nodes[0].likedOpportunities.nodes.map(
-  //     (node) => node.name
-  //   )
-  // );
   return (
     <Box>
       <Box w="100%" bg="gray.700" color="gray.50" py="3" my="3">

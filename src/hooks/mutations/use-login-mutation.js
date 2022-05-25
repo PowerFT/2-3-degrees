@@ -15,7 +15,6 @@ export const useLoginMutation = () => {
   const [mutation, mutationResults] = useMutation(LOGIN);
 
   const loginMutation = (email, password) => {
-    // console.log('loggin,', email, password)
     return mutation({
       variables: {
         email,

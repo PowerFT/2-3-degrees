@@ -11,28 +11,26 @@ import { useState } from 'react';
 import { useDeleteUserMutation } from './mutations/use-delete-user-mutation';
 
 export const useDeleteUser = (userId) => {
-	const [ error, setError ] = useState( null );
-	const [ status, setStatus ] = useState( 'idle' );
-	const { deleteUserMutation } = useDeleteUserMutation();
+  const [error, setError] = useState(null);
+  const [status, setStatus] = useState('idle');
+  const { deleteUserMutation } = useDeleteUserMutation();
 
-	const deleteUser = () => {
-		setError( null );
-		setStatus( 'resolving' );
-		return deleteUserMutation( userId )
-			.then( () => {
-				//console.log('sent delete mutation')
-				setStatus( 'resolved' );
-			} )
-			.catch( ( errors ) => {
-				//console.log(errors)
-				setError(errors);
-				setStatus( 'resolved' );
-			} );
-	};
+  const deleteUser = () => {
+    setError(null);
+    setStatus('resolving');
+    return deleteUserMutation(userId)
+      .then(() => {
+        setStatus('resolved');
+      })
+      .catch((errors) => {
+        setError(errors);
+        setStatus('resolved');
+      });
+  };
 
-	return {
-		deleteUser,
-		error,
-		status,
-	};
+  return {
+    deleteUser,
+    error,
+    status,
+  };
 };

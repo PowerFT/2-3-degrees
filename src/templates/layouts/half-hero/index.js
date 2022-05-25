@@ -25,7 +25,6 @@ export const HalfHero = ({
   const buttonTitle = button?.title;
   const buttonLink = button?.url;
 
-  // console.log(title, button);
   return (
     <Box
       as="section"

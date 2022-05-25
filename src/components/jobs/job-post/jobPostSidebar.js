@@ -36,12 +36,7 @@ export const JobSidebar = (props) => {
     ...rest
   } = props;
   const formattedSalary = parseInt(salary).toLocaleString();
-
-  // const parsedDate = new Date(closeDate);
   const { viewer, loadingViewer } = useAuth();
-
-  // console.log(thisJobAppliedFor);
-
   return (
     <>
       <Box fontSize="lg" w="full" {...rest}>

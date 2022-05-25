@@ -9,8 +9,6 @@ export const AccountProgress = ({
   user,
   ...rest
 }) => {
-  // console.log(complete);
-
   return (
     <Stack
       spacing="4"
@@ -62,48 +60,6 @@ export const AccountProgress = ({
           />
         </Box>
       </LinkBox>
-
-      {/* {user !== 'waiting' && (
-        <Flex
-          flex="1 0 50%"
-          direction="column"
-          bg={mode('white', 'gray.700')}
-          rounded="md"
-          overflow="hidden"
-          // shadow="base"
-          maxW="sm"
-          // display={complete && "none"}
-          {...rest}
-        >
-          <Box srOnly>
-            {completed} out of {limit} of account setup
-          </Box>
-          <Box
-            flex="1"
-            px={{
-              base: '1',
-              lg: '3',
-            }}
-            py="0"
-          >
-            {!complete && (
-              <HStack align="flex-end"
-                fontSize={{
-                  base: 'lg',
-                  lg: 'xl',
-                }}
-                fontWeight="bold"
-                color="gray.800"
-                lineHeight="1"
-              >
-                <Text fontSize="lg" fontWeight="700">{`${completed} SECTION`}</Text>
-                <Text fontSize="md">/ {limit}</Text>
-                <Box srOnly>{`${completed} out of ${limit}`}</Box>
-              </HStack>
-            )}
-          </Box>
-           
-      )}*/}
     </Stack>
   );
 };

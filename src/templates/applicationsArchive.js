@@ -15,34 +15,11 @@ import {
 } from '@chakra-ui/layout';
 import { BreadCrumb } from '../components/Breadcrumb';
 
-// import Bio from "../components/bio"
-// import Layout from "../components/layout"
-// import Seo from "../components/seo"
-
-const ApplicationArchive = ({
-  data,
-  // pageContext: { nextPagePath, previousPagePath },
-}) => {
-  // const posts = data.allWpPost.nodes;
+const ApplicationArchive = ({ data }) => {
   const applications = data.allWpApplication.nodes;
-
-  // if (!posts.length) {
-  //   return (
-  //     <>
-  //       {/* <Seo title="All posts" />
-  //       <Bio /> */}
-  //       <p>No applications yet. Check back later!</p>
-  //     </>
-  //   );
-  // }
-
-  // console.log(data);
 
   return (
     <>
-      {/* <Seo title="All posts" />
-
-      <Bio /> */}
       <Header
         title="Applications"
         subTitle="Find all the current application to your opportunity"
@@ -102,59 +79,11 @@ const ApplicationArchive = ({
           })}
         </VStack>
       </Content>
-
-      {/* <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
-          const title = post.title
-
-          return (
-            <li key={post.uri}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={post.uri} itemProp="url">
-                      <span itemProp="headline">{parse(title)}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.date}</small>
-                </header>
-                <section itemProp="description">{parse(post.excerpt)}</section>
-              </article>
-            </li>
-          )
-        })}
-      </ol> */}
-
-      {/* {previousPagePath && (
-        <>
-          <Link to={previousPagePath}>Previous page</Link>
-          <br />
-        </>
-      )}
-      {nextPagePath && <Link to={nextPagePath}>Next page</Link>} */}
     </>
   );
 };
 
 export default ApplicationArchive;
-
-// export const archiveQuery = graphql`
-//   query WordPressApplicationArchive($offset: Int!, $applicationsPerPage: Int!) {
-//     allWpApplications(
-//       sort: { fields: [date], order: DESC }
-//       limit: $applicationsPerPage
-//       skip: $offset
-//     ) {
-//       nodes {
-//         title
-//       }
-//     }
-//   }
-// `;
 
 export const archiveQuery = graphql`
   query WordPressApplicationArchive($jobId: String = "") {
