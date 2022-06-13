@@ -109,7 +109,6 @@ export const MenuItem = (props) => {
             top={mobile ? null : '0'}
             spacing="1"
             transform={mobile ? null : 'translateX(100%)'}
-            bg="dOrange.300"
             w={mobile ? '100%' : 'unset'}
             color="gray.50"
             bg={mobile ? 'whiteAlpha.300' : 'dOrange.300'}
