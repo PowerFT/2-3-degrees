@@ -1,7 +1,7 @@
-import React from 'react';
-import { gql, useQuery } from '@apollo/client';
-import { Link } from 'gatsby';
-import { Box, Stack, Text } from '@chakra-ui/react';
+import React from "react";
+import { gql, useQuery } from "@apollo/client";
+import { Link } from "gatsby";
+import { Box, Stack, Text } from "@chakra-ui/react";
 
 const FOOTER_MENU_QUERY = gql`
   query FooterMenuQuery($id: ID!) {
@@ -40,9 +40,14 @@ export const FooterMenuColumn = ({ id, ...rest }) => {
           <Box as="li" key={idx} mt="1" mb="0">
             <Box
               as={Link}
-              to={link.path}
+              to={
+                data.menu?.id !==
+                process.env.GATSBY_WORDPRESS_FOOTER_RESOURCES_ID
+                  ? link.path
+                  : "/blog" + link.path
+              }
               _hover={{
-                textDecor: 'underline',
+                textDecor: "underline",
               }}
             >
               {link.label}
