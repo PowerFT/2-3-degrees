@@ -1,8 +1,8 @@
-import React from 'react';
-import { graphql, StaticQuery } from 'gatsby';
-import { BsFillLightningFill } from 'react-icons/bs';
+import React from "react";
+import { graphql, StaticQuery } from "gatsby";
+import { BsFillLightningFill } from "react-icons/bs";
 
-import { MenuItem } from './MenuItem';
+import { MenuItem } from "./MenuItem";
 
 export const PublicMenu = ({ mobile, menuopen, onclose }) => {
   return (
@@ -52,6 +52,12 @@ const MENU_QUERY = graphql`
             nodes {
               label
               url
+              childItems {
+                nodes {
+                  label
+                  url
+                }
+              }
             }
           }
           parentId

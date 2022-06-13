@@ -34,10 +34,16 @@ export const MenuItem = (props) => {
 
   const isParent = Boolean(subItems?.length);
   const [menuItemHovered, setMenuItemHovered] = useState(false);
+  const [menuChildItemHovered, setMenuChildItemHovered] = useState(false);
 
   const handleClick = () => {
     if (!isParent) onclose();
     setMenuItemHovered(!menuItemHovered);
+  };
+
+  const handleChildClick = (event, length) => {
+    if (!(length > 0)) onclose();
+    setMenuChildItemHovered(!menuChildItemHovered);
   };
 
   if (parentId) {
@@ -114,24 +120,89 @@ export const MenuItem = (props) => {
               item ? (
                 <LinkBox
                   key={item.label}
-                  w="full"
                   py="1"
                   px="3"
                   w="100%"
-                  onClick={onclose}
+                  cursor="pointer"
                   _hover={{ bg: 'whiteAlpha.400' }}
+                  onMouseEnter={() => {
+                    if(item.childItems.nodes.length > 0) {
+                      setMenuChildItemHovered(true)
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    if(item.childItems.nodes.length > 0) { 
+                      setMenuChildItemHovered(false) 
+                    }
+                  }}
+                  onClick={(event) => handleChildClick(event, item.childItems.nodes.length)}
                 >
                   {menuopen && (
-                    <LinkOverlay as={Link} to={item.url}>
-                      <Heading
-                        color="inherit"
-                        size={mobile ? '2xl' : 'lg'}
-                        fontSize={mobile ? '40px' : '28px'}
-                      >
+                    <LinkOverlay 
+                      as={item.childItems.nodes.length > 0 ? 'div' : Link}
+                      to={item.childItems.nodes.length > 0 ? '' : item.url}>
+                      <HStack justify="space-between">
+                       <Heading
+                         color="inherit"
+                         size={mobile ? '2xl' : 'lg'}
+                         fontSize={mobile ? '40px' : '28px'}
+                       >
                         {item.label}
-                      </Heading>
+                       </Heading>
+
+                      {mobile ? (
+                        item.childItems.nodes.length > 0 ? (
+                          menuChildItemHovered ? (
+                            <Icon as={AiOutlineDown} />
+                          ) : (
+                            <Icon as={AiOutlineRight} />
+                          )
+                        ) : (
+                          ''
+                        )
+                      ) : (
+                        item.childItems.nodes.length > 0 && <Icon as={AiOutlineRight} />
+                      )}
+                    </HStack>
                     </LinkOverlay>
                   )}
+                  {menuChildItemHovered && (
+                  <VStack
+                    position={mobile ? 'relative' : 'absolute'}
+                    right={mobile ? null : '0'}
+                    top={mobile ? null : '0'}
+                    spacing="1"
+                    transform={mobile ? null : 'translateX(100%)'}
+                    w={mobile ? '100%' : 'unset'}
+                    color="gray.50"
+                    bg={mobile ? 'whiteAlpha.300' : 'dOrange.300'}
+                    onMouseEnter={() => setMenuChildItemHovered(true)}
+                    onMouseLeave={() => setMenuChildItemHovered(false)}
+                  >
+                    {item.childItems.nodes?.map((childItem) =>
+                     childItem ? (
+                      <LinkBox
+                        key={childItem.label}
+                        py="1"
+                        px="3"
+                        w="100%"
+                        onClick={onclose}
+                        _hover={{ bg: 'whiteAlpha.400' }}
+                      >
+                        {menuopen && (
+                          <LinkOverlay as={Link} to={'/blog' + childItem.url}>
+                            <Heading
+                              color="inherit"
+                              size={mobile ? '2xl' : 'lg'}
+                              fontSize={mobile ? '40px' : '28px'}
+                            >
+                              {childItem.label}
+                            </Heading>
+                          </LinkOverlay>
+                        )}
+                      </LinkBox>) : null)}
+                  </VStack>
+                )}
                 </LinkBox>
               ) : (
                 <></>
