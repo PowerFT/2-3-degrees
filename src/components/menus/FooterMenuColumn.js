@@ -41,7 +41,7 @@ export const FooterMenuColumn = ({ id, ...rest }) => {
             <Box
               as={Link}
               to={
-                data.menu?.id !==
+                data.menu?.id !=
                 process.env.GATSBY_WORDPRESS_FOOTER_RESOURCES_ID
                   ? link.path
                   : "/blog" + link.path
