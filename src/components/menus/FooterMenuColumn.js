@@ -12,6 +12,13 @@ const FOOTER_MENU_QUERY = gql`
         nodes {
           label
           path
+          connectedNode {
+            node {
+              ... on Post {
+                id
+              }
+            }
+          }
         }
       }
     }
@@ -41,10 +48,7 @@ export const FooterMenuColumn = ({ id, ...rest }) => {
             <Box
               as={Link}
               to={
-                data.menu?.id !=
-                process.env.GATSBY_WORDPRESS_FOOTER_RESOURCES_ID
-                  ? link.path
-                  : "/blog" + link.path
+                link.connectedNode?.node?.id ? "/blog" + link.path : link.path
               }
               _hover={{
                 textDecor: "underline",
