@@ -189,7 +189,7 @@ export const MenuItem = (props) => {
                         _hover={{ bg: 'whiteAlpha.400' }}
                       >
                         {menuopen && (
-                          <LinkOverlay as={Link} to={'/blog' + childItem.url}>
+                          <LinkOverlay as={Link} to={childItem.url}>
                             <Heading
                               color="inherit"
                               size={mobile ? '2xl' : 'lg'}
