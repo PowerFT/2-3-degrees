@@ -142,8 +142,11 @@ export const MenuItem = (props) => {
                 >
                   {menuopen && (
                     <LinkOverlay 
-                      as={item.childItems.nodes.length > 0 ? 'div' : Link}
-                      to={item.childItems.nodes.length > 0 ? '' : item.url}>
+                      // as={item.childItems.nodes.length > 0 ? 'div' : Link}
+                      // to={item.childItems.nodes.length > 0 ? '' : item.url}
+                      as={Link}
+                      to={item.url}
+                      >
                       <HStack justify="space-between">
                        <Heading
                          color="inherit"
