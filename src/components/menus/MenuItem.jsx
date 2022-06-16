@@ -43,7 +43,9 @@ export const MenuItem = (props) => {
 
   const handleChildClick = (event, length) => {
     if (!(length > 0)) onclose();
-    setMenuChildItemHovered(!menuChildItemHovered);
+    if (length > 0) {
+      setMenuChildItemHovered(!menuChildItemHovered);
+    }
   };
 
   if (parentId) {
@@ -72,8 +74,10 @@ export const MenuItem = (props) => {
           <Box w="full" py="1" px="3">
             {menuopen && (
               <LinkOverlay
-                as={isParent ? 'div' : Link}
-                to={isParent ? '' : link}
+                // as={isParent ? 'div' : Link}
+                // to={isParent ? '' : link}
+                as={Link}
+                to={link}
               >
                 <HStack justify="space-between">
                   <Heading
