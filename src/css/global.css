@@ -61,3 +61,7 @@ img {
 .blog__body--content p > * {
   max-width: 100%;
 }
+
+.fullhero-content iframe{
+  width:100%;
+}

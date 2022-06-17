@@ -39,6 +39,7 @@ export const FullHeroContent = ({
         zIndex={1}
         position="relative"
         color="white"
+        className="fullhero-content"
       >
         <Heading
           as="h1"
