@@ -1,18 +1,19 @@
-import React from 'react';
-import { FullHero } from '../templates/layouts/full-hero';
-import { HalfHero } from '../templates/layouts/half-hero';
-import { TabSection } from '../templates/layouts/tabs';
-import { Pillars } from '../templates/layouts/pillars';
-import { TextList } from '../templates/layouts/text-list';
-import { Quote } from '../templates/layouts/quote';
-import { LogoGrid } from '../templates/layouts/logo-grid';
-import { LatestBlog } from '../templates/layouts/blog';
-import { Newsletter } from '../templates/layouts/newsletter';
-import { PageBlock } from '../templates/layouts/page-block';
-import { RichTextBlock } from '../templates/layouts/rich-text-block';
-import { FixedHomepageHero } from '../templates/layouts/fixed-homepage-hero';
-import { FixedTalentHalfHero } from '../templates/layouts/fixed-talent-half-hero';
-import { FixedMakerHalfHero } from '../templates/layouts/fixed-maker-half-hero';
+import React from "react";
+import { FullHero } from "../templates/layouts/full-hero";
+import { FullHeroContent } from "../templates/layouts/full-hero";
+import { HalfHero } from "../templates/layouts/half-hero";
+import { TabSection } from "../templates/layouts/tabs";
+import { Pillars } from "../templates/layouts/pillars";
+import { TextList } from "../templates/layouts/text-list";
+import { Quote } from "../templates/layouts/quote";
+import { LogoGrid } from "../templates/layouts/logo-grid";
+import { LatestBlog } from "../templates/layouts/blog";
+import { Newsletter } from "../templates/layouts/newsletter";
+import { PageBlock } from "../templates/layouts/page-block";
+import { RichTextBlock } from "../templates/layouts/rich-text-block";
+import { FixedHomepageHero } from "../templates/layouts/fixed-homepage-hero";
+import { FixedTalentHalfHero } from "../templates/layouts/fixed-talent-half-hero";
+import { FixedMakerHalfHero } from "../templates/layouts/fixed-maker-half-hero";
 
 const AllLayouts = ({ layoutData }) => {
   const layoutType = layoutData.fieldGroupName;
@@ -29,6 +30,7 @@ const AllLayouts = ({ layoutData }) => {
    */
   const layouts = {
     Page_Pagebuilder_Layouts_FullHero: FullHero,
+    Page_Pagebuilder_Layouts_FullHeroContent: FullHeroContent,
     Page_Pagebuilder_Layouts_HalfHero: HalfHero,
     Page_Pagebuilder_Layouts_Tabs: TabSection,
     Page_Pagebuilder_Layouts_Pillars: Pillars,
@@ -50,7 +52,7 @@ const AllLayouts = ({ layoutData }) => {
    */
   const ComponentTag = layouts[layoutType]
     ? layouts[layoutType]
-    : layouts['page_default'];
+    : layouts["page_default"];
 
   return <ComponentTag {...layoutData} />;
 };

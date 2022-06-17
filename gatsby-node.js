@@ -130,7 +130,7 @@ const createPagePages = async ({ pages, gatsbyUtilities }) => {
     pages?.map(({ page }) =>
       gatsbyUtilities.actions.createPage({
         path: page.uri,
-        component: path.resolve('./src/templates/page/index.js'),
+        component: path.resolve("./src/templates/page/index.js"),
         context: {
           page,
         },
@@ -171,6 +171,34 @@ const getPages = async ({ graphql, reporter }) => {
                   textColour
                 }
                 ... on WpPage_Pagebuilder_Layouts_FullHero {
+                  bgCol
+                  bgPatternCol
+                  title
+                  titleColour
+                  text
+                  subTitleColour
+                  buttonColour
+                  button {
+                    target
+                    url
+                    title
+                  }
+                  image {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        fluid(quality: 90) {
+                          src
+                          srcSet
+                          aspectRatio
+                        }
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  fieldGroupName
+                }
+                ... on WpPage_Pagebuilder_Layouts_FullHeroContent {
                   bgCol
                   bgPatternCol
                   title
