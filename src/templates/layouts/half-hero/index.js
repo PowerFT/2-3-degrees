@@ -4,11 +4,11 @@ import {
   Button,
   Heading,
   Text,
-} from '@chakra-ui/react';
-import * as React from 'react';
-import { Link as GatsbyLink } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import { BgImage } from '../../../components/BgImage';
+} from "@chakra-ui/react";
+import * as React from "react";
+import { Link as GatsbyLink } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { BgImage } from "../../../components/BgImage";
 
 export const HalfHero = ({
   image,
@@ -30,30 +30,30 @@ export const HalfHero = ({
       as="section"
       className="half-hero"
       bg={bgCol}
-      pb={{ base: '0' }}
+      pb={{ base: "0" }}
       pos="relative"
       px={{
-        base: '0',
-        md: '12',
+        base: "0",
+        md: "12",
       }}
     >
       <Box
-        w={{ base: '100%', md: '50%' }}
+        w={{ base: "100%", md: "50%" }}
         maxW={{
-          md: 'md',
-          xl: 'xl',
+          md: "md",
+          xl: "xl",
         }}
         pt={{
-          base: '12',
-          md: '40',
+          base: "12",
+          md: "40",
         }}
         pb={{
-          base: '12',
-          md: '24',
+          base: "12",
+          md: "24",
         }}
         px={{
-          base: '6',
-          md: '0',
+          base: "6",
+          md: "0",
         }}
         zIndex="2"
         position="relative"
@@ -82,11 +82,11 @@ export const HalfHero = ({
             rounded="full"
             bg={buttonColour}
             color={
-              buttonColour === 'gray.900' || buttonColour === 'gray.600'
-                ? 'gray.50'
-                : 'gray.900'
+              buttonColour === "gray.900" || buttonColour === "gray.600"
+                ? "gray.50"
+                : "gray.900"
             }
-            _hover={{ bg: 'lighter' }}
+            _hover={{ bg: "lighter" }}
           >
             {buttonTitle}
           </Button>
@@ -95,27 +95,34 @@ export const HalfHero = ({
 
       <Box
         pos={{
-          md: 'absolute',
+          md: "absolute",
         }}
         insetY={{
-          md: '0',
+          md: "0",
         }}
         insetEnd={{
-          md: '0',
+          md: "0",
         }}
         bg="gray.50"
         w={{
-          base: 'full',
-          md: '51%',
+          base: "full",
+          md: "51%",
         }}
         height={{
-          base: '96',
-          md: 'full',
+          base: "96",
+          md: "full",
         }}
         sx={{
           clipPath: {
-            md: 'polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%)',
+            md:
+              title.toLowerCase() === "mastering the future"
+                ? "none"
+                : "polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%)",
           },
+          backgroundColor:
+            title.toLowerCase() === "mastering the future"
+              ? "#eae7dc"
+              : "#ffffff",
         }}
         zIndex="2"
         position="relative"
@@ -125,6 +132,12 @@ export const HalfHero = ({
             className="image"
             image={imageData}
             alt={image?.altText}
+            imgStyle={{
+              objectFit:
+                title.toLowerCase() === "mastering the future"
+                  ? "contain"
+                  : "cover",
+            }}
           />
         )}
       </Box>
