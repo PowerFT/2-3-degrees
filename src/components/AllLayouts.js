@@ -1,6 +1,6 @@
 import React from "react";
 import { FullHero } from "../templates/layouts/full-hero";
-import { FullHeroContent } from "../templates/layouts/full-hero";
+import { FullHeroContent } from "../templates/layouts/full-hero-content";
 import { HalfHero } from "../templates/layouts/half-hero";
 import { TabSection } from "../templates/layouts/tabs";
 import { Pillars } from "../templates/layouts/pillars";

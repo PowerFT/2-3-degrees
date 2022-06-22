@@ -5,7 +5,7 @@ import { Link } from "gatsby";
 import { BgImage } from "../../../components/BgImage";
 // import AniLink from "gatsby-plugin-transition-link/AniLink"
 
-export const FullHero = ({
+export const FullHeroContent = ({
   image,
   title,
   text,
@@ -39,6 +39,7 @@ export const FullHero = ({
         zIndex={1}
         position="relative"
         color="white"
+        className="fullhero-content"
       >
         <Heading
           as="h1"
@@ -50,9 +51,12 @@ export const FullHero = ({
           {title}
         </Heading>
         {text && (
-          <Text mt="4" fontSize="lg" color={subTitleColour}>
-            {text}
-          </Text>
+          <Text
+            mt="4"
+            fontSize="lg"
+            color={subTitleColour}
+            dangerouslySetInnerHTML={{ __html: text }}
+          ></Text>
         )}
         {button && (
           <Button
