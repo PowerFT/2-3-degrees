@@ -20,6 +20,12 @@ export const FullHeroContent = ({
   const buttonTitle = button?.title;
   const buttonLink = button?.url;
 
+  const htmlDecode = (content) => {
+    let e = document.createElement("div");
+    e.innerHTML = content;
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+  };
+
   return (
     <Flex
       as="section"
@@ -55,7 +61,7 @@ export const FullHeroContent = ({
             mt="4"
             fontSize="lg"
             color={subTitleColour}
-            dangerouslySetInnerHTML={{ __html: text }}
+            dangerouslySetInnerHTML={{ __html: htmlDecode(text) }}
           ></Text>
         )}
         {button && (
