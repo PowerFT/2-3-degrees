@@ -55,6 +55,7 @@ export const FullHeroContent = ({
             mt="4"
             fontSize="lg"
             color={subTitleColour}
+            as="div"
             dangerouslySetInnerHTML={{ __html: `<div> ${text} </div>` }}
           ></Text>
         )}
