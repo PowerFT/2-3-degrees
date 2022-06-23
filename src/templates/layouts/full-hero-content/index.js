@@ -55,7 +55,7 @@ export const FullHeroContent = ({
             mt="4"
             fontSize="lg"
             color={subTitleColour}
-            dangerouslySetInnerHTML={{ __html: text }}
+            dangerouslySetInnerHTML={{ __html: `<div> ${text} </div>` }}
           ></Text>
         )}
         {button && (
