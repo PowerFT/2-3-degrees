@@ -274,15 +274,15 @@ const getPages = async ({ graphql, reporter }) => {
                   }
                   image {
                     altText
-                  }
-                  localFile {
-                    childImageSharp {
-                      fluid(quality: 90) {
-                        src
-                        srcSet
-                        aspectRatio
+                    localFile {
+                      childImageSharp {
+                        fluid(quality: 90) {
+                          src
+                          srcSet
+                          aspectRatio
+                        }
+                        gatsbyImageData
                       }
-                      gatsbyImageData
                     }
                   }
                 }
