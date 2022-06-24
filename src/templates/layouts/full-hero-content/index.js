@@ -39,7 +39,11 @@ export const FullHeroContent = ({
         zIndex={1}
         position="relative"
         color="white"
-        className="fullhero-content"
+        className={
+          `fullhero-content ` +
+          (button?.title.toLowerCase() === "sign up here" &&
+            "earls-court-future-program")
+        }
       >
         <Heading
           as="h1"
