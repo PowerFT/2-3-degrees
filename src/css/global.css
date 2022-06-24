@@ -73,3 +73,15 @@ img {
   min-width: 250px;
   height: 50px;
 }
+.contact-page-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-page-icon svg {
+  color: #171923;
+  margin-right: 5px;
+}
+.contact-page-icon p {
+  margin-top: 0px;
+}

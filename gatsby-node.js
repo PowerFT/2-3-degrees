@@ -198,6 +198,37 @@ const getPages = async ({ graphql, reporter }) => {
                   }
                   fieldGroupName
                 }
+                ... on WpPage_Pagebuilder_Layouts_FullHeroContact {
+                  bgCol
+                  bgPatternCol
+                  title
+                  titleColour
+                  subTitleColour
+                  buttonColour
+                  button {
+                    target
+                    url
+                    title
+                  }
+                  mapUrl
+                  phone
+                  mail
+                  address
+                  image {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        fluid(quality: 90) {
+                          src
+                          srcSet
+                          aspectRatio
+                        }
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  fieldGroupName
+                }
                 ... on WpPage_Pagebuilder_Layouts_FullHeroContent {
                   bgCol
                   bgPatternCol
@@ -243,15 +274,15 @@ const getPages = async ({ graphql, reporter }) => {
                   }
                   image {
                     altText
-                    localFile {
-                      childImageSharp {
-                        fluid(quality: 90) {
-                          src
-                          srcSet
-                          aspectRatio
-                        }
-                        gatsbyImageData
+                  }
+                  localFile {
+                    childImageSharp {
+                      fluid(quality: 90) {
+                        src
+                        srcSet
+                        aspectRatio
                       }
+                      gatsbyImageData
                     }
                   }
                 }
