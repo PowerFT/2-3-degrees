@@ -78,6 +78,7 @@ export const FullHeroContact = ({
                 mt="4"
                 fontSize="lg"
                 color={subTitleColour}
+                as="div"
                 dangerouslySetInnerHTML={{ __html: address }}
               ></Text>
             </div>
