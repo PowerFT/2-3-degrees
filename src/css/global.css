@@ -82,6 +82,6 @@ img {
   color: #171923;
   margin-right: 5px;
 }
-.contact-page-icon p {
+.contact-page-icon p, .contact-page-icon div {
   margin-top: 0px;
 }
