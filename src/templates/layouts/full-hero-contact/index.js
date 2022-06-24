@@ -33,7 +33,7 @@ export const FullHeroContact = ({
         direction="column"
         position="relative"
         justify="center"
-        align="center"
+        align="left"
         overflow="hidden"
       >
         <Box
@@ -41,7 +41,7 @@ export const FullHeroContact = ({
           // mx="auto"
           px={{ base: "4", lg: "8" }}
           py={{ base: "8", sm: "20" }}
-          textAlign="center"
+          textAlign="left"
           zIndex={1}
           position="relative"
           color="white"

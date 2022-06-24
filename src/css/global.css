@@ -76,7 +76,7 @@ img {
 .contact-page-icon {
   display: flex;
   align-items: center;
-  justify-content: center;
+  margin-bottom: 5px;
 }
 .contact-page-icon svg {
   color: #171923;
@@ -84,4 +84,5 @@ img {
 }
 .contact-page-icon p, .contact-page-icon div {
   margin-top: 0px;
+  font-weight: 600;
 }
