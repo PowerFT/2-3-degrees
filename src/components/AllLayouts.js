@@ -2,6 +2,7 @@ import React from "react";
 import { FullHero } from "../templates/layouts/full-hero";
 import { FullHeroContent } from "../templates/layouts/full-hero-content";
 import { FullHeroContact } from "../templates/layouts/full-hero-contact";
+import { FullHeroAbout } from "../templates/layouts/full-hero-about";
 import { HalfHero } from "../templates/layouts/half-hero";
 import { TabSection } from "../templates/layouts/tabs";
 import { Pillars } from "../templates/layouts/pillars";
@@ -33,6 +34,7 @@ const AllLayouts = ({ layoutData }) => {
     Page_Pagebuilder_Layouts_FullHero: FullHero,
     Page_Pagebuilder_Layouts_FullHeroContent: FullHeroContent,
     Page_Pagebuilder_Layouts_FullHeroContact: FullHeroContact,
+    Page_Pagebuilder_Layouts_FullHeroAbout: FullHeroAbout,
     Page_Pagebuilder_Layouts_HalfHero: HalfHero,
     Page_Pagebuilder_Layouts_Tabs: TabSection,
     Page_Pagebuilder_Layouts_Pillars: Pillars,

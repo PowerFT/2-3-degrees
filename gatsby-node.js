@@ -229,6 +229,35 @@ const getPages = async ({ graphql, reporter }) => {
                   }
                   fieldGroupName
                 }
+                ... on WpPage_Pagebuilder_Layouts_FullHeroAbout {
+                  bgCol
+                  bgPatternCol
+                  title
+                  titleColour
+                  text
+                  subTitleColour
+                  buttonColour
+                  button {
+                    target
+                    url
+                    title
+                  }
+                  youtubeVideoUrl
+                  image {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        fluid(quality: 90) {
+                          src
+                          srcSet
+                          aspectRatio
+                        }
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  fieldGroupName
+                }
                 ... on WpPage_Pagebuilder_Layouts_FullHeroContent {
                   bgCol
                   bgPatternCol
