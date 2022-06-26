@@ -1,9 +1,24 @@
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Text,
+  useDisclosure,
+  Icon,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalCloseButton,
+  ModalBody,
+  AspectRatio,
+} from "@chakra-ui/react";
 import * as React from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 import { BgImage } from "../../../components/BgImage";
 // import AniLink from "gatsby-plugin-transition-link/AniLink"
+import { FaPlay } from "react-icons/fa";
 
 export const FullHeroAbout = ({
   image,
@@ -16,10 +31,16 @@ export const FullHeroAbout = ({
   subTitleColour,
   buttonColour,
   youtubeVideoUrl,
+  youtubeVideoThumbnail,
 }) => {
   const imageData = getImage(image?.localFile);
   const buttonTitle = button?.title;
   const buttonLink = button?.url;
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const youtubeVideoThumbnailData = getImage(youtubeVideoThumbnail?.localFile);
+
+  console.log(youtubeVideoThumbnail);
 
   return (
     <Flex
@@ -83,13 +104,60 @@ export const FullHeroAbout = ({
             </Button>
           )}
         </Box>
-        <iframe
+        {/* <iframe
           src={youtubeVideoUrl}
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
-        ></iframe>
+        ></iframe> */}
+        <Flex
+          position="relative"
+          align="center"
+          justify="center"
+          _hover={{ color: "dYellow.300" }}
+          color="gray.50"
+          onClick={onOpen}
+          cursor="pointer"
+          className="about-fullhero-right"
+        >
+          <Icon
+            as={FaPlay}
+            position="absolute"
+            mx="auto"
+            my="auto"
+            zIndex="10"
+            color="inherit"
+            w="4rem"
+            h="4rem"
+            shadow="xl yellow"
+            transition="transform .25s ease-in-out"
+            _hover={{ transform: "translateY(-5px)" }}
+          />
+          <Modal isOpen={isOpen} onClose={onClose} size="3xl" padding="12">
+            <ModalOverlay />
+            <ModalContent maxW="3xl" p={{ base: "2" }} bg="transparent">
+              <ModalCloseButton color="gray.50" />
+              <ModalBody bg="black" px={{ base: "2", sm: "12" }} py="12">
+                <AspectRatio maxW="560px" ratio={1.25} mx="auto">
+                  <iframe
+                    title="YouTube video player"
+                    src={`${youtubeVideoUrl}?autoplay=1`}
+                    allowFullScreen
+                  />
+                </AspectRatio>
+              </ModalBody>
+            </ModalContent>
+          </Modal>
+
+          {youtubeVideoThumbnailData && (
+            <GatsbyImage
+              image={youtubeVideoThumbnailData}
+              alt={youtubeVideoThumbnailData?.altText || "about image"}
+              objectFit="cover"
+            />
+          )}
+        </Flex>
       </div>
       {image && (
         <Flex

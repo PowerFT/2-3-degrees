@@ -91,7 +91,7 @@ img {
   flex-wrap: wrap;
   width: 100%;
 }
-.about-fullhero-video .about-fullhero-left{
+.about-fullhero-video .about-fullhero-left, .about-fullhero-video .about-fullhero-right {
   flex: 0 0 50%;
 }
 .about-fullhero-video iframe{
@@ -99,7 +99,7 @@ img {
   z-index: 9;
 }
 @media screen and (max-width: 991px) {
-  .about-fullhero-video .about-fullhero-left{
+  .about-fullhero-video .about-fullhero-left, .about-fullhero-video .about-fullhero-right {
     flex: 0 0 100%;
   }
   .about-fullhero-video iframe{

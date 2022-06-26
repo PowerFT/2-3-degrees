@@ -243,6 +243,19 @@ const getPages = async ({ graphql, reporter }) => {
                     title
                   }
                   youtubeVideoUrl
+                  youtubeVideoThumbnail {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        fluid(quality: 90, cropFocus: CENTER) {
+                          src
+                          srcSet
+                          aspectRatio
+                        }
+                        gatsbyImageData(aspectRatio: 1.3)
+                      }
+                    }
+                  }
                   image {
                     altText
                     localFile {
