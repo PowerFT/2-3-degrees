@@ -128,6 +128,7 @@ export const MenuItem = (props) => {
                   w="100%"
                   cursor="pointer"
                   _hover={{ bg: 'whiteAlpha.400' }}
+                  className="sub-parent-menu-item"
                   onMouseEnter={() => {
                     if(item.childItems.nodes.length > 0) {
                       setMenuChildItemHovered(true)
@@ -184,6 +185,7 @@ export const MenuItem = (props) => {
                     bg={mobile ? 'whiteAlpha.300' : 'dOrange.300'}
                     onMouseEnter={() => setMenuChildItemHovered(true)}
                     onMouseLeave={() => setMenuChildItemHovered(false)}
+                    className="sub-parent-menu-item-child"
                   >
                     {item.childItems.nodes?.map((childItem) =>
                      childItem ? (
